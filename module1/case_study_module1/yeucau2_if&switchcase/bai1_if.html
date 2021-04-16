@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let tienLuong = parseInt(prompt('Nhập lương của bạn đơn vị vnd'));
+    let thue1 = 0.05;
+    let thue2 = 0.1;
+    let thue3 = 0.2;
+    let thue = 0;
+    let luongNhan = 0;
+    if (tienLuong < 7000000) {
+        thue = tienLuong * thue1
+    } else if (tienLuong < 15000000) {
+        thue = tienLuong * thue2
+    } else {
+        thue = tienLuong * thue3
+    }
+    luongNhan = tienLuong - thue;
+    alert('Thuế phải trả là' + thue);
+    alert('Lương nhận sau thuế là ' + luongNhan + ' vnd')
+
+</script>
+</body>
+</html>

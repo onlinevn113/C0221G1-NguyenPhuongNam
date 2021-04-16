@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img id="lamp" src="https://thietbidien.edu.vn/files/sanpham/2375/300_1/jpg/bong-den-soi-dot-il-a60-60w.jpg">
+<input onclick="SwitchButton()" type="button" value="Công tắc">
+<h3 id="result">Bóng đèn đang tắt</h3>
+<script>
+    class Button {
+        constructor(status) {
+            this.status = status
+        }
+
+        turnOff_turnOn() {
+            this.status = !this.status;
+        }
+    }
+
+    class Lamp {
+        constructor(button) {
+            this.button = button;
+        }
+
+        switch() {
+            if (this.button.status) {
+                document.getElementById("lamp").src = "http://d4.violet.vn/uploads/blogs/726716/bong_den_400.jpeg";
+                document.getElementById("result").innerText = "Bóng đèn đang bật"
+            } else {
+                document.getElementById("lamp").src = "https://thietbidien.edu.vn/files/sanpham/2375/300_1/jpg/bong-den-soi-dot-il-a60-60w.jpg";
+                document.getElementById("result").innerText = "Bóng đèn đang tắt"
+            }
+        }
+    }
+
+    let button = new Button();
+    let lamp = new Lamp(button);
+
+    function SwitchButton() {
+        button.turnOff_turnOn();
+        lamp.switch();
+
+    }
+</script>
+</body>
+</html>

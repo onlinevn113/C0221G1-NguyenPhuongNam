@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hiện thị dãy fibonacci</title>
+</head>
+<body>
+<script>
+    let soLuongFibonacci=parseInt(prompt('Nhập số lượng dãy Fibonacci'));
+    let a = 1;
+    let b = 0;
+    let temp=0;
+    let dayFibonacci = [];
+    for (let i = 0; i < soLuongFibonacci; i++) {
+        temp = a;
+        a += b;
+        b=temp;
+        dayFibonacci.push(temp);
+    }document.write(dayFibonacci);
+
+</script>
+
+</body>
+</html>

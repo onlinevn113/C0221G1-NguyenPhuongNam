@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhập và in ra màn hình giá trị trung bình của mảng</title>
+</head>
+<body>
+<script>
+<<<<<<< HEAD
+    let mangNho = prompt("nhập vào các phần tử cách nhau bằng dấu cách");
+=======
+    let n = prompt("nhập vào các phần tử cách nhau bằng dấu cách");
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+    let arr = n.split(' ');
+    let max = arr[0];
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum +=parseInt(arr[i]);
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    let tbc = sum / arr.length;
+    alert(max);
+    alert(tbc);
+
+</script>
+</body>
+</html>

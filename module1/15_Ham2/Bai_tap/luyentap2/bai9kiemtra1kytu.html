@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function kiemTra(name) {
+        let mang = ['a','b','c','d','a'];
+        let dem=0;
+        for (let i = 0; i <= mang.length; i++) {
+            if (name == mang[i]) {
+                dem++;
+
+            }
+
+        }
+        if(dem!=0){
+            return dem;
+        }
+        return -1
+
+    }
+
+    let dungsai = kiemTra(prompt('Nhập'));
+    alert(kiemTra)
+</script>
+</body>
+</html>

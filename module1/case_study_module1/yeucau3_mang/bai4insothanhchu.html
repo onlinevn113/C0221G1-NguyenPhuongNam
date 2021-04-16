@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // // Cách 1
+    // let n=parseInt(prompt('Nhập số'));
+    // let str='';
+    // while (n>0){
+    //     let i=n%10;
+    //     str=aa(i)+str;
+    //     n=parseInt(n/10)
+    // }
+    // alert(str);
+    // function aa(i) {
+    //     switch(i){
+    //         case 0:
+    //             return ' Không ';
+    //         case 1:
+    //             return ' Một ';
+    //         case 2:
+    //             return ' Hai ';
+    //         case 3:
+    //             return ' Ba ';
+    //         case 4:
+    //             return ' Bốn ';
+    //         case 5:
+    //             return ' Năm ';
+    //         case 6:
+    //             return ' Sáu ';
+    //         case 7:
+    //             return ' Bảy ';
+    //         case 8:
+    //             return ' Tám ';
+    //         case 9:
+    //             return ' Chín ';
+    //
+    //     }
+    // }
+
+    //Cách 2
+    let nhap=prompt('Nhập').split('');
+    let kq='';
+    let mangchu='không một hai ba bốn năm sau bảy tám chín'.split(' ');
+    console.log(mangchu);
+    for(let i=0;i<nhap.length;i++){
+        kq+=mangchu[nhap[i]]+' '
+    }alert(kq)
+
+    // // Cách 3
+    // let nhap=prompt('Nhập').split('');
+    // let kq='';
+    // let mangchu='không một hai ba bốn năm sau bảy tám chín'.split(' ');
+    // let mangSo=['0','1','2','3','4','5','6','7','8','9'];
+    // for(let i=0;i<nhap.length;i++){
+    //     if(mangSo.indexOf(nhap[i])>=0){
+    //         kq+=mangchu[mangSo.indexOf(nhap[i])]+' ';
+    //     }
+    // }alert(kq)
+</script>
+</body>
+</html>

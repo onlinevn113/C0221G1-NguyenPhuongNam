@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = [1, 2, 3, 4];
+    let nhap = prompt('nhập');
+    for (let i = 0; i <= array.length; i++) {
+        if (nhap==array[i]){
+            array.splice(i,1);
+            array.push('0');
+        }
+
+    }
+    alert(array)
+</script>
+</body>
+</html>

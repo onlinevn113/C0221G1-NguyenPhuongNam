@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tạo menu thức uống trong quán cafe</title>
+</head>
+<body>
+<script>
+    document.write("<h2> XIN CHÀO QUÝ KHÁCH </h2>");
+    document.write("<h3> menu của quán  </h3>");
+    document.write("<h5> (Vui lòng bấm vào nút chọn ở dưới để chọn món) </h5>");
+
+
+    let menu = ["cafe", "cam vắt ", "nước ép cà rốt", "nước ép cà chua", "nước lọc", "nước dừa"];
+    let gia = [15000, 20000, 20000, 20000, 10000, 15000];
+
+    for (let i = 0; i < menu.length; i++) {
+        document.write((i + 1) + "." + menu[i] + "có giá :" + gia[i] + "VND");
+        document.write("<br>");
+    }
+    document.write("<hr>");
+
+    function getSumMoney() {
+        let tongTien = 0;
+        let nhap = prompt("Vui lòng chọn món : ");
+        do {
+            let sl = prompt("Nhập số lượng món " + menu[nhap-1]);
+            document.write("Tên món:" + menu[nhap] +"<br>"+ " Giá : " + gia[nhap] +"<br>"+ " số lượng : " + sl
+                +"<br>");
+            tongTien += gia[nhap] * sl;
+            nhap = prompt("Vui lòng chọn món : ");
+        } while (nhap !=="ok");
+        document.write("tổng tiền phải trả là :" + tongTien)
+    }
+
+</script>
+<button onclick="getSumMoney()">Chọn món (nhập 7 để kết thúc)</button>
+
+</body>
+</html>

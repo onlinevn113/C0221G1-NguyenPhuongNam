@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="money" type="text" placeholder="So tien" >
+<select id="tennuoc">
+    <option value=23000>Việt Nam</option>
+    <option value=1>Mỹ</option>
+</select>
+<select id="tennuoc2">
+    <option value=1>Mỹ</option>
+    <option value=23000>Việt Nam</option>
+
+</select>
+<input type="button" value="convert" onclick="chuyendoi()">
+<p id="ketqua1"></p>
+<script>
+    function chuyendoi(){
+        let tien= document.getElementById("money").value;
+        let country=document.getElementById("tennuoc").value;
+        let country2=document.getElementById("tennuoc2").value;
+        let ketqua=tien*country2/country;
+    document.getElementById("ketqua1").innerHTML="="+ketqua;}
+
+</script>
+
+<h3></h3>
+</body>
+<body>
+<input type="button" value="123213123123">
+<button>234234234234</button>
+</body>
+</html>

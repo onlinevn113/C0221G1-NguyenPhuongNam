@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //cách 1
+    // let kyTu = prompt('Nhập ký tự bạn muốn kiểm tra');
+    // let dungsai = '';
+    // while (kyTu === '') {
+    //     kyTu = prompt('Nhập ký tự bạn muốn kiểm tra')
+    // }
+    // switch (kyTu) {
+    //     case 'o':
+    //     case 'u':
+    //     case 'i':
+    //     case 'a':
+    //     case `e`:
+    //     case 'O':
+    //     case 'U':
+    //     case "I":
+    //     case 'A':
+    //     case 'E':
+    //         dungsai += "nguyên âm";
+    //         break;
+    //     default:
+    //         dungsai += "phụ âm";
+    // }
+    // alert('ký tự ' + kyTu + ' là ' + dungsai)
+
+    //cách 2
+    // let kiemTraKyTu = prompt('Nhập ký tự kiểm tra');
+    // while (kiemTraKyTu === '') {
+    //     kiemTraKyTu = prompt('Nhập ký tự kiểm tra');
+    // }
+    // if (kiemTraKyTu == 'u' || kiemTraKyTu == 'e' || kiemTraKyTu == 'o' || kiemTraKyTu == 'a' || kiemTraKyTu == 'i' || kiemTraKyTu == 'U' || kiemTraKyTu == 'E' || kiemTraKyTu == 'O' || kiemTraKyTu == 'A' || kiemTraKyTu == 'I') {
+    //     alert(kiemTraKyTu + ' là nguyên âm')
+    // } else {
+    //     alert(kiemTraKyTu + ' là phụ âm')
+    // }
+    //cách 3
+    let kyTuNguyenAm = 'ueoaiUEOAI'.split('');
+    let dungsai = false;
+    let kiemTra = prompt('Nhập kiểm tra ký tự');
+    for (let i = 0; i < kyTuNguyenAm.length; i++) {
+        if (kiemTra === kyTuNguyenAm[i]) {
+            dungsai = true;
+            break
+        } else {
+            dungsai = false
+        }
+    }
+    dungsai ? alert(kiemTra + ' là nguyên âm') : alert(kiemTra + ' là phụ âm')
+
+
+</script>
+</body>
+</html>

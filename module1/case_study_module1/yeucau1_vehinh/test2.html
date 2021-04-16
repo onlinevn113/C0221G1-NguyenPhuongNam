@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    for (let i = 0; i < 5; i++){
+<<<<<<< HEAD
+        for (let i = 0; j < 5 - i -1; j++) { // tao hinh tam giac dau cach. chú ý 5 ở đây là chiều cao nên phải theo 5
+            document.write('&nbsp&nbsp')     // i < 5 - i - 1 nếu i=0 thì vị trí i để in rỗng gần đỉnh là 3 vì * là 4
+        }
+        // số sao lần lượt là 1 3 5 7 9 >> i < 2i+1
+        for (let i = 0; j < 2*i + 1; j++) { //  để tạo hình rỗng nên Ctrl/ hình tam giác đấu cách để xem hình thật của tam giác cân
+            if (j == 0 || j == 2*i || i == 5-1){  // ở đây ko if mà in * sẽ ra tam giác cân
+                document.write('*')                      // sau khi Ctrl / ta thấy mặc định i == 0 in sao
+=======
+        for (let j = 0; j < 5 - i -1; j++) { // tao hinh tam giac dau cach. chú ý 5 ở đây là chiều cao nên phải theo 5
+            document.write('&nbsp&nbsp')     // j < 5 - i - 1 nếu i=0 thì vị trí j để in rỗng gần đỉnh là 3 vì * là 4
+        }
+        // số sao lần lượt là 1 3 5 7 9 >> j < 2i+1
+        for (let j = 0; j < 2*i + 1; j++) { //  để tạo hình rỗng nên Ctrl/ hình tam giác đấu cách để xem hình thật của tam giác cân
+            if (j == 0 || j == 2*i || i == 5-1){  // ở đây ko if mà in * sẽ ra tam giác cân
+                document.write('*')                      // sau khi Ctrl / ta thấy mặc định j == 0 in sao
+
+            }else {                                      // i = 4 = 5-1 là in sao ////  2*i là cạnh huyền
+                document.write('&nbsp&nbsp')
+            }
+        }
+        document.write('<br>')
+    }
+</script>
+
+</body>
+</html>

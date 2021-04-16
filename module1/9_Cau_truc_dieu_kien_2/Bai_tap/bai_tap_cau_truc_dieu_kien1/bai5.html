@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let kiemTra15p = parseInt(prompt("Nhập điểm kiểm tra 15'"));
+    let kiemTra1Tiet = parseInt(prompt("Nhập điểm kiểm tra 1 tiét"));
+    let kiemTraHocKy = parseInt(prompt("Nhập điểm kiểm tra học kỳ"));
+    let kiemTra = ((kiemTra15p + kiemTra1Tiet * 2 + kiemTraHocKy * 4) / 7);
+    if (kiemTra >= 8) {
+        alert('Học lực giỏi');
+    } else if (kiemTra >= 6.5) {
+        alert('Học lực khá');
+    } else if (kiemTra >= 5) {
+        alert('Học lực trung bình');
+    } else {
+        alert('Học lực yếu');
+    }
+
+
+</script>
+</body>
+</html>

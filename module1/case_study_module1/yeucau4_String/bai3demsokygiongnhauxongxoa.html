@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let s1 = "aabcc".split("");
+    let s2 = "adcaa".split("");
+    let s3=[];
+    let dem=0;
+    for(let i=0;i<s1.length;i++){
+        for(let j=0;j<s2.length;j++){
+            if(s1[i]===s2[j]){
+                s3+=s2.splice(j,1);
+                dem++;
+                break;
+            }
+        }
+    }document.write(s3+" số kí tự giống nhau "+ dem)
+</script>
+</body>
+</html>

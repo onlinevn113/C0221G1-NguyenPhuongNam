@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function kiemTraSoNguyen(num) {
+        let mangSo = ['1','2','3','4','5','6','7','8','9','0'];
+        let dungsai = false;
+        for (let i = 0; i < num.length; i++) {
+            if (mangSo.indexOf(num[i]) > -1) {
+                kiemTra = true
+            }
+
+        }
+        return kiemTra;
+    }
+    let kiemTra=prompt('Nhập');
+    alert(kiemTraSoNguyen(kiemTra))
+
+
+</script>
+</body>
+</html>

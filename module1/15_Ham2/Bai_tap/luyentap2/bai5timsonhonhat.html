@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function timSoNhoNhat(n) {
+        let arr = n.split(' ');
+        let min = parseInt(arr[0]);
+        for (let i = 0; i < arr.length; i++) {
+            if (parseInt(arr[i]) < min) {
+                min = arr[i];
+            }
+        }
+        return min
+    }
+
+    let num = prompt('Nhập vào các số bất kỳ cách nhau bằng dấu cách');
+    let a = timSoNhoNhat(num);
+    alert('số nhỏ nhất là ' + a);
+</script>
+</body>
+</html>

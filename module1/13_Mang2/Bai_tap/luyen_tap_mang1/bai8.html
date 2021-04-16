@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a=prompt('Nhập số phân tử');
+    let b=[];
+    let c=[];
+    for(i=1;i<=a;i++) {
+        b[i] = prompt('Nhập vào  phân tử của mảng');
+        c = b.sort(function (a, b) {
+            return b - a
+        });
+    }
+    alert('Sắp xếp theo thứ tự giảm dần'+c)
+
+</script>
+</body>
+</html>

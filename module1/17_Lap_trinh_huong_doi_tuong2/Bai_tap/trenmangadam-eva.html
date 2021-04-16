@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>[Bài tập] Phát triển ứng dụng nhỏ mô phỏng câu chuyện Adam và Eva</title>
+    </head>
+<body>
+<input type="button" value="Eat" id="eatBtn">
+<div id="say"></div>
+<script>
+    function Apple (weight=10) {
+        this.weight = weight;
+
+        this.isEmpty = false;
+        this.decrease = function() {
+            this.weight--;
+        };
+        this.getWeight = function() {
+            return this.weight;
+        }
+    }
+
+    function Human(name, weight) {
+        this.name = name;
+        this.weight = weight;
+
+        this.getWeight = function() {
+
+            return this.weight;
+        };
+        this.setWeight = function(wet) {
+            this.weight = wet;
+        };
+        this.eat = function(apple) {
+            apple.decrease();
+        };
+        this.say = function(string) {
+            document.getElementById('say').innerHTML += (`${this.name} say: "${string}" <br>`);
+        };
+        this.checkApple = function(apple) {
+            return apple.getWeight();
+        }
+    }
+
+    let adam = new Human('Adam', 'male', 100);
+    let eva = new Human('Eva', 'female', 50);
+    let apple = new Apple();
+    let isAdamNext = true;
+
+    document.getElementById('eatBtn').addEventListener('click', () => {
+        if (!apple.isEmpty) {
+            if (isAdamNext) {
+                adam.eat(apple);
+                adam.setWeight(++adam.weight);
+
+                if (!adam.checkApple(apple)) {
+                    adam.say('Hết cmn táo rồi! Để anh vào rừng kiếm quả khác!');
+                    apple.isEmpty = true;
+                } else {
+                    adam.say('Em ăn một miếng đi không anh ăn hết giờ!');
+                }
+                isAdamNext = false;
+            } else {
+                eva.eat(apple);
+                eva.setWeight(++eva.weight);
+
+                if (!eva.checkApple(apple)) {
+                    eva.say('Hết cmn táo rồi! Anh vào rừng kiếm quả khác về gặm tiếp đi!');
+                    apple.isEmpty = true;
+                } else {
+                    eva.say('Anh ăn một miếng đi nè! Ahihi');
+                }
+                isAdamNext = true;
+            }
+        }
+    })
+</script>
+</body>
+</html>

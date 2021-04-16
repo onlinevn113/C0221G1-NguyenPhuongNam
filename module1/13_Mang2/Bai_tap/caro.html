@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>caro</title>
+</head>
+<body>
+<p id="hienThi"></p>
+<script>
+    // Tạo mảng để lưu giá trị
+    let array = new Array(12);
+    for (let i = 0; i < 12; i++) {
+        array[i] = new Array(12)
+<<<<<<< HEAD
+        for (let i = 0; j < 12; j++) {
+=======
+        for (let j = 0; j < 12; j++) {
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+            array[i][j] = ""
+        }
+    }
+    // gọi hàm hiện thị
+    display();
+    let checkPlayer1 = true;
+    // định nghĩa hàm hiện thị
+    function display() {
+        let tableString = '<table border="1">';
+        for (let i = 0; i < 10; i++) {
+            tableString += '<tr>';
+<<<<<<< HEAD
+            for (let i = 0; j < 10; j++) {
+=======
+            for (let j = 0; j < 10; j++) {
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+                tableString += '<td style="width: 20px;height: 20px" onclick="playing(' + i + ',' + j + ')">' + array[i][j] + '</td>';
+            }
+            tableString += ' </tr>';
+        }
+        tableString += '</table>';
+        document.getElementById("hienThi").innerHTML = tableString;
+    }
+    // định nghĩa hàm để đánh
+<<<<<<< HEAD
+    function playing(i, i) {
+=======
+    function playing(i, j) {
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+        if (checkPlayer1&&!checkPlayed(i,j)) {
+            array[i][j] = "X";
+            checkPlayer1 = false;
+            if (checkedWin()){
+                alert("người số 1 chiến thắng")
+            }
+        } else if (!checkPlayer1&&!checkPlayed(i,j)) {
+            array[i][j] = "O";
+            checkPlayer1 = true;
+            if (checkedWin()){
+                alert("người số 2 chiến thắng")
+            }
+        }
+        display();
+    }
+    // hàm kiểm tra xem ô đã có người đánh chưa?
+
+<<<<<<< HEAD
+    function checkPlayed(i, i) {
+=======
+    function checkPlayed(i, j) {
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+        if (array[i][j]=="X"||array[i][j]=="O"){
+            alert("Ô này chơi rồi bạn ơi!!!!!!")
+            return true
+        }else {
+            return false;
+        }
+    }
+    // hàm kiểm tra chiến thắng
+    function checkedWin() {
+        for (let i = 0; i < 10; i++) {
+<<<<<<< HEAD
+            for (let i = 0; j < 10; j++) {
+=======
+            for (let j = 0; j < 10; j++) {
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+                if (array[i][j] == "X"){
+                    if (array[i][j+1] == "X"&&array[i][j+2] == "X"){
+                        return true;
+                    }
+                    if (array[i+1][j] == "X"&&array[i+2][j] == "X"){
+                        return true;
+                    }
+                    if (array[i+1][j+1] == "X"&&array[i+2][j+2] == "X"){
+                        return true;
+                    }
+                    if (array[i-1][j+1] == "X"&&array[i-2][j+2] == "X"){
+                        return true;
+                    }
+                }else if(array[i][j] == "O"){
+                    if (array[i][j+1] == "O"&&array[i][j+2] == "O"){
+                        return true;
+                    }
+                    if (array[i+1][j] == "O"&&array[i+2][j] == "O"){
+                        return true;
+                    }
+                    if (array[i+1][j+1] == "O"&&array[i+2][j+2] == "O"){
+                        return true;
+                    }
+                    if (array[i-1][j+1] == "O"&&array[i-2][j+2] == "O"){
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

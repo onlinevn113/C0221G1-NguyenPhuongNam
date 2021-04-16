@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1000" height="500" style="border: 1px solid black;background: pink">
+</canvas>
+<script>
+    class Motahinhchunhat {
+        constructor(chieurong, chieudai) {
+            this.rong = chieurong;
+            this.dai = chieudai;
+        }
+
+        getchieuRong() {
+            return this.rong;
+        }
+
+        getchieuDai() {
+            return this.dai;
+        }
+
+        setchieuRong(chieurongmoi) {
+            this.rong = chieurongmoi;
+
+        }
+
+        setchieuDai(chieudaimoi) {
+            this.dai = chieudaimoi
+        }
+
+        area() {
+            return this.rong * this.dai;
+        }
+
+        chuVi() {
+            return (this.dai + this.dai) * 2;
+
+        }
+        ve(){
+            let canvas=document.getElementById("myCanvas");
+            let ctx=canvas.getContext("2d");
+            ctx.fillStyle= 'White';
+            ctx.fillRect(500,250,this.dai,this.rong)
+
+        }
+    }
+
+    let width1=parseInt(prompt('Nhập rộng'));
+    let height=parseInt(prompt('Nhập dài'))
+    let chuNhat1 = new Motahinhchunhat(width1,height);
+    document.write('<br> diện tích = '+chuNhat1.area()+'<br>'+'chu vi = '+chuNhat1.chuVi());
+    document.write();
+
+    chuNhat1.ve()
+</script>
+</body>
+</html>

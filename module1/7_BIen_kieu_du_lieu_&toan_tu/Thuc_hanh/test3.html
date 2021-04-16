@@ -1,0 +1,47 @@
+<fieldset>
+    <legend>Currency</legend>
+    <table>
+        <tr class="horizontal">
+            <td colspan="2">
+                <p>To offer multiple currencies on your online store, you must first [edit your store's currency formatting](https://docs.haravan.com/support/settings/general/tell-my-script-where-to-find-money-formats).</p>
+            </td>
+        </tr>
+        <tr class="horizontal">
+            <th>
+                <label for="show_multiple_currencies">Enable currency conversion</label>
+            </th>
+            <td>
+                <input type="checkbox" name="show_multiple_currencies" id="show_multiple_currencies" value="1" />
+                <p>Even though prices are displayed in different currencies, orders will still be processed in your store's currency.</p>
+            </td>
+        </tr>
+        <tr class="horizontal">
+            <th>
+                <label for="currency_format">Format</label>
+            </th>
+            <td>
+                <select name="currency_format" id="currency_format">
+                    <option value="money_format">Without currency ($10.00)</option>
+                    <option value="money_with_currency_format">With currency ($10.00 CAD)</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="horizontal">
+            <th>
+                <label for="supported_currencies">Supported currencies</label>
+            </th>
+            <td>
+                <input type="text" value="VND CAD USD AUD EUR JPY" name="supported_currencies" id="supported_currencies" />
+                <p>Use the country's ISO [currency code](http://www.xe.com/iso4217.php). Separate your currency codes with a space.</p>
+            </td>
+        </tr>
+        <tr class="horizontal">
+            <th>
+                <label for="default_currency">Default currency</label>
+            </th>
+            <td>
+                <input type="text" value="USD" name="default_currency" id="default_currency" />
+            </td>
+        </tr>
+    </table>
+</fieldset>

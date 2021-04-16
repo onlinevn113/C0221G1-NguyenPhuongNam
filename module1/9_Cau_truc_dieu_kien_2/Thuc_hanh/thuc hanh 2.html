@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="docReady()">
+<img id="nobita" style="position: absolute; left: 0;top:0;"height='200' width="200" src="https://th.bing.com/th/id/R893d8f2adc86b472e0d5cf6ccb1896b9?rik=Os4m5DGtBe8H7Q&riu=http%3a%2f%2fmedia.bizwebmedia.net%2fsites%2f76326%2fdata%2fUpload%2f2014%2f7%2fqua_bong_da_dong_luc_so_4_cm608.jpg&ehk=FqkB483RmGXS3OTv91r4i%2f2ENRU32HA0d4jfaGCqsnQ%3d&risl=&pid=ImgRaw">
+<script>
+    function upArrowPressed() {
+        let element = document.getElementById("nobita");
+        element.style.top = parseInt(element.style.top) - 5 + 'px';
+    }
+    function downArrowPressed() {
+        var element = document.getElementById("nobita");
+        element.style.top = parseInt(element.style.top) + 5 + 'px';
+    }
+    function leftArrowPressed() {
+        var element = document.getElementById("nobita");
+        element.style.left = parseInt(element.style.left) - 5 + 'px';
+    }
+    function rightArrowPressed() {
+        var element = document.getElementById("nobita");
+        element.style.left = parseInt(element.style.left) + 5 + 'px';
+
+    }
+    function moveSelection(evt) {
+        switch (evt.keyCode) {
+            case 37:
+                leftArrowPressed();
+                break;
+            case 39:
+                rightArrowPressed();
+                break;
+            case 38:
+                upArrowPressed();
+                break;
+            case 40:
+                downArrowPressed();
+                break;
+        }
+    }
+    function docReady() {
+        window.addEventListener('keydown', moveSelection);
+    }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<<<<<<< HEAD
+    <title>in ra màn hình mangNho số nguyên tố đầu tiên</title>
+=======
+    <title>in ra màn hình n số nguyên tố đầu tiên</title>
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+</head>
+<body>
+<script>
+
+   //  kiểm tra có phải là số nguyên tố hay không
+<<<<<<< HEAD
+    function kiemTraSoNguyenTo(mangNho){
+=======
+    function kiemTraSoNguyenTo(n){
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+        if (n < 2) {
+            return false;
+        } else {
+            for (let i = 2; i < n - 1; i++) {
+                if (n % i == 0) {
+                    return  false;
+                }
+            }
+        }
+        return true;
+    }
+
+<<<<<<< HEAD
+    let mangNho=0;
+=======
+    let n=0;
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+    while (n<100){
+        n++;
+        if (kiemTraSoNguyenTo(n)){
+            document.write(n)
+        }
+    }
+
+</script>

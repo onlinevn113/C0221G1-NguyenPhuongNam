@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form>
+    <p>
+        <label>Feet</label>
+        <input type="number" placeholder="Fahrenheit"
+               oninput="temperatureConverter(this.value)"
+               onchange="temperatureConverter(this.value)">
+    </p>
+    <p>Meters: <span id="outputCelsius"></span></p>
+</form>
+<form>
+    <p>
+        <label>Meter</label>
+        <input type="number" placeholder="Fahrenheit"
+               oninput="temperatureConverter1(this.value)"
+               onchange="temperatureConverter1(this.value)">
+    </p>
+    <p>foot: <span id="outputCelsius1"></span></p>
+</form>
+
+<script>
+
+    function temperatureConverter(valNum) {
+        valNum = parseFloat(valNum);
+        document.getElementById("outputCelsius").innerHTML = valNum*0.305;
+    }
+    function temperatureConverter1(valNum) {
+        valNum = parseFloat(valNum);
+        document.getElementById("outputCelsius1").innerHTML = valNum*3.279;
+    }
+
+</script>
+</body>
+</html>
+</body>
+</html>

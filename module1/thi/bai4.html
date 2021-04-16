@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class DienThoai {
+        constructor(madienthoai, ten, hangsanxuat, gia) {
+            this.madienthoai = madienthoai;
+            this.ten = ten;
+            this.hangsanxuat = hangsanxuat;
+            this.gia = gia;
+        }
+
+        setMaDienThoai(madienthoai) {
+            this.madienthoai = madienthoai;
+        }
+
+        getMaDienThoai() {
+            return this.madienthoai;
+        }
+
+        setTen(ten) {
+            this.ten = ten;
+        }
+
+        getTen() {
+            return this.ten
+        }
+
+        setHangSanXuat(hangsanxuat) {
+            this.hangsanxuat = hangsanxuat;
+        }
+
+        getHangSanXuat() {
+            return this.hangsanxuat
+        }
+
+        setGia(gia) {
+            this.gia = gia;
+        }
+
+        getGia() {
+            return this.gia
+        }
+
+        toString() {
+            return "Mã=" + this.madienthoai + " Tên điện thoại=" + this.ten + " Hãng sản xuất= " + this.hangsanxuat + " Giá= " + this.gia;
+        }
+    }
+
+    let danhSachDienThoai = [];
+    let dienThoai1 = new DienThoai(1, "Nokia", "Nokia", 20);
+    let dienThoai2 = new DienThoai(2, "Iphone", "Apple", 18);
+    danhSachDienThoai.push(dienThoai1, dienThoai2);
+    do {
+        let chon = prompt("Chọn chức năng\n" + "1. Danh sách điện thoại\n" + "2. thêm điện thoại \n" + "3. exit");
+        let dungsai = true;
+        switch (chon) {
+            case "1":
+                danhsachdienthoai();
+                break;
+            case "2":
+                themdienthoai();
+                break;
+            case "4":
+                exit();
+                break;
+            default:
+                dungsai = false
+        }
+    } while (dungsai);
+
+    function danhsachdienthoai() {
+        let danhsach = "";
+        for (let i = 0; i < danhSachDienThoai.length; i++) {
+            danhsach += (i + 1) + ". " + danhSachDienThoai[i].toString() + "\n";
+        }
+        alert(danhsach);
+    }
+
+    function themdienthoai() {
+        let maDienThoai = prompt("Nhập mã điện thoại");
+        let ten = prompt("Nhập tên điện thoại");
+        let hangSanXuat = prompt("Nhập hảng sản xuất");
+        let gia = prompt('Nhập giá');
+        danhSachDienThoai.push(new DienThoai(maDienThoai, ten, hangSanXuat, gia));
+        danhsachdienthoai()
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sản phẩm</title>
+</head>
+<body>
+<input type="text" placeholder="product name" id="productName">
+<input type="button" value="Add product" onclick="add();">
+<input type="button" value="Search" onclick="searchByName();"><br>
+<span> Số lượng</span> <span id="soLuong"></span>
+<p id="hienThi"></p>
+<script>
+    let listProduct = ["sam sung", "nokia", "iphone"];
+    display(listProduct);
+
+    function display(list) {
+        let tableString = '<table border="1">\n' +
+            '    <tr>\n' +
+            '        <th>STT</th>\n' +
+            '        <th>Tên sản phẩm</th>\n' +
+            '        <th>Sửa</th>\n' +
+            '        <th>Xóa</th>\n' +
+            '    </tr>';
+        for (let i = 0; i < list.length; i++) {
+            tableString += '<tr>\n' +
+                '        <th>'+(i+1)+'</th>\n' +
+                '        <th>' + list[i] + '</th>\n' +
+                '        <th><input  type="button" value="Sửa" onclick="editProduct('+i+')"></th>\n' +
+                '        <th><input type="button" value="Xóa" onclick="deleteProduct('+i+')"></th>\n' +
+                '    </tr>';
+        }
+        tableString += '</table>';
+        document.getElementById("hienThi").innerHTML = tableString;
+        document.getElementById("soLuong").innerHTML = list.length;
+    }
+    function add() {
+        let newProductName = document.getElementById("productName").value;
+        if (newProductName != "") {
+            listProduct.push(newProductName);
+            document.getElementById("productName").value = "";
+        }
+
+        display(listProduct);
+    }
+    function deleteProduct(index) {
+        let conf = confirm(" Do you want to delete  product name "+ listProduct[index]);
+        if (conf){
+            listProduct.splice(index,1);
+            display(listProduct);
+        }else {
+            alert("Not delete");
+        }
+    }
+    function editProduct(index) {
+        let editName = prompt("Input new product name: "+ listProduct[index]);
+        listProduct[index] = editName;
+        display(listProduct);
+    }
+    function searchByName() {
+        let searchList=[];
+        let searchName = document.getElementById("productName").value;
+        for (let i = 0; i<listProduct.length; i++){
+            if (listProduct[i].includes(searchName)){
+                searchList.push(listProduct[i]);
+            }
+        }
+        display(searchList);
+    }
+</script>
+</body>
+</html>

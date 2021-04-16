@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let mangLon = parseInt(prompt('nhập số phân tử mảng lơn'));
+    let mangNho = parseInt(prompt('Nhập số phân tử mảng nhỏ'));
+    let mang = [];
+    NhapMang2Chieu(mangLon, mangNho);
+    let max = mang[0][0];
+    let min = mang[0][0];
+    for (let i = 0; i < mang.length; i++) {
+        for (let j = 0; j < mang[i].length; j++) {
+            if (mang[i][j] > max) {
+                max = mang[i][j];
+            } else if (mang[i][j] < min) {
+                min = mang[i][j]
+            }
+        }
+    }
+    alert('Số lớn nhất là ' + max + '\nSố nhỏ nhất là  ' + min);
+    function NhapMang2Chieu(mangLon, mangNho) {
+        for (i = 0; i < mangLon; i++) {
+            mang[i] = [];
+            for (j = 0; j < mangNho; j++) {
+                mang[i][j] = parseInt(prompt('nhập vào phân tử mảng nhỏ'));
+            }
+        }
+    }
+</script>
+</body>
+</html>

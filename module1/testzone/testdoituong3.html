@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // function Mobile(id, name) {
+    //     this.is = id;
+    //     this.name = name;
+    //     this.message = "";
+    //     this.setMessage = function (message) {
+    //         this.message = message;
+    //     };
+    //     this.getMessage = function () {
+    //         return this.message;
+    //     };
+    //     this.sendMessage = function (message, mobile) {
+    //         mobile.setMessage(message)
+    //     }
+    // }
+    //
+    // let ios = new Mobile(1, 'IOS');
+    // let android = new Mobile(2, 'Android');
+    // android.sendMessage('message from ios', ios);
+    // var message = ios.getMessage();
+    // alert(message)
+    class Phone {
+        constructor(name) {
+            this.name = name;
+            this.energy = 2;
+            this.message = '';
+            this.inBox = '';
+            this.senderMessage = ''
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        //  dungsai turn on / turn off
+        turnOn() {
+            this.status = true
+        };
+
+        turnOff = function () {
+            this.status = false;
+        };
+
+        // battery
+        getEnergy() {
+            if (this.energy > 0) {
+                return this.energy;
+            } else {
+                alert('Charge Battery')
+            }
+        };
+
+        decreaseEnergy() {
+            if (this.energy > 0) {
+                this.energy--;
+                if (this.energy == 0) {
+                    this.status = false
+                }
+            }
+        };
+
+        chargeEnergy() {
+            if (this.energy < 100) {
+                this.energy++
+            }
+        };
+
+        // Message
+        getMessage() {
+            return this.message
+        };
+
+        setMessage(message) {
+            if (this.status === true) {
+                this.message = message;
+            } else {
+                alert('Not turn on')
+            }
+        };
+
+        sendMessage(namePhone) {
+            if (this.status === true) {
+                namePhone.setInbox(this.message);
+                this.senderMessage = this.message;
+                this.message = '';
+            } else {
+                alert('Not turn on')
+            }
+        };
+
+        setInbox(setMessage) {
+            this.inBox = setMessage;
+        }
+
+        getInbox() {
+            let result = 'Tin nhắn : ' + this.inBox;
+            return result;
+        }
+
+    }
+
+    let iphone = new Phone('Iphone');
+    let nokia = new Phone('Nokia');
+    nokia.turnOn();
+    iphone.turnOn();
+    nokia.setMessage('Hello Iphone ');
+    nokia.sendMessage(iphone);
+    nokia.setMessage('Chưa gửi Iphone');
+    document.write(nokia);
+    document.write(iphone);
+    document.write(iphone.getMessage());
+</script>
+</body>
+</html>

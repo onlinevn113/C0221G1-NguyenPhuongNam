@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" onclick="eating()" value="Adam Ăn">
+<input type="button" onclick="eating1()" value="Eva Ăn">
+<h3 id="wapple"></h3>
+<h3 id="whuman"></h3>
+<h3 id="whuman2"></h3>
+</body>
+<script>
+    class Apple {
+        constructor(weight) {
+            this.weight = weight
+        }
+
+        getWeight() {
+            return this.weight;
+        }
+
+        decrease() {
+            if (this.weight > 0) {
+                this.weight--
+            }
+        }
+    }
+
+    class Human {
+        constructor(name, gender, weight) {
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight;
+        }
+
+        eatapple(eat) {
+            if (apple.getWeight() > 0) {
+                apple.decrease();
+
+
+                this.weight++;
+            }
+        }
+    }
+
+    let apple = new Apple(100);
+    let adam = new Human('', '', 70);
+    let eva = new Human('', '', 50);
+
+    function eating() {
+        adam.eatapple(apple);
+        document.getElementById("wapple").innerText = 'Cân nặng táo là ' + apple.weight;
+        document.getElementById("whuman").innerText = 'Cân nặng adam là ' + adam.weight;
+
+
+    }
+
+    function eating1() {
+        eva.eatapple(apple);
+        document.getElementById("wapple").innerText = 'Cân nặng táo là ' + apple.weight;
+        document.getElementById("whuman2").innerText = 'Cân nặng eva là ' + eva.weight;
+
+    }
+</script>
+</html>

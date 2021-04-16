@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function tinhChuViHinhTron(bankinh) {
+      let kq1 =  2*bankinh*3.14;
+        return kq1
+    }
+    function tinhDientichHinhTron(banKinh) {
+        let kq2 =banKinh*banKinh*3.14;
+        return kq2
+    }
+    let banKinh=parseInt(prompt('Nhập bán kính'));
+    let chuViHinhTron =tinhChuViHinhTron(banKinh);
+    let dienTichHinhTron=tinhDientichHinhTron(banKinh);
+    alert('Chu vi hình tròn = '+chuViHinhTron+' Diện tích hình tròn = '+ dienTichHinhTron)
+
+</script>
+</body>
+</html>

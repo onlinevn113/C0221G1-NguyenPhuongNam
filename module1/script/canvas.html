@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="400px" height="200px" style="border: solid 1px black"></canvas>
+
+<script>
+    let myCanvas = document.getElementById("myCanvas");
+    let ctx = myCanvas.getContext("2d");
+    ctx.fillStyle = 'red';
+    ctx.fillRect(100, 50 , 200, 100);// hình chữ nhật
+    ctx.beginPath();
+    ctx.arc(200,100,100,0,2*Math.PI);//hình tròn
+    ctx.stroke();
+    //vẻ đường thẳng
+    ctx.moveTo(0,0);
+    ctx.lineTo(200,100);
+    ctx.stroke();
+    //vẻ chữ
+    ctx.font = "30px Arial";
+    ctx.fillText("Hello World",10,50);
+    //vẻ chữ rỗng
+    ctx.font = "30px Arial";
+    ctx.strokeText("Hello World",10,100);
+</script>
+</body>
+</html>

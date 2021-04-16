@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let b = '';
+    for (let i = 0; i <= 3; i++) {
+        let a = [prompt('Nhập')];
+        for (let c of a) {
+            if (c < 0) {
+                b += [c] + ', '
+            }
+        }
+    }
+    document.write(b)
+</script>
+</body>
+</html>

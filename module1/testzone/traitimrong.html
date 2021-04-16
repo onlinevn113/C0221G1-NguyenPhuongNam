@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // trái tim rỗng
+    let result = '';
+    let kichThuoc = prompt('Nhập kích thước')
+    for (let i = 0; i < 2; i++) {
+<<<<<<< HEAD
+        for (let i = 0; j < kichThuoc; j++) {
+            // if (i > 0 && i < kichThuoc / 2 - 1 || i > kichThuoc / 2 && i < kichThuoc - 1 || i === 1) {
+=======
+        for (let j = 0; j < kichThuoc; j++) {
+            // if (j > 0 && j < kichThuoc / 2 - 1 || j > kichThuoc / 2 && j < kichThuoc - 1 || i === 1) {
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+            if (j > 0 && j < kichThuoc / 2 - 1 && i === 0 || j > kichThuoc / 2 && j < kichThuoc - 1 && i === 0 ||
+                i === 1 && j === 0 || i === 1 && j === parseInt(kichThuoc / 2) || i === 1 && j === kichThuoc - 1) {
+                result += '*';
+            } else {
+                result += ' ';
+            }
+        }
+        result += '<br>';
+    }
+
+    for (let i = 0; i < parseInt(kichThuoc / 2 + 1); i++) {
+<<<<<<< HEAD
+        for (let i = 0; j < kichThuoc; j++) {
+            // if (i >= i && i < kichThuoc - i*2 +i ) {         //trái tim đặc
+=======
+        for (let j = 0; j < kichThuoc; j++) {
+            // if (j >= i && j < kichThuoc - i*2 +i ) {         //trái tim đặc
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+            if (j === i || j === kichThuoc - i * 2 + i - 1) {   //         rỗng
+                result += '*';
+            } else {
+                result += ' ';
+            }
+        }
+        result += '<br>';
+    }
+    document.write('<pre>' + result + '</pre>');
+
+    document.write('<hr>')
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="number" placeholder="Nhập tháng" id="thang">
+<input onclick="tinhNgay()" value="Tính toán" type="button">
+<h3 id="kq"></h3>
+<script>
+    function tinhNgay() {
+        let thang = document.getElementById('thang').value;
+        let disPlay = '';
+        switch (thang){
+        case '1':
+        case '3':
+        case '5':
+        case '7':
+        case '8':
+        case '10':
+        case '12':
+            disPlay += "có 31 ngày";
+            break;
+        case '2':
+            disPlay += "có 28 hoặc 29 ngày";
+            break;
+        case '4':
+        case '6':
+        case '9':
+        case '11':
+            disPlay+= "có 30 ngày";
+            break;
+        default:
+            disPlay+="Không có tháng này"
+        }
+        document.getElementById("kq").innerText ="Tháng "+thang+" "+disPlay;
+    }
+
+</script>
+
+
+</body>
+</html>

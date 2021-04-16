@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = parseInt(prompt('nhập số phân tử mảng lơn'));
+    let mangNho = parseInt(prompt('Nhập số phân tử mảng nhỏ'));
+    let mang = [];
+    NhapMang2Chieu(a, n);
+    let tong = 0;
+    for (i = 0; i < mang.length; i++) {
+        for (j = 0; j < mang[i].length; j++) {
+            if (mang[i][j] % 2 === 0) {
+                tong += parseInt(mang[i][j])
+            }
+        }
+    }
+    alert(tong);
+
+    function NhapMang2Chieu(mangLon, mangNho) {
+        for (i = 0; i < m; i++) {
+            mang[i] = [];
+            for (j = 0; j < n; j++) {
+                mang[i][j] = prompt('nhập vào phân tử mảng nhỏ');
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <img width="300" id='myImage' src="https://cdn.vatgia.vn/pictures/thumb/418x418/2012/12/jtx1356079194.jpg" />
+
+    <img style="margin-left: 200px" width="250" src="https://img.lovepik.com/element/40032/8884.png_860.png"/>
+    <h3>Điều khiển bóng vào GOAL</h3>
+    <input style="width: 200px;height: 50px" type="button" value="Sang Trái " onclick="moveRight()" />
+    <input style="width: 200px;height: 50px" type="button" value="Sang Phải " onclick="moveLeft()" />
+</form>
+<script>
+    let imgObj = null;
+    imgObj = document.getElementById('myImage');
+    function init() {
+        imgObj = document.getElementById('myImage');
+        imgObj.style.position = 'relative';
+        imgObj.style.left = '0px';
+    }
+    function moveRight() {
+        imgObj.style.left = parseInt(imgObj.style.left) - 10 + 'px';
+    }
+    function moveLeft() {
+        imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
+    }
+    window.onload = init;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arr = [];
+    let arr2 = [];
+    let a = prompt('Nhập số phần tử của a');
+    for (let i = 0; i < a; i++) {
+        arr[i] = parseInt(prompt('Nhập phân tử thứ '+(i+1)))
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+        arr2[i] = 0;
+        for (let i = 0; j <= i; j++) {
+            arr2[i] =arr2[i]+ parseInt(arr[j])
+        }
+
+    }
+    document.write("a= "+arr.toString()+'<br>');
+    document.write("b = "+arr2.toString());
+</script>
+</body>
+</html>

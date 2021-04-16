@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let sanPham=parseInt(prompt('Nhập sản phẩm'));
+    let tienSanPham=200000;
+    let hoaHong='';
+    if (sanPham<10){
+        hoaHong=tienSanPham*sanPham*0.2;
+    }else if(sanPham<30){
+        hoaHong=tienSanPham*sanPham*0.3;
+    }else if(sanPham<50){
+        hoaHong=tienSanPham*sanPham*0.5;
+    }else {
+        hoaHong=tienSanPham*sanPham*0.7;
+    }
+    alert('Hoa Hồng là'+hoaHong+"vnd")
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let tienLuong=parseInt(prompt('Nhập lương của bạn(đơn vị triệu đồng)'));
+    let tong="";
+    let thue1=0.03;
+    let thue2=0.04;
+    let thue3=0.05;
+    let thue4=0.06;
+    if (tienLuong<=5){
+        tong=tienLuong*thue1
+    }else if(tienLuong<=12){
+        tong=tienLuong*thue2
+    }else if (tienLuong<=15){
+        tong=tienLuong*thue3
+    }else if (tienLuong<20){
+        tong=tienLuong*thue4
+    }
+    alert("Thuế phải đóng là "+tong+" triệu đồng")
+
+</script>
+</body>
+</html>

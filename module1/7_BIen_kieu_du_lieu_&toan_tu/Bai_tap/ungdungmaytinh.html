@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Caculator</h3>
+<pr><input id="so1" type="number" placeholder="Nhập số"> <input id="so2" type="number" placeholder="Nhập số"></pr><br><br>
+<input type= "button" onclick="phepcong()" value="Addition(+)">
+<input type= "button" onclick="pheptru()"  value="Subtraction(-)">
+<input type= "button" onclick="phepnhan()" value="Multiplication(X)">
+<input type= "button" onclick="phepchia()" value="Division(/)">
+<p id="ketqua"></p>
+
+<script>
+    let AA=parseInt(document.getElementById("so1").value);
+    let BB=parseInt(document.getElementById("so2").value);
+    function phepcong() {
+        let ketqua=AA+BB;
+        document.getElementById("ketqua").innerHTML = "Ket qua=" + ketqua;
+    }
+    function pheptru() {
+        let ketqua=AA-BB;
+        document.getElementById("ketqua").innerHTML = "Ket qua=" + ketqua;
+
+    }function phepnhan() {
+        let ketqua=AA*BB;
+        document.getElementById("ketqua").innerHTML = "Ket qua=" + ketqua;
+
+    }function phepchia() {
+        let ketqua=AA/BB;
+        document.getElementById("ketqua").innerHTML = "Ket qua=" + ketqua;
+
+    }
+</script>
+
+
+</body>
+</html>

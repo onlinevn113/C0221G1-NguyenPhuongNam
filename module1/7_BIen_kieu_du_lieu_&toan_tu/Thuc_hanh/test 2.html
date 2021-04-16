@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng chuyển đổi tiền tệ</title>
+</head>
+<body>
+<input id="1">
+<select id="2">
+    <option value="23000">Vietnam</option>
+    <option value="1">USD</option>
+</select>
+<select id="3">
+    <option value="1">USD</option>
+    <option value="23000">Vietnam</option>
+
+</select>
+<input type="button" onclick="tinh()" value="Convert">
+<input type="button" onclick="tinh()" value="Convert">
+</table>
+<p id="ketqua"></p>
+<script>
+    function tinh() {
+        let amonunt = document.getElementById("1").value;
+        let fromCurrency = document.getElementById("2").value;
+        let fromCurrency1 = document.getElementById("3").value;
+        let ketQua = amonunt * fromCurrency1 / fromCurrency;
+        document.getElementById("ketqua").innerHTML = "Hien thi ket qua=" + ketQua;
+    }
+</script>
+</body>
+</html>

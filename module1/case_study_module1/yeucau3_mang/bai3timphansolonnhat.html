@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let numerators = [5, 2, 5];
+    let denominators = [6, 3, 4];
+    let max= numerators[0]/denominators[0];
+    let tu=0;
+    let mau=0;
+    let kq='';
+    for(let i=0;i<numerators.length;i++){
+        if( numerators[i]/denominators[i]>max){
+            max= numerators[i]/denominators[i];
+            kq =i+1;
+            tu=numerators[i];
+            mau=denominators[i]
+        }
+    }
+    document.write (tu+"/"+mau+"<br>"+kq)
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function change(arr) {
+        for(i=0;i<=arr.length/2;i++){
+            let trungGian=arr[i];
+            arr[i]=arr[arr.length-i-1];
+            arr[arr.length-i-1]=trungGian
+
+        }
+    }
+    let doi=[];
+<<<<<<< HEAD
+    let mangNho=prompt('Nhập số phần tử');
+=======
+    let n=prompt('Nhập số phần tử');
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+    for(i=1;i<=n;i++){
+        doi[i]=prompt('Nhập phần tử thứ '+i)
+    }
+    change(doi);
+    alert('Đảo ngược'+doi)
+
+</script>
+</body>
+</html>

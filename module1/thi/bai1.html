@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let nhap = prompt('Nhập các số cách nhau bằng dấu cách').split(' ');
+    let tongSoChan = 0;
+    let tongSole = 0;
+
+
+    for (let i = 0; i < nhap.length; i++) {
+        if (nhap[i] % 2 == 0) {
+            tongSoChan += parseInt(nhap[i]);
+        } else {
+            tongSole += parseInt(nhap[i]);
+        }
+    }
+    let ketQua = tongSoChan - tongSole;
+    alert('hiệu của tổng số chẵn và lẻ trong dãy số là ' + ketQua);
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Type anthing slowly </title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <script>
+        let a = " TÔI RẤT ĐẸP TRAI =))";
+<<<<<<< HEAD
+        let mangNho = " ";
+
+        function typeTextarea() {
+            let t = document.getElementById('txt').value;
+            let i = t.length;
+=======
+        let n = " ";
+
+        function typeTextarea() {
+            let t = document.getElementById('txt').value;
+            let j = t.length;
+>>>>>>> f6d7dcb8b827bf65227b09541664d133d5c8f032
+            if (j > 0) {
+                for (let i = 0; i < j; i++) {
+                    n = n + a[i];
+                    if (i == a.length) {
+                        document.getElementById('txt').value = "";
+                        n = "";
+                    }
+                }
+            }
+            document.getElementById('txt').value = n;
+            n = "";
+            setTimeout("typeTextarea()", 1);
+            //return false;
+        }
+    </script>
+</head>
+<body>
+<center>
+    <h2>Hãy nhập gì đó :</h2>
+    <br>
+    <form name="f">
+        <textarea id="txt" cols="40" rows="10" onkeydown="typeTextarea();"></textarea>
+    </form>
+</center>
+</body>
+</html>

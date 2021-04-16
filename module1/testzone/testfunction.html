@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Student {
+        constructor(id, name, age) {
+            this.id = id;
+            this.name = name;
+            this.age = age;
+        }
+
+        setId(id) {
+            this.id = id;
+        }
+
+        getId() {
+            return this.id;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        setAge(age) {
+            this.age = age;
+        }
+
+        getAge() {
+            return this.age;
+        }
+
+        toString() {
+            return "id = " + this.id + "name = " + this.name + "age = " + this.age;
+        }
+    }
+
+    let listStudent = [];
+    let student1 = new Student(1, "Nguyễn Văn A", 18);
+    let student2 = new Student(2, "Nguyễn Văn B", 18);
+    let student3 = new Student(3, "Nguyễn Văn C", 18);
+    listStudent.push(student1, student2, student3);
+
+    do {
+        let chooseMenu = prompt("Chọn chức năng\n" +
+            "1. show student list\n" +
+            "2. add new student \n" +
+            "3. delete student\n" +
+            "4. exit");
+        switch (chooseMenu) {
+            case "1":
+                showListStudent();
+                break;
+            case "2":
+                addNewStudent();
+                break;
+            case "3":
+                deleteStudent();
+                break;
+            case "4":
+                break;
+        }
+    } while (true);
+
+    function showListStudent() {
+        let list="";
+        for (let i=0; i<listStudent.length;i++ ){
+            list +=(i+1)+". "+listStudent[i].toString()+"\n";
+        }
+        alert(list);
+    }
+    function addNewStudent() {
+
+
+    }
+</script>
+</body>
+</html>

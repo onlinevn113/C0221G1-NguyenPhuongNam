@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kiểm tra mangNho có phải là só nguyên tố hay không?</title>
+</head>
+<body>
+<script>
+
+    let mangNho = prompt("nhập n");
+    let kiemTra = true;
+    if (n < 2) {
+        kiemTra = false;
+    } else {
+        for (let i = 2; i < n ; i++) {
+            if (n % i == 0) {
+                kiemTra = false;
+                break;
+            }
+        }
+    }
+    if (kiemTra == true) {
+        document.write(n+ "  "+ "là số nguyên tố" + "<br/>");
+    }else{
+        document.write(n+ " ko phải số nguyên tố")
+    }
+</script>
+</body>
+</html>

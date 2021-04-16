@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>phương trình bậc 2</title>
+</head>
+<body>
+<script>
+    let a;
+    let b;
+    let c;
+    a=parseInt(prompt("nhập vào a"));
+    if(a==0){
+        b= parseInt(prompt("nhập vào b"));
+        if(b==0){
+            c=parseInt(prompt("nhập vào giá trị c"));
+            if(c==0){
+                document.write("phuowg trình có vô số nghiệm");
+            } else
+                document.write("phương trình vô nghiệm");
+        }else{
+            c=parseInt(prompt("nhập vafp giá trị của c"));
+            let nghiem=(-c)/b;
+            document.write("phương trình có nghiệm là"+nghiem);
+        }
+    }else{
+        b=parseInt(prompt("Nhập vào giá trị của b"));
+        c=parseInt(prompt("nhập vòa giá trị của c"));
+        let denTa =b^2-4*a*c;
+        if (denTa<0){
+            document.write("phương trình vô nghiệm");
+        }else if(denTa=0){
+            let nghiem0=-b/2*a;
+            document.write("phương trình có một nghiệm duy nhất"+nghiem0);
+        }else{
+            let nghiem1=(-b+Math.sqrt(denTa))/2*a;
+            let nghiem2=(-b-Math.sqrt(denTa))/2*a;
+            document.write("phương trình có 2 nghiệm là"+nghiem1+"  "+"và " +nghiem2);
+        }
+    }
+</script>
+</body>
+</html>

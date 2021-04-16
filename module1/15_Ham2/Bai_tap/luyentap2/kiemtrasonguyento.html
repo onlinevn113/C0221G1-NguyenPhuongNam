@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function kiemTraSoNguyenTo(number) {
+        let dungsai = true;
+        if (number < 2) {
+            kiemTra = false;
+        } else {
+            for (let i = 2; i < number; i++) {
+                if (number % i === 0) {
+                    kiemTra = false;
+                    break;
+                }
+            }
+        }
+        if (kiemTra) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

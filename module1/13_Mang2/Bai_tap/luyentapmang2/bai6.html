@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+        let mang='a-b-a-b-a-2-3'.split('');
+        let kQ =[];
+        for(let i=0;i<mang.length;i++){
+            if (mang[i]==='-'){
+                kQ[i]='_';
+            }else{
+                kQ[i]=mang[i]
+            }
+        }
+        alert(kQ.join(''))
+
+</script>
+</body>
+</html>

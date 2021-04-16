@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a=1;
+    let b=0;
+    let kq='';
+    for(let i=0;i<100;i++){
+        temp = a;
+        a = a + b;
+        b = temp;
+        kq=kq+temp;
+        if(kq%5===0){
+            alert("số đầu tiên trong dãy f chia hết cho 5 là"+b);
+            break
+        }
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let nhapChuoi = prompt('Nhập ký tự').split('');
+    let chuHoa = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split('');
+    let dem = 0;
+    for (i = 0; i < chuHoa.length; i++) {
+        if (chuHoa.indexOf(nhapChuoi[i]) !== -1) {
+            dem++;
+        }
+    }
+    if (dem == 0) {
+        alert('"The Strings is not contain upper char"')
+    } else {
+        alert(dem)
+    }
+</script>
+</body>
+</html>

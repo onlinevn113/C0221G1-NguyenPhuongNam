@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let chieuCao=5;
+    let result = '';
+    for (let i = 0; i < chieuCao; i++) {
+       for (let j = 0; j < chieuCao * 2 - 1; j++) {
+            if (j === chieuCao - i - 1 || j === chieuCao - 1 + i || i === chieuCao - 1) {
+                result += '*';
+            } else {
+                result += ' ';
+            }
+        }
+        result += '<br>';
+    }
+    document.write('<pre>' + result + '</pre>');
+
+</script>
+</body>
+</html>

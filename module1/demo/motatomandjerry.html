@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mô tả Tom and Jerry</title>
+</head>
+<body>
+<script>
+    class Animal{
+        constructor(name, speed, weight) {
+            this.name=name;
+            this.speed = speed;
+            this.weight = weight;
+        }
+        say(){
+
+        }
+        getWeight(){
+            return this.weight;
+        }
+    }
+    class Cat extends Animal{
+        constructor(name, speed, weight) {
+            super(name, speed, weight);
+        }
+        say() {
+            console.log("meo meo")
+        }
+        eat(mouse1){
+            if (mouse1.getStatus()=="song"){
+                this.say();
+                mouse1.say();
+                this.weight+=mouse1.getWeight();
+            }
+        }
+        catchMouse(mouse){
+            if (this.speed>mouse.speed){
+                this.eat(mouse)
+            }
+        }
+    }
+    class Mouse extends Animal{
+        constructor(name, speed, weight, status) {
+            super(name, speed, weight);
+            this.status = status;
+        }
+        say() {
+            console.log("chit chit")
+        }
+        getStatus(){
+            return this.status;
+        }
+    }
+
+    let tom = new Cat("tom",10,10);
+    let jerry1 = new Mouse("jerry",12,2,"song");
+    let jerry2 = new Mouse("jerry",5,2,"song");
+    let jerry3 = new Mouse("jerry",0,2,"chet");
+    let jerry4 = new Mouse("jerry",2,2,"song");
+    let jerry5 = new Mouse("jerry",12,2,"song");
+    let array =[jerry1,jerry2,jerry3,jerry4,jerry5];
+    for (let mouse of array){
+        tom.catchMouse(mouse);
+    }
+    alert(tom.getWeight());
+</script>
+</body>
+</html>

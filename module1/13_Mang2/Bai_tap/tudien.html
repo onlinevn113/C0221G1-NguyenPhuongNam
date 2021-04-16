@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let english = ['hello', 'goodbye', 'welcome', 'you', 'goodmorning'];
+    let vietNamese = ['xin chào', 'tạm biệt', 'chào đón', 'bạn', 'chào buổi sáng'];
+    let word = prompt('Nhập từ bạn muốn tra');
+    let index;
+    let dungsai=false;
+    for (let i = 0; i <= english.length; i++) {
+        if (word == english[i]) {
+            index=i;
+            kiemTra=true;
+            break;
+        }
+    }
+    if (kiemTra){
+        alert(english[index]+'='+vietNamese[index])
+    }else{
+        alert('không tìm thấy')
+    }
+
+
+    if (english.indexOf(word) > -1) {
+        alert(vietNamese[english.indexOf(word)])
+    } else {
+        'Không tìm thấy kết quả'
+    }
+      if (vietNamese.indexOf(word) > -1) {
+        alert(english[vietNamese.indexOf(word)])
+    } else {
+        'Không tìm thấy kết quả'
+    }
+
+</script>
+</body>
+</html>

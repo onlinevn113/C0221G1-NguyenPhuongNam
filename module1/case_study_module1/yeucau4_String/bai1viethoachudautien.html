@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let ten = '           tRuong    TaN   HAI '.toLowerCase().split(" ");
+    let result = [];
+    for (let i = 0; i < ten.length; i++) {
+        if (ten[i].length > 0) {
+            result.push(ten[i] = ten[i][0].toUpperCase() + ten[i].slice(1));
+        }
+    }
+    alert(result.join(" "))
+
+</script>
+</body>
+</html>

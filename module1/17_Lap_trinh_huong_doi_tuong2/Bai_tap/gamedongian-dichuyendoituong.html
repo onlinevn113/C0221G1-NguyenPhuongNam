@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="game"></div>
+<script>
+    function Hero(image, top, left, size) {
+        this.image = image;
+        this.top = top;
+        this.left = left;
+        this.size = size;
+
+        this.getHeroElement = function () {
+            return '<img width="' + this.size + '"' +
+                ' height="' + this.size + '"' +
+                ' src=" https://anhdephd.com/wp-content/uploads/2017/04/hinh-anh-sieu-xe-ducati-dep-6.jpg "' +
+                ' style="top: ' + this.top + 'px; left:' + this.left + 'px;position:absolute;" />';
+        };
+
+        this.moveRight = function () {
+            this.left += 40;
+            console.log('ok: ' + this.left);
+        };
+        this.moveDown = function () {
+            this.top += 40;
+        };
+        this.moveLeft = function () {
+            this.left -= 40;
+        };
+        this.moveUp = function () {
+            this.top -= 40;
+        }
+
+
+    }
+
+    let hero = new Hero('pikachu.png', 0,0 , 200);
+
+
+    function start() {
+        let chieuCao = window.innerHeight - hero.size;
+        let chieuRong = window.innerWidth - hero.size;
+        if (hero.left < chieuRong && hero.top <= 0) {
+            hero.moveRight();
+        } else if (hero.left > chieuCao && chieuCao > hero.top) {
+            hero.moveDown();
+        } else if (hero.left > 0) {
+            hero.moveLeft()
+        } else if (hero.top > 0) {
+            hero.moveUp()
+        }
+        document.getElementById('game').innerHTML = hero.getHeroElement();
+        setTimeout(start, 50)
+
+    }
+
+    start();
+</script>
+</body>
+</html>
