@@ -4,15 +4,15 @@ import java.util.Arrays;
 
 public class SearchAlgorithms {
     static int binarySearch(int[] array, int left, int right, int value) {
-
-        while (left <= right) {
-            int middle = (left + right) / 2;
+        int middle;
+        if (left <= right) {
+             middle = left+(right-left)/2;
             if (array[middle] == value) {
                 return middle;
             } else if (value > array[middle]) {
-                left = middle + 1;
+                return binarySearch(array,middle+1,right,value);
             } else {
-                right = middle - 1;
+                return binarySearch(array,left,middle-1,value);
             }
         }
         return -1;

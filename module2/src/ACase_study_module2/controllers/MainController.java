@@ -41,7 +41,7 @@ public class MainController {
                     System.out.println("Good bye");
                     break;
                 default:
-                    System.out.println("Ron number enter again");
+                    System.out.println("Wrong number enter again");
             }
         } while (input != 7);
 
@@ -71,7 +71,7 @@ public class MainController {
                 case 5:
                     System.exit(0);
                 default:
-                    System.out.println("Ron number enter again");
+                    System.out.println("Wrong number enter again");
             }
 
         } while (input != 5);
@@ -122,7 +122,7 @@ public class MainController {
                 case 8:
                     System.exit(0);
                 default:
-                    System.out.println("Ron number enter again");
+                    System.out.println("Wrong number enter again");
             }
         } while (input != 8);
     }

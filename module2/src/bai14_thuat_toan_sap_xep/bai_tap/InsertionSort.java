@@ -1,6 +1,4 @@
-package bai14_thuat_toan_sap_xep.bai_tap.minh_hoa_thuat_toan_sap_xep_chen;
-
-import java.util.ArrayList;
+package bai14_thuat_toan_sap_xep.bai_tap;
 
 public class InsertionSort {
    static void sort(int arr[]) {
