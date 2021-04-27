@@ -5,10 +5,10 @@ public class BubbleSort {
     public static void bubbleSort(int[] list) {
         boolean needNextPass = true;
 
-        for (int k = 1; k < list.length && needNextPass; k++) {
+        for (int j = 1; j < list.length && needNextPass; j++) {
             /* Array may be sorted and next pass not needed */
             needNextPass = false;
-            for (int i = 0; i < list.length - k; i++) {
+            for (int i = 0; i < list.length - j; i++) {
                 if (list[i] > list[i + 1]) {
                     /* Swap list[i] with list[i + 1] */
                     int temp = list[i];

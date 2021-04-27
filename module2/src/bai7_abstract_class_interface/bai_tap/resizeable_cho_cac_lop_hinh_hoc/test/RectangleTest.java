@@ -1,4 +1,4 @@
-//package bai7_.bai_tap.resizeable_cho_cac_lop_hinh_hoc.test;
+//package bai7_.bai_tap.resizeable_cho_cac_lop_hinh_hoc.ztest;
 //
 //import bai7_.bai_tap.resizeable_cho_cac_lop_hinh_hoc.hih_hoc.Rectangle;
 //

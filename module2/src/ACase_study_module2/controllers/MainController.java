@@ -15,7 +15,7 @@ public class MainController {
                     "5.\tAdd New Booking\n" +
                     "6.\tShow Information of Employee\n" +
                     "7.\tExit\n");
-            System.out.print("Enter a number: ");
+            System.out.print("Enter accountExample number: ");
             input = scanner.nextInt();
             switch (input) {
                 case 1:
@@ -56,7 +56,7 @@ public class MainController {
                     "3. Add new\n" +
                     "4. Back to Menu\n" +
                     "5. Exit");
-            System.out.print("Enter a number: ");
+            System.out.print("Enter accountExample number: ");
             input = scanner.nextInt();
             switch (input) {
                 case 1:
@@ -102,7 +102,7 @@ public class MainController {
                     "6.\tShow All Name Name Not Duplicate\n" +
                     "7.\tBack to menu\n" +
                     "8.\tExit\n");
-            System.out.println("Enter a number: ");
+            System.out.println("Enter accountExample number: ");
             input = scanner.nextInt();
             switch (input) {
                 case 1:

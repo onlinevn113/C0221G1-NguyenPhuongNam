@@ -19,7 +19,7 @@ public class CustomExceptionExample {
         while (true){
             Scanner scanner=new Scanner(System.in);
             try {
-                System.out.println("Nhập a");
+                System.out.println("Nhập accountExample");
                 int a=Integer.parseInt( scanner.nextLine());
                 System.out.println("Nhập b");
                 int b=Integer.parseInt( scanner.nextLine());

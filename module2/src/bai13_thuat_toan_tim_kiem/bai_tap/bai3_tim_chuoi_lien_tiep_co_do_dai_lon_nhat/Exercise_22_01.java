@@ -2,13 +2,13 @@ package bai13_thuat_toan_tim_kiem.bai_tap.bai3_tim_chuoi_lien_tiep_co_do_dai_lon
 import java.util.*;
 public class Exercise_22_01 {
     public static void main(String[] args) {
-        // Create a Scanner
+        // Create accountExample Scanner
         Scanner input = new Scanner(System.in);
         LinkedList<Character> max = new LinkedList<>();
         LinkedList<Character> list = new LinkedList<>();
 
-        // Prompt the user to enter a string
-        System.out.print("Enter a string: ");
+        // Prompt the user to enter accountExample string
+        System.out.print("Enter accountExample string: ");
         String string = input.nextLine();
 
         // Find the maximum consecutive increasingly ordered substring

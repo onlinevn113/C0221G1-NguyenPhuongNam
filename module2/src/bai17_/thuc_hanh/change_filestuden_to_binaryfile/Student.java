@@ -2,13 +2,12 @@ package bai17_.thuc_hanh.change_filestuden_to_binaryfile;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Student implements Serializable {
     private int id;
-
     private String name;
-
     private String address;
 
     public Student() {
@@ -63,15 +62,6 @@ public class Student implements Serializable {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
-        List<Student> students = new ArrayList<>();
-        students.add(new Student(1, "Vũ Kiều Anh", "Hà Nội"));
-        students.add(new Student(2, "Nguyễn Minh Quân", "Hà Nội"));
-        students.add(new Student(3, "Đặng Huy Hoà", "Đà Nẵng"));
-        students.add(new Student(4, "Nguyễn Khánh Tùng", "Hà Nội"));
-        students.add(new Student(5, "Nguyễn Khắc Nhật", "Hà Nội"));
-        writeToFile("student.txt", students);
-    }
     public static List<Student> readDataFromFile(String path){
         List<Student> students = new ArrayList<>();
         try{
@@ -85,5 +75,19 @@ public class Student implements Serializable {
         }
         return students;
     }
+    public static void main(String[] args) {
+        List<Student> students = new ArrayList<>();
+        students.add(new Student(1, "Vũ Kiều Anh", "Hà Nội"));
+        students.add(new Student(2, "Nguyễn Minh Quân", "Hà Nội"));
+        students.add(new Student(3, "Đặng Huy Hoà", "Đà Nẵng"));
+        students.add(new Student(4, "Nguyễn Khánh Tùng", "Hà Nội"));
+        students.add(new Student(5, "Nguyễn Khắc Nhật", "Hà Nội"));
+        writeToFile("E:\\C0221G1-NguyenPhuongNam\\module2\\src\\bai17_\\thuc_hanh\\change_filestuden_to_binaryfile\\student.txt", students);
+        List<Student> studentDataFromFile = readDataFromFile("E:\\C0221G1-NguyenPhuongNam\\module2\\src\\bai17_\\thuc_hanh\\change_filestuden_to_binaryfile\\student.txt");
+        for (Student student : studentDataFromFile){
+            System.out.println(student);
+        }
+    }
+
     
 }

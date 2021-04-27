@@ -8,6 +8,7 @@ public class CopyFileLon {
     private static void copyFileUsingJava7Files(File source, File dest) throws IOException {
         Files.copy(source.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
+
     private static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;
         OutputStream os = null;
@@ -36,8 +37,7 @@ public class CopyFileLon {
         File destFile = new File(destPath);
 
         try {
-            copyFileUsingJava7Files(sourceFile, destFile);
-            //copyFileUsingStream(sourceFile, destFile);
+            copyFileUsingStream(sourceFile, destFile);
             System.out.printf("Copy completed");
         } catch (IOException ioe) {
             System.out.printf("Can't copy that file");
