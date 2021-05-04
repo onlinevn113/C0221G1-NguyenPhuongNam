@@ -15,7 +15,7 @@ public class TimUocChungLonNhat {
         b = Math.abs(b);
         if (a == 0 || b == 0)
         {
-            System.out.println("No greatest common factor");
+            System.out.println("No greatest commons factor");
         }
         while (a != b) {
             if (a > b)
@@ -23,6 +23,6 @@ public class TimUocChungLonNhat {
             else
                 b = b - a;
         }
-        System.out.println("Greatest common factor: " + a);
+        System.out.println("Greatest commons factor: " + a);
     }
 }

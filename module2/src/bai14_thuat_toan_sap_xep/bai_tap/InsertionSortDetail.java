@@ -1,7 +1,6 @@
 package bai14_thuat_toan_sap_xep.bai_tap;
 
 public class InsertionSortDetail {
-    /*Function to sort array using insertion sort*/
    void sort(int arr[])
     {
         int n = arr.length;
@@ -9,9 +8,7 @@ public class InsertionSortDetail {
             int key = arr[i];
             int j = i - 1;
 
-            /* Move elements of arr[0..i-1], that are
-               greater than key, to one position ahead
-               of their current position */
+
             while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];
                 j = j - 1;
@@ -19,8 +16,6 @@ public class InsertionSortDetail {
             arr[j + 1] = key;
         }
     }
-
-    /* A utility function to print array of size n*/
     static void printArray(int arr[])
     {
         int n = arr.length;
