@@ -33,6 +33,8 @@ public class FileUtils {
             e.printStackTrace();
         }return arrayContent;
     }
+
+
     public static void setFullPathFile(String fileName){
         StringBuffer path = new StringBuffer("src/acasestudy_FuramaResort/Data/");
         path.append(fileName).append(StringUtils.CSV);

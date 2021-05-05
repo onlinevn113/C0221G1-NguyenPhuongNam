@@ -5,10 +5,7 @@ import acasestudy_FuramaResort.Commons.FileUtils;
 import acasestudy_FuramaResort.Commons.StringUtils;
 import acasestudy_FuramaResort.Commons.Validators;
 import acasestudy_FuramaResort.Models.*;
-import acasestudy_FuramaResort.exceptions.BirtdayException;
-import acasestudy_FuramaResort.exceptions.NameException;
-import afinal_test.commons.ExceptionValidate;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import acasestudy_FuramaResort.exceptions.*;
 
 import java.util.*;
 
@@ -19,9 +16,10 @@ public class MainController {
     private final static String ROOM = "room";
     private final static String HOUSE = "house";
     private final static String CUSTOMER = "customer";
+    private final static String BOOING = "booking";
 
     public static void main(String[] args) {
-        String fullname = Validators.checkExceptionInput("fullname", Validators.RegexVietNameseName,new NameException());
+
     }
 
     public static boolean testregex(String regex, String string) {
@@ -83,33 +81,56 @@ public class MainController {
 
 
     private static void addNewCustomer(String fileName) {
-        String fullname = Validators.checkExceptionInput("Enter fullname", Validators.RegexVietNameseName,new NameException());
+        boolean flag;
+        String fullname = Validators.checkExceptionInput("Enter fullname", Validators.REGEX_VIETNAMESE_NAME, new NameException());
 
+        String dayOfBirth;
+        do {
+            flag = true;
+            System.out.println("Enter day of birth");
+            dayOfBirth = scanner.nextLine();
+            try {
+                Validators.isValidBirthday(dayOfBirth);
+            } catch (BirtdayException e) {
+                flag = false;
+                e.printStackTrace();
+            }
+        } while (!flag);
 
-        System.out.println("Enter day of birth");
-        String dayOfBirth=scanner.nextLine();
+        String gender;
+        do {
+            flag = true;
+            System.out.println("Enter gender");
+            gender = scanner.nextLine();
 
-        System.out.println("Enter gender");
-        String gender=scanner.nextLine();
+            try {
+                Validators.isValidGender(gender);
+            } catch (GenderException e) {
+                flag = false;
+                e.printStackTrace();
+            }
 
-        System.out.println("Enter id card");
-        String idCard=scanner.nextLine();
+        } while (!flag);
+
+        String idCard = Validators.checkExceptionInput("Enter id card", Validators.ID_CARD_REGEX, new IdCardException());
+
 
         System.out.println("Enter phone number");
-        String phoneNumber=scanner.nextLine();
+        String phoneNumber = scanner.nextLine();
 
-        System.out.println("Enter email");
-        String email=scanner.nextLine();
+
+        String email = Validators.checkExceptionInput("Enter email", Validators.REGEX_EMAIL, new EmailException());
+
 
         System.out.println("Enter type of customer");
-        String typeOfCustomer=scanner.nextLine();
+        String typeOfCustomer = scanner.nextLine();
 
         System.out.println("Enter address");
-        String address=scanner.nextLine();
+        String address = scanner.nextLine();
 
 
         FileUtils.setFullPathFile(fileName);
-        FileUtils.writerFile(new String[]{fullname,dayOfBirth,gender,idCard,phoneNumber,email,typeOfCustomer,address});
+        FileUtils.writerFile(new String[]{fullname, dayOfBirth, gender, idCard, phoneNumber, email, typeOfCustomer, address});
 
 
     }
@@ -117,15 +138,15 @@ public class MainController {
     private static void showInformationOfEmloyee() {
     }
 
-    private static List<Customer> readAllCustomer(String fileName){
+    private static List<Customer> readAllCustomer(String fileName) {
         FileUtils.setFullPathFile(fileName);
-        List<String>propertiesCustomer=FileUtils.readFile();
-        List<Customer> customerList=new ArrayList<>();
-        String[] arrayPropertiesCustomer=null;
-        Customer customer=null;
-        for (String properties:propertiesCustomer){
-            arrayPropertiesCustomer=properties.split(",");
-            customer=new Customer();
+        List<String> propertiesCustomer = FileUtils.readFile();
+        List<Customer> customerList = new ArrayList<>();
+        String[] arrayPropertiesCustomer = null;
+        Customer customer = null;
+        for (String properties : propertiesCustomer) {
+            arrayPropertiesCustomer = properties.split(",");
+            customer = new Customer();
             customer.setFullName(arrayPropertiesCustomer[0]);
             customer.setDayOfBirth(arrayPropertiesCustomer[1]);
             customer.setGender(arrayPropertiesCustomer[2]);
@@ -134,16 +155,82 @@ public class MainController {
             customer.setEmail(arrayPropertiesCustomer[5]);
             customer.setTypeOfCustomer(arrayPropertiesCustomer[6]);
             customer.setAddress(arrayPropertiesCustomer[7]);
-
             customerList.add(customer);
-
-        }return customerList;
+        }
+        return customerList;
 
     }
+
+    public static int checkNumber(int maxNumber) {
+        boolean flag;
+        int chooseNumber = 0;
+        do {
+            System.out.print("Nhập số muốn chọn (không được quá " + maxNumber + ")" + " : ");
+            try {
+                flag = true;
+                chooseNumber = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Không được nhập chữ!");
+                scanner.nextLine();
+                flag = false;
+            }
+        } while (!flag || chooseNumber < 1 || chooseNumber > maxNumber);
+        return chooseNumber;
+
+    }
+
+    private static void addNewBooking() {
+        int choice;
+        do {
+            System.out.println("1. List customer booking\n" +
+                    "2. Back to menu\n" +
+                    "3. Exit");
+            choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
+                case 1:
+                    List<Customer> listNameCustomer = readAllCustomer(CUSTOMER);
+                    int count = 1;
+                    String idBookingCustomer;
+                    if (listNameCustomer.size() > 0) {
+                        for (int i = 0; i < listNameCustomer.size(); i++) {
+                            String name = listNameCustomer.get(i).getFullName();
+                            String idCard = listNameCustomer.get(i).getIdCard();
+                            System.out.println(count + ". Name Customer: " + name + "\nIdcard: " + idCard);
+                            count++;
+                        }
+                        int chooseCustomerNumber = checkNumber(count - 1);
+                        String arrayChooseCustomer = (listNameCustomer.get(chooseCustomerNumber - 1)).getFullName();
+                        idBookingCustomer = arrayChooseCustomer.substring(0, 1);
+                    } else {
+                        System.out.println("------------------------------------------");
+                        System.out.println("Can not find customer, please add new customer");
+                        System.out.println("------------------------------------------");
+                        displayMainMenu();
+                    }
+                    System.out.println("    1. Booking Villa\n" +
+                            "    2. Booking House\n" +
+                            "    3. Booking Room");
+                    int chooseBooking = checkNumber(3);
+                    switch (chooseBooking) {
+                        case 1:
+
+                    }
+                    break;
+                case 2:
+                    return;
+                case 3:
+                    System.exit(0);
+            }
+        } while (choice != 3);
+    }
+
+
     private static void showInformationOfCustomer(String fileName) {
         System.out.println("---------------------------");
         System.out.println("List of customer");
-        for (Customer customer: readAllCustomer(fileName)){
+        List<Customer> customerList = readAllCustomer(fileName);
+        Collections.sort(customerList);
+        for (Customer customer : customerList) {
             customer.showInfor();
         }
     }
@@ -197,13 +284,13 @@ public class MainController {
         do {
             System.out.println("Enter service id");
             id = scanner.nextLine();
-        } while (!Validators.isValidService(id, Validators.SERVICE_CODE_REGEX));
+        } while (!Validators.isValidRegex(id, Validators.SERVICE_CODE_REGEX));
 
         String serviceName;
         do {
             System.out.println("Enter  service name");
             serviceName = scanner.nextLine();
-        } while (!Validators.isValidService(serviceName, Validators.SERVICE_NAME_REGEX));
+        } while (!Validators.isValidRegex(serviceName, Validators.SERVICE_NAME_REGEX));
 
 
         double areaUse;
@@ -230,7 +317,7 @@ public class MainController {
             System.out.println("Enter rent type");
             rentType = scanner.nextLine();
 
-        } while (!Validators.isValidService(rentType, Validators.SERVICE_NAME_REGEX));
+        } while (!Validators.isValidRegex(rentType, Validators.SERVICE_NAME_REGEX));
 
 
         FileUtils.setFullPathFile(fileName);
@@ -239,7 +326,7 @@ public class MainController {
             do {
                 System.out.println("Enter standard room");
                 standardRoom = scanner.nextLine();
-            } while (!Validators.isValidService(standardRoom, Validators.SERVICE_NAME_REGEX));
+            } while (!Validators.isValidRegex(standardRoom, Validators.SERVICE_NAME_REGEX));
 
             System.out.println("Enter convenient description");
             String otherConvenientDescription = scanner.nextLine();
@@ -265,7 +352,7 @@ public class MainController {
             do {
                 System.out.println("Enter standard room");
                 standardRoom = scanner.nextLine();
-            } while (!Validators.isValidService(standardRoom, Validators.SERVICE_NAME_REGEX));
+            } while (!Validators.isValidRegex(standardRoom, Validators.SERVICE_NAME_REGEX));
 
 
             System.out.println("Enter convenient description ");
@@ -302,8 +389,6 @@ public class MainController {
 
     }
 
-    private static void addNewBooking() {
-    }
 
     private static void showServices() {
         int choice;
@@ -413,6 +498,5 @@ public class MainController {
         }
         return listOfServices;
     }
-
 
 }

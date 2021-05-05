@@ -1,6 +1,6 @@
 package acasestudy_FuramaResort.Models;
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
     private String fullName;
     private String dayOfBirth;
     private String gender;
@@ -116,5 +116,16 @@ public class Customer {
 
     public void showInfor() {
         System.out.println(this.toString());
+    }
+
+    @Override
+    public int compareTo(Customer second) {
+        int result=this.fullName.compareTo(second.fullName);
+        if (result==0){
+            int yearFisrtCustomer= Integer.parseInt(this.dayOfBirth.split("/")[2]);
+            int yearSecondCustomer= Integer.parseInt(second.dayOfBirth.split("/")[2]);
+            result=yearFisrtCustomer-yearSecondCustomer;
+        }
+        return result;
     }
 }
