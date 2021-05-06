@@ -10,24 +10,6 @@ import java.util.Scanner;
 public class QuanLyNhapDuLieu {
     public static Scanner scanner = new Scanner(System.in);
 
-    public static String kiemTraNgoaiLeNhapVao(String property, String regex, Exception exception) {
-        property.trim();
-        String nhapThuocTinh;
-        do {
-            try {
-                System.out.println("Nhập: " + property);
-                nhapThuocTinh = new Scanner(System.in).nextLine();
-                if (!nhapThuocTinh.matches(regex)) {
-                    throw new Exception();
-                }
-                break;
-            } catch (Exception e) {
-                System.err.println(exception.getMessage());
-                System.err.println("Lỗi định dạng: " + regex + "\nThử lại: ");
-            }
-        } while (true);
-        return nhapThuocTinh;
-    }
 
     public static String nhapId() {
         String id = "CB-00";
@@ -49,7 +31,7 @@ public class QuanLyNhapDuLieu {
 
     public static String nhapHoTen() {
        return CanBoException.kiemTraNhapVaoMessage
-               ("Họ tên",CanBoException.tenTiengViet,"bạn đã nhập sai tên vui lòng nhập lại");
+               ("Họ tên",CanBoException.tenTiengViet,"Bạn đã nhập sai tên");
 
     }
 
@@ -69,7 +51,7 @@ public class QuanLyNhapDuLieu {
 
 
     public static String nhapNamSinh() {
-        return kiemTraNgoaiLeNhapVao("năm sinh", CanBoException.namSinh, new CanBoException());
+        return CanBoException.kiemTraNhapVaoMessage("năm sinh", CanBoException.namSinh, "Bạn đã nhập sai năm sinh");
     }
 
 
@@ -102,12 +84,12 @@ public class QuanLyNhapDuLieu {
         return gioiTinh;
     }
     public static String nhapDiaChi() {
-        return kiemTraNgoaiLeNhapVao("địa chỉ", CanBoException.diaChi, new CanBoException());
+        return CanBoException.kiemTraNhapVaoMessage("địa chỉ", CanBoException.diaChi,"Bạn đã nhập sai địa chỉ");
     }
 
     public static String nhapCapBac(){
-      return kiemTraNgoaiLeNhapVao("cấp bậc" +
-              "\nTheo đinhk dạng: (1-7)/7",CanBoException.kiemTraCapBac,new CanBoException());
+      return CanBoException.kiemTraNhapVaoMessage("cấp bậc" +
+              "\nTheo đinhk dạng: (1-7)/7",CanBoException.kiemTraCapBac,"Bạn đã nhập sai cấp bậc");
     }
 
 

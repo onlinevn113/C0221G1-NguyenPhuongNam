@@ -17,6 +17,8 @@ public class ExceptionValidate extends Exception {
     public static final String RegexDayFormat = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
     public static final String RegexVietNameseName = "^([\\s]*[A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*[\\s]+)+(([A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*[\\s]*))*$";
 
+
+
     public static String kiemTraNgayThangNamSinh() {
         String kiemTraNgayNhap = "^(?:(?:31(\\/)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
         String nhap = null;
@@ -39,36 +41,6 @@ public class ExceptionValidate extends Exception {
         } while (true);
         return nhap;
     }
-
-    public static void main(String[] args) {
-//        while (true){
-//            String a=new Scanner(System.in).nextLine();
-//            System.out.println(a.matches(RegexEmail));
-//        }
-        kiemTraNhapVaoMessage("Tên",RegexEmail,"bạn nhập sai tên");
-
-    }
-
-
-    public static String kiemTraThuocTinhNhapVao(String property, String regex) {
-        String nhapThuocTinh;
-        do {
-            try {
-                System.out.println("Nhập: " + property);
-                nhapThuocTinh = new Scanner(System.in).nextLine().trim();
-                if (!nhapThuocTinh.matches(regex)) {
-                    throw new ExceptionValidate();
-                }
-                break;
-
-            } catch (ExceptionValidate exceptionValidate) {
-                exceptionValidate.printStackTrace();
-                System.err.println("Lỗi định dạng " + regex + "\nVui lòng nhập lại: ");
-            }
-        } while (true);
-        return nhapThuocTinh;
-    }
-
     public static String kiemTraNhapVaoMessage(String property, String regex, String message) {
         String input = null;
         Scanner scanner=new Scanner(System.in);
@@ -105,4 +77,15 @@ public class ExceptionValidate extends Exception {
         return nhapThuocTinh;
     }
 
+
+
+    
+    public static void main(String[] args) {
+//        while (true){
+//            String a=new Scanner(System.in).nextLine();
+//            System.out.println(a.matches(RegexEmail));
+//        }
+        kiemTraNhapVaoMessage("Tên",RegexEmail,"bạn nhập sai tên");
+
+    }
 }
