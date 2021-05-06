@@ -42,37 +42,36 @@ public class Test {
 //        System.out.print(hashMap.get(new Test("a")));
 
 
-        System.out.println(recursion(2, 4));
-        Stack<Integer> myStack = new Stack<Integer>();
-        int n = 15937;
-        while (n > 0) {
-            myStack.push(n % 10);
-            n = n / 10;
-        }
-
-        while (!myStack.isEmpty()) {
-            System.out.print(myStack.pop() + " ");
-        }
-        System.out.println("\n");
-
-        Queue<String> queue = new LinkedList<String>();
-        queue.add("Ha Noi ");
-        queue.add("Hai Phong ");
-        queue.add("Da Nang ");
-        queue.add("TPHCM ");
-        queue.add("Can Tho ");
-        queue.peek();
-
-        System.out.print(queue.poll());
-        System.out.print(queue.peek());
-        System.out.print(queue.poll());
-
-        queue.poll();
-        queue.peek();
-
-        System.out.print(queue.poll());
-        System.out.print(queue.poll());
+//        System.out.println(recursion(2, 4));
+//        Stack<Integer> myStack = new Stack<Integer>();
+//        int n = 15937;
+//        while (n > 0) {
+//            myStack.push(n % 10);
+//            n = n / 10;
+//        }
+//
+//        while (!myStack.isEmpty()) {
+//            System.out.print(myStack.pop() + " ");
+//        }
+//        System.out.println("\n");
+//
+//        Queue<String> queue = new LinkedList<String>();
+//        queue.add("Ha Noi ");
+//        queue.add("Hai Phong ");
+//        queue.add("Da Nang ");
+//        queue.add("TPHCM ");
+//        queue.add("Can Tho ");
+//        queue.peek();
+//
+//        System.out.print(queue.poll());
+//        System.out.print(queue.peek());
+//        System.out.print(queue.poll());
+//
+//        queue.poll();
+//        queue.peek();
+//
+//        System.out.print(queue.poll());
+//        System.out.print(queue.poll());
 
     }
-
 }

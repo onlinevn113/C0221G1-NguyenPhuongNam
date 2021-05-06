@@ -7,6 +7,7 @@ import acasestudy_FuramaResort.Commons.Validators;
 import acasestudy_FuramaResort.Models.*;
 import acasestudy_FuramaResort.exceptions.*;
 
+import java.time.Year;
 import java.util.*;
 
 public class MainController {
@@ -16,10 +17,12 @@ public class MainController {
     private final static String ROOM = "room";
     private final static String HOUSE = "house";
     private final static String CUSTOMER = "customer";
-    private final static String BOOING = "booking";
+    private final static String BOOKING = "booking";
+    private final static String EMPLOYEE = "employee";
+
 
     public static void main(String[] args) {
-
+        displayMainMenu();
     }
 
     public static boolean testregex(String regex, String string) {
@@ -35,7 +38,8 @@ public class MainController {
                     "4.\tShow Information of Customer\n" +
                     "5.\tAdd New Booking\n" +
                     "6.\tShow Information of Employee\n" +
-                    "7.\tExit\n");
+                    "7.\tExit\n" +
+                    "8.\tShow queue of customer");
             System.out.print("Choice the function: ");
 
             do {
@@ -46,8 +50,6 @@ public class MainController {
                     System.out.println("Try again");
                 }
             } while (true);
-
-
             switch (choice) {
                 case 1:
                     addNewServices();
@@ -70,20 +72,28 @@ public class MainController {
                 case 7:
                     System.out.println("Good Bye!");
                     System.exit(0);
+                    break;
+                case 8:
+                    showQueueOfCustomers();
+                    break;
                 default:
                     System.out.println("Try again");
 
             }
-
-
         } while (choice != 7);
+    }
+
+    private static void showQueueOfCustomers() {
+        Queue<Customer> queueCustomer = new LinkedList<>();
+        List<Customer> listOfCustomers = readAllCustomer(CUSTOMER);
+        showInformationOfCustomer(CUSTOMER);
+
     }
 
 
     private static void addNewCustomer(String fileName) {
         boolean flag;
         String fullname = Validators.checkExceptionInput("Enter fullname", Validators.REGEX_VIETNAMESE_NAME, new NameException());
-
         String dayOfBirth;
         do {
             flag = true;
@@ -114,7 +124,6 @@ public class MainController {
 
         String idCard = Validators.checkExceptionInput("Enter id card", Validators.ID_CARD_REGEX, new IdCardException());
 
-
         System.out.println("Enter phone number");
         String phoneNumber = scanner.nextLine();
 
@@ -135,7 +144,31 @@ public class MainController {
 
     }
 
+    private static Map<String, Employee> readAllEmployees(String filename) {
+        FileUtils.setFullPathFile(filename);
+        List<String> properties = FileUtils.readFile();
+        Map<String, Employee> employeeMap = new HashMap<>();
+        Employee employee = null;
+        String[] arrPropertyOfEmployee = null;
+        for (String property : properties) {
+            arrPropertyOfEmployee = property.split(",");
+            employee = new Employee();
+            employee.setId(arrPropertyOfEmployee[0]);
+            employee.setEmployeeName(arrPropertyOfEmployee[1]);
+            employee.setEmployeAge(arrPropertyOfEmployee[2]);
+            employee.setEmloployeAddress(arrPropertyOfEmployee[3]);
+            employeeMap.put(employee.getId(), employee);
+        }
+        return employeeMap;
+    }
+
     private static void showInformationOfEmloyee() {
+        Map<String, Employee> employeeMap = readAllEmployees(EMPLOYEE);
+        System.out.println("----------------------------");
+        System.out.println("List employee: ");
+        for (Map.Entry<String, Employee> employeeEntry : employeeMap.entrySet()) {
+            System.out.println(employeeEntry.getKey() + " " + employeeEntry.getValue().toString());
+        }
     }
 
     private static List<Customer> readAllCustomer(String fileName) {
@@ -157,6 +190,7 @@ public class MainController {
             customer.setAddress(arrayPropertiesCustomer[7]);
             customerList.add(customer);
         }
+        Collections.sort(customerList);
         return customerList;
 
     }
@@ -180,48 +214,39 @@ public class MainController {
     }
 
     private static void addNewBooking() {
-        int choice;
-        do {
-            System.out.println("1. List customer booking\n" +
-                    "2. Back to menu\n" +
-                    "3. Exit");
-            choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
-                case 1:
-                    List<Customer> listNameCustomer = readAllCustomer(CUSTOMER);
-                    int count = 1;
-                    String idBookingCustomer;
-                    if (listNameCustomer.size() > 0) {
-                        for (int i = 0; i < listNameCustomer.size(); i++) {
-                            String name = listNameCustomer.get(i).getFullName();
-                            String idCard = listNameCustomer.get(i).getIdCard();
-                            System.out.println(count + ". Name Customer: " + name + "\nIdcard: " + idCard);
-                            count++;
-                        }
-                        int chooseCustomerNumber = checkNumber(count - 1);
-                        String arrayChooseCustomer = (listNameCustomer.get(chooseCustomerNumber - 1)).getFullName();
-                        idBookingCustomer = arrayChooseCustomer.substring(0, 1);
-                    } else {
-                        System.out.println("------------------------------------------");
-                        System.out.println("Can not find customer, please add new customer");
-                        System.out.println("------------------------------------------");
-                        displayMainMenu();
-                    }
-                    System.out.println("    1. Booking Villa\n" +
-                            "    2. Booking House\n" +
-                            "    3. Booking Room");
-                    int chooseBooking = checkNumber(3);
-                    switch (chooseBooking) {
-                        case 1:
+        List<Customer> customerList = readAllCustomer(CUSTOMER);
+        showInformationOfCustomer(CUSTOMER);
+        System.out.println("Please choose customer to booking: ");
+        int isCustomer = Integer.parseInt(scanner.nextLine());
+        System.out.println("1.\tBooking Villa\n" +
+                "2.\tBooking House\n" +
+                "3.\tBooking Room\n");
+        System.out.println("Please choose type of service: ");
+        int isTypeOfService = Integer.parseInt(scanner.nextLine());
+        List<Services> servicesList = null;
+        switch (isTypeOfService) {
+            case 1:
+                servicesList = readAllService(VILLA);
+                showAllService(VILLA);
+                break;
+            case 2:
+                servicesList = readAllService(HOUSE);
+                showAllService(HOUSE);
+                break;
+            case 3:
+                servicesList = readAllService(ROOM);
+                showAllService(ROOM);
+                break;
+        }
+        System.out.println("Please choose service to booking");
+        int isService = Integer.parseInt(scanner.nextLine());
+        Customer customer = customerList.get(isCustomer - 1);
+        customer.setServices(servicesList.get(isService - 1));
 
-                    }
-                    break;
-                case 2:
-                    return;
-                case 3:
-                    System.exit(0);
-            }
-        } while (choice != 3);
+        FileUtils.setFullPathFile(BOOKING);
+        FileUtils.writerFile(new String[]{customer.toString()});
+        System.out.println("Booking is complete");
+
     }
 
 
@@ -229,8 +254,11 @@ public class MainController {
         System.out.println("---------------------------");
         System.out.println("List of customer");
         List<Customer> customerList = readAllCustomer(fileName);
-        Collections.sort(customerList);
-        for (Customer customer : customerList) {
+
+        Customer customer = null;
+        for (int i = 0; i < customerList.size(); i++) {
+            customer = customerList.get(i);
+            System.out.print(i + 1 + ". ");
             customer.showInfor();
         }
     }
@@ -457,7 +485,12 @@ public class MainController {
     private static void showAllService(String fileName) {
         System.out.println("---------------------------");
         System.out.println("List service: ");
-        for (Services services : readAllService(fileName)) {
+
+        List<Services> list = readAllService(fileName);
+        Services services = null;
+        for (int i = 0; i < list.size(); i++) {
+            services = list.get(i);
+            System.out.print((i + 1) + ". ");
             services.showInfor();
         }
 
