@@ -18,10 +18,12 @@ public class MainController {
     private final static String HOUSE = "house";
     private final static String CUSTOMER = "customer";
     private final static String BOOKING = "booking";
-    private final static String EMPLOYEE = "employee";
+    public final static String EMPLOYEE = "employee";
 
 
     public static void main(String[] args) {
+//    AddNewEployee addNewEployee=new AddNewEployee();
+//    addNewEployee.addNewEmployee(EMPLOYEE);
         displayMainMenu();
     }
 
@@ -39,7 +41,8 @@ public class MainController {
                     "5.\tAdd New Booking\n" +
                     "6.\tShow Information of Employee\n" +
                     "7.\tExit\n" +
-                    "8.\tShow queue of customer");
+                    "8.\tShow queue of customer\n" +
+                    "9.\tShow file of imployee (Stack)\n");
             System.out.print("Choice the function: ");
 
             do {
@@ -76,6 +79,8 @@ public class MainController {
                 case 8:
                     showQueueOfCustomers();
                     break;
+                case 9:
+                    Cabinet.findFileOfEmployee();
                 default:
                     System.out.println("Try again");
 
@@ -83,11 +88,23 @@ public class MainController {
         } while (choice != 7);
     }
 
+
+
     private static void showQueueOfCustomers() {
         Queue<Customer> queueCustomer = new LinkedList<>();
         List<Customer> listOfCustomers = readAllCustomer(CUSTOMER);
         showInformationOfCustomer(CUSTOMER);
+        queueCustomer.add(listOfCustomers.get(3));
+        queueCustomer.add(listOfCustomers.get(5));
+        queueCustomer.add(listOfCustomers.get(1));
 
+        System.out.println("--------------------");
+        System.out.println("List customer who buy ticket: ");
+        Customer customer=null;
+        while (!queueCustomer.isEmpty()){
+            customer=queueCustomer.poll();
+            customer.showInfor();
+        }
     }
 
 
@@ -144,7 +161,7 @@ public class MainController {
 
     }
 
-    private static Map<String, Employee> readAllEmployees(String filename) {
+    public static Map<String, Employee> readAllEmployees(String filename) {
         FileUtils.setFullPathFile(filename);
         List<String> properties = FileUtils.readFile();
         Map<String, Employee> employeeMap = new HashMap<>();
@@ -264,7 +281,7 @@ public class MainController {
     }
 
     private static void addNewServices() {
-        int choice;
+       int choice;
         do {
             System.out.println("1.\tAdd New Villa\n" +
                     "2.\tAdd New House\n" +
@@ -275,8 +292,7 @@ public class MainController {
 
             do {
                 try {
-
-                    choice = Integer.parseInt(scanner.nextLine());
+                    choice=Integer.parseInt(scanner.nextLine());
                     break;
                 } catch (NumberFormatException e) {
                     System.out.println("Try again");

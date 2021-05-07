@@ -34,6 +34,21 @@ public class FileUtils {
         }return arrayContent;
     }
 
+    public static List<String> readFileEmployee(){
+        List<String> arrayContent=new ArrayList<String>();
+        try {
+            bufferedReader=new BufferedReader(new FileReader(path));
+
+            String line;
+            while ((line=bufferedReader.readLine())!=null){
+                arrayContent.add(line);
+            }
+            bufferedReader.close();
+        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+        }return arrayContent;
+    }
+
 
     public static void setFullPathFile(String fileName){
         StringBuffer path = new StringBuffer("src/acasestudy_FuramaResort/Data/");

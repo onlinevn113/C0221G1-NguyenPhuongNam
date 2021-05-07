@@ -57,4 +57,7 @@ public class Employee {
                 ", emloployeAddress='" + emloployeAddress + '\'' +
                 '}';
     }
+    public void showInfor() {
+        System.out.println(this.toString());
+    }
 }
