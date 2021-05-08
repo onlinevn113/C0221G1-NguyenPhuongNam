@@ -51,7 +51,7 @@ public class QuanLyChucNang {
         List<CanBo> canBoList = new ArrayList<>();
         CanBo congNhan = new CongNhan(id,hoTen,namSinh,gioiTinh,diaChi,bac);
         canBoList.add(congNhan);
-        DocGhiFile.ghiFile("canbo.csv",canBoList,true);
+        DocGhiFile.writeFile("canbo.csv",canBoList,true);
     }
     public static void themKySu(){
         String id = QuanLyNhapDuLieu.nhapId();
@@ -60,11 +60,10 @@ public class QuanLyChucNang {
         String gioiTinh = QuanLyNhapDuLieu.nhapGioiTinh();
         String diaChi = QuanLyNhapDuLieu.nhapDiaChi();
         String nganh = QuanLyNhapDuLieu.nhapNganhDaoTao();
-
         List<CanBo> canBoList = new ArrayList<>();
         CanBo kySu = new KySu(id,hoTen,namSinh,gioiTinh,diaChi,nganh);
         canBoList.add(kySu);
-        DocGhiFile.ghiFile("canbo.csv",canBoList,true);
+        DocGhiFile.writeFile("canbo.csv",canBoList,true);
     }
     public static void themNhanVien(){
         String id = QuanLyNhapDuLieu.nhapId();
@@ -77,7 +76,7 @@ public class QuanLyChucNang {
         List<CanBo> canBoList = new ArrayList<>();
         CanBo nhanVien = new NhanVien(id,hoTen,namSinh,gioiTinh,diaChi,congViec);
         canBoList.add(nhanVien);
-        DocGhiFile.ghiFile("canbo.csv",canBoList,true);
+        DocGhiFile.writeFile("canbo.csv",canBoList,true);
     }
 
     public static void timKiemTheoTen(){
@@ -114,7 +113,7 @@ public class QuanLyChucNang {
             for (int i =0 ;i<canBoList.size();i++){
                 if (i == Integer.parseInt(chon)-1){
                     canBoList.remove(i);
-                    DocGhiFile.ghiFile("canbo.csv",canBoList,false);
+                    DocGhiFile.writeFile("canbo.csv",canBoList,false);
                     kiemTra = true;
                     break;
                 }

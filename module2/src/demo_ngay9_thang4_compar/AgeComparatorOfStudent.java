@@ -1,6 +1,5 @@
-package demo_ngay9_thang4;
+package demo_ngay9_thang4_compar;
 
-import demo_ngay9_thang4_compar.Student;
 
 import java.util.Comparator;
 
@@ -16,4 +15,6 @@ public class AgeComparatorOfStudent implements Comparator<Student> {
             return -1;
         }
     }
+
+
 }

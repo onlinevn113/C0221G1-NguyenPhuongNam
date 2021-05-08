@@ -2,11 +2,8 @@ package acasestudy_FuramaResort.Commons;
 
 import acasestudy_FuramaResort.exceptions.BirtdayException;
 import acasestudy_FuramaResort.exceptions.GenderException;
-import acasestudy_FuramaResort.exceptions.IdCardException;
-import afinal_test.commons.ExceptionValidate;
 
 import java.time.Year;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -130,13 +127,5 @@ public class Validators {
         }
     }
 
-    public static void main(String[] args) throws BirtdayException {
-        do {
-            String NAME_VN = "^([A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*)(\\s[A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*)*$";
-            String a = new Scanner(System.in).nextLine();
-            System.out.println(a.matches(AGE_REGEX));
-        } while (true);
-
-    }
 }
 

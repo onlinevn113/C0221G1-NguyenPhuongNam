@@ -22,40 +22,6 @@ public class QuanLyNhapDuLieu {
         return id;
     }
 
-
-
-
-
-
-
-
-    public static String nhapHoTen() {
-       return CanBoException.kiemTraNhapVaoMessage
-               ("Họ tên",CanBoException.tenTiengViet,"Bạn đã nhập sai tên");
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public static String nhapNamSinh() {
-        return CanBoException.kiemTraNhapVaoMessage("năm sinh", CanBoException.namSinh, "Bạn đã nhập sai năm sinh");
-    }
-
-
-
     public static String nhapGioiTinh() {
         boolean kiemTra = false;
         String chon = null;
@@ -82,6 +48,16 @@ public class QuanLyNhapDuLieu {
             }
         }
         return gioiTinh;
+    }
+
+    public static String nhapHoTen() {
+        return CanBoException.kiemTraNhapVaoMessage
+                ("Họ tên",CanBoException.tenTiengViet,"Bạn đã nhập sai tên");
+
+    }
+
+    public static String nhapNamSinh() {
+        return CanBoException.kiemTraNhapVaoMessage("năm sinh", CanBoException.namSinh, "Bạn đã nhập sai năm sinh");
     }
     public static String nhapDiaChi() {
         return CanBoException.kiemTraNhapVaoMessage("địa chỉ", CanBoException.diaChi,"Bạn đã nhập sai địa chỉ");

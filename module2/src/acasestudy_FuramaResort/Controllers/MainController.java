@@ -138,27 +138,16 @@ public class MainController {
             }
 
         } while (!flag);
-
         String idCard = Validators.checkExceptionInput("Enter id card", Validators.ID_CARD_REGEX, new IdCardException());
-
         System.out.println("Enter phone number");
         String phoneNumber = scanner.nextLine();
-
-
         String email = Validators.checkExceptionInput("Enter email", Validators.REGEX_EMAIL, new EmailException());
-
-
         System.out.println("Enter type of customer");
         String typeOfCustomer = scanner.nextLine();
-
         System.out.println("Enter address");
         String address = scanner.nextLine();
-
-
         FileUtils.setFullPathFile(fileName);
         FileUtils.writerFile(new String[]{fullname, dayOfBirth, gender, idCard, phoneNumber, email, typeOfCustomer, address});
-
-
     }
 
     public static Map<String, Employee> readAllEmployees(String filename) {

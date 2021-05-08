@@ -48,7 +48,6 @@ public class FuncWriteAndReadFile {
                         product=new Product(Integer.parseInt(temp[0]),temp[1],temp[2]);
                         list.add(product);
                     }
-
             }
         } catch (IOException e){
             System.out.println("Error int reading");

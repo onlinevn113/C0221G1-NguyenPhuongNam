@@ -14,7 +14,7 @@ public class DocGhiFile {
 
     public static final String PATH = "E:\\C0221G1-NguyenPhuongNam\\module2\\src\\on_tap_OOP\\src\\data\\";
 
-    public static void ghiFile(String fileName, List<CanBo> canBoList, boolean trangThai) {
+    public static void writeFile(String fileName, List<CanBo> canBoList, boolean trangThai) {
         File file = null;
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
@@ -89,6 +89,9 @@ public class DocGhiFile {
         String line = null;
         try {
             file = new File(PATH + fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
             fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {

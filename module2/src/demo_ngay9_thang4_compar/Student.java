@@ -1,7 +1,12 @@
 package demo_ngay9_thang4_compar;
 
 
-public class Student implements Comparable<Student> {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+public class Student {
     private String name;
     private long MSSV;
     private int age;
@@ -40,22 +45,22 @@ public class Student implements Comparable<Student> {
     }
 
 
-    @Override
-    public int compareTo(Student o) {
-        if (this.age > o.getAge()) {
-            return 1;
-        } else if (this.age == o.getAge()) {
-            if(this.name.compareTo(o.getName())>0) {
-                return 1;
-            } else if(this.name.equals(o.getName())) {
-                return 0;
-            } else {
-                return -1;
-            }
-        } else {
-            return -1;
-        }
-    }
+//    @Override
+//    public int compareTo(Student o) {
+//        if (this.age > o.getAge()) {
+//            return 1;
+//        } else if (this.age == o.getAge()) {
+//            if(this.name.compareTo(o.getName())>0) {
+//                return 1;
+//            } else if(this.name.equals(o.getName())) {
+//                return 0;
+//            } else {
+//                return -1;
+//            }
+//        } else {
+//            return -1;
+//        }
+//    }
 
     @Override
     public String toString() {
@@ -67,21 +72,24 @@ public class Student implements Comparable<Student> {
     }
 
     public static void main(String[] args) {
-//        Student[] students = new Student[5];
-//        students[0] = new Student("Hai",1234,12);
-//        students[1] = new Student("Hai",1234,10);
-//        students[2] = new Student("Hai",1234,20);
-//        students[3] = new Student("Hai",1234,18);
-//        students[4] = new Student("Hai",1234,19);
-//        Arrays.sort(students, new AgeComparatorOfStudent());
-//        for(Student student: students) {
-//            System.out.println(student);
-//        }
+        Student student5 = new Student("Er", 20, 5);
+        Student student2 = new Student("Bình", 20, 2);
+        Student student1 = new Student("An", 20, 11);
+        Student student3 = new Student("Ca", 20, 3);
+        Student student4 = new Student("De", 20, 4);
 
-        String linked_list_don_gian = "Hello";
-        String b = "Hello";
-        String c = linked_list_don_gian+b;
-        String d = linked_list_don_gian+b;
-        System.out.println(c.equals(d));
+
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(student1);
+        studentList.add(student2);
+        studentList.add(student3);
+        studentList.add(student4);
+        studentList.add(student5);
+        studentList.sort(Comparator.comparing(Student::getName).thenComparing(Student::getAge));
+
+//        studentList.sort(Comparator.reverseOrder());
+        for (Student student : studentList) {
+            System.out.println(student);
+        }
     }
 }
