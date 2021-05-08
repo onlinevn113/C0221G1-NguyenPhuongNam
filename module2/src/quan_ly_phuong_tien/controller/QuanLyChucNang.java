@@ -13,26 +13,85 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
-
-    private String xeOtoBienKiemSoatRegex = "";
-    private String xeMayBienKiemSoatRegex = "";
     private String namSanXuatRegex = "^(\\d){4}$";
-    private String trongTaiRegex = "^(\\d){3}$";
 
-    public void xoaPhuongTien(String filename) {
+    public void xoaXeTai() {
+        String regex = "^[\\d]{2}(C)[\\-][\\d]{3}(\\.)[\\d]{2}$";
+        List<PhuongTien> xeTaiList=DocGhiFile.docFileXeTai();
+        boolean kiemTra=false;
+        while (true){
+            hienThiXeTai();
+            String bienKiemSoatXoa = RegexAndException.kiemTraNhapVaoTheoDinhDang("biển kiểm soát cần xoá", regex, "Vui lòng nhập biển kiểm soát", "XXC-XXX.XX (X : 0÷9)");
+            for (int i = 0; i <xeTaiList.size() ; i++) {
+                String bienKiemSoat=xeTaiList.get(i).getBienKiemSoat();
+                if (bienKiemSoatXoa.contains(bienKiemSoat)){
+                    xeTaiList.remove(xeTaiList.get(i));
+                    DocGhiFile.writeFile("xetai.csv", xeTaiList,false);
+                    kiemTra=true;
+                    break;
+                }
+            }
+            if (kiemTra){
+                break;
+            }else {
+                System.out.println("Vui lòng chọn theo danh sách");
+            }
 
+        }
+    }
+    public void xoaOto() {
+        String regex = "[\\d]{2}([A]*[B]*)+[\\-][\\d]{3}[\\.][\\d]{2}";
+        List<PhuongTien> phuongTienList=DocGhiFile.docFileOto();
+        boolean kiemTra=false;
+        while (true){
+            hienThiXeOto();
+            String bienKiemSoatXoa = RegexAndException.kiemTraNhapVaoTheoDinhDang("biển kiểm soát cần xoá", regex, "Vui lòng nhập biển kiểm soát", "XXC-XXX.XX (X : 0÷9)");
+            for (int i = 0; i <phuongTienList.size() ; i++) {
+                String bienKiemSoat=phuongTienList.get(i).getBienKiemSoat();
+                if (bienKiemSoatXoa.contains(bienKiemSoat)){
+                    phuongTienList.remove(phuongTienList.get(i));
+                    DocGhiFile.writeFile("oto.csv", phuongTienList,false);
+                    kiemTra=true;
+                    break;
+                }
+            }
+            if (kiemTra){
+                break;
+            }else {
+                System.out.println("Vui lòng chọn theo danh sách");
+            }
+        }
 
     }
+    public void xoaXemay() {
+        String regex="(\\d){2}(\\-)(A-Z){1}(\\d){1}(\\-)(\\d){3}(\\.)(\\d){2}";
+        List<PhuongTien> phuongTienList=DocGhiFile.docFileXeMay();
+        boolean kiemTra=false;
+        while (true){
+            hienThiXeMay();
+            String bienKiemSoatXoa = RegexAndException.kiemTraNhapVaoTheoDinhDang("biển kiểm soát cần xoá", regex, "Vui lòng nhập biển kiểm soát", "XXC-XXX.XX (X : 0÷9)");
+            ;
+            for (int i = 0; i <phuongTienList.size() ; i++) {
+                String bienKiemSoat=phuongTienList.get(i).getBienKiemSoat();
+                if (bienKiemSoatXoa.contains(bienKiemSoat)){
+                    phuongTienList.remove(phuongTienList.get(i));
+                    DocGhiFile.writeFile("xemay.csv", phuongTienList,false);
+                    kiemTra=true;
+                    break;
+                }
+            }
+            if (kiemTra){
+                break;
+            }else {
+                System.out.println("Vui lòng chọn theo danh sách");
+            }
+        }
 
-    public static void main(String[] args) {
-        QuanLyChucNang quanLyChucNang = new QuanLyChucNang();
-        quanLyChucNang.hienThiXeOto();
     }
-
     @Override
     public void hienThiXeTai() {
-        List<XeTai> xetailist = DocGhiFile.docFileXeTai();
-        for (XeTai xeTai:xetailist){
+        List<PhuongTien> xetailist = DocGhiFile.docFileXeTai();
+        for (PhuongTien xeTai:xetailist){
             xeTai.showInfo();
         }
 
@@ -41,32 +100,38 @@ public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
 
     @Override
     public void hienThiXeOto() {
-        List<Oto> otolist = DocGhiFile.docFileOto();
-        for (Oto oto : otolist) {
+        List<PhuongTien> otolist = DocGhiFile.docFileOto();
+        for (PhuongTien oto : otolist) {
             oto.showInfo();
         }
     }
 
     @Override
     public void hienThiXeMay() {
-        List<XeMay> xemaylist = DocGhiFile.docFileXeMay();
-        for (XeMay xemay : xemaylist) {
+        List<PhuongTien> xemaylist = DocGhiFile.docFileXeMay();
+        for (PhuongTien xemay : xemaylist) {
             xemay.showInfo();
         }
     }
 
     @Override
     public void hienThiTatCa() {
-
+        System.out.println("Danh sách xe tảin");
+        hienThiXeTai();
+        System.out.println("\nDanh sách xe oto");
+        hienThiXeOto();
+        System.out.println("\nDanh sách xe máy");
+        hienThiXeMay();
     }
 
 
     //Biển kiểm soát , tên hãng sản xuất, năm sản xuất, chủ sở hữu.
     @Override
     public void themXeTai() {
+        String trongTaiRegex = "^(\\d){3}$";
         String xeTaiBienKiemSoatRegex = "^[\\d]{2}(C)[\\-][\\d]{3}(\\.)[\\d]{2}$";
         String bienKiemSoat = RegexAndException.kiemTraNhapVaoTheoDinhDang("biển kiểm soát", xeTaiBienKiemSoatRegex, "Vui lòng nhập biển kiểm soát", "XXC-XXX.XX (X : 0÷9)");
-        String tenHangSanXuat = QuanLyNhapDuLieu.nhapTheoFileCoSan("hangsanxuat.csv");
+        String tenHangSanXuat = QuanLyNhapDuLieu.nhapHangSanXuat("hangsanxuat.csv");
         String namSanXuat = RegexAndException.kiemTraNhapVaoTheoDinhDang("năm sản xuất", namSanXuatRegex, "Vui lòng nhập năm năm sản xuất", "");
         String chuSoHuu = RegexAndException.kiemTraNhapVaoTheoDinhDang("chủ sở hữu", RegexAndException.RegexVietNameseName, "Vui lòng nhập tên chủ sở hữu", "Họ Tên");
 
@@ -83,7 +148,7 @@ public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
     @Override
     public void themXeOto() {
         String bienKiemSoat = QuanLyNhapDuLieu.nhapBienKiemSoatOto();
-        String tenHangSanXuat = QuanLyNhapDuLieu.nhapTheoFileCoSan("hangsanxuat.csv");
+        String tenHangSanXuat = QuanLyNhapDuLieu.nhapHangSanXuat("hangsanxuat.csv");
         String namSanXuat = RegexAndException.kiemTraNhapVaoTheoDinhDang("năm sản xuất", namSanXuatRegex, "Vui lòng nhập năm năm sản xuất", "");
         String chuSoHuu = RegexAndException.kiemTraNhapVaoTheoDinhDang("chủ sở hữu", RegexAndException.RegexVietNameseName, "Vui lòng nhập tên chủ sở hữu", "Họ Tên");
 
@@ -98,18 +163,19 @@ public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
 
     @Override
     public void themXeMay() {
+        String xeMayBienKiemSoatRegex="^[\\d]{2}[\\-][A-Z]{1}[\\d]{1}[\\-][\\d]{3}.[\\d]{2}$";
         String regexCongSuat = "(\\d)+";
-        String bienKiemSoat = QuanLyNhapDuLieu.nhapBienKiemSoatOto();
-        String tenHangSanXuat = QuanLyNhapDuLieu.nhapTheoFileCoSan("hangsanxuat.csv");
+        String bienKiemSoat =RegexAndException.kiemTraNhapVaoTheoDinhDang("biển kiểm soát", xeMayBienKiemSoatRegex, "Vui lòng nhập biển kiểm soát", "XXC-XXX.XX (X : 0÷9)");
+        String tenHangSanXuat = QuanLyNhapDuLieu.nhapHangSanXuat("hangsanxuat.csv");
         String namSanXuat = RegexAndException.kiemTraNhapVaoTheoDinhDang("năm sản xuất", namSanXuatRegex, "Vui lòng nhập năm năm sản xuất", "4 Số");
         String chuSoHuu = RegexAndException.kiemTraNhapVaoTheoDinhDang("chủ sở hữu", RegexAndException.RegexVietNameseName, "Vui lòng nhập tên chủ sở hữu", "Họ Tên");
-        String congSuat = RegexAndException.kiemTraNhapVaoTheoDinhDang("chủ sở hữu", regexCongSuat, "Vui lòng nhập công xuất", "Số");
+        String congSuat = RegexAndException.kiemTraNhapVaoTheoDinhDang("công suất", regexCongSuat, "Vui lòng nhập công xuất", "Số");
 
 
         List<PhuongTien> xemayList = new ArrayList<>();
-        XeMay xeMay = new XeMay(bienKiemSoat, tenHangSanXuat, namSanXuat, chuSoHuu, "");
+        XeMay xeMay = new XeMay(bienKiemSoat, tenHangSanXuat, namSanXuat, chuSoHuu, congSuat);
         xemayList.add(xeMay);
-        DocGhiFile.writeFile("oto.csv", xemayList, true);
+        DocGhiFile.writeFile("xemay.csv", xemayList, true);
 
     }
 }

@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class QuanLyNhapDuLieu {
     public static void main(String[] args) {
-        nhapTheoFileCoSan("hangsanxuat.csv");
+        nhapHangSanXuat("hangsanxuat.csv");
     }
 
-    public static String nhapTheoFileCoSan(String filename) {
+    public static String nhapHangSanXuat(String filename) {
         String regex = "[\\d]+";
         Scanner scanner = new Scanner(System.in);
         boolean kiemTra = false;
@@ -19,6 +19,7 @@ public class QuanLyNhapDuLieu {
         String hang = null;
         while (true) {
             List<String> stringList = DocGhiFile.docFileTheoDong(filename);
+            System.out.println("Chọn hãng sản xuất");
             for (int i = 0; i < stringList.size(); i++) {
                 System.out.println((i + 1) + " : " + stringList.get(i));
             }

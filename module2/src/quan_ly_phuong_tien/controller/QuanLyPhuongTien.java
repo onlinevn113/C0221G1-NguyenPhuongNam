@@ -1,5 +1,9 @@
 package quan_ly_phuong_tien.controller;
 
+import quan_ly_phuong_tien.model.Oto;
+import quan_ly_phuong_tien.model.XeMay;
+import quan_ly_phuong_tien.model.XeTai;
+
 import java.util.Scanner;
 
 public class QuanLyPhuongTien {
@@ -7,7 +11,6 @@ public class QuanLyPhuongTien {
 
     public static void main(String[] args) {
         menu();
-
     }
 
     public static void menu() {
@@ -18,7 +21,8 @@ public class QuanLyPhuongTien {
                     "1. Thêm mới phương tiện.\n" +
                     "2. Hiện thị phương tiện\n" +
                     "3. Xóa phương tiện\n" +
-                    "4. Thoát\n");
+                    "4. Thoát\n" +
+                    "5. Sửa đổi phương tiện");
             choice = scanner.nextLine();
             switch (choice) {
                 case "1":
@@ -33,12 +37,20 @@ public class QuanLyPhuongTien {
                 case "4":
                     System.out.println("Tạm biệt");
                     System.exit(0);
+                    break;
+                case "5":
+                    suaDoiPhuongTien();
+                    break;
                 default:
                     System.out.println("Chọn theo chức năng từ 1-4");
             }
         } while (choice != "4");
 
 
+    }
+
+    private static void suaDoiPhuongTien() {
+        
     }
 
     private static void xoaPhuongTien() {
@@ -54,13 +66,13 @@ public class QuanLyPhuongTien {
             choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    quanLyChucNang.xoaPhuongTien("xetai.csv");
+                    quanLyChucNang.xoaXeTai();
                     break;
                 case "2":
-                    quanLyChucNang.xoaPhuongTien("oto.csv");
+                    quanLyChucNang.xoaOto();
                     break;
                 case "3":
-                    quanLyChucNang.xoaPhuongTien("xemay.csv");
+                    quanLyChucNang.xoaXemay();
                     break;
                 case "4":
                     return;
@@ -69,7 +81,6 @@ public class QuanLyPhuongTien {
                     System.exit(0);
                 default:
                     System.out.println("Vui lòng chọn từ 1-5");
-
             }
         } while (choice != "5");
 
@@ -84,7 +95,8 @@ public class QuanLyPhuongTien {
                     "2. Hiển thị ôtô, \n" +
                     "3. Hiển thị  xe máy.\n" +
                     "4. Trở về\n" +
-                    "5. Thoát");
+                    "5. Thoát\n" +
+                    "6. Hiển thị tất cả");
             choice = scanner.nextLine();
 
             switch (choice) {
@@ -103,6 +115,8 @@ public class QuanLyPhuongTien {
                 case "5":
                     System.out.println("Tạm biệt");
                     System.exit(0);
+                case "6":
+                    quanLyChucNang.hienThiTatCa();
                 default:
                     System.out.println("Vui lòng chọn từ 1-5");
 
@@ -145,7 +159,6 @@ public class QuanLyPhuongTien {
                     System.exit(0);
                 default:
                     System.out.println("Vui lòng chọn từ 1-5");
-
             }
         } while (choice != "5");
     }

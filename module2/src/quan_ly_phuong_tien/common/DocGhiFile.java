@@ -1,6 +1,8 @@
 package quan_ly_phuong_tien.common;
 
 
+import bai11_dsa_stack_queue.bai_tap.thap_phan_sang_nhi_phan.Main;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import quan_ly_phuong_tien.model.Oto;
 import quan_ly_phuong_tien.model.PhuongTien;
 import quan_ly_phuong_tien.model.XeMay;
@@ -39,7 +41,6 @@ public class DocGhiFile {
         }
     }
 
-
     public static List<String> docFileTheoDong(String fileName) {
         File file = null;
         FileReader fileReader = null;
@@ -69,11 +70,11 @@ public class DocGhiFile {
         return stringList;
     }
 
-    public static  List<XeTai> docFileXeTai() {
+    public static List<PhuongTien> docFileXeTai() {
         File file = null;
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
-        List<XeTai> arrayList = new ArrayList<>();
+        List<PhuongTien> arrayList = new ArrayList<>();
         String line = null;
         String[] strings = null;
         try {
@@ -88,7 +89,7 @@ public class DocGhiFile {
             bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
                 strings=line.split(",");
-                XeTai xeTai=new XeTai(strings[0],strings[1],strings[2],strings[3],strings[4]);
+                PhuongTien xeTai=new XeTai(strings[0],strings[1],strings[2],strings[3],strings[4]);
                 arrayList.add(xeTai);
             }
         } catch (IOException e) {
@@ -102,11 +103,11 @@ public class DocGhiFile {
             }
         }
         return arrayList;
-    } public static  List<Oto> docFileOto() {
+    } public static  List<PhuongTien> docFileOto() {
         File file = null;
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
-        List<Oto> arrayList = new ArrayList<>();
+        List<PhuongTien> arrayList = new ArrayList<>();
         String line = null;
         String[] strings = null;
         try {
@@ -119,7 +120,7 @@ public class DocGhiFile {
             bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
                 strings=line.split(",");
-                Oto oto=new Oto(strings[0],strings[1],strings[2],strings[3],strings[4],strings[5]);
+                PhuongTien oto=new Oto(strings[0],strings[1],strings[2],strings[3],strings[4],strings[5]);
                 arrayList.add(oto);
             }
         } catch (IOException e) {
@@ -133,11 +134,11 @@ public class DocGhiFile {
             }
         }
         return arrayList;
-    } public static  List<XeMay> docFileXeMay() {
+    } public static  List<PhuongTien> docFileXeMay() {
         File file = null;
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
-        List<XeMay> arrayList = new ArrayList<>();
+        List<PhuongTien> arrayList = new ArrayList<>();
         String line = null;
         String[] strings = null;
         try {
@@ -150,7 +151,7 @@ public class DocGhiFile {
             bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
                 strings=line.split(",");
-                XeMay xeMay=new XeMay(strings[0],strings[1],strings[2],strings[3],strings[4]);
+                PhuongTien xeMay=new XeMay(strings[0],strings[1],strings[2],strings[3],strings[4]);
                 arrayList.add(xeMay);
             }
         } catch (IOException e) {
@@ -167,11 +168,11 @@ public class DocGhiFile {
     }
 
 
-//    public static List<CanBo> docFile(String fileName) {
+//    public static List<PhuongTien> docFile(String fileName) {
 //        File file = null;
 //        FileReader fileReader = null;
 //        BufferedReader bufferedReader = null;
-//        List<CanBo> canBoList = new ArrayList<>();
+//        List<PhuongTien> phuongTienList = new ArrayList<>();
 //        String line = null;
 //        String[] strings = null;
 //        try {

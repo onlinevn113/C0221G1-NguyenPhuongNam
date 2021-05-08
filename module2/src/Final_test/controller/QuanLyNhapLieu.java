@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class QuanLyNhapLieu {
     public static String nhapId(String filename) {
-        String id = "CB-00";
+        String id = "";
         List<String> stringList = DocGhiFile.docFileTheoDong(filename);
         if (stringList.isEmpty()) {
             id += 1;
@@ -47,7 +47,6 @@ public class QuanLyNhapLieu {
     }
     public static String nhapTheoFileCoSan(String filename) {
         String regex = "[\\d]+";
-        Scanner scanner = new Scanner(System.in);
         boolean kiemTra = false;
         String chon;
         String duLieu = null;
