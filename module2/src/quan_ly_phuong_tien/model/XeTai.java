@@ -23,14 +23,28 @@ public class XeTai extends PhuongTien {
         this.trongTai = trongTai;
     }
 
+//    @Override
+//    public String toString() {
+//        return super.toString() + "," + trongTai;
+//    }
+
     @Override
     public String toString() {
-        return super.toString() + "," + trongTai;
+        return "XeTai{" +
+                "trongTai='" + trongTai + '\'' +
+                ", bienKiemSoat='" + bienKiemSoat + '\'' +
+                ", tenHangSanXuat='" + tenHangSanXuat + '\'' +
+                ", namSanXuat='" + namSanXuat + '\'' +
+                ", chuSoHuu='" + chuSoHuu + '\'' +
+                '}';
     }
 
+    public static void main(String[] args) {
+        XeTai xeTai=new XeTai();
+        xeTai.showInfo();
+    }
     @Override
     public void showInfo() {
-
-        System.out.println(trongTai+"         " + bienKiemSoat+"       " + tenHangSanXuat+"    " + namSanXuat+"            " + chuSoHuu);
+        System.out.printf("Xe tải:\n"+"Trọng tải=%d,biển kiểm soát=%d,tên hãng sản xuất=%đ,năm sản xuất=%đ, chủ sở hữu=%đ",trongTai,bienKiemSoat,tenHangSanXuat,namSanXuat,chuSoHuu);
     }
 }

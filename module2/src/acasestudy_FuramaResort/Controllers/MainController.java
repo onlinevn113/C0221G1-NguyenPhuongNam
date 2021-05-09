@@ -21,12 +21,6 @@ public class MainController {
     public final static String EMPLOYEE = "employee";
 
 
-    public static void main(String[] args) {
-//    AddNewEployee addNewEployee=new AddNewEployee();
-//    addNewEployee.addNewEmployee(EMPLOYEE);
-        displayMainMenu();
-    }
-
     public static boolean testregex(String regex, String string) {
         return regex.matches(string);
     }
@@ -89,7 +83,6 @@ public class MainController {
     }
 
 
-
     private static void showQueueOfCustomers() {
         Queue<Customer> queueCustomer = new LinkedList<>();
         List<Customer> listOfCustomers = readAllCustomer(CUSTOMER);
@@ -100,9 +93,9 @@ public class MainController {
 
         System.out.println("--------------------");
         System.out.println("List customer who buy ticket: ");
-        Customer customer=null;
-        while (!queueCustomer.isEmpty()){
-            customer=queueCustomer.poll();
+        Customer customer = null;
+        while (!queueCustomer.isEmpty()) {
+            customer = queueCustomer.poll();
             customer.showInfor();
         }
     }
@@ -201,23 +194,6 @@ public class MainController {
 
     }
 
-    public static int checkNumber(int maxNumber) {
-        boolean flag;
-        int chooseNumber = 0;
-        do {
-            System.out.print("Nhập số muốn chọn (không được quá " + maxNumber + ")" + " : ");
-            try {
-                flag = true;
-                chooseNumber = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Không được nhập chữ!");
-                scanner.nextLine();
-                flag = false;
-            }
-        } while (!flag || chooseNumber < 1 || chooseNumber > maxNumber);
-        return chooseNumber;
-
-    }
 
     private static void addNewBooking() {
         List<Customer> customerList = readAllCustomer(CUSTOMER);
@@ -270,7 +246,7 @@ public class MainController {
     }
 
     private static void addNewServices() {
-       int choice;
+        int choice;
         do {
             System.out.println("1.\tAdd New Villa\n" +
                     "2.\tAdd New House\n" +
@@ -281,7 +257,7 @@ public class MainController {
 
             do {
                 try {
-                    choice=Integer.parseInt(scanner.nextLine());
+                    choice = Integer.parseInt(scanner.nextLine());
                     break;
                 } catch (NumberFormatException e) {
                     System.out.println("Try again");
@@ -484,10 +460,54 @@ public class MainController {
         for (String name : setOfServices) {
             System.out.println(name);
         }
-
     }
 
+    public static void main(String[] args) {
+        int a = 100;
+        m(a);
+        System.out.println(a);
+    }
+
+    static void m(int x) {
+        x = 200;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static public void f() {}
     private static void showAllService(String fileName) {
+
         System.out.println("---------------------------");
         System.out.println("List service: ");
 
