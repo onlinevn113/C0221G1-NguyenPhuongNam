@@ -45,6 +45,6 @@ public class XeTai extends PhuongTien {
     }
     @Override
     public void showInfo() {
-        System.out.printf("Xe tải:\n"+"Trọng tải=%d,biển kiểm soát=%d,tên hãng sản xuất=%đ,năm sản xuất=%đ, chủ sở hữu=%đ",trongTai,bienKiemSoat,tenHangSanXuat,namSanXuat,chuSoHuu);
+        System.out.printf("Xe tải:\n"+"Trọng tải=%d,biển kiểm soát=%d,tên hãng sản xuất=%d,năm sản xuất=%d, chủ sở hữu=%d",trongTai,bienKiemSoat,tenHangSanXuat,namSanXuat,chuSoHuu);
     }
 }
