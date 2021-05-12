@@ -20,7 +20,6 @@ public class MainController {
                     "3. Xoá\n" +
                     "4. Thoát");
 
-
             switch (Integer.parseInt(scanner.nextLine())) {
                 case 1:
                     productService.addProduct();

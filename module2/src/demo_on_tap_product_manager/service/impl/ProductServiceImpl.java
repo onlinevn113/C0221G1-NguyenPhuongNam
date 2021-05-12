@@ -55,7 +55,6 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productList = FuncWriteAndReadFile.readFile("product.csv");
         for (Product product : productList) {
             if (product.getId() == id) {
-
                 System.out.println("Nhập tên muốn sửa");
                 String name = scanner.nextLine();
                 System.out.println("Nhập amount muốn sửa");
@@ -75,6 +74,5 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAll() {
         return FuncWriteAndReadFile.readFile("product.csv");
-
     }
 }

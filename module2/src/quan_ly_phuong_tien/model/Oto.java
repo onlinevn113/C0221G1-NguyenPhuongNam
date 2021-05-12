@@ -37,7 +37,7 @@ public class Oto extends PhuongTien {
     public String toString() {
         return super.toString() +","+ soChoNgoi +","+ kieuXe;
     }
-
+    
 
     @Override
     public void showInfo() {

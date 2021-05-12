@@ -7,7 +7,6 @@ public abstract class PhuongTien {
     protected String tenHangSanXuat;
     protected String namSanXuat;
     protected String chuSoHuu;
-
     public PhuongTien() {
     }
 

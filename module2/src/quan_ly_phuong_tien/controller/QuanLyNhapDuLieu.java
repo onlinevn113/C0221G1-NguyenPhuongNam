@@ -7,10 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class QuanLyNhapDuLieu {
-    public static void main(String[] args) {
-        nhapHangSanXuat("hangsanxuat.csv");
-    }
-
     public static String nhapHangSanXuat(String filename) {
         String regex = "[\\d]+";
         Scanner scanner = new Scanner(System.in);

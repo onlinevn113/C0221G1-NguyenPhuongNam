@@ -101,7 +101,6 @@ public class QuanLyPhuongTien {
 
             switch (choice) {
                 case "1":
-                    System.out.println("Tải trọng   "+"Biển kiểm soát   "+"Tên hsx   "+"Năm sản xuất   "+"Chủ sở hữu");
                     quanLyChucNang.hienThiXeTai();
                     break;
                 case "2":

@@ -9,8 +9,10 @@ import quan_ly_phuong_tien.model.PhuongTien;
 import quan_ly_phuong_tien.model.XeMay;
 import quan_ly_phuong_tien.model.XeTai;
 
+import javax.imageio.stream.ImageInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
     private String namSanXuatRegex = "^(\\d){4}$";
@@ -24,11 +26,34 @@ public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
             String bienKiemSoatXoa = RegexAndException.kiemTraNhapVaoTheoDinhDang("biển kiểm soát cần xoá", regex, "Vui lòng nhập biển kiểm soát", "XXC-XXX.XX (X : 0÷9)");
             for (int i = 0; i <xeTaiList.size() ; i++) {
                 String bienKiemSoat=xeTaiList.get(i).getBienKiemSoat();
-                if (bienKiemSoatXoa.contains(bienKiemSoat)){
-                    xeTaiList.remove(xeTaiList.get(i));
-                    DocGhiFile.writeFile("xetai.csv", xeTaiList,false);
+                if (bienKiemSoatXoa.equals(bienKiemSoat)){
                     kiemTra=true;
-                    break;
+                    String xacNhan;
+                    String regexXacNhan="^[\\d$]{1}";
+                   while (true){
+                       xacNhan=RegexAndException.kiemTraNhapVao("Bạn có chắc chắn muốn xoá\n" +
+                               "1.Có\n" +
+                               "2.Không",regexXacNhan,"Vui lòng nhập số ");
+                       boolean kiemtra2=false;
+                       switch (xacNhan){
+                           case "1":
+                               xeTaiList.remove(xeTaiList.get(i));
+                               DocGhiFile.writeFile("xetai.csv", xeTaiList,false);
+                               System.out.println("Xoá thành công");
+                               kiemtra2=true;
+                               break;
+                           case "2":
+                               System.out.println("Bạn không muốn xoá");
+                               kiemtra2=true;
+                               break;
+                           default:
+                               System.out.println("Vui lòng chọn 1 hoặc 2");
+                               break;
+                       }
+                       if (kiemtra2){
+                           break;
+                       }
+                   }
                 }
             }
             if (kiemTra){
@@ -48,6 +73,8 @@ public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
             String bienKiemSoatXoa = RegexAndException.kiemTraNhapVaoTheoDinhDang("biển kiểm soát cần xoá", regex, "Vui lòng nhập biển kiểm soát", "XXC-XXX.XX (X : 0÷9)");
             for (int i = 0; i <phuongTienList.size() ; i++) {
                 String bienKiemSoat=phuongTienList.get(i).getBienKiemSoat();
+                System.out.println("Bạn có muốn xoá");
+                String chon=new Scanner(System.in).nextLine();
                 if (bienKiemSoatXoa.contains(bienKiemSoat)){
                     phuongTienList.remove(phuongTienList.get(i));
                     DocGhiFile.writeFile("oto.csv", phuongTienList,false);
@@ -94,8 +121,6 @@ public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
         for (PhuongTien xeTai:xetailist){
             xeTai.showInfo();
         }
-
-
     }
 
     @Override
@@ -125,7 +150,6 @@ public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
     }
 
 
-    //Biển kiểm soát , tên hãng sản xuất, năm sản xuất, chủ sở hữu.
     @Override
     public void themXeTai() {
         String trongTaiRegex = "^(\\d){3}$";
@@ -134,11 +158,7 @@ public class QuanLyChucNang implements HienThiPhuongTien, ThemMoiPhuongTien {
         String tenHangSanXuat = QuanLyNhapDuLieu.nhapHangSanXuat("hangsanxuat.csv");
         String namSanXuat = RegexAndException.kiemTraNhapVaoTheoDinhDang("năm sản xuất", namSanXuatRegex, "Vui lòng nhập năm năm sản xuất", "");
         String chuSoHuu = RegexAndException.kiemTraNhapVaoTheoDinhDang("chủ sở hữu", RegexAndException.RegexVietNameseName, "Vui lòng nhập tên chủ sở hữu", "Họ Tên");
-
-
         String trongTai = RegexAndException.kiemTraNhapVaoTheoDinhDang("trong tải", trongTaiRegex, "Vui lòng nhập trọng tải", "XXX (X: 0-9KG)");
-
-
         List<PhuongTien> xeTailist = new ArrayList<>();
         XeTai xeTai = new XeTai(bienKiemSoat, tenHangSanXuat, namSanXuat, chuSoHuu, trongTai);
         xeTailist.add(xeTai);
