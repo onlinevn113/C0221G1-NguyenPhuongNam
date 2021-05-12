@@ -16,8 +16,11 @@ create table if not exists `Class`(
 `id` int auto_increment not null primary key,
 `name` varchar(45) null
 );
-insert into `Class`(`name`) 
-value ("VIP");
+
+
+-- insert into `Class`(`name`)
+-- value ("VIP");
+
 -- insert into  `student`(`name`,`age`,`country`)
 -- value ("Hs1",18,"VN"),
 -- ("Hs2",19,"Nhật"),
