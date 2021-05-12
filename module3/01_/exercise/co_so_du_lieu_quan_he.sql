@@ -17,7 +17,6 @@ create table if not exists `Class`(
 `name` varchar(45) null
 );
 
-
 -- insert into `Class`(`name`)
 -- value ("VIP");
 
@@ -25,6 +24,7 @@ create table if not exists `Class`(
 -- value ("Hs1",18,"VN"),
 -- ("Hs2",19,"Nhật"),
 -- ("Hs3",20,"Trung");
+
 --  insert into `Teacher` (`name`,`age`,`country`)
 -- value ("GV1",18,"VN"),
 -- ("GV2",19,"Nhật"),
@@ -34,10 +34,12 @@ create table if not exists `Class`(
 -- DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '6');
 -- DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '7');
 -- DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '8');
+
 -- update `student`set`country`="R"where`id`=3;
 
 
 DELETE FROM `my_database1`.`student` WHERE (`id` = '19') or (`id` = '20') or (`id` = '21');
+
 delete from `my_database1`.`student` where exists (select * where `student`.`id`>1);
 select * from `student`;
 
