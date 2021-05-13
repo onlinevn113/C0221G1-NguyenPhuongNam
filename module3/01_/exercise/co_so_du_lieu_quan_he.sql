@@ -22,8 +22,10 @@ create table if not exists `Teacher`(
 `phone_number` varchar(10) ,
 `country` varchar(45) null
 );
-
-
+create table if not exists test (
+id int auto_increment not null primary key
+);
+drop table test;
 
 insert into `Class`(`name`)
 value ("VIP"),

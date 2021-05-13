@@ -61,7 +61,6 @@ so_dien_thoai int(10)
 CREATE TABLE IF NOT EXISTS cung_cap( 
 so_don_hang int,
 foreign key (so_don_hang) references don_hang(so_don_hang),
-ma_nha_cung_cap int,
-foreign key (ma_nha_cung_cap) references nha_cung_cap(ma_nha_cung_cap),
-primary key(so_don_hang,ma_nha_cung_cap)
+ma_nha_cung_cap int primary key,
+foreign key (ma_nha_cung_cap) references nha_cung_cap(ma_nha_cung_cap)
 );
