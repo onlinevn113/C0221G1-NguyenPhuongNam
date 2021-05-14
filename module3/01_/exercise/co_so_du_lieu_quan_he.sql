@@ -53,9 +53,13 @@ DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '8');
 update `student` set`country`="R" where`id`=3;
 
 
+
 DELETE FROM `my_database1`.`student` WHERE (`id` = 19) or (`id` = 20) or (`id` = 21);
 
-delete from `my_database1`.`Teacher` where exists (select * where `Teacher`.`id`>3);
+delete from `my_database1`.`Teacher` where exists (select * where `Teacher`.`id`<3);
+
+select * from `Teacher` where exists (select * where `Teacher`.`id`<3);
+select * from `Teacher` where `Teacher`.`id`<3;
 
 -- thêm cột
 ALTER TABLE `Teacher`
@@ -67,13 +71,15 @@ DROP COLUMN `test`;
 ALTER TABLE `Teacher`
 MODIFY COLUMN `test` varchar(100); 
 
+-- set lai tu dong =1
+ALTER TABLE `Teacher` AUTO_INCREMENT = 1;
 
 -- -- xoá hết thuộc tính
 TRUNCATE TABLE `student`;
 
 
 -- -- tìm kiếm theo định dạng
-SELECT `phone_number` FROM `Teacher` WHERE `phone_number`  NOT REGEXP '[0-9]{3}-[0-9]{3}-[0-9]{4}';
+SELECT `phone_number` FROM `Teacher` WHERE `phone_number` REGEXP '[0-9]{3}-[0-9]{3}-[0-9]{4}';
 
 
 

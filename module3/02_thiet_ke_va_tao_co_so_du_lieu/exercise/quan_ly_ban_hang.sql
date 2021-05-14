@@ -7,7 +7,7 @@ c_name varchar(45),
 c_age int
 );
 
-create table if not exists oder(
+create table if not exists `order`(
 o_id int primary key,
 c_id int,
 foreign key(c_id) references customer(c_id),
@@ -23,7 +23,7 @@ p_price double
 
 create table if not exists order_detail(
 o_id int,
-foreign key (o_id) references oder(o_id),
+foreign key (o_id) references `order`(o_id),
 p_id int,
 foreign key (p_id) references product(p_id),
 od_QTY varchar(45)

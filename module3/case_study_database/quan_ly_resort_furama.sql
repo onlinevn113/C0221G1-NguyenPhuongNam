@@ -83,7 +83,8 @@ dia_chi varchar(45)
 );
 insert into khach_hang
 value (1,3,"Nguyễn Phương Na","1999-06-27",211827890,0774501871,"onlinevn1111@gmail.com","K110/08 Nguyễn Phan Vinh"),
-     (2,3,"Nguyễn Nam","2000-06-27",221807610,0774501872,"onlinevn1@gmail.com","K110/08 Nguyễn Phan Vinh");
+     (2,3,"Nguyễn Nam","2000-06-27",221807610,0774501872,"onlinevn1@gmail.com","K110/08 Nguyễn Phan Vinh"),
+     (2,3,"Nguyễn ","2000-06-27",221807610,0774501872,"onlinevn1@gmail.com","K110/08 Nguyễn Phan Vinh");
 
 
 create table if not exists kieu_thue(
