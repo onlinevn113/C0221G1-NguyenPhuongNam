@@ -88,7 +88,7 @@ dia_chi varchar(45)
 insert into khach_hang
 value 
 (1,1,"Huy","1999-12-20",1234567890,0234567890,"qwe@gmail.com","Đà Nẵng"),
-(2,1,"Huy","1999-12-20",0987654321,1234567890,"qwe@gmail.com","Đà Nẵng"),
+(2,1,"Huy","1999-12-20",0987654321,1234567890,"qwe@gmail.com","Quảng Ngãi"),
 (3,1,"Hoàng","1990-3-21",1234561230,1234561230,"we@gmail.com","Quảng trị"),
 (4,2,"Hùng","1990-2-20",1234569870,1234569870,"gwe@gmail.com","Huế");
 
@@ -246,5 +246,61 @@ where dv.id_dich_vu not in (select hop_dong.id_dich_vu
 select dv.id_dich_vu, dv.ten_dich_vu,dv.dien_tich,dv.chi_phi_thue,dv.ten_dich_vu
 from dich_vu dv
 join hop_dong hd on dv.id_dich_vu=hd.id_dich_vu
-where (year(hd.ngay_lam_hop_dong)=2019);
+where (year(hd.ngay_lam_hop_dong)<2019);
+
+-- 8.	Hiển thị thông tin HoTenKhachHang có trong hệ thống,
+--  với yêu cầu HoTenKhachHang không trùng nhau.
+-- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên
+select distinctrow khach_hang.ho_ten
+		from khach_hang;
+ select distinct khach_hang.ho_ten
+		from khach_hang;       
+select kh.ho_ten from khach_hang kh
+union 
+select kh.ho_ten from khach_hang kh;
+select  *
+from khach_hang kh
+group by kh.ho_ten;
+-- tại sao lại không được
+-- select  *
+-- from khach_hang 
+-- where (select distinct khach_hang.ho_ten
+-- 		from khach_hang
+--         );
+
+-- 9.Thực hiện thống kê doanh thu theo tháng, 
+-- nghĩa là tương ứng với mỗi tháng trong năm 2019 thì sẽ có bao nhiêu 
+-- khách hàng thực hiện đặt phòng.
+
+SELECT month(hd.ngay_lam_hop_dong) , sum(dv.chi_phi_thue) 'doanh_thu_'
+FROM hop_dong hd 
+join dich_vu dv on hd.id_dich_vu=dv.id_dich_vu
+WHERE year(hd.ngay_lam_hop_dong)=2019
+GROUP BY month(hd.ngay_lam_hop_dong);
+
+-- 10.	Hiển thị thông tin tương ứng với từng Hợp đồng thì đã sử dụng bao nhiêu Dịch vụ đi kèm.
+-- Kết quả hiển thị bao gồm IDHopDong, NgayLamHopDong, NgayKetthuc, TienDatCoc, 
+-- SoLuongDichVuDiKem (được tính dựa trên việc count các IDHopDongChiTiet).
+
+select hd.id_hop_dong,ngay_lam_hop_dong,ngay_ket_thuc,tien_dat_coc ,count(hdct.id_hop_dong_chi_tiet) 'so_luong_dich_vu_di_kem'
+from hop_dong hd
+join hop_dong_chi_tiet hdct on hd.id_hop_dong=hdct.id_hop_dong
+group by hdct.id_hop_dong;
+
+-- 11.	Hiển thị thông tin các Dịch vụ đi kèm đã được sử dụng bởi những Khách hàng
+--  có TenLoaiKhachHang là “Diamond” và có địa chỉ là “Vinh” hoặc “Quảng Ngãi”.
+
+select dvdk.ten_dich_vu_di_kem
+from khach_hang kh 
+join hop_dong hd on kh.id_khach_hang=hd.id_khach_hang
+join hop_dong_chi_tiet hdct on hd.id_hop_dong=hdct.id_hop_dong
+join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem=dvdk.id_dich_vu_di_kem
+where kh.id_loai_khach=1 and (kh.dia_chi='Vinh' or kh.dia_chi= 'Quảng Ngãi');
+
+
+
+
+
+
+
 
