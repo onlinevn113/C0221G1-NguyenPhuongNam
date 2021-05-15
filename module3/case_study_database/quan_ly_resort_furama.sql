@@ -38,7 +38,7 @@ value(1,"Sale – Marketing"),
 
 
 create table if not exists nhan_vien(
-id_nhan_vien int primary key,
+id_nhan_vien int primary key ,
 ho_ten_nhan_vien varchar(45)  not null,
 id_vi_tri int ,
 foreign key  (id_vi_tri)references vi_tri(id_vi_tri),
@@ -54,8 +54,10 @@ email varchar(45) unique,
 dia_chi varchar(45)
 );
 insert into nhan_vien 
-value (1,"Nguyễn Phương Nam",1,1,1,"1999-06-27",201807687,1000,0774501871,"onlinevn113@gmail.com","K110/08 Nguyễn Phan Vinh"),
-      (2,"Nguyễn Nam",3,3,3,"2000-06-27",201807610,1000,0774501872,"onlinevn@gmail.com","K110/08 Nguyễn Phan Vinh");
+value (1,"Nguyễn Phương Nam",1,1,1,"1999-06-27",201807687,4000,0774501871,"onlinevn113@gmail.com","K110/08 Nguyễn Phan Vinh"),
+ (2,"Nguyễn",2,2,1,"1999-07-27",201807683,7000,0774501872,"onlinevn@gmail.com","K110/08 Nguyễn Vinh"),
+ (3,"Nguyễn Anh",2,2,3,"1999-08-22",201807682,5000,0774501873,"onlinevn1@gmail.com","K110/08 Nguyễn Vinh"),
+ (4,"Nguyễn Phương",1,2,3,"2001-06-27",201807611,10000,0774501874,"onlinevn2@gmail.com","K110/08 Nguyễn Phan");
 
 
 create table if not exists loai_khach(
@@ -81,10 +83,8 @@ so_dien_thoai varchar(45),
 email varchar(45) unique,
 dia_chi varchar(45)
 );
-insert into khach_hang
-value (1,3,"Nguyễn Phương Na","1999-06-27",211827890,0774501871,"onlinevn1111@gmail.com","K110/08 Nguyễn Phan Vinh"),
-     (2,3,"Nguyễn Nam","2000-06-27",221807610,0774501872,"onlinevn1@gmail.com","K110/08 Nguyễn Phan Vinh"),
-     (2,3,"Nguyễn ","2000-06-27",221807610,0774501872,"onlinevn1@gmail.com","K110/08 Nguyễn Phan Vinh");
+-- insert into khach_hang
+-- value ();
 
 
 create table if not exists kieu_thue(

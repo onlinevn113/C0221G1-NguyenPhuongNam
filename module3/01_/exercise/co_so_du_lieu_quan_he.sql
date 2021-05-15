@@ -7,6 +7,7 @@ create table if not exists `Class`(
 `id` int auto_increment not null primary key,
 `name` varchar(45)
 );
+
 create table if not exists `student`(
 `id` int auto_increment not null primary key,
 `name` varchar(45) null,
@@ -15,6 +16,7 @@ create table if not exists `student`(
 `email` varchar(50) unique,
 `id_class` int,foreign key(`id_class`) references `Class`(id)
 );
+
 create table if not exists `Teacher`(
 `id` int auto_increment not null primary key,
 `name` varchar(45) null,
@@ -67,7 +69,7 @@ ADD `test` int;
 -- xoá cột
 ALTER TABLE `Teacher`
 DROP COLUMN `test`;
--- thay đổi thuộc tính của cột
+-- thay đổi kiểu dữ liệu của cột
 ALTER TABLE `Teacher`
 MODIFY COLUMN `test` varchar(100); 
 
@@ -81,6 +83,9 @@ TRUNCATE TABLE `student`;
 -- -- tìm kiếm theo định dạng
 SELECT `phone_number` FROM `Teacher` WHERE `phone_number` REGEXP '[0-9]{3}-[0-9]{3}-[0-9]{4}';
 
+-- đổi tên bảng
+ALTER TABLE   `oder` 
+RENAME TO  `order`;
 
 
 
