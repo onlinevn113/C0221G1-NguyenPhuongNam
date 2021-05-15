@@ -49,4 +49,4 @@ select o.o_id as ma_hoa_don,  o.o_date as ngay_ban, sum(od.od_qty * p.p_price) a
 from  `order` as o 
 join order_detail as od on  o.o_id = od.o_id
 join product as p on od.p_id = p.p_id 
-group by o.o_id,  o.o_date;
+group by o.o_id;
