@@ -264,12 +264,10 @@ select kh.ho_ten from khach_hang kh;
 select  *
 from khach_hang kh
 group by kh.ho_ten;
-
--- TẠI SAO KHÔNG DÙNG NHƯ NÀY ĐƯỢC ANH TIẾN ƠI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
--- select  *
--- from khach_hang 
--- where (select distinct khach_hang.ho_ten
--- 	   	from khach_hang );
+select  *
+from khach_hang kh
+where kh.ho_ten in  (select distinct khach_hang.ho_ten
+	   	from khach_hang );
 
 
 -- 9.Thực hiện thống kê doanh thu theo tháng, 
@@ -320,7 +318,7 @@ from dich_vu_di_kem dvdk
 join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem;
 
 
-select count(dvdk.ten_dich_vu_di_kem)
+select max(dvdk.ten_dich_vu_di_kem)
 from dich_vu_di_kem dvdk 
 join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem
 group by dvdk.ten_dich_vu_di_kem
