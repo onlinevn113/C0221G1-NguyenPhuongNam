@@ -239,14 +239,17 @@ from dich_vu dv
 where dv.id_dich_vu not in (select hop_dong.id_dich_vu
 						from hop_dong 
                         where (year(ngay_lam_hop_dong)=2019) and (month(ngay_lam_hop_dong) in (1,2,3))
-                       );
+                       );                     
 -- 7.	Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, TenLoaiDichVu 
 -- của tất cả các loại dịch vụ đã từng được Khách hàng đặt phòng trong năm 2018 
 -- nhưng chưa từng được Khách hàng đặt phòng  trong năm 2019.
 select dv.id_dich_vu, dv.ten_dich_vu,dv.dien_tich,dv.chi_phi_thue,dv.ten_dich_vu
 from dich_vu dv
 join hop_dong hd on dv.id_dich_vu=hd.id_dich_vu
-where year(hd.ngay_lam_hop_dong)<2019;
+where (year(hd.ngay_lam_hop_dong) = 2018)
+		and hd.id_dich_vu not in (select hd.id_dich_vu
+								from hop_dong hd
+								where year(hd.ngay_lam_hop_dong)= 2019);
 
 -- 8.	Hiển thị thông tin HoTenKhachHang có trong hệ thống,
 --  với yêu cầu HoTenKhachHang không trùng nhau.
@@ -262,7 +265,7 @@ select  *
 from khach_hang kh
 group by kh.ho_ten;
 
--- TẠI SAO KHÔNG DÙNG NHƯ NÀY ĐƯỢC ANH TIẾN ƠI!! 
+-- TẠI SAO KHÔNG DÙNG NHƯ NÀY ĐƯỢC ANH TIẾN ƠI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 -- select  *
 -- from khach_hang 
 -- where (select distinct khach_hang.ho_ten
@@ -305,12 +308,22 @@ join khach_hang kh on hd.id_khach_hang=kh.id_khach_hang
 join dich_vu dv on  hd.id_dich_vu=dv.id_dich_vu
 join hop_dong_chi_tiet hdct on hdct.id_hop_dong=hd.id_hop_dong
 where ((year(hd.ngay_lam_hop_dong) = 2019 and month(hd.ngay_lam_hop_dong)>=10)
-and hd.id_dich_vu not in (select hd.id_dich_vu
-						from hop_dong hd
-						where (year(hd.ngay_lam_hop_dong)= 2019 AND month(hd.ngay_lam_hop_dong)<= 6)
-))
-group by hdct.id_hop_dong
+		and hd.id_dich_vu not in (select hd.id_dich_vu
+								from hop_dong hd
+								where (year(hd.ngay_lam_hop_dong)= 2019 AND month(hd.ngay_lam_hop_dong)<= 6)))
+group by hdct.id_hop_dong;
+-- 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
+-- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
 
+select *
+from dich_vu_di_kem dvdk 
+join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem;
+
+
+select count(dvdk.ten_dich_vu_di_kem)
+from dich_vu_di_kem dvdk 
+join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem
+group by dvdk.ten_dich_vu_di_kem
 
 
 
