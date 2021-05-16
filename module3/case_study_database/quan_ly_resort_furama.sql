@@ -269,7 +269,6 @@ from khach_hang kh
 where kh.ho_ten in  (select distinct khach_hang.ho_ten
 	   	from khach_hang );
 
-
 -- 9.Thực hiện thống kê doanh thu theo tháng, 
 -- nghĩa là tương ứng với mỗi tháng trong năm 2019 thì sẽ có bao nhiêu 
 -- khách hàng thực hiện đặt phòng.
@@ -312,25 +311,53 @@ where ((year(hd.ngay_lam_hop_dong) = 2019 and month(hd.ngay_lam_hop_dong)>=10)
 group by hdct.id_hop_dong;
 -- 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
 -- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
-
-select *
-from dich_vu_di_kem dvdk 
-join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem;
-
-
-select max(dvdk.ten_dich_vu_di_kem)
+select max(dvdk.ten_dich_vu_di_kem) 'ten_dich_vu',dvdk.gia,count(dvdk.ten_dich_vu_di_kem) 'so_lan_su_dung'
 from dich_vu_di_kem dvdk 
 join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem
+group by dvdk.ten_dich_vu_di_kem;
+
+-- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
+-- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
+
+select hd.id_hop_dong,dv.ten_dich_vu,dvdk.ten_dich_vu_di_kem,count(dvdk.ten_dich_vu_di_kem) 'so_lan_su_dung'
+from dich_vu_di_kem dvdk 
+join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem
+join hop_dong hd on hd.id_hop_dong=hdct.id_hop_dong
+join dich_vu dv on dv.id_dich_vu=hd.id_dich_vu
 group by dvdk.ten_dich_vu_di_kem
+having count(dvdk.ten_dich_vu_di_kem)=1;
 
+-- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm
+-- IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi 
+-- mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.
 
+select nv.id_nhan_vien,nv.ho_ten_nhan_vien,td.trinh_do,bp.ten_bo_phan,nv.so_dien_thoai,nv.dia_chi
+from nhan_vien nv
+join bo_phan bp on nv.id_bo_phan=bp.id_bo_phan
+join trinh_do td on nv.id_trinh_do=td.id_trinh_do
+join hop_dong hd on nv.id_nhan_vien=hd.id_nhan_vien
+group by hd.ngay_lam_hop_dong
+having (year(hd.ngay_lam_hop_dong) between 2018 and 2019) and count(hd.id_nhan_vien)<=3;
 
+-- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
 
-
-
-
-
-
-
-
+DELETE FROM nhan_vien 
+WHERE
+    id_nhan_vien IN (SELECT 
+        id
+    FROM
+        (SELECT 
+            nv.id_nhan_vien AS id
+        FROM
+            hop_dong h
+        RIGHT JOIN nhan_vien nv ON h.id_nhan_vien = nv.id_nhan_vien
+        
+        WHERE
+            (YEAR(h.ngay_lam_hop_dong) BETWEEN 2017 AND 2019)
+            OR h.ngay_lam_hop_dong IS NULL
+        GROUP BY nv.id_nhan_vien
+        HAVING COUNT(h.id_hop_dong) = 0) AS a);
+        
+-- 17.Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
+-- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
 
