@@ -34,14 +34,10 @@ value ("VIP"),
 ("STANDARD");
 
 select* from `Class`;
-
-
 insert into  `student`(`name`,`age`,`country`,`id_class`,`email`)
 value ("Hs1",18,"VN",1,"online@gmail.com"),
 ("Hs2",19,"Nhật",2,"onlinevn@gmail.com"),
 ("Hs3",20,"Trung",1,"onlinevn113@gmail.com");
-
-
 insert into `Teacher` (`name`,`age`,`phone_number`,`country`)
 value ("GV1",20,1,"Trung"),
 ("GV2",21,0774501871,"Hàn"),
@@ -59,6 +55,8 @@ update `student` set`country`="R" where`id`=3;
 DELETE FROM `my_database1`.`student` WHERE (`id` = 19) or (`id` = 20) or (`id` = 21);
 
 delete from `my_database1`.`Teacher` where exists (select * where `Teacher`.`id`<3);
+select * from `Teacher`;
+
 
 select * from `Teacher` where exists (select * where `Teacher`.`id`<3);
 select * from `Teacher` where `Teacher`.`id`<3;
