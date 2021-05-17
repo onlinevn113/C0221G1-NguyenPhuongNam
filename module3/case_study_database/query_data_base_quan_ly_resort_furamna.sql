@@ -141,11 +141,14 @@ group by hdct.id_hop_dong;
 
 -- 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
 -- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
-select max(dvdk.ten_dich_vu_di_kem) 'ten_dich_vu',dvdk.gia,count(dvdk.ten_dich_vu_di_kem) 'so_lan_su_dung'
+
+select dvdk.ten_dich_vu_di_kem 'ten_dich_vu',sum(hdct.so_luong)'so_lan_su_dung'
 from dich_vu_di_kem dvdk 
 join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem
-group by dvdk.ten_dich_vu_di_kem;
-
+group by dvdk.ten_dich_vu_di_kem
+order by count(dvdk.ten_dich_vu_di_kem) desc
+limit 1
+;
 
 
 -- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
@@ -157,7 +160,6 @@ join hop_dong hd on hd.id_hop_dong=hdct.id_hop_dong
 join dich_vu dv on dv.id_dich_vu=hd.id_dich_vu
 group by dvdk.ten_dich_vu_di_kem
 having count(dvdk.ten_dich_vu_di_kem)=1;
-
 
 
 -- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm
@@ -209,12 +211,9 @@ where nv1.id_nhan_vien in (
 update khach_hang kh
 set `email`= "kjkjjk@gmail.com"
 where kh.id_loai_khach in(
-						
-                        
-                        -- chỗ này em temp.id_loai_khach sao không được vậy a Tiến
-						select kh.id_loai_khach
+						select temp.id_loai_khach
 						from(
-							select kh.id_khach_hang
+							select kh.id_loai_khach
 							from khach_hang kh
 							left join loai_khach lh on kh.id_loai_khach=lh.id_loai_khach
 							left join hop_dong hd on kh.id_khach_hang=hd.id_khach_hang
@@ -240,6 +239,7 @@ where kh.id_loai_khach in(
 					
 
 -- 19.Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
+
 update dich_vu_di_kem dvdk
 set dvdk.gia=dvdk.gia*2
 where dvdk.id_dich_vu_di_kem in(
@@ -251,7 +251,7 @@ where dvdk.id_dich_vu_di_kem in(
 							join hop_dong hd on hd.id_hop_dong=hdct.id_hop_dong
 							where year(hd.ngay_lam_hop_dong)=2019
 							group by dvdk.id_dich_vu_di_kem
-							having sum(hdct.so_luong)>=10)temp);
+							having sum(hdct.so_luong)>=10) as temp);
 
 
 -- 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống, thông tin hiển thị bao gồm
@@ -261,7 +261,6 @@ from nhan_vien nv
 union all
 select kh.id_khach_hang , kh.ho_ten, kh.email, kh.so_dien_thoai, kh.ngay_sinh,kh.dia_chi
 from khach_hang kh;
-
 
 select nv.id_nhan_vien, nv.ho_ten_nhan_vien, nv.email, nv.so_dien_thoai, nv.ngay_sinh, nv.dia_chi,kh.id_khach_hang , kh.ho_ten, kh.email, kh.so_dien_thoai, kh.ngay_sinh,kh.dia_chi
 from nhan_vien nv,khach_hang kh;
