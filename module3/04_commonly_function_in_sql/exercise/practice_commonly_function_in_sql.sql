@@ -5,9 +5,7 @@ select *
 from `subject` s
 where s.credit =(select max(s.credit)
 					from `subject` s
-                  )
-
-;
+                  );
 
 -- Hiển thị các thông tin môn học có điểm thi lớn nhất.
 select *
