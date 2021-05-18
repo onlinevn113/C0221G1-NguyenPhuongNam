@@ -64,7 +64,8 @@ select dv.id_dich_vu, dv.ten_dich_vu,dv.dien_tich,dv.chi_phi_thue,dv.ten_dich_vu
 from dich_vu dv
 join hop_dong hd on dv.id_dich_vu=hd.id_dich_vu
 where (year(hd.ngay_lam_hop_dong) = 2018)
-		and hd.id_dich_vu not in (select hd.id_dich_vu
+		and hd.id_dich_vu not in (
+								select hd.id_dich_vu
 								from hop_dong hd
 								where year(hd.ngay_lam_hop_dong)= 2019);
 
@@ -142,24 +143,26 @@ group by hdct.id_hop_dong;
 -- 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
 -- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
 
-select dvdk.ten_dich_vu_di_kem 'ten_dich_vu',sum(hdct.so_luong)'so_lan_su_dung'
-from dich_vu_di_kem dvdk 
-join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem
-group by dvdk.ten_dich_vu_di_kem
-order by count(dvdk.ten_dich_vu_di_kem) desc
-limit 1
-;
+select  dvdk.id_dich_vu_di_kem, dvdk.ten_dich_vu_di_kem, dvdk.gia, dvdk.don_vi, dvdk.trang_thai_kha_dung, sum(hdct.so_luong)  as 'so_lan_su_dung'
+from dich_vu_di_kem dvdk
+join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem = hdct.id_dich_vu_di_kem
+group by dvdk.ten_dich_vu_di_kem,dvdk.id_dich_vu_di_kem
+having so_lan_su_dung >= all (select  sum(hdct.so_luong) 
+							from hop_dong_chi_tiet hdct
+							group by hdct.id_dich_vu_di_kem
+							);
 
 
 -- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
 -- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
-select hd.id_hop_dong,dv.ten_dich_vu,dvdk.ten_dich_vu_di_kem,count(dvdk.ten_dich_vu_di_kem) 'so_lan_su_dung'
+
+select  hd.id_hop_dong,dv.ten_dich_vu,dvdk.ten_dich_vu_di_kem,count(dvdk.ten_dich_vu_di_kem) 'so_lan_xuat_hien'
 from dich_vu_di_kem dvdk 
 join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem=hdct.id_dich_vu_di_kem
 join hop_dong hd on hd.id_hop_dong=hdct.id_hop_dong
 join dich_vu dv on dv.id_dich_vu=hd.id_dich_vu
-group by dvdk.ten_dich_vu_di_kem
-having count(dvdk.ten_dich_vu_di_kem)=1;
+group by dvdk.id_dich_vu_di_kem
+having  so_lan_xuat_hien = 1;
 
 
 -- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm
@@ -209,8 +212,8 @@ where nv1.id_nhan_vien in (
 -- 17.Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
 -- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
 update khach_hang kh
-set `email`= "kjkjjk@gmail.com"
-where kh.id_loai_khach in(
+set id_loai_khach=1
+where (kh.id_loai_khach =2) and (kh.id_loai_khach) in(
 						select temp.id_loai_khach
 						from(
 							select kh.id_loai_khach
@@ -222,11 +225,14 @@ where kh.id_loai_khach in(
 							left join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem=dvdk.id_dich_vu_di_kem
 							group by kh.id_khach_hang
 							having sum(dv.chi_phi_thue+hdct.so_luong*dvdk.gia) >=10000000)temp);
-
+                            
+                            
+select * from khach_hang;
 
 
 
 -- 18.Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng).
+
  delete from khach_hang kh
  where kh.id_khach_hang in (
 				select temp.id_khach_hang
@@ -264,3 +270,36 @@ from khach_hang kh;
 
 select nv.id_nhan_vien, nv.ho_ten_nhan_vien, nv.email, nv.so_dien_thoai, nv.ngay_sinh, nv.dia_chi,kh.id_khach_hang , kh.ho_ten, kh.email, kh.so_dien_thoai, kh.ngay_sinh,kh.dia_chi
 from nhan_vien nv,khach_hang kh;
+
+-- 21.Tạo khung nhìn có tên là V_NHANVIEN để lấy được thông tin của tất cả các nhân viên có địa chỉ là 
+-- “Hải Châu” và đã từng lập hợp đồng cho 1 hoặc nhiều Khách hàng bất kỳ  với ngày lập hợp đồng là “12/12/2019”
+create view v_nhanvien as(
+		select nv.id_nhan_vien,nv.ho_ten_nhan_vien,nv.id_vi_tri,nv.dia_chi
+		from nhan_vien nv 
+		join hop_dong hd on nv.id_nhan_vien=hd.id_nhan_vien
+		where (nv.dia_chi like '%Hải Châu%') and (hd.ngay_lam_hop_dong='2019/12/12')
+);
+
+-- 22.	Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các Nhân viên được nhìn thấy bởi khung nhìn này.
+select * from v_nhanvien;
+update  v_nhanvien set dia_chi='Liên Chiểu'; 
+select * from nhan_vien;
+
+-- 23.	Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó với Id Khách hàng được truyền vào như là 1 tham số của Sp_1
+delimiter //
+create procedure xoa_khach_hang(p_id int)
+begin
+  delete from khach_hang where id_khach_hang=p_id;
+end;
+// delimiter ;
+call xoa_khach_hang(1);
+select* from khach_hang;
+
+-- 24.	Tạo Store procedure Sp_2 Dùng để thêm mới vào bảng HopDong với yêu cầu Sp_2 phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, 
+--  với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
+
+
+
+
+
+

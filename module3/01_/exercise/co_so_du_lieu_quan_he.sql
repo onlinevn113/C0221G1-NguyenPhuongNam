@@ -48,16 +48,11 @@ DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '6');
 DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '7');
 DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '8');
 
-update `student` set`country`="R" where`id`=3;
-
-
 
 DELETE FROM `my_database1`.`student` WHERE (`id` = 19) or (`id` = 20) or (`id` = 21);
 
 delete from `my_database1`.`Teacher` where exists (select * where `Teacher`.`id`<3);
 select * from `Teacher`;
-
-
 select * from `Teacher` where exists (select * where `Teacher`.`id`<3);
 select * from `Teacher` where `Teacher`.`id`<3;
 
@@ -85,7 +80,15 @@ SELECT `phone_number` FROM `Teacher` WHERE `phone_number` REGEXP '[0-9]{3}-[0-9]
 ALTER TABLE   `oder` 
 RENAME TO  `order`;
 
+delimiter //
+create procedure name_(p_parameter int)
+begin
+-- detail
+end;
+// delimiter ;
 
+
+update `student` set`country`="R" where`id`=3;
 
 
 
