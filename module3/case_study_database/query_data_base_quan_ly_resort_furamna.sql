@@ -15,7 +15,6 @@ from khach_hang
 where (year(current_date())-year(ngay_sinh) between 18 and 50) and (dia_chi="Đà Nẵng" or dia_chi="Quảng Trị");
 
 
-
 -- 4.Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. 
 -- Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. 
 -- Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.
@@ -225,9 +224,7 @@ where (kh.id_loai_khach =2) and (kh.id_loai_khach) in(
 							left join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem=dvdk.id_dich_vu_di_kem
 							group by kh.id_khach_hang
 							having sum(dv.chi_phi_thue+hdct.so_luong*dvdk.gia) >=10000000)temp);
-                            
-                            
-select * from khach_hang;
+			
 
 
 

@@ -55,16 +55,17 @@ call add_product('P7','Product7',700,100,'Vip','available');
 
 
 -- Tạo store procedure sửa thông tin sản phẩm theo id 
--- (không biết làm sữa thông tin chỉ sữa tên)
 delimiter //
-create procedure update_name_product(p_id_product int,p_name_change varchar(45))
+create procedure update_name_product(p_id_product int,p_productCode varchar(45),p_productName varchar(45),p_productPrice double,p_productAmount double,p_productDescription varchar(45),p_productStatus varchar(45))
 begin
-	update products p set p.productName=p_name_change where p.id=p_id_product;
+	update products  set productCode=p_productCode,productName=p_productName,productPrice=p_productPrice,productAmount=p_productAmount,productDescription=p_productDescription,productStatus=p_productStatus where id=p_id_product;
 end;
 // delimiter ;
 
 drop procedure if exists update_name_product;
-call update_name_product(1,'Product1');
+call update_name_product(10,'P7','Product7',700,100,'Vip','available');
+
+
 
 -- Tạo store procedure xoá sản phẩm theo id
 

@@ -91,5 +91,5 @@ end;
 update `student` set`country`="R" where`id`=3;
 
 
-
+SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = '...';
 
