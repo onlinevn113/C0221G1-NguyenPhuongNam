@@ -225,9 +225,7 @@ where (kh.id_loai_khach =2) and (kh.id_loai_khach) in(
 							group by kh.id_khach_hang
 							having sum(dv.chi_phi_thue+hdct.so_luong*dvdk.gia) >=10000000)temp);
 			
-
-
-
+            
 -- 18.Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng).
 
  delete from khach_hang kh
@@ -261,7 +259,7 @@ where dvdk.id_dich_vu_di_kem in(
 -- ID (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.
 select nv.id_nhan_vien 'id', nv.ho_ten_nhan_vien 'ho_ten', nv.email'email', nv.so_dien_thoai'so_dien_thoai', nv.ngay_sinh'ngay_sinh', nv.dia_chi'dia_chi'
 from nhan_vien nv
-union all
+union 
 select kh.id_khach_hang , kh.ho_ten, kh.email, kh.so_dien_thoai, kh.ngay_sinh,kh.dia_chi
 from khach_hang kh;
 
@@ -278,25 +276,118 @@ create view v_nhanvien as(
 );
 
 -- 22.	Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các Nhân viên được nhìn thấy bởi khung nhìn này.
-select * from v_nhanvien;
-update  v_nhanvien set dia_chi='Liên Chiểu'; 
-select * from nhan_vien;
+select *
+from v_nhanvien;
+update  v_nhanvien
+set dia_chi='Liên Chiểu'; 
+
 
 -- 23.	Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó với Id Khách hàng được truyền vào như là 1 tham số của Sp_1
 delimiter //
-create procedure xoa_khach_hang(p_id int)
+create procedure Sp_1(p_id int)
 begin
   delete from khach_hang where id_khach_hang=p_id;
 end;
 // delimiter ;
-call xoa_khach_hang(1);
+call Sp_1(1);
 select* from khach_hang;
+
 
 -- 24.	Tạo Store procedure Sp_2 Dùng để thêm mới vào bảng HopDong với yêu cầu Sp_2 phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, 
 --  với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
+drop procedure Sp_2;
+delimiter //
+create procedure Sp_2(
+p_id_hop_dong int,
+p_id_nhan_vien int,
+p_id_khach_hang int,
+p_id_dich_vu int,
+p_ngay_lam_hop_dong date,
+p_ngay_ket_thuc_hop_dong date,
+p_tien_dat_coc int
+)
+begin
+	if (p_id_hop_dong not in(select id_hop_dong from hop_dong)
+		and p_id_nhan_vien  in(select id_nhan_vien from nhan_vien)
+		and p_id_khach_hang  in(select id_khach_hang from khach_hang)
+		and p_id_dich_vu  in(select id_dich_vu from dich_vu))
+		then 
+		insert into hop_dong
+		value(p_id_hop_dong,
+		p_id_nhan_vien,
+		p_id_khach_hang,
+		p_id_dich_vu,
+		p_ngay_lam_hop_dong,
+		p_ngay_ket_thuc_hop_dong,
+		p_tien_dat_coc);
+		else
+		SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'them that bai';
+	end if;
+end;
+// delimiter ;
+
+SET FOREIGN_KEY_CHECKS=1;
+call Sp_2(10,1,1,1,'2020/2/2','2020/2/2',1);
+select*from hop_dong;
+
+-- 27.Tạo user function thực hiện yêu cầu sau:
+-- a.Tạo user function func_1: Đếm các dịch vụ đã được sử dụng với Tổng tiền là > 2.000.000 VNĐ;
+DELIMITER //
+CREATE FUNCTION func_1 ()
+RETURNS INT
+deterministic
+BEGIN
+   RETURN (select count(dv.id_dich_vu)
+	from dich_vu dv
+	where dv.id_dich_vu in(
+						select hd.id_dich_vu
+							from khach_hang kh
+							left join loai_khach lh on kh.id_loai_khach=lh.id_loai_khach
+							left join hop_dong hd on kh.id_khach_hang=hd.id_khach_hang
+							left join dich_vu dv on hd.id_dich_vu=dv.id_dich_vu
+							left join hop_dong_chi_tiet hdct on hd.id_hop_dong=hdct.id_hop_dong
+							left join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem=dvdk.id_dich_vu_di_kem
+							group by hd.id_dich_vu
+							having sum(dv.chi_phi_thue+hdct.so_luong*dvdk.gia) >=2000000)
+                            );
+END; //
+DELIMITER ;
+select func_1();
+
+
+-- b.Tạo user function Func_2: Tính khoảng thời gian dài nhất tính từ lúc bắt đầu làm hợp đồng đến lúc kết thúc hợp đồng
+-- mà Khách hàng đã thực hiện thuê dịch vụ (lưu ý chỉ xét các khoảng thời gian dựa vào từng lần làm hợp đồng thuê dịch vụ, 
+-- không xét trên toàn bộ các lần làm hợp đồng). Mã của Khách hàng được truyền vào như là 1 tham số của function này.
+DELIMITER //
+CREATE FUNCTION func_2 (p_id_khach_hang int)
+RETURNS INT
+deterministic
+BEGIN
+   RETURN (
+		select   max(datediff(hd.ngay_ket_thuc,hd.ngay_lam_hop_dong))
+		from hop_dong hd
+		where id_khach_hang=p_id_khach_hang
+		group by hd.id_khach_hang
+        );
+END; //
+DELIMITER ;
+select func_2(4);
+
+-- 28.	Tạo Store procedure Sp_3 để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” 
+-- từ đầu năm 2015 đến hết năm 2019 để xóa thông tin của các dịch vụ đó (tức là xóa các bảng ghi trong bảng DichVu) 
+-- và xóa những HopDong sử dụng dịch vụ liên quan (tức là phải xóa những bản gi trong bảng HopDong) và những bản liên quan khác.
+
+drop procedure Sp_3;
+delimiter //
+create procedure Sp_3(
+
+)
+begin
+	
+end;
+// delimiter ;
 
 
 
-
-
-
+select * from hop_dong
+where (id_dich_vu=3) and (year(ngay_lam_hop_dong) between 2015 and 2019);

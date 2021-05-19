@@ -90,6 +90,13 @@ end;
 
 update `student` set`country`="R" where`id`=3;
 
-
+-- thông báo lỗi 
 SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = '...';
 
+
+-- kiểm tra kiểu dữ liêu của các cột
+SELECT column_name,DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS 
+  WHERE
+  TABLE_SCHEMA = 'quan_ly_furama'
+AND
+  TABLE_NAME = 'hop_dong';
