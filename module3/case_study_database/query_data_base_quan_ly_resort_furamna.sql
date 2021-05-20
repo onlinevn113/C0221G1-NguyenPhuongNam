@@ -47,51 +47,58 @@ group by kh.id_khach_hang,hd.id_hop_dong;
 
 -- 6.Hiển thị IDDichVu, TenDichVu, DienTich, ChiPhiThue, TenLoaiDichVu của tất cả các loại Dịch vụ 
 -- chưa từng được Khách hàng thực hiện đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
-select dv.id_dich_vu, dv.ten_dich_vu,dv.dien_tich,dv.chi_phi_thue,dv.ten_dich_vu
+select dv.id_dich_vu, dv.ten_dich_vu,dv.dien_tich,dv.chi_phi_thue
 from dich_vu dv
-where dv.id_dich_vu not in (select hop_dong.id_dich_vu
-						from hop_dong 
-                        where (year(ngay_lam_hop_dong)=2019) and (month(ngay_lam_hop_dong) in (1,2,3))
-                       );   
+where dv.id_dich_vu <>all (select hop_dong.id_dich_vu
+							from hop_dong 
+							where (year(ngay_lam_hop_dong)=2019) and (month(ngay_lam_hop_dong) in (1,2,3))
+						   );   
+             
+                           
               
               
               
--- 7.	Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, TenLoaiDichVu 
+-- 7.	Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue
 -- của tất cả các loại dịch vụ đã từng được Khách hàng đặt phòng trong năm 2018 
 -- nhưng chưa từng được Khách hàng đặt phòng  trong năm 2019.
-select dv.id_dich_vu, dv.ten_dich_vu,dv.dien_tich,dv.chi_phi_thue,dv.ten_dich_vu
+select dv.id_dich_vu, dv.ten_dich_vu,dv.dien_tich,dv.chi_phi_thue
 from dich_vu dv
 join hop_dong hd on dv.id_dich_vu=hd.id_dich_vu
 where (year(hd.ngay_lam_hop_dong) = 2018)
-		and hd.id_dich_vu not in (
-								select hd.id_dich_vu
-								from hop_dong hd
-								where year(hd.ngay_lam_hop_dong)= 2019);
-
+		and not exists (
+						select *
+						from hop_dong hd
+						where year(hd.ngay_lam_hop_dong)= 2019);
 
 
 -- 8.	Hiển thị thông tin HoTenKhachHang có trong hệ thống,
 --  với yêu cầu HoTenKhachHang không trùng nhau.
 -- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên
-select distinctrow khach_hang.ho_ten
+select distinctrow *
 		from khach_hang;
- select distinct khach_hang.ho_ten
-		from khach_hang;       
+        
+ select distinct *
+		from khach_hang;  
+        
 select kh.ho_ten from khach_hang kh
 union 
 select kh.ho_ten from khach_hang kh;
+
 select  *
 from khach_hang kh
 group by kh.ho_ten;
+
 select  *
 from khach_hang kh
-where kh.ho_ten in  (select distinct khach_hang.ho_ten
+where not exists  (select distinct khach_hang.ho_ten
 	   	from khach_hang );
+
 
 
 -- 9.Thực hiện thống kê doanh thu theo tháng, 
 -- nghĩa là tương ứng với mỗi tháng trong năm 2019 thì sẽ có bao nhiêu 
 -- khách hàng thực hiện đặt phòng.
+
 SELECT month(hd.ngay_lam_hop_dong) , sum(dv.chi_phi_thue) 'doanh_thu_'
 FROM hop_dong hd 
 join dich_vu dv on hd.id_dich_vu=dv.id_dich_vu
@@ -222,6 +229,7 @@ where (kh.id_loai_khach =2) and (kh.id_loai_khach) in(
 							left join dich_vu dv on hd.id_dich_vu=dv.id_dich_vu
 							left join hop_dong_chi_tiet hdct on hd.id_hop_dong=hdct.id_hop_dong
 							left join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem=dvdk.id_dich_vu_di_kem
+                            where year(hd.ngay_lam_hop_dong)= 2019
 							group by kh.id_khach_hang
 							having sum(dv.chi_phi_thue+hdct.so_luong*dvdk.gia) >=10000000)temp);
 			
@@ -232,10 +240,10 @@ where (kh.id_loai_khach =2) and (kh.id_loai_khach) in(
  where kh.id_khach_hang in (
 				select temp.id_khach_hang
                 from(
-						select kh.id_khach_hang
-						from khach_hang kh
-						join hop_dong hd on kh.id_khach_hang=hd.id_khach_hang
-						where year(hd.ngay_lam_hop_dong)<2016
+					select kh.id_khach_hang
+					from khach_hang kh
+					join hop_dong hd on kh.id_khach_hang=hd.id_khach_hang
+					where year(hd.ngay_lam_hop_dong)<2016
 						group by hd.id_khach_hang)temp );
 					
 
@@ -243,7 +251,7 @@ where (kh.id_loai_khach =2) and (kh.id_loai_khach) in(
 
 update dich_vu_di_kem dvdk
 set dvdk.gia=dvdk.gia*2
-where dvdk.id_dich_vu_di_kem in(
+where dvdk.id_dich_vu_di_kem in (
 							select temp.id_dich_vu_di_kem
                             from(
 							select dvdk.id_dich_vu_di_kem
@@ -330,6 +338,45 @@ SET FOREIGN_KEY_CHECKS=1;
 call Sp_2(10,1,1,1,'2020/2/2','2020/2/2',1);
 select*from hop_dong;
 
+
+
+-- 25.	Tạo triggers có tên Tr_1 Xóa bản ghi trong bảng HopDong thì hiển thị tổng số lượng bản ghi còn lại 
+-- có trong bảng HopDong ra giao diện console của database
+drop trigger Tr_1;
+delimiter //
+create trigger Tr_1
+after delete on hop_dong for each row
+begin
+      select ('xoá thành công')  as log into outfile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/log11.txt';
+end; //
+delimiter ;
+
+delete from hop_dong
+where id_hop_dong=3;
+
+
+
+-- 26.Tạo triggers có tên Tr_2 Khi cập nhật Ngày kết thúc hợp đồng, cần kiểm tra xem thời gian cập nhật có phù hợp hay không, 
+-- với quy tắc sau: Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày.
+-- Nếu dữ liệu hợp lệ thì cho phép cập nhật, nếu dữ liệu không hợp lệ thì in ra thông báo 
+-- “Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày” trên console của database
+
+drop trigger if exists Tr_2;
+delimiter //
+create trigger Tr_2
+before update on hop_dong for each row
+begin
+       if (datediff(new.ngay_ket_thuc,old.ngay_lam_hop_dong)<2)
+		 then SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày';
+       end if;
+end; //
+delimiter ;
+
+update hop_dong
+set ngay_ket_thuc ="2018-10-13" where id_hop_dong=5;
+select * from hop_dong;
+select datediff(ngay_ket_thuc,ngay_lam_hop_dong) from hop_dong where id_hop_dong=5;
+
 -- 27.Tạo user function thực hiện yêu cầu sau:
 -- a.Tạo user function func_1: Đếm các dịch vụ đã được sử dụng với Tổng tiền là > 2.000.000 VNĐ;
 DELIMITER //
@@ -373,9 +420,12 @@ END; //
 DELIMITER ;
 select func_2(4);
 
+
 -- 28.	Tạo Store procedure Sp_3 để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” 
 -- từ đầu năm 2015 đến hết năm 2019 để xóa thông tin của các dịch vụ đó (tức là xóa các bảng ghi trong bảng DichVu) 
 -- và xóa những HopDong sử dụng dịch vụ liên quan (tức là phải xóa những bản gi trong bảng HopDong) và những bản liên quan khác.
+
+
 
 drop procedure Sp_3;
 delimiter //
@@ -383,11 +433,12 @@ create procedure Sp_3(
 
 )
 begin
-	
+	select * from hop_dong
+	where (id_dich_vu=3) and (year(ngay_lam_hop_dong) between 2015 and 2019);
+    
+    
 end;
 // delimiter ;
 
 
 
-select * from hop_dong
-where (id_dich_vu=3) and (year(ngay_lam_hop_dong) between 2015 and 2019);

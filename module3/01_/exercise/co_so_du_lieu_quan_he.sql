@@ -2,7 +2,7 @@ DROP DATABASE IF  EXISTS `my_database1`;
 CREATE DATABASE IF NOT EXISTS `my_database1`;
 use `my_database1`;
 
--- SET SQL_SAFE_UPDATES = 0;
+
 create table if not exists `Class`(
 `id` int auto_increment not null primary key,
 `name` varchar(45)
@@ -87,7 +87,7 @@ begin
 end;
 // delimiter ;
 
-
+-- SET SQL_SAFE_UPDATES = 0;
 update `student` set`country`="R" where`id`=3;
 
 -- thông báo lỗi 
