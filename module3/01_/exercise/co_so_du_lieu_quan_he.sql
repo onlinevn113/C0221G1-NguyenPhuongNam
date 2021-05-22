@@ -2,12 +2,10 @@ DROP DATABASE IF  EXISTS `my_database1`;
 CREATE DATABASE IF NOT EXISTS `my_database1`;
 use `my_database1`;
 
-
 create table if not exists `Class`(
 `id` int auto_increment not null primary key,
 `name` varchar(45)
 );
-
 create table if not exists `student`(
 `id` int auto_increment not null primary key,
 `name` varchar(45) null,
@@ -33,7 +31,6 @@ insert into `Class`(`name`)
 value ("VIP"),
 ("STANDARD");
 
-select* from `Class`;
 insert into  `student`(`name`,`age`,`country`,`id_class`,`email`)
 value ("Hs1",18,"VN",1,"online@gmail.com"),
 ("Hs2",19,"Nhật",2,"onlinevn@gmail.com"),
@@ -44,9 +41,6 @@ value ("GV1",20,1,"Trung"),
 ("GV3",22,0774501872,"Việt");
 
 DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '5');
-DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '6');
-DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '7');
-DELETE FROM `my_database1`.`Teacher` WHERE (`id` = '8');
 
 
 DELETE FROM `my_database1`.`student` WHERE (`id` = 19) or (`id` = 20) or (`id` = 21);
@@ -80,6 +74,8 @@ SELECT `phone_number` FROM `Teacher` WHERE `phone_number` REGEXP '[0-9]{3}-[0-9]
 ALTER TABLE   `oder` 
 RENAME TO  `order`;
 
+
+-- create procedure
 delimiter //
 create procedure name_(p_parameter int)
 begin
@@ -87,8 +83,35 @@ begin
 end;
 // delimiter ;
 
+
+-- CREATE FUNCTION
+DELIMITER //
+CREATE FUNCTION func_1 ()
+RETURNS int
+-- data_type
+deterministic
+BEGIN
+   RETURN `data` ;
+	
+END; //
+DELIMITER ;
+
+
+-- create trigger
+delimiter //
+create trigger Tr_2
+before update on hop_dong for each row
+begin
+       if (datediff(new.ngay_ket_thuc,old.ngay_lam_hop_dong)<2)
+		 then SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày';
+       end if;
+end; //
+delimiter ;
+
+
 -- SET SQL_SAFE_UPDATES = 0;
 update `student` set`country`="R" where`id`=3;
+
 
 -- thông báo lỗi 
 SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = '...';
