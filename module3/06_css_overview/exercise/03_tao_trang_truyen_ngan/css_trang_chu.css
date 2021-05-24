@@ -12,6 +12,7 @@ body {
 }
 ol, ul {
     list-style: none;
+    position: relative;
 }
 a {
     color: #337ab7;
@@ -27,6 +28,5 @@ img {
     height: auto;
     margin-bottom: -2px;
 }
-
 
 
