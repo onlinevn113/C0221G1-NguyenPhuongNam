@@ -15,8 +15,10 @@ public class CalculatorDiscount extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         float price= Float.parseFloat(request.getParameter("price"));
         float discount=Float.parseFloat(request.getParameter("discount"));
-
         double discountAmount= price * discount *0.01;
+
+
+        
 //<html></html>
         double discountPrice=price+discountAmount;
         PrintWriter printWriter =response.getWriter();

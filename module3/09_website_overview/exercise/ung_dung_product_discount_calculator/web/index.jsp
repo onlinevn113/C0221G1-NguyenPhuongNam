@@ -23,9 +23,10 @@
     <p>Discount Percent: </p>
     <input type="text" name="discount" placeholder="%"> <br><br>
     <input type="submit" value="Calculate Discount">
-
-
   </form>
+
+
+
 
 
 

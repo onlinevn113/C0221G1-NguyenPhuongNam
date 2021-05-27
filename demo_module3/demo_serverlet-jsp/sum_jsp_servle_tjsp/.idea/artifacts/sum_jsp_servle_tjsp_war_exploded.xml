@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="sum_jsp_servle_tjsp:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/sum_jsp_servle_tjsp_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="sum_jsp_servle_tjsp/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="sum_jsp_servle_tjsp" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
