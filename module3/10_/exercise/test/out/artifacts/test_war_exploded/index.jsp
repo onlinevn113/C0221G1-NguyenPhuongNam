@@ -13,7 +13,8 @@
   </head>
   <body>
   <h1>Simple Calculator</h1>
-  <form action="calculator"  style="border: 1px solid; width: 300px" method="get">
+  <form action="/calculator"  style="border: 1px solid; width: 300px" method="get">
+    <div style="padding: 5px">
     <p>Calculator</p>
     First operand: <input type="number" name="firstNum"><br><br>
     Operator:
@@ -25,6 +26,7 @@
     </select><br><br>
     Second operand: <input type="number" name="secondNum"><br><br>
     <input type="submit" value="Caculate">
+    </div>
   </form>
   </body>
 </html>
