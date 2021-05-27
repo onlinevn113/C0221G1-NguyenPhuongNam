@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "Servlet", urlPatterns = "calculator")
 public class Servlet extends HttpServlet {
@@ -16,7 +17,6 @@ public class Servlet extends HttpServlet {
         double b = Double.parseDouble(request.getParameter("secondNum"));
         String o = request.getParameter("operator");
         double c = 0;
-
         switch (o) {
             case "+":
                 c = a + b;
@@ -28,7 +28,14 @@ public class Servlet extends HttpServlet {
                 c = a * b;
                 break;
             case "/":
-                c = a / b;
+                try{
+                    if (b==0){
+                        throw new Exception("by zero");
+                    }
+                    c = a / b;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 break;
         }
         request.setAttribute("result",c);
