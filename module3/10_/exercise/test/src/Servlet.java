@@ -38,13 +38,12 @@ public class Servlet extends HttpServlet {
                 request.setAttribute("result",c);
                 request.getRequestDispatcher("result.jsp").forward(request,response);
             } else {
-                response.getWriter().println("<h1> by zero </h1>");
                 throw new ArithmeticException();
             }
         }catch (ArithmeticException e){
-            e.getMessage();
-            e.printStackTrace();
+         response.getWriter().println("<h1 style=\"color: red\"> ERROR DIVIDE BY 0 </h1>");
         }catch (Exception e){
+            response.getWriter().println("Please input number");
             e.printStackTrace();
         }
 
