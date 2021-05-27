@@ -28,9 +28,5 @@
 
 
 
-
-
-  <script src="../_bootstrap-4.6.0-dist/Jquery/jquery-3.6.0.min.js"></script>
-  <script src="../_bootstrap-4.6.0-dist/js/bootstrap.js"></script>
   </body>
 </html>

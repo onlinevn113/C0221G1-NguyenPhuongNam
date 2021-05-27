@@ -1,3 +1,4 @@
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,14 +17,11 @@ public class CalculatorDiscount extends HttpServlet {
         float price= Float.parseFloat(request.getParameter("price"));
         float discount=Float.parseFloat(request.getParameter("discount"));
         double discountAmount= price * discount *0.01;
-
-
-        
-//<html></html>
         double discountPrice=price+discountAmount;
-        PrintWriter printWriter =response.getWriter();
-        printWriter.println("<h1>"+"Discount Amount: " + discountAmount +"<br>"+
-                "Discount Price :"+discountPrice+"</h1>");
 
+        request.setAttribute("discountAmount",discountAmount);
+        request.setAttribute("discountPrice",discountPrice);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("result.jsp");
+        requestDispatcher.forward(request,response);
     }
 }

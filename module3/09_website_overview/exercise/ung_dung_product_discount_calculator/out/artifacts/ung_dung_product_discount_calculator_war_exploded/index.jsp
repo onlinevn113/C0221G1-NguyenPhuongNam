@@ -23,13 +23,10 @@
     <p>Discount Percent: </p>
     <input type="text" name="discount" placeholder="%"> <br><br>
     <input type="submit" value="Calculate Discount">
-
-
   </form>
 
 
 
-  <script src="../_bootstrap-4.6.0-dist/Jquery/jquery-3.6.0.min.js"></script>
-  <script src="../_bootstrap-4.6.0-dist/js/bootstrap.js"></script>
+
   </body>
 </html>
