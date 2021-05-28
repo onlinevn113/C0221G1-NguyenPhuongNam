@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="81e3c9de-af2a-455d-b1a7-089736dcbc68" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/src/controller/Customer_Servlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/src/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/src/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/src/service/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/web/customer/create.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/web/customer/delete.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/web/customer/edit.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/web/customer/list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/web/customer/view.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11_mvc_model/practice/customer-management/web/error-404.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/.idea/artifacts/hien_thi_danh_sach_khach_hang_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/01_hien_thi_danh_sach_khach_hang.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/out/artifacts/hien_thi_danh_sach_khach_hang_war_exploded/WEB-INF/classes/model/Customer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/out/artifacts/hien_thi_danh_sach_khach_hang_war_exploded/WEB-INF/classes/servlet/CustomerServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/out/artifacts/hien_thi_danh_sach_khach_hang_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/out/artifacts/hien_thi_danh_sach_khach_hang_war_exploded/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/out/production/01_hien_thi_danh_sach_khach_hang/model/Customer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/out/production/01_hien_thi_danh_sach_khach_hang/servlet/CustomerServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/src/model/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/src/servlet/CustomerServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/01_hien_thi_danh_sach_khach_hang/web/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/.idea/artifacts/test_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/out/artifacts/test_war_exploded/WEB-INF/classes/Servlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/out/artifacts/test_war_exploded/WEB-INF/classes/teeee.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/out/artifacts/test_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/out/artifacts/test_war_exploded/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/out/artifacts/test_war_exploded/result.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/out/production/test/Servlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/out/production/test/teeee.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/src/Servlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/web/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/exercise/02_ung_dung_calculator/web/result.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/.idea/artifacts/ung_dung_chuyen_doi_tien_te_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/out/artifacts/ung_dung_chuyen_doi_tien_te_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/out/artifacts/ung_dung_chuyen_doi_tien_te_war_exploded/converter.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/out/artifacts/ung_dung_chuyen_doi_tien_te_war_exploded/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/ung_dung_chuyen_doi_tien_te.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/web/converter.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_chuyen_doi_tien_te/web/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/.idea/artifacts/ung_dung_tu_dien_don_gian_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/out/artifacts/ung_dung_tu_dien_don_gian_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/out/artifacts/ung_dung_tu_dien_don_gian_war_exploded/dictionary.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/out/artifacts/ung_dung_tu_dien_don_gian_war_exploded/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/ung_dung_tu_dien_don_gian.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/web/dictionary.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10_/practice/ung_dung_tu_dien_don_gian/web/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/.idea/artifacts/customer_management_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/customer-management.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/src/com/codegym/model/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/src/com/codegym/model/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11_/practice/customer-management/web/index.jsp" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1t8oOu4DMYtF2hUYDjXOGWZJuKx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/exercise/02_ung_dung_calculator" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="81e3c9de-af2a-455d-b1a7-089736dcbc68" name="Default Changelist" comment="" />
+      <created>1622160048890</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622160048890</updated>
+      <workItem from="1622160050374" duration="64000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="413" y="81" key="FileChooserDialogImpl" timestamp="1622160113135">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="413" y="81" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1622160113135" />
+  </component>
+</project>
