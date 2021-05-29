@@ -120,7 +120,14 @@ public class ProductServlet extends HttpServlet {
                 listProduct(request, response);
                 break;
         }
-////        ----------------------------------------------------------------------------------------
+//      ----------------------------------------------------------
+
+//        if (){
+//            searchByName(request,response);
+//        }
+    }
+
+//    private void searchByName(HttpServletRequest request, HttpServletResponse response) {
 //        String nameS=request.getParameter("nameS");
 //        List<Product> productS=productService.findByName(nameS);
 //        RequestDispatcher dispatcher;
@@ -131,9 +138,14 @@ public class ProductServlet extends HttpServlet {
 //            request.setAttribute("products",productS);
 //            dispatcher=request.getRequestDispatcher("/view/product/search.jsp");
 //        }
-//        dispatcher.forward(request,response);
-    }
-
+//        try {
+//            dispatcher.forward(request,response);
+//        } catch (ServletException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     private void viewProduct(HttpServletRequest request, HttpServletResponse response) {
