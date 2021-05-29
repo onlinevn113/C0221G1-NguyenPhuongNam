@@ -22,8 +22,16 @@ public class ProductRepository {
         return new ArrayList<>(productMap.values());
     }
 
-    public Product findByName(String name) {
-        return productMap.get(name);
+    public List<Product> findByName(String name) {
+        List<Product> productList=new ArrayList<>();
+      for (Product product:productMap.values()){
+          if (product.getName().equals(name)){
+              productList.add(product);
+          }else {
+              System.out.println("not found");
+          }
+      }
+        return productList;
     }
     public Product findById(String id) {
         return productMap.get(id);

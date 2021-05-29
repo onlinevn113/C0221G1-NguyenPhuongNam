@@ -18,15 +18,15 @@
 <table>
     <tr>
         <td>Id: </td>
-        <td>"${product}".getId</td>
+        <td>${product.getId()}</td>
     </tr>
     <tr>
         <td>Name: </td>
-        <td>"${product}".getName</td>
+        <td>${product.getName()}</td>
     </tr>
     <tr>
         <td>Price: </td>
-        <td>"${product}".getPrice</td>
+        <td>${product.getPrice()}</td>
     </tr>
 </table>
 </body>

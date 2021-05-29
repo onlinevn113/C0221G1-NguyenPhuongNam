@@ -8,11 +8,11 @@ import java.util.List;
 public class ProductServiceImp implements IProductService {
     ProductRepository productRepository = new ProductRepository();
 
+
     @Override
-    public Product findByName(String name) {
+    public List<Product> findByName(String name) {
         return productRepository.findByName(name);
     }
-
     @Override
     public Product findById(String id) {
         return productRepository.findById(id);

@@ -35,5 +35,13 @@
         </tr>
     </c:forEach>
 </table>
+<br><hr>
+<form action="/search" style="width: 200px" method="get">
+    <fieldset>
+        <legend>Serch by name</legend>
+        <input type="text" name="nameS">
+        <br><input type="submit">
+    </fieldset>
+</form>
 </body>
 </html>

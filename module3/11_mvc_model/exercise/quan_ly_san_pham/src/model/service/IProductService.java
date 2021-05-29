@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IProductService {
 
-    Product findByName(String name);
+    List<Product> findByName(String name);
     Product findById(String id);
 
     void create(Product product);

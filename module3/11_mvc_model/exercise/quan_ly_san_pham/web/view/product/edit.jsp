@@ -27,11 +27,11 @@
         <table>
             <tr>
                 <td>Name product: </td>
-                <td><input type="text" name="name" value="${products}".getName></td>
+                <td><input type="text" name="name" value="${product.getName()}"></td>
             </tr>
             <tr>
                 <td>Price: </td>
-                <td><input type="text" name="price" value="${products}".getPrice></td>
+                <td><input type="text" name="price" value="${product.getPrice()}"></td>
             </tr>
             <tr>
                 <td></td>

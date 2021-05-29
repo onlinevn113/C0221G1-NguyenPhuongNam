@@ -120,7 +120,21 @@ public class ProductServlet extends HttpServlet {
                 listProduct(request, response);
                 break;
         }
+////        ----------------------------------------------------------------------------------------
+//        String nameS=request.getParameter("nameS");
+//        List<Product> productS=productService.findByName(nameS);
+//        RequestDispatcher dispatcher;
+//        if (productS==null){
+//            dispatcher=request.getRequestDispatcher("/vỉew/error-404.jsp");
+//        }else {
+//            request.setAttribute("nameS",nameS);
+//            request.setAttribute("products",productS);
+//            dispatcher=request.getRequestDispatcher("/view/product/search.jsp");
+//        }
+//        dispatcher.forward(request,response);
     }
+
+
 
     private void viewProduct(HttpServletRequest request, HttpServletResponse response) {
         String id=request.getParameter("id");
@@ -140,6 +154,8 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
     String id=request.getParameter("id");
