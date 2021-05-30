@@ -36,7 +36,7 @@
     </c:forEach>
 </table>
 <br><hr>
-<form action="/search" style="width: 200px" method="get">
+<form action="/product?action=search" style="width: 200px" method="post">
     <fieldset>
         <legend>Serch by name</legend>
         <input type="text" name="nameS">

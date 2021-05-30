@@ -23,12 +23,11 @@ public class ProductRepository {
     }
 
     public List<Product> findByName(String name) {
+        name.trim();
         List<Product> productList=new ArrayList<>();
       for (Product product:productMap.values()){
-          if (product.getName().equals(name)){
+          if (product.getName().contains(name)){
               productList.add(product);
-          }else {
-              System.out.println("not found");
           }
       }
         return productList;

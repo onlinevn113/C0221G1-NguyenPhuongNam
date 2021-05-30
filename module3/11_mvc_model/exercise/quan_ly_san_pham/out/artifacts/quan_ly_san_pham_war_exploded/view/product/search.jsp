@@ -13,7 +13,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Product ${nameS}</h1>
+<h1>Product name: ${nameS}</h1>
 <p>
     <a href="/product">Back to product list</a>
 </p>
