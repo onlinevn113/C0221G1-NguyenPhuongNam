@@ -10,7 +10,7 @@
 <head>
     <title>Error 404</title>
 </head>
-<body>
+<body>  
 <h1 style="color: red">NOT FOUND</h1>
 <p>
     <a href="/product">Back to customer list</a>

@@ -14,7 +14,6 @@ public class ProductRepository {
         productMap.put("1", new Product("1", "SamSung", "200"));
         productMap.put("2", new Product("2", "Iphone", "300"));
         productMap.put("3", new Product("3", "Oppo", "400"));
-
     }
 
 
@@ -32,6 +31,7 @@ public class ProductRepository {
       }
         return productList;
     }
+
     public Product findById(String id) {
         return productMap.get(id);
     }

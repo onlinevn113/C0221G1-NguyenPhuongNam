@@ -3,7 +3,6 @@ package controller;
 import model.bean.Product;
 import model.service.IProductService;
 import model.service.impl.ProductServiceImp;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -126,6 +125,7 @@ public class ProductServlet extends HttpServlet {
             dispatcher = request.getRequestDispatcher("/view/product/edit.jsp");
 
         }
+
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
