@@ -7,7 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+<head>
+    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <title>List Customer</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -37,38 +38,42 @@
     </div>
     <div class="col-3">
         <a class=" img-fluid mx-5 px-5 align-items-center img-fluid"
-           href="https://www.tripadvisor.com/Hotel_Review-g298085-d302750-Reviews-Furama_Resort_Danang-Da_Nang.html"> <img
-                class="img-fluid  " src="../img/logo_tripadvisor/logo_tripadvisor.png"
-        /></a>
+           href="https://www.tripadvisor.com/Hotel_Review-g298085-d302750-Reviews-Furama_Resort_Danang-Da_Nang.html">
+            <img
+                    class="img-fluid  " src="../img/logo_tripadvisor/logo_tripadvisor.png"
+            /></a>
     </div>
     <div class="col-6 text-right "> Nguyễn Văn A
     </div>
 </div>
 2 nav-bar
-<nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder " id="nav-bar-sticky"
-     style=" background: #0F574B">
+<nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder " id="nav-bar-sticky" style=" background: #0F574B">
     <div class="collapse navbar-collapse px-5 " id="navbarsExample07">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" >
             <li class="nav-item active px-5">
-                <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active px-5">
-                <a class="nav-link" href="#">EMPLOYEE <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active px-5">
-                <a class="nav-link" href="#">CUSTOMER <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active px-5">
-                <a class="nav-link" href="#">SERVICE <span class="sr-only">(current)</span></a>
+                <a   href="/home.jsp">Home</a>
             </li>
 
             <li class="nav-item active px-5">
-                <a class="nav-link" href="#">CONTRACT </a>
+                <a href="/customer">Customer</a>
+            </li>
+
+            <li class="nav-item active px-5">
+                <a href="/employee">Employee</a>
             </li>
 
 
+
+            <li class="nav-item active px-5">
+                <a href="/service">Service</a>
+            </li>
+
+            <li class="nav-item active px-5">
+                <a href="/contract">Contract</a>
+            </li>
         </ul>
-        <form class="form-inline  align-items-end" style="position: relative">
+
+        <form method="get" action="/home?action=search" class="form-inline  align-items-end" style="position: relative">
             <div>
                 <input class="form-control " type="search" placeholder="Search" aria-label="Search">
                 <button type="submit" class="rounded-circle">
@@ -77,26 +82,60 @@
                          alt="">
                 </button>
             </div>
-
-
         </form>
     </div>
-
 </nav>
+
+
 3 body
 <div class="container-fluid d-flex " style="background: #e6faf8">
-    <div class="col-2" > Item
+    <div class="col-2"> Item
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     </div>
 
-    <div class="col-10">
+    <div class="col-8">
         <p class="text-center p-3">LIST CUSTOMER</p>
         <form action="/customer"></form>
 
+
+        nút bấm delete
+        <div >
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </div>
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header flex-column">
+                        <div class="icon-box">
+                            <i class="material-icons"></i>
+                        </div>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to delete these records? This process cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+    <div class="col-2"> Item</div>
 
 </div>
+
 
 
 4 footer
@@ -139,10 +178,8 @@
         crossorigin="anonymous"></script>
 
 
-
-
-    <script src="../bootstrap/jquery-3.6.0.min.js"></script>
-    <script src="bootstrap/popper.min.js"></script>
-    <script src="../bootstrap/bootstrap.min.js"></script>
+<script src="../bootstrap/jquery-3.6.0.min.js"></script>
+<script src="bootstrap/popper.min.js"></script>
+<script src="../bootstrap/bootstrap.min.js"></script>
 </body>
 </html>

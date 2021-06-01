@@ -25,7 +25,6 @@
     </style>
 </head>
 <body>
-dxfcgvhbkjnszfdxfgcjkndxgfcv bn
 1 logo-top
 <div class="container-fluid d-flex position-relative border-0 row   ">
     <div class="col-3 ">
@@ -44,32 +43,37 @@ dxfcgvhbkjnszfdxfgcjkndxgfcv bn
     </div>
 </div>
 2 nav-bar
-<nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder " id="nav-bar-sticky" style=" background: #0F574B">
-    <div class="collapse navbar-collapse px-5 " id="navbarsExample07">
+<nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="nav-bar-sticky" style=" background: #0F574B">
+
+    <div class="collapse navbar-collapse  " id="navbarsExample07">
         <ul class="navbar-nav mr-auto" >
             <li class="nav-item active px-5">
-                <a   href="/home.jsp">Home</a>
+                <a class="text-white" href="/home.jsp">Home</a>
             </li>
 
             <li class="nav-item active px-5">
-                <a href="/home?action=employee">Employee</a>
+                <a class="text-white" href="/customer">Customer</a>
             </li>
 
             <li class="nav-item active px-5">
-                <a href="/home?action=customer">Customer</a>
+                <a class="text-white" href="/employee">Employee</a>
+            </li>
+
+
+
+            <li class="nav-item active px-5">
+                <a class="text-white" href="/service">Service</a>
             </li>
 
             <li class="nav-item active px-5">
-                <a href="/home?action=service">Service</a>
-            </li>
-
-            <li class="nav-item active px-5">
-                <a href="/home?action=contract">Contract</a>
+                <a class="text-white" href="/contract">Contract</a>
             </li>
         </ul>
 
-        <form method="get" action="/home?action=search" class="form-inline  align-items-end" style="position: relative">
-            <div>
+
+
+        <form method="get" action="/home?action=search" class="form-inline pt-3  align-items-end" style="position: relative">
+            <div class="pl-5">
                 <input class="form-control " type="search" placeholder="Search" aria-label="Search">
                 <button type="submit" class="rounded-circle">
                     <img class="img-fluid rounded-circle" style="height: 32px;"
@@ -78,8 +82,16 @@ dxfcgvhbkjnszfdxfgcjkndxgfcv bn
                 </button>
             </div>
         </form>
+
+
+
+
+
     </div>
 </nav>
+
+
+
 3 body
 <div class="container-fluid d-flex " style="background: #e6faf8">
     <div class="col-2"> Item
