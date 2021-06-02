@@ -1,6 +1,6 @@
 package controller;
 
-import model.repository.UserDAO;
+import model.repository.UserRepository;
 import model.bean.User;
 
 import javax.servlet.RequestDispatcher;
@@ -16,10 +16,10 @@ import java.util.List;
 @WebServlet(name = "UserServlet", urlPatterns = "/users")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UserDAO userDAO;
+    private UserRepository userDAO;
 
     public void init() {
-        userDAO = new UserDAO();
+        userDAO = new UserRepository();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

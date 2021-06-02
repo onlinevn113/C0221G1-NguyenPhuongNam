@@ -110,6 +110,7 @@ delimiter ;
 
 
 -- SET SQL_SAFE_UPDATES = 0;
+
 update `student` set`country`="R" where`id`=3;
 
 

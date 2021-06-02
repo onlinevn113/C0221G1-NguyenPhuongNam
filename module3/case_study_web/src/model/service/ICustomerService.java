@@ -9,7 +9,7 @@ import java.util.List;
 public interface ICustomerService {
     List<Customer> findByAll() ;
     Customer findById(int id);
-    void create(Customer customer) throws SQLException;
+    boolean create(Customer customer) throws SQLException;
     boolean update(int id,Customer customer) throws SQLException;
     boolean delete(int id) throws SQLException;
 }

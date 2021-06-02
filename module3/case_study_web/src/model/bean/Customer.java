@@ -5,6 +5,7 @@ public class Customer {
     private int idTypeCustomer;
     private String name;
     private String dateOfBirth;
+    private String sex;
     private String idCard;
     private String phoneNumber;
     private String email;
@@ -13,11 +14,12 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int idCustomer, int idTypeCustomer, String name, String dateOfBirth, String idCard, String phoneNumber, String email, String address) {
+    public Customer(int idCustomer, int idTypeCustomer, String name, String dateOfBirth, String sex, String idCard, String phoneNumber, String email, String address) {
         this.idCustomer = idCustomer;
         this.idTypeCustomer = idTypeCustomer;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
         this.idCard = idCard;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -56,6 +58,14 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public String getIdCard() {
         return idCard;
     }
@@ -87,5 +97,4 @@ public class Customer {
     public void setAddress(String address) {
         this.address = address;
     }
-
 }

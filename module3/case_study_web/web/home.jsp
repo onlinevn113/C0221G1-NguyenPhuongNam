@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-1 logo-top
+
 <div class="container-fluid d-flex position-relative border-0 row   ">
     <div class="col-3 ">
         <a href="" class="img-fluid"><img class=" img-fluid mx-5"
@@ -39,11 +39,13 @@
                     class="img-fluid  " src="../img/logo_tripadvisor/logo_tripadvisor.png"
             /></a>
     </div>
-    <div class="col-6 text-right "> Nguyễn Văn A
+    <div class="col-6 text-right"> <span>Nguyễn Phương Nam</span>
     </div>
 </div>
-2 nav-bar
-<nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="nav-bar-sticky" style=" background: #0F574B">
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="nav-bar-sticky" style=" height: 47px;background: #0F574B">
 
     <div class="collapse navbar-collapse  " id="navbarsExample07">
         <ul class="navbar-nav mr-auto" >
@@ -92,46 +94,56 @@
 
 
 
-3 body
+
 <div class="container-fluid d-flex " style="background: #e6faf8">
-    <div class="col-2"> Item
+    <div class="col-2 pt-3"> Item
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     </div>
 
     <div class="col-10">
-        <p class="text-center p-3">dsg fdg dfgdfg dfg </p>
+        <p class="text-center pt-3">dsg fdg dfgdfg dfg </p>
         <form action="/customer"></form>
 
     </div>
 
 </div>
-4 footer
-<footer class=" text-center text-white">
-    <div class="container p-4 pb-0">
-        <section class="mb-4">
-            <a target="_blank" class="btn btn-floating m-1 rounded-circle"
+
+
+
+
+
+
+
+
+<footer class="text-white ">
+    <div class="container px-4 pb-3 text-center">
+        <section class="mb-3">
+            <span style="color: black">For more infomation@ </span>
+            <a target="_blank" class="m-1 rounded-circle"
                href="https://www.facebook.com/furamaresort/"
                role="button">
                 <img src="../img/icon/facebook.png"
                      class="img-fluid rounded-circle" style="height: 40px; width: 40px" alt="">
             </a>
-            <a class="btn btn-floating m-1 rounded-circle"
+            <a class="m-1 rounded-circle"
                href="https://www.instagram.com/furama_resort_danang/?hl=vi"
                role="button">
-                <img src=""
-                     class="img-fluid rounded-circle" style="height: 40px; width: 40px" alt="">
+                <img src="../../img/icon/283-2831746_insta-icon-instagram.png"
+                     class="img-fluid rounded-circle" style="height: 30px; width: 30px" alt="">
             </a>
         </section>
     </div>
 
-    <div class="text-center p-2 justify-content-center align-items-center " id="footer" style=" background: #0F574B">
-        <b>COVID 19 UPDATE: The safety and well-being are our utmost priority</b>
-        <a href="https://furamavietnam.com/covid-19-update/"><input type="submit" value="Learn more"
-                                                                    style="background: #7caba3">
+    <div class="text-center px-2 justify-content-center align-items-center " id="footer" style=" background: #0F574B">
+        <span>COVID 19 UPDATE: The safety and well-being are our utmost priority</span>
+        <a href="https://furamavietnam.com/covid-19-update/"><input class="my-1"  type="button" value="Learn more"
+                                                                    style="background: #c1f8f0; border-radius: 5px;height: 25px">
         </a>
     </div>
+
 </footer>
+<div class="row container-fluid"></div>
 
 
 <script src="../bootstrap/jquery-3.6.0.min.js"></script>
