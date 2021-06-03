@@ -84,7 +84,6 @@
     </div>
 </nav>
 
-
 3 body
 <div class="container-fluid d-flex " style="background: #e6faf8">
     <div class="col-2"> Item
@@ -94,11 +93,34 @@
 
     <div class="col-8">
         <p class="text-center p-3">LIST CUSTOMER</p>
-        <form action="/customer"></form>
+        <table id="tableCustomer" class="table table-striped table-bordered" style="width: 100%">
+            <thead>
+            <tr>
+                <th>Id khách hàng:</th>
+                <th>Id loại khách:</th>
+                <th>Tên khách hàng:</th>
+                <th>Ngày sinh:</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="customer" items="${customers}">
+                <tr>
+                    <td>${customer.getIdCustomer()}</td>
+                    <td>${customer.getIdTypeCustomer()}</td>
+                    <td>${customer.getName()}</td>
+                    <td>${customer.getDateOfBirth()}</td>
+                </tr>
+
+            </c:forEach>
+
+            </tbody>
+
+
+        </table>
 
 
         nút bấm delete
-        <div >
+        <div>
             <tr>
                 <td>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -133,7 +155,6 @@
     <div class="col-2"> Item</div>
 
 </div>
-
 
 4 footer
 

@@ -76,11 +76,12 @@ value(1,"Diamond"),
 
 
 create table if not exists khach_hang(
-id_khach_hang int primary key,
+id_khach_hang int primary key auto_increment,
 id_loai_khach int,
 foreign key(id_loai_khach) references loai_khach(id_loai_khach) ON DELETE CASCADE ON UPDATE CASCADE, 
 ho_ten varchar(45)  not null,
 ngay_sinh date,
+gioi_tinh varchar(45),
 so_cmnd varchar(45),
 so_dien_thoai varchar(45),
 email varchar(45),
@@ -88,10 +89,10 @@ dia_chi varchar(45)
 );
 insert into khach_hang
 value 
-(1,1,"Huy","1999-12-20",1234567890,0234567890,"qwe@gmail.com","Đà Nẵng"),
-(2,1,"Huy","1999-12-20",0987654321,1234567890,"qwe@gmail.com","Quảng Ngãi"),
-(3,1,"Hoàng","1990-3-21",1234561230,1234561230,"we@gmail.com","Quảng trị"),
-(4,2,"Hùng","1990-2-20",1234569870,1234569870,"gwe@gmail.com","Huế");
+(1,1,"Huy","1999-12-20","nam",1234567890,0234567890,"qwe@gmail.com","Đà Nẵng"),
+(2,1,"Huy","1999-12-20","nam",0987654321,1234567890,"qwe@gmail.com","Quảng Ngãi"),
+(3,1,"Hoàng","1990-3-21","nam",1234561230,1234561230,"we@gmail.com","Quảng trị"),
+(4,2,"Hùng","1990-2-20","nu",1234569870,1234569870,"gwe@gmail.com","Huế");
 
 
 create table if not exists kieu_thue(
@@ -192,9 +193,90 @@ value
 ;
 
 
+-- casestudy web
+
+
+
+-- procedure create_customer
+drop procedure create_customer;
+delimiter //
+create procedure create_customer(
+p_id_loai_khach int,
+p_ho_ten varchar(45),
+p_ngay_sinh date,
+p_gioi_tinh varchar(45),
+p_so_cmnd varchar(45),
+p_so_dien_thoai varchar(45),
+p_email varchar(45),
+p_dia_chi varchar(45)
+)
+begin
+	if (p_id_loai_khach in (select id_loai_khach from loai_khach))
+		then 
+		insert into khach_hang(id_loai_khach,ho_ten,ngay_sinh,gioi_tinh,so_cmnd,so_dien_thoai,email,dia_chi)
+		value(
+            p_id_loai_khach,
+            p_ho_ten,
+            p_ngay_sinh,
+            p_gioi_tinh,
+            p_so_cmnd,
+            p_so_dien_thoai,
+            p_email,
+            p_dia_chi);
+		else
+		SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'them that bai';
+	end if;
+end;
+// delimiter ;
+
+
+
+drop procedure if exists update_customer;
+delimiter //
+create procedure edit_customer(
+p_id_loai_khach int,
+p_ho_ten varchar(45),
+p_ngay_sinh date,
+p_gioi_tinh varchar(45),
+p_so_cmnd varchar(45),
+p_so_dien_thoai varchar(45),
+p_email varchar(45),
+p_dia_chi varchar(45),
+p_id_khach_hang int
+)
+begin
+	if (p_id_loai_khach in (select id_loai_khach from loai_khach))
+		then 
+		update khach_hang
+		set id_loai_khach=p_id_loai_khach,
+        ho_ten=p_ho_ten,
+        ngay_sinh=p_ngay_sinh,
+        gioi_tinh=p_gioi_tinh,
+        so_cmnd=p_so_cmnd,
+        so_dien_thoai=p_so_dien_thoai,
+        email=p_email,
+        dia_chi=p_dia_chi
+        where id_khach_hang=p_id_khach_hang
+		;
+		else
+		SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'them that bai';
+	end if;
+end;
+// delimiter ;
 
 
 
 
+-- select*from khach_hang;
+-- insert into khach_hang(id_loai_khach,ho_ten,ngay_sinh,gioi_tinh,so_cmnd,so_dien_thoai,email,dia_chi)
+-- 		value(
+--             1,
+--             'ho_ten',
+--            '1999-12-20',
+--             'gioi_tinh',
+--             1234567890,
+--             234567890,
+--             'email',
+--             'dia_chi');
 
 

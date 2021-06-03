@@ -2,14 +2,15 @@
   Created by IntelliJ IDEA.
   User: Phương Nam
   Date: 5/30/2021
-  Time: 9:05 PM
+  Time: 9:00 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
-    <title>Update Customer</title>
+<head>    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+    <title>List Service</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <style>
         #footer {
             position: fixed;
@@ -36,10 +37,9 @@
     </div>
     <div class="col-3">
         <a class=" img-fluid mx-5 px-5 align-items-center img-fluid"
-           href="https://www.tripadvisor.com/Hotel_Review-g298085-d302750-Reviews-Furama_Resort_Danang-Da_Nang.html">
-            <img
-                    class="img-fluid  " src="../img/logo_tripadvisor/logo_tripadvisor.png"
-            /></a>
+           href="https://www.tripadvisor.com/Hotel_Review-g298085-d302750-Reviews-Furama_Resort_Danang-Da_Nang.html"> <img
+                class="img-fluid  " src="../img/logo_tripadvisor/logo_tripadvisor.png"
+        /></a>
     </div>
     <div class="col-6 text-right "> Nguyễn Văn A
     </div>
@@ -162,8 +162,23 @@
         </a>
     </div>
 </footer>
-<script src="../bootstrap/jquery-3.6.0.min.js"></script>
-<script src="bootstrap/popper.min.js"></script>
-<script src="../bootstrap/bootstrap.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+
+
+    <script src="../bootstrap/jquery-3.6.0.min.js"></script>
+    <script src="bootstrap/popper.min.js"></script>
+    <script src="../bootstrap/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Phương Nam
@@ -9,9 +10,8 @@
 <html>
 <head>
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
-    <title>List Customer</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../bootstrap/dataTables.bootstrap.min.css">
+    <title>Customer List</title>
     <style>
         #footer {
             position: fixed;
@@ -19,17 +19,15 @@
             width: 100%;
         }
 
-        #nav-bar-sticky {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-        }
-
+        /*#nav-bar-sticky {*/
+        /*    position: -webkit-sticky;*/
+        /*    position: sticky;*/
+        /*    top: 0;*/
+        /*}*/
     </style>
 </head>
 <body>
 
-1 logo-top
 <div class="container-fluid d-flex position-relative border-0 row   ">
     <div class="col-3 ">
         <a href="" class="img-fluid"><img class=" img-fluid mx-5"
@@ -43,39 +41,43 @@
                     class="img-fluid  " src="../img/logo_tripadvisor/logo_tripadvisor.png"
             /></a>
     </div>
-    <div class="col-6 text-right "> Nguyễn Văn A
+    <div class="col-6 text-right"><span>Nguyễn Phương Nam</span>
     </div>
 </div>
-2 nav-bar
-<nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder " id="nav-bar-sticky" style=" background: #0F574B">
-    <div class="collapse navbar-collapse px-5 " id="navbarsExample07">
-        <ul class="navbar-nav mr-auto" >
+
+
+<nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="nav-bar-sticky"
+     style=" height: 47px;background: #0F574B">
+
+    <div class="collapse navbar-collapse  " id="navbarsExample07">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active px-5">
-                <a   href="/home.jsp">Home</a>
+                <a class="text-white" href="/home.jsp">Home</a>
             </li>
 
             <li class="nav-item active px-5">
-                <a href="/customer">Customer</a>
+                <a class="text-white" href="/customer">Customer</a>
             </li>
 
             <li class="nav-item active px-5">
-                <a href="/employee">Employee</a>
+                <a class="text-white" href="/employee">Employee</a>
             </li>
 
 
-
             <li class="nav-item active px-5">
-                <a href="/service">Service</a>
+                <a class="text-white" href="/service">Service</a>
             </li>
 
             <li class="nav-item active px-5">
-                <a href="/contract">Contract</a>
+                <a class="text-white" href="/contract">Contract</a>
             </li>
         </ul>
 
-        <form method="get" action="/home?action=search" class="form-inline  align-items-end" style="position: relative">
-            <div>
-                <input class="form-control " type="search" placeholder="Search" aria-label="Search">
+
+        <form method="post" action="/customer?action=search" class="form-inline pt-3 mr-1  align-items-end"
+              style="position: relative">
+            <div class="pl-5">
+                <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="nameS">
                 <button type="submit" class="rounded-circle">
                     <img class="img-fluid rounded-circle" style="height: 32px;"
                          src="https://static.vecteezy.com/system/resources/previews/001/504/972/original/search-icon-free-vector.jpg"
@@ -83,54 +85,112 @@
                 </button>
             </div>
         </form>
+
+
     </div>
 </nav>
 
 
-3 body
+
+
 <div class="container-fluid d-flex " style="background: #e6faf8">
     <div class="col-2"> Item
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
     </div>
 
     <div class="col-8">
-        <p class="text-center p-3">LIST CUSTOMER</p>
-        <form action="/customer"></form>
+        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            LIST CUSTOMER</p>
+        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            <button><a href="/customer?action=create" methods="get">Create Customer</a></button>
+        </p>
 
-
-        nút bấm delete
-        <div >
+        <table id="tableCustomer" class="table table-striped table-bordered" style="width: 100%">
+            <thead>
             <tr>
-                <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                        Delete
-                    </button>
-                </td>
+                <th>Id</th>
+                <th>Id Type Of Customer</th>
+                <th>Customer Name</th>
+                <th>Date Of Birth</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
-        </div>
-        <div id="myModal" class="modal fade">
-            <div class="modal-dialog modal-confirm">
-                <div class="modal-content">
-                    <div class="modal-header flex-column">
-                        <div class="icon-box">
-                            <i class="material-icons"></i>
+            </thead>
+            <tbody>
+            <c:forEach var="customer" items="${customers}">
+                <tr>
+                    <td>${customer.getIdCustomer()}</td>
+                    <td>${customer.getIdTypeCustomer()}</td>
+                    <td>${customer.getName()}</td>
+                    <td>${customer.getDateOfBirth()}</td>
+                    <td>
+                        <a href="/customer?action=edit&id=${customer.idCustomer}">Edit</a>
+                    </td>
+                    <td>
+                        <button onclick="myfunction(${customer.idCustomer})" type="button" id="delete" value="delete"
+                                class="btn btn-danger" data-toggle="modal"
+                                data-target="#myModal">Delete
+                        </button>
+                        <div id="myModal" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <form action="/customer?action=delete" method="post">
+                                    <div class="modal-content">
+                                        <div class="modal-header flex-column">
+                                            <div class="icon-box">
+                                                <i class="material-icons"></i>
+                                            </div>
+                                            <h4 class="modal-title w-100">Are you sure?</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Do you really want to delete these records? This process cannot be
+                                                undone.</p>
+                                        </div>
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Cancel
+                                            </button>
+                                            <button type="submit" class="btn btn-danger">
+                                                Delete
+                                            </button>
+                                            <input type="hidden" id="button-delete" name="idCustomer">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <h4 class="modal-title w-100">Are you sure?</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Do you really want to delete these records? This process cannot be undone.</p>
-                    </div>
-                    <div class="modal-footer justify-content-center">
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
 
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
+        <%--       modal delete--%>
+        <%--        <div id="myModal" class="modal fade">--%>
+        <%--            <div class="modal-dialog modal-confirm">--%>
+        <%--                <div class="modal-content">--%>
+        <%--                    <div class="modal-header flex-column">--%>
+        <%--                        <div class="icon-box">--%>
+        <%--                            <i class="material-icons"></i>--%>
+        <%--                        </div>--%>
+        <%--                        <h4 class="modal-title w-100">Are you sure?</h4>--%>
+        <%--                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--%>
+        <%--                    </div>--%>
+        <%--                    <div class="modal-body">--%>
+        <%--                        <p>Do you really want to delete these records? This process cannot be undone.</p>--%>
+        <%--                    </div>--%>
+        <%--                    <div class="modal-footer justify-content-center">--%>
+
+        <%--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>--%>
+        <%--                        <button type="button" class="btn btn-danger">Delete</button>--%>
+        <%--                    </div>--%>
+        <%--                </div>--%>
+        <%--            </div>--%>
+        <%--        </div>--%>
+        <%--     -----------------------------%>
     </div>
     <div class="col-2"> Item</div>
 
@@ -138,48 +198,62 @@
 
 
 
-4 footer
 
-<footer class=" text-center text-white">
-    <div class="container p-4 pb-0">
-        <section class="mb-4">
-            <a target="_blank" class="btn btn-floating m-1 rounded-circle"
+
+
+
+
+
+
+
+<footer class="text-white ">
+    <div class="container px-4 pb-3 text-center">
+        <section class="mb-3">
+            <span style="color: black">For more infomation@ </span>
+            <a target="_blank" class="m-1 rounded-circle"
                href="https://www.facebook.com/furamaresort/"
                role="button">
                 <img src="../img/icon/facebook.png"
                      class="img-fluid rounded-circle" style="height: 40px; width: 40px" alt="">
             </a>
-            <a class="btn btn-floating m-1 rounded-circle"
+            <a class="m-1 rounded-circle"
                href="https://www.instagram.com/furama_resort_danang/?hl=vi"
                role="button">
-                <img src=""
-                     class="img-fluid rounded-circle" style="height: 40px; width: 40px" alt="">
+                <img src="../../img/icon/283-2831746_insta-icon-instagram.png"
+                     class="img-fluid rounded-circle" style="height: 30px; width: 30px" alt="">
             </a>
         </section>
     </div>
 
-    <div class="text-center p-2 justify-content-center align-items-center " id="footer" style=" background: #0F574B">
-        <b>COVID 19 UPDATE: The safety and well-being are our utmost priority</b>
-        <a href="https://furamavietnam.com/covid-19-update/"><input type="submit" value="Learn more"
-                                                                    style="background: #7caba3">
+    <div class="text-center px-2 justify-content-center align-items-center " id="footer" style=" background: #0F574B">
+        <span>COVID 19 UPDATE: The safety and well-being are our utmost priority</span>
+        <a href="https://furamavietnam.com/covid-19-update/">
+            <%--            <input class="my-1" type="button" value="Learn more" style="background: #c1f8f0; border-radius: 5px;height: 25px">--%>
+            <button class="my-1" style="background: #c1f8f0; border-radius: 5px; height: 25px">Learn more</button>
         </a>
     </div>
 </footer>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<div class="row container-fluid"></div>
 
 
 <script src="../bootstrap/jquery-3.6.0.min.js"></script>
+<script src="../../bootstrap/jquery.dataTables.min.js"></script>
+<script src="../../bootstrap/dataTables.bootstrap4.min.js"></script>
 <script src="bootstrap/popper.min.js"></script>
 <script src="../bootstrap/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tableCustomer').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 10,
+
+        });
+    });
+    function myfunction(id) {
+        document.getElementById("button-delete").value=id;
+    }
+</script>
 </body>
 </html>

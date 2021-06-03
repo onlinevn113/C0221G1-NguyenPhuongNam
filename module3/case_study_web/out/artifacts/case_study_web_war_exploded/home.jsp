@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-
+<%--navbar--%>
 <div class="container-fluid d-flex position-relative border-0 row   ">
     <div class="col-3 ">
         <a href="" class="img-fluid"><img class=" img-fluid mx-5"
@@ -42,9 +42,6 @@
     <div class="col-6 text-right"> <span>Nguyễn Phương Nam</span>
     </div>
 </div>
-
-
-
 <nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="nav-bar-sticky" style=" height: 47px;background: #0F574B">
 
     <div class="collapse navbar-collapse  " id="navbarsExample07">
@@ -60,7 +57,6 @@
             <li class="nav-item active px-5">
                 <a class="text-white" href="/employee">Employee</a>
             </li>
-
 
 
             <li class="nav-item active px-5">
@@ -93,29 +89,47 @@
 </nav>
 
 
-
-
-<div class="container-fluid d-flex " style="background: #e6faf8">
-    <div class="col-2 pt-3"> Item
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+<%--body--%>
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a
+            jumbotron and three supporting pieces of content. Use it as a starting point to create something more
+            unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
     </div>
+</div>
 
-    <div class="col-10">
-        <p class="text-center pt-3">dsg fdg dfgdfg dfg </p>
-        <form action="/customer"></form>
-
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+                fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
     </div>
-
 </div>
 
 
 
-
-
-
-
-
+<%--footer--%>
 <footer class="text-white ">
     <div class="container px-4 pb-3 text-center">
         <section class="mb-3">
@@ -149,5 +163,6 @@
 <script src="../bootstrap/jquery-3.6.0.min.js"></script>
 <script src="bootstrap/popper.min.js"></script>
 <script src="../bootstrap/bootstrap.min.js"></script>
+<script src="../../bootstrap/dataTables.bootstrap4.min.js"></script>
 </body>
 </html>

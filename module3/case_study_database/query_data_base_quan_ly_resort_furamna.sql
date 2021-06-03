@@ -421,12 +421,9 @@ DELIMITER ;
 select func_2(4);
 
 
--- 28.	Tạo Store procedure Sp_3 để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” 
+-- 28. Tạo Store procedure Sp_3 để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” 
 -- từ đầu năm 2015 đến hết năm 2019 để xóa thông tin của các dịch vụ đó (tức là xóa các bảng ghi trong bảng DichVu) 
 -- và xóa những HopDong sử dụng dịch vụ liên quan (tức là phải xóa những bản gi trong bảng HopDong) và những bản liên quan khác.
-
-
-
 drop procedure Sp_3;
 delimiter //
 create procedure Sp_3(
@@ -435,7 +432,6 @@ create procedure Sp_3(
 begin
 	select * from hop_dong
 	where (id_dich_vu=3) and (year(ngay_lam_hop_dong) between 2015 and 2019);
-    
     
 end;
 // delimiter ;
