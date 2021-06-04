@@ -1,6 +1,7 @@
 package model.service.impl;
 
 import model.bean.Customer;
+import model.bean.CustomerType;
 import model.repository.CustomerRepository;
 import model.service.ICustomerService;
 
@@ -38,6 +39,8 @@ public class CustomerServiceImpl implements ICustomerService {
     public boolean edit(int id, Customer customer) {
         return customerRepository.edit(id,customer);
     }
+
+
 
 
 }

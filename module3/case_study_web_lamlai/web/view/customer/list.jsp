@@ -17,13 +17,15 @@
             position: fixed;
             bottom: 0;
             width: 100%;
+            z-index: 3;
         }
 
-        /*#nav-bar-sticky {*/
-        /*    position: -webkit-sticky;*/
-        /*    position: sticky;*/
-        /*    top: 0;*/
-        /*}*/
+        #nav-bar-sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>

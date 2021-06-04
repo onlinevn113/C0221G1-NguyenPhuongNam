@@ -17,13 +17,15 @@
             position: fixed;
             bottom: 0;
             width: 100%;
+            z-index: 3;
         }
 
-        /*#nav-bar-sticky {*/
-        /*    position: -webkit-sticky;*/
-        /*    position: sticky;*/
-        /*    top: 0;*/
-        /*}*/
+        #nav-bar-sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +85,7 @@
             <button><a href="/customer" methods="get">Back to list customer</a></button>
         </p>
     </div>
+
     <div class="col-8">
         <span style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">CREATE CUSTOMER</span>
         <form action="/customer?action=create" method="post" class="container border border-dark mb-3 pt-3">
@@ -135,12 +138,13 @@
                 <button type="submit" class="btn btn-primary mb-3">Create</button>
             </div>
         </form>
-
-
     </div>
 
+
+
     <div class="col-2"> Item
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
 
 </div>
 

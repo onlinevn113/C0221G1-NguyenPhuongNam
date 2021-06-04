@@ -1,6 +1,7 @@
 package model.repository;
 
 import model.bean.Customer;
+import model.bean.CustomerType;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -158,4 +159,6 @@ public class CustomerRepository {
         }
         return check;
     }
+
+
 }

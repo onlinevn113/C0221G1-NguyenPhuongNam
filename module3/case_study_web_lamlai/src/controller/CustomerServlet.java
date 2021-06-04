@@ -21,9 +21,10 @@ import java.util.List;
 @WebServlet(name = "CustomerServlet", urlPatterns = {"/customer"})
 public class CustomerServlet extends HttpServlet {
     ICustomerService iCustomerService = new CustomerServiceImpl();
+
     ITypeCustomerService iTypeCustomerService = new TypeCustomerService();
 
-    List<CustomerType> customerTypes = iTypeCustomerService.findAllCustomerType();
+   public List<CustomerType> customerTypes = iTypeCustomerService.findAllCustomerType();
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,6 +1,7 @@
 package model.service;
 
 import model.bean.Customer;
+import model.bean.CustomerType;
 import sun.util.resources.en.CurrencyNames_en_US;
 
 import java.sql.SQLException;
