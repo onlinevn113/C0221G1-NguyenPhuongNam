@@ -97,13 +97,10 @@
                     </c:forEach>
                 </select>
             </div>
-
             <div class="form-group">
                 <label>Name:</label>
                 <input type="text" class="form-control" placeholder="Enter name " name="customerName">
             </div>
-
-
             <div class="form-group">
                 <label>Birthday:</label>
                 <input type="date" class="form-control" placeholder="Enter birthday" name="customerBirthday">

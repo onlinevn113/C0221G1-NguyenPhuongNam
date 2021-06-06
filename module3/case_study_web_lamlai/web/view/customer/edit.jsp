@@ -108,7 +108,6 @@
                         </c:choose>
                     </c:forEach>
                 </select>
-
             </div>
             <div class="form-group">
                 <label>Name:</label>

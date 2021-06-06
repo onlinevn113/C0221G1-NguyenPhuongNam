@@ -93,15 +93,13 @@
 </nav>
 
 
-
-
 <div class="container-fluid d-flex " style="background: #e6faf8">
     <div class="col-2"> Item
         <c:if test="${message!=null}">
             <p class="text-primary">${message}</p>
         </c:if>
 
-          </div>
+    </div>
 
     <div class="col-8">
         <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
@@ -109,7 +107,9 @@
         <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
             <button><a href="/customer?action=create" methods="get">Create Customer</a></button>
         </p>
-
+        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            <button onclick="yourFunction()"><a href="/customer?action=showListUseService" methods="get">showListUseService</a></button>
+        </p>
         <table id="tableCustomer" class="table table-bordered table-striped ">
             <thead>
             <tr>
@@ -118,16 +118,14 @@
                 <th>Name</th>
                 <th>Birthday</th>
                 <th>Gender</th>
-
-                <th>Edit</th>
-                <th>Delete</th>
+                <th class="editdelete">Edit</th>
+                <th class="editdelete">Delete</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${customers}" var="customer">
                 <tr>
-                    <td><a href="/customer?action=view&id=${customer.idCustomer}">${customer.idCustomer}</a>
-                    </td>
+                    <td><a href="/customer?action=view&id=${customer.idCustomer}">${customer.idCustomer}</a></td>
                     <c:forEach var="type" items="${customerTypes}">
                         <c:if test="${type.idTypeCustomer == customer.idTypeCustomer}">
                             <td>${type.customerTypeName}</td>
@@ -136,15 +134,23 @@
                     <td>${customer.name}</td>
                     <td>${customer.dateOfBirth}</td>
                     <td>${customer.sex}</td>
-                    <td><a href="/customer?action=edit&id=${customer.idCustomer}">
-                        <button type="button" class="btn btn-primary">Edit</button>
-                    </a>
+
+
+                    <td class="editdelete">
+                        <a href="/customer?action=edit&id=${customer.idCustomer}">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </a>
                     </td>
-                    <td>
-                        <button class="btn btn-primary"data-toggle="modal" data-target="#myModal" onclick="myFunction(${customer.idCustomer})">
+
+
+                    <td class="editdelete">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                                onclick="myFunction(${customer.idCustomer})">
                             Delete
                         </button>
                     </td>
+
+
                 </tr>
             </c:forEach>
             </tbody>
@@ -179,13 +185,6 @@
 
     </div>
 </div>
-
-
-
-
-
-
-
 
 
 <footer class="text-white ">
@@ -236,10 +235,15 @@
 </script>
 
 <script type="text/javascript">
-    function myFunction(id){
-        document.getElementById("idCustomer").value=id;
+    function myFunction(id) {
+        document.getElementById("idCustomer").value = id;
+    }
+    function yourFunction() {
+        document.getElementsByClassName("editdelete").style.display = none;
     }
 </script>
+
+
 
 
 </body>

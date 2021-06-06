@@ -1,11 +1,12 @@
 package controller;
 
-import model.bean.Customer;
-import model.bean.CustomerType;
+import model.bean.*;
 import model.repository.TypeCustomerRepository;
 import model.service.ICustomerService;
+import model.service.IServiceService;
 import model.service.ITypeCustomerService;
 import model.service.impl.CustomerServiceImpl;
+import model.service.impl.ServiceServiceImpl;
 import model.service.impl.TypeCustomerService;
 
 import javax.servlet.RequestDispatcher;
@@ -24,7 +25,7 @@ public class CustomerServlet extends HttpServlet {
 
     ITypeCustomerService iTypeCustomerService = new TypeCustomerService();
 
-   public List<CustomerType> customerTypes = iTypeCustomerService.findAllCustomerType();
+    public List<CustomerType> customerTypes = iTypeCustomerService.findAllCustomerType();
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -62,14 +63,33 @@ public class CustomerServlet extends HttpServlet {
             case "edit":
                 showFormEdit(request, response);
                 break;
+            case "showListUseService":
+                showListUseService(request, response);
+                break;
             default:
-                showListCustomer(request, response,null);
+                showListCustomer(request, response, null);
                 break;
         }
     }
 
+
+    private void showListUseService(HttpServletRequest request, HttpServletResponse response) {
+        List<Customer> customers = iCustomerService.findByAllUseService();
+        List<CustomerType> customerTypes = iTypeCustomerService.findAllCustomerType();
+        request.setAttribute("customers", customers);
+        request.setAttribute("customerTypes", customerTypes);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/customerUseService/listUseService.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void search(HttpServletRequest request, HttpServletResponse response) {
-        String nameS=request.getParameter("nameS");
+        String nameS = request.getParameter("nameS");
         List<Customer> customers = iCustomerService.findByName(nameS);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/customer/list.jsp");
         request.setAttribute("customers", customers);
@@ -101,7 +121,7 @@ public class CustomerServlet extends HttpServlet {
             iCustomerService.edit(customer_id, customer);
             request.setAttribute("message", "Edit is success");
             request.setAttribute("customer", customer);
-            request.setAttribute("customerTypes",customerTypes);
+            request.setAttribute("customerTypes", customerTypes);
             dispatcher = request.getRequestDispatcher("view/customer/edit.jsp");
         }
         try {
@@ -173,12 +193,12 @@ public class CustomerServlet extends HttpServlet {
         }
     }
 
-    private void showListCustomer(HttpServletRequest request, HttpServletResponse response,String message) {
+    private void showListCustomer(HttpServletRequest request, HttpServletResponse response, String message) {
         List<Customer> customers = iCustomerService.findByAll();
         List<CustomerType> customerTypes = iTypeCustomerService.findAllCustomerType();
         request.setAttribute("customers", customers);
         request.setAttribute("customerTypes", customerTypes);
-        request.setAttribute("message",message);
+        request.setAttribute("message", message);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/customer/list.jsp");
         try {
             dispatcher.forward(request, response);
@@ -188,22 +208,23 @@ public class CustomerServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-//
+
+    //
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
         int customer_id = Integer.parseInt(request.getParameter("idCustomer"));
-        Customer customer =  iCustomerService.findById(customer_id);
+        Customer customer = iCustomerService.findById(customer_id);
         RequestDispatcher dispatcher;
-        if(customer == null){
+        if (customer == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
-        }else{
+        } else {
             boolean check = iCustomerService.delete(customer_id);
             String message;
-            if(check){
-                message ="Delete is success";
-            }else {
+            if (check) {
+                message = "Delete is success";
+            } else {
                 message = "Delete is fail";
             }
-            showListCustomer(request,response,message);
+            showListCustomer(request, response, message);
         }
     }
 }

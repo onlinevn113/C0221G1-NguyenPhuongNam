@@ -1,6 +1,8 @@
 package model.service.impl;
 
+import model.bean.RentType;
 import model.bean.Service;
+import model.bean.ServiceType;
 import model.repository.ServiceRepository;
 import model.service.IServiceService;
 
@@ -37,5 +39,15 @@ public class ServiceServiceImpl implements IServiceService {
     @Override
     public boolean delete(int id) {
         return serviceRepository.delete(id);
+    }
+
+    @Override
+    public List<ServiceType> findByAllServiceType() {
+        return serviceRepository.findByAllServiceType();
+    }
+
+    @Override
+    public List<RentType> findByAllRentType() {
+        return serviceRepository.findByAllRentType();
     }
 }

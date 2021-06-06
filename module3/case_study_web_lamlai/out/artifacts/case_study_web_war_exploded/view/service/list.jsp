@@ -11,7 +11,7 @@
 <head>
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../../bootstrap/dataTables.bootstrap.min.css">
-    <title>Employee List</title>
+    <title>Service List</title>
     <style>
         #footer {
             position: fixed;
@@ -90,37 +90,78 @@
 
 
 <div class="container-fluid d-flex " style="background: #e6faf8">
-    <div class="col-2"> Item
+    <div class="col-12">
+        <p class="py-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            LIST SERVICE
+        </p>
+        <c:if test="${name!=null}">
+            <p style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">${name}</p>
+        </c:if>
+        <p class="py-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            <button><a href="/service?action=create" methods="get">Create Service</a></button>
+        </p>
         <c:if test="${message!=null}">
             <p class="text-primary">${message}</p>
         </c:if>
-    </div>
-
-    <div class="col-8">
-        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            LIST EMPLOYEE
-        </p>
-        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            <button><a href="/service?action=create" methods="get">Create Employee</a></button>
-        </p>
-
-        <table id="tableEmployee" class="table table-bordered table-striped ">
-            <thead>
-            <tr>
-
+        <table id="tableService" class="table table-bordered table-striped ">
+            <thead style="position: sticky;z-index: 2">
+            <tr  >
+                <th>Id</th>
+                <th>Name</th>
+                <th>Area</th>
+                <th>Cost</th>
+                <th>MaxPP</th>
+                <th>RentT</th>
+                <th>SVTypeId</th>
+                <th>SRoom</th>
+                <th>description</th>
+                <th>PoolArea</th>
+                <th>NO.Floor</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${services}" var="service">
+            <c:forEach items="${serviceList}" var="service">
                 <tr>
+                    <td>${service.serviceId}</td>
+                    <td>${service.serviceName}</td>
+                    <td>${service.serviceArea}</td>
+                    <td>${service.serviceCost}</td>
+                    <td>${service.serviceMaxPeople}</td>
+                    <c:forEach var="rentType" items="${rentTypeList}">
+                        <c:if test="${rentType.rentTypeId == service.rentTypeId}">
+                            <td>${rentType.rentTypeName}</td>
+                        </c:if>
+                    </c:forEach>
 
+                    <c:forEach var="serviceType" items="${serviceTypeList}">
+                        <c:if test="${serviceType.serviceTypeId == service.serviceTypeId}">
+                            <td>${serviceType.serviceTypeName}</td>
+                        </c:if>
+                    </c:forEach>
+
+
+                    <td>${service.standardRoom}</td>
+                    <td>${service.descriptionOtherConvenience}</td>
+                    <td>${service.poolArea}</td>
+                    <td>${service.numberOfFloors}</td>
+                    <td>
+                        <a href="/service?action=edit&id=${service.serviceId}">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                                onclick="myFunction(${service.serviceId})">
+                            Delete
+                        </button>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-    </div>
-    <div class="col-2"> Item <br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
     </div>
 
 </div>
@@ -128,7 +169,7 @@
 
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="/employee?action=delete" method="post">
+        <form action="/service?action=delete" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel">Accept delete employee</h5>
@@ -137,18 +178,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Do you want to delete this employee???
+                    Do you want to delete this service???
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
                     <input type="submit" class="btn btn-danger btn-ok" value="Delete">
-                    <input type="hidden" id="employeeId" name="employeeId">
+                    <input type="hidden" id="id" name="id">
                 </div>
             </div>
         </form>
 
     </div>
 </div>
+
+
 <footer class="text-white ">
     <div class="container px-4 pb-3 text-center">
         <section class="mb-3">
@@ -187,7 +230,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#tableEmployee').dataTable({
+        $('#tableService').dataTable({
             "dom": 'lrtip',
             "lengthChange": false,
             "pageLength": 10,
@@ -197,7 +240,7 @@
 
 <script type="text/javascript">
     function myFunction(id) {
-        document.getElementById("employeeId").value = id;
+        document.getElementById("id").value = id;
     }
 </script>
 

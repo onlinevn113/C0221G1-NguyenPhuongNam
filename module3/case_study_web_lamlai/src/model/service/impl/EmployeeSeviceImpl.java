@@ -7,7 +7,7 @@ import model.service.IEmployeeService;
 import java.sql.SQLException;
 import java.util.List;
 
-public class EmployeeSviceImpl implements IEmployeeService {
+public class EmployeeSeviceImpl implements IEmployeeService {
     EmployeeRepository employeeRepository=new EmployeeRepository();
     @Override
     public List<Employee> findByAll() {

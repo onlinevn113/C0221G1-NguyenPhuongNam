@@ -52,43 +52,33 @@
             <li class="nav-item active px-5">
                 <a class="text-white" href="/home.jsp">Home</a>
             </li>
-
             <li class="nav-item active px-5">
                 <a class="text-white" href="/customer">Customer</a>
             </li>
-
             <li class="nav-item active px-5">
                 <a class="text-white" href="/employee">Employee</a>
             </li>
-
-
             <li class="nav-item active px-5">
                 <a class="text-white" href="/service">Service</a>
             </li>
-
             <li class="nav-item active px-5">
                 <a class="text-white" href="/contract">Contract</a>
             </li>
         </ul>
     </div>
 </nav>
-
-
 <div class="container-fluid d-flex " style="background: #e6faf8">
     <div class="col-2"> Item
         <c:if test="${message!=null}">
             <p class="text-primary">${message}</p>
         </c:if>
         <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            <button><a href="/service" methods="get">Back to list employee</a></button>
+            <button><a href="/service" methods="get">Back to list service</a></button>
         </p>
     </div>
-
-
     <div class="col-8">
         <span style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">CREATE SERVICE</span>
         <form action="/service?action=create" method="post" class="container border border-dark mb-3 pt-3">
-
             <div class="form-group">
                 <label>Service Name:</label>
                 <input type="text" class="form-control" placeholder="Enter Service Name " name="serviceName">
@@ -97,25 +87,29 @@
                 <label>serviceArea: </label>
                 <input type="number" class="form-control" placeholder="Enter serviceArea" name="serviceArea">
             </div>
-
             <div class="form-group">
                 <label>serviceCost: </label>
                 <input type="number" class="form-control" placeholder="Enter serviceCost" name="serviceCost">
             </div>
-
             <div class="form-group">
                 <label>serviceMaxPeople: </label>
                 <input type="number" class="form-control" placeholder="Enter serviceMaxPeople" name="serviceMaxPeople">
             </div>
-
             <div class="form-group">
-                <label>rentTypeId: </label>
-                <input type="number" class="form-control" placeholder="Enter rentTypeId" name="rentTypeId">
+                <label> Customer Type : </label>
+                <select class="form-control" name="rentTypeId">
+                    <c:forEach var="rentType" items="${rentTypeList}">
+                        <option value="${rentType.rentTypeId}">${rentType.rentTypeName}</option>
+                    </c:forEach>
+                </select>
             </div>
-
             <div class="form-group">
-                <label>serviceTypeId: </label>
-                <input type="number" class="form-control" placeholder="Enter serviceTypeId" name="serviceTypeId">
+                <label> Customer Type : </label>
+                <select class="form-control" name="serviceTypeId">
+                    <c:forEach var="serviceType" items="${serviceTypeList}">
+                        <option value="${serviceType.serviceTypeId}">${serviceType.serviceTypeName}</option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="form-group">
                 <label>standardRoom: </label>
@@ -138,8 +132,6 @@
                 <button type="submit" class="btn btn-primary mb-3">Create</button>
             </div>
         </form>
-
-
     </div>
 
     <div class="col-2"> Item

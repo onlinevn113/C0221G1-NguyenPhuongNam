@@ -2,13 +2,14 @@ package model.service.impl;
 
 import model.bean.Customer;
 import model.bean.CustomerType;
+import model.bean.Service;
 import model.repository.CustomerRepository;
 import model.service.ICustomerService;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class CustomerServiceImpl implements ICustomerService {
+public class CustomerServiceImpl implements  ICustomerService {
     CustomerRepository customerRepository = new CustomerRepository();
 
     @Override
@@ -40,7 +41,15 @@ public class CustomerServiceImpl implements ICustomerService {
         return customerRepository.edit(id,customer);
     }
 
+    @Override
+    public List<Customer> findByAllUseService() {
+        return customerRepository.findByAllUseService();
+    }
 
+    @Override
+    public List<Service> findByAllServiceUse(int id) {
+        return customerRepository.findByAllServiceUse(id);
+    }
 
 
 }

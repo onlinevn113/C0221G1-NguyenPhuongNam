@@ -256,7 +256,7 @@ CREATE TABLE  contract(  -- hop dong
     FOREIGN KEY (service_id) REFERENCES service(service_id) on delete cascade on update cascade 
 );
 /*
-insert into contract (employee_id,customer_id,service_id,contract_start_date,contract_end_date,contract_deposit,contract_total)
+insert into Contract (employee_id,customer_id,service_id,contract_start_date,contract_end_date,contract_deposit,contract_total)
 values  (1,1,1,"2018-08-11","2019-10-10",5000,10000),
 		(2,2,2,"2016-11-11","2017-11-11",3000,2000),
 		(3,3,3,"2021-10-11","2021-11-11",5000,1000),
@@ -306,7 +306,7 @@ CREATE TABLE contract_detail(  -- hop dong chi tiet
     
     
     /*
- insert into contract_detail(contract_id,attach_service_id,quantity)
+ insert into ContractDetail(contract_id,attach_service_id,quantity)
  values (1,1,5),
  	(2,2,3),
  	(3,3,7),

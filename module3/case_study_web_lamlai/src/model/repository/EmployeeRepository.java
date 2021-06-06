@@ -74,7 +74,6 @@ public class EmployeeRepository {
     }
 
 
-
     public Employee findById(int id) {
         Connection connection = baseRepository.connectDataBase();
         Employee employee = null;

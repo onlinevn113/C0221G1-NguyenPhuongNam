@@ -3,7 +3,7 @@ package controller;
 import model.bean.*;
 import model.repository.EmployeeRepository;
 import model.service.IEmployeeService;
-import model.service.impl.EmployeeSviceImpl;
+import model.service.impl.EmployeeSeviceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @WebServlet(name = "EmployeeServlet", urlPatterns = "/employee")
 public class EmployeeServlet extends HttpServlet {
-    IEmployeeService iEmployeeService = new EmployeeSviceImpl();
+    IEmployeeService iEmployeeService = new EmployeeSeviceImpl();
     //    ------------------------------------
     EmployeeRepository employeeRepository = new EmployeeRepository();
     List<Division> divisionList = employeeRepository.findByAllDivision();
@@ -44,14 +44,15 @@ public class EmployeeServlet extends HttpServlet {
                 delete(request, response);
                 break;
         }
-    }  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
         switch (action) {
             case "create":
-                showFromCreate(request, response,null);
+                showFromCreate(request, response, null);
                 break;
             case "edit":
                 showFormEdit(request, response);
@@ -64,7 +65,7 @@ public class EmployeeServlet extends HttpServlet {
 
     private void edit(HttpServletRequest request, HttpServletResponse response) {
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
-        Employee employee=iEmployeeService.findById(employeeId);
+        Employee employee = iEmployeeService.findById(employeeId);
         RequestDispatcher dispatcher;
         if (employee == null) {
             dispatcher = request.getRequestDispatcher("/error-404.jsp");
@@ -73,7 +74,7 @@ public class EmployeeServlet extends HttpServlet {
             employee.setEmployeeName(request.getParameter("employeeName"));
             employee.setEmployeeBirthday(request.getParameter("employeeBirthday"));
             employee.setEmployeeIdCard(request.getParameter("employeeIdCard"));
-            employee.setEmployeeSalary(Double.parseDouble(request.getParameter("employeeSalary")) );
+            employee.setEmployeeSalary(Double.parseDouble(request.getParameter("employeeSalary")));
             employee.setEmployeePhone(request.getParameter("employeePhone"));
             employee.setEmployeeEmail(request.getParameter("employeeEmail"));
             employee.setEmployeeAddress(request.getParameter("employeeAddress"));
@@ -81,9 +82,10 @@ public class EmployeeServlet extends HttpServlet {
             employee.setEducationDegreeId(Integer.parseInt(request.getParameter("education")));
             employee.setDivisonId(Integer.parseInt(request.getParameter("division")));
             employee.setUserName(request.getParameter("user"));
-            iEmployeeService.edit(employeeId,employee);
+            iEmployeeService.edit(employeeId, employee);
+
             request.setAttribute("message", "Edit is success");
-            request.setAttribute("employee",employee);
+            request.setAttribute("employee", employee);
             request.setAttribute("divisionList", divisionList);
             request.setAttribute("positionList", positionList);
             request.setAttribute("educationDegreeList", educationDegreeList);
@@ -98,9 +100,6 @@ public class EmployeeServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-
-
     private void showFormEdit(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Employee employee = iEmployeeService.findById(id);
@@ -128,16 +127,16 @@ public class EmployeeServlet extends HttpServlet {
         String employeeName = request.getParameter("employeeName");
         String employeeBirthday = request.getParameter("employeeBirthday");
         String employeeIdCard = request.getParameter("employeeIdCard");
-        double employeeSalary=Double.parseDouble(request.getParameter("employeeSalary"));
-        String employeePhone=request.getParameter("employeePhone");
-        String employeeEmail=request.getParameter("employeeEmail");
-        String employeeAddress=request.getParameter("employeeAddress");
-        int positionId=Integer.parseInt(request.getParameter("positionId"));
-        int educationDegreeId=Integer.parseInt(request.getParameter("educationDegreeId"));
-        int division=Integer.parseInt(request.getParameter("divisionId"));
-        String userName=request.getParameter("userName");
-        Employee employee=new Employee(employeeName,employeeBirthday,employeeIdCard,
-                employeeSalary,employeePhone,employeeEmail,employeeAddress,positionId,educationDegreeId,division,userName);
+        double employeeSalary = Double.parseDouble(request.getParameter("employeeSalary"));
+        String employeePhone = request.getParameter("employeePhone");
+        String employeeEmail = request.getParameter("employeeEmail");
+        String employeeAddress = request.getParameter("employeeAddress");
+        int positionId = Integer.parseInt(request.getParameter("positionId"));
+        int educationDegreeId = Integer.parseInt(request.getParameter("educationDegreeId"));
+        int division = Integer.parseInt(request.getParameter("divisionId"));
+        String userName = request.getParameter("userName");
+        Employee employee = new Employee(employeeName, employeeBirthday, employeeIdCard,
+                employeeSalary, employeePhone, employeeEmail, employeeAddress, positionId, educationDegreeId, division, userName);
         try {
             iEmployeeService.create(employee);
             request.setAttribute("message", "Create employee is success");
@@ -145,7 +144,7 @@ public class EmployeeServlet extends HttpServlet {
             request.setAttribute("positionList", positionList);
             request.setAttribute("educationDegreeList", educationDegreeList);
             request.setAttribute("userList", userList);
-            request.getRequestDispatcher("view/employee/create.jsp").forward(request,response);
+            request.getRequestDispatcher("view/employee/create.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ServletException e) {
@@ -154,7 +153,21 @@ public class EmployeeServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
+    private void showListEmployee(HttpServletRequest request, HttpServletResponse response, String message) {
+        try {
+            List<Employee> employees = iEmployeeService.findByAll();
+            request.setAttribute("employees", employees);
+            request.setAttribute("divisionList", divisionList);
+            request.setAttribute("positionList", positionList);
+            request.setAttribute("educationDegreeList", educationDegreeList);
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("/view/employee/list.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void delete(HttpServletRequest request, HttpServletResponse response) {
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
         Employee employee = iEmployeeService.findById(employeeId);
@@ -191,8 +204,7 @@ public class EmployeeServlet extends HttpServlet {
     }
 
 
-
-    private void showFromCreate(HttpServletRequest request, HttpServletResponse response,String message) {
+    private void showFromCreate(HttpServletRequest request, HttpServletResponse response, String message) {
         request.setAttribute("divisionList", divisionList);
         request.setAttribute("positionList", positionList);
         request.setAttribute("educationDegreeList", educationDegreeList);
@@ -207,19 +219,5 @@ public class EmployeeServlet extends HttpServlet {
     }
 
 
-    private void showListEmployee(HttpServletRequest request, HttpServletResponse response, String message) {
-        try {
-            List<Employee> employees = iEmployeeService.findByAll();
-            request.setAttribute("employees", employees);
-            request.setAttribute("divisionList", divisionList);
-            request.setAttribute("positionList", positionList);
-            request.setAttribute("educationDegreeList", educationDegreeList);
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("/view/employee/list.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

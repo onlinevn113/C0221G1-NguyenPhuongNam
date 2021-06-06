@@ -2,6 +2,7 @@ package model.repository;
 
 import model.bean.Customer;
 import model.bean.CustomerType;
+import model.bean.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -122,7 +123,7 @@ public class CustomerRepository {
         boolean check = false;
         Connection connection = baseRepository.connectDataBase();
         try {
-            PreparedStatement statement = connection.prepareStatement( "delete from customer where customer_id=?");
+            PreparedStatement statement = connection.prepareStatement("delete from customer where customer_id=?");
             statement.setInt(1, id);
             check = statement.executeUpdate() > 0;
             statement.close();
@@ -161,4 +162,63 @@ public class CustomerRepository {
     }
 
 
+    public List<Customer> findByAllUseService() {
+        Connection connection = baseRepository.connectDataBase();
+        List<Customer> customers = new ArrayList<>();
+        try {
+            CallableStatement statement = connection.prepareCall("{call customer_use_service()}");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int idCustomer = resultSet.getInt("customer_id");
+                int idTypeCustomer = resultSet.getInt("customer_type_id");
+                String name = resultSet.getString("customer_name");
+                String dateOfBirth = resultSet.getString("customer_birthday");
+                int sex = resultSet.getInt("customer_gender");
+                String idCard = resultSet.getString("customer_id_card");
+                String phoneNumber = resultSet.getNString("customer_phone");
+                String email = resultSet.getNString("customer_email");
+                String address = resultSet.getNString("customer_address");
+                customers.add(new Customer(idCustomer,
+                        idTypeCustomer, name, dateOfBirth, sex, idCard, phoneNumber, email, address)
+                );
+            }
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customers;
+    }
+
+
+    public List<Service> findByAllServiceUse(int id) {
+        Connection connection = baseRepository.connectDataBase();
+        List<Service> services = new ArrayList<>();
+        try {
+            CallableStatement statement = connection.prepareCall("{call service_used(?)}");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int serviceId = resultSet.getInt("service_id");
+                String serviceName = resultSet.getString("service_name");
+                int serviceArea = resultSet.getInt("service_area");
+                int serviceCost = resultSet.getInt("service_cost");
+                int serviceMaxPeople = resultSet.getInt("service_max_people");
+                int rentTypeId = resultSet.getInt("rent_type_id");
+                int serviceTypeId = resultSet.getInt("service_type_id");
+                String standardRoom = resultSet.getString("standard_room");
+                String descriptionOtherConvenience = resultSet.getString("description_other_convenience");
+                int poolArea = resultSet.getInt("pool_area");
+                int numberOfFloors = resultSet.getInt("number_of_floors");
+                services.add(new Service(serviceId, serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId,
+                        standardRoom, descriptionOtherConvenience,
+                        poolArea, numberOfFloors));
+            }
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return services;
+    }
 }
