@@ -12,6 +12,41 @@ public class Service {
     private String descriptionOtherConvenience;
     private int poolArea;
     private int numberOfFloors;
+    private String startDate;
+    private String endDate;
+    private int contractId;
+
+    public Service(int serviceId, String serviceName, String startDate, String endDate, int contractId) {
+        this.serviceId = serviceId;
+        this.serviceName = serviceName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.contractId = contractId;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(int contractId) {
+        this.contractId = contractId;
+    }
 
     public Service(String serviceName, int serviceArea, int serviceCost, int serviceMaxPeople, int rentTypeId, int serviceTypeId, String standardRoom, String descriptionOtherConvenience, int poolArea, int numberOfFloors) {
         this.serviceName = serviceName;

@@ -63,9 +63,6 @@ public class CustomerServlet extends HttpServlet {
             case "edit":
                 showFormEdit(request, response);
                 break;
-            case "showListUseService":
-                showListUseService(request, response);
-                break;
             default:
                 showListCustomer(request, response, null);
                 break;
@@ -73,20 +70,6 @@ public class CustomerServlet extends HttpServlet {
     }
 
 
-    private void showListUseService(HttpServletRequest request, HttpServletResponse response) {
-        List<Customer> customers = iCustomerService.findByAllUseService();
-        List<CustomerType> customerTypes = iTypeCustomerService.findAllCustomerType();
-        request.setAttribute("customers", customers);
-        request.setAttribute("customerTypes", customerTypes);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view/customerUseService/listUseService.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void search(HttpServletRequest request, HttpServletResponse response) {
         String nameS = request.getParameter("nameS");
@@ -101,7 +84,6 @@ public class CustomerServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 
     private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
         int customer_id = Integer.parseInt(request.getParameter("customer_id"));
@@ -133,7 +115,6 @@ public class CustomerServlet extends HttpServlet {
         }
 
     }
-
 
     private void showFormEdit(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -209,7 +190,6 @@ public class CustomerServlet extends HttpServlet {
         }
     }
 
-    //
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
         int customer_id = Integer.parseInt(request.getParameter("idCustomer"));
         Customer customer = iCustomerService.findById(customer_id);

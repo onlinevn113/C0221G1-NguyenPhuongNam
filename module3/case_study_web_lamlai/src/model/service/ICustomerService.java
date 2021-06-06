@@ -15,6 +15,5 @@ public interface ICustomerService {
     boolean create(Customer customer) throws SQLException;
     boolean delete(int id);
     boolean edit(int id,Customer customer);
-    List<Customer> findByAllUseService();
-    List<Service> findByAllServiceUse(int id);
+
 }

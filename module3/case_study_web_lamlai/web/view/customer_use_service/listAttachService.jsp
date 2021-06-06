@@ -90,68 +90,49 @@
 
 
 <div class="container-fluid d-flex " style="background: #e6faf8">
-    <div class="col-12">
-        <p class="py-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            LIST SERVICE
-        </p>
-        <c:if test="${name!=null}">
-            <p style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">${name}</p>
-        </c:if>
-        <p class="py-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            <button><a href="/customer?action=add" methods="get">Add New Service</a></button>
+    <div class="col-2"> Item
+        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            <button><a href="/customeruseservice?action=showService" methods="get">Back to list service</a></button>
         </p>
         <c:if test="${message!=null}">
             <p class="text-primary">${message}</p>
         </c:if>
+    </div>
+    <div class="col-8">
+        <p class="py-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            LIST ATTACH SERVICE
+        </p>
+        <c:if test="${name!=null}">
+            <p style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">${name}</p>
+        </c:if>
+        <c:if test="${startDate!=null&&endDate!=null}">
+            <p style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">use from ${startDate} to ${endDate}</p>
+        </c:if>
         <table id="tableService" class="table table-bordered table-striped ">
-            <thead style="position: sticky;z-index: 2">
-            <tr  >
-                <th>Id</th>
-                <th>Name</th>
-                <th>Area</th>
-                <th>Cost</th>
-                <th>MaxPP</th>
-                <th>RentT</th>
-                <th>SVTypeId</th>
-                <th>SRoom</th>
-                <th>description</th>
-                <th>PoolArea</th>
-                <th>NO.Floor</th>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>cost</th>
+                <th>unit</th>
+                <th>status</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${serviceList}" var="service">
+            <c:forEach items="${attachServices}" var="attachService">
                 <tr>
-                    <td>${service.serviceId}</td>
-                    <td>${service.serviceName}</td>
-                    <td>${service.serviceArea}</td>
-                    <td>${service.serviceCost}</td>
-                    <td>${service.serviceMaxPeople}</td>
-                    <c:forEach var="rentType" items="${rentTypeList}">
-                        <c:if test="${rentType.rentTypeId == service.rentTypeId}">
-                            <td>${rentType.rentTypeName}</td>
-                        </c:if>
-                    </c:forEach>
-
-                    <c:forEach var="serviceType" items="${serviceTypeList}">
-                        <c:if test="${serviceType.serviceTypeId == service.serviceTypeId}">
-                            <td>${serviceType.serviceTypeName}</td>
-                        </c:if>
-                    </c:forEach>
-
-
-                    <td>${service.standardRoom}</td>
-                    <td>${service.descriptionOtherConvenience}</td>
-                    <td>${service.poolArea}</td>
-                    <td>${service.numberOfFloors}</td>
+                    <td>${attachService.attachServiceId}</td>
+                    <td>${attachService.attachServiceName}</td>
+                    <td>${attachService.attachServiceCost}</td>
+                    <td>${attachService.attachServiceUnit}</td>
+                    <td>${attachService.attachServiceStatus}</td>
                     <td>
-                        <a href="/customer?action=editService&id=${service.serviceId}">
+                        <a href="">
                             <button type="button" class="btn btn-primary">Edit</button>
                         </a>
                     </td>
-
                     <td>
                         <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"
                                 onclick="myFunction(${service.serviceId})">
@@ -164,13 +145,15 @@
         </table>
         <br><br><br><br><br><br><br><br><br>
     </div>
-
+    <div class="col-2"> Item
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
 </div>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="/customer?action=deleteService" method="post">
+        <form action="/service?action=delete" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel">Accept delete employee</h5>

@@ -90,33 +90,30 @@
 
 
 <div class="container-fluid d-flex " style="background: #e6faf8">
-    <div class="col-12">
+    <div class="col-2"> Item
+        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            <button><a href="/customeruseservice" methods="get">Back to list customer using</a></button>
+        </p>
+        <c:if test="${message!=null}">
+            <p class="text-primary">${message}</p>
+        </c:if>
+    </div>
+    <div class="col-8">
         <p class="py-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
             LIST SERVICE
         </p>
         <c:if test="${name!=null}">
             <p style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">${name}</p>
         </c:if>
-        <p class="py-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            <button><a href="/service?action=create" methods="get">Create Service</a></button>
-        </p>
-        <c:if test="${message!=null}">
-            <p class="text-primary">${message}</p>
-        </c:if>
+
         <table id="tableService" class="table table-bordered table-striped ">
             <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Area</th>
-                <th>Cost</th>
-                <th>MaxPP</th>
-                <th>RentT</th>
-                <th>SVTypeId</th>
-                <th>SRoom</th>
-                <th>description</th>
-                <th>PoolArea</th>
-                <th>NO.Floor</th>
+                <th>contract_start_date</th>
+                <th>contract_end_date</th>
+                <th>Show Attach Service</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -126,28 +123,16 @@
                 <tr>
                     <td>${service.serviceId}</td>
                     <td>${service.serviceName}</td>
-                    <td>${service.serviceArea}</td>
-                    <td>${service.serviceCost}</td>
-                    <td>${service.serviceMaxPeople}</td>
-                    <c:forEach var="rentType" items="${rentTypeList}">
-                        <c:if test="${rentType.rentTypeId == service.rentTypeId}">
-                            <td>${rentType.rentTypeName}</td>
-                        </c:if>
-                    </c:forEach>
-
-                    <c:forEach var="serviceType" items="${serviceTypeList}">
-                        <c:if test="${serviceType.serviceTypeId == service.serviceTypeId}">
-                            <td>${serviceType.serviceTypeName}</td>
-                        </c:if>
-                    </c:forEach>
-
-
-                    <td>${service.standardRoom}</td>
-                    <td>${service.descriptionOtherConvenience}</td>
-                    <td>${service.poolArea}</td>
-                    <td>${service.numberOfFloors}</td>
+                    <td>${service.startDate}</td>
+                    <td>${service.endDate}</td>
                     <td>
-                        <a href="/service?action=edit&id=${service.serviceId}">
+                        <a href="/customeruseservice?action=showAttachService&id=${service.contractId}&name=${name}&startDate=${service.startDate}&endDate=${service.endDate}">
+                            <button type="button" class="btn btn-primary">Show Attach Service</button>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="">
                             <button type="button" class="btn btn-primary">Edit</button>
                         </a>
                     </td>
@@ -163,7 +148,9 @@
         </table>
         <br><br><br><br><br><br><br><br><br>
     </div>
-
+    <div class="col-2"> Item
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
 </div>
 
 

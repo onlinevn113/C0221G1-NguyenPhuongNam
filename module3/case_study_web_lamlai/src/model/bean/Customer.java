@@ -10,6 +10,22 @@ public class Customer {
     private String phoneNumber;
     private String email;
     private String address;
+    private int contractId;
+
+    public Customer(int idCustomer, String name, String dateOfBirth, int contractId) {
+        this.idCustomer = idCustomer;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.contractId = contractId;
+    }
+
+    public int getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(int contractId) {
+        this.contractId = contractId;
+    }
 
     public int getIdCustomer() {
         return idCustomer;

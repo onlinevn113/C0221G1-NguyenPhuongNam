@@ -98,7 +98,6 @@
         <c:if test="${message!=null}">
             <p class="text-primary">${message}</p>
         </c:if>
-
     </div>
 
     <div class="col-8">
@@ -108,8 +107,11 @@
             <button><a href="/customer?action=create" methods="get">Create Customer</a></button>
         </p>
         <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            <button onclick="yourFunction()"><a href="/customer?action=showListUseService" methods="get">showListUseService</a></button>
+            <button ><a href="/customeruseservice" methods="get">Customer List Are Using</a></button>
         </p>
+
+        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+                  </p>
         <table id="tableCustomer" class="table table-bordered table-striped ">
             <thead>
             <tr>

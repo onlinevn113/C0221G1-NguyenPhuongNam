@@ -11,7 +11,7 @@
 <head>
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../../bootstrap/dataTables.bootstrap.min.css">
-    <title>Customer List</title>
+    <title>Service List</title>
     <style>
         #footer {
             position: fixed;
@@ -46,8 +46,6 @@
     <div class="col-6 text-right"><span>Nguyễn Phương Nam</span>
     </div>
 </div>
-
-
 <nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="nav-bar-sticky"
      style=" height: 47px;background: #0F574B">
 
@@ -76,7 +74,7 @@
         </ul>
 
 
-        <form method="post" action="/customer?action=search" class="form-inline pt-3 mr-1  align-items-end"
+        <form method="post" action="/service?action=search" class="form-inline pt-3 mr-1  align-items-end"
               style="position: relative">
             <div class="pl-5">
                 <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="nameS">
@@ -87,106 +85,95 @@
                 </button>
             </div>
         </form>
-
-
     </div>
 </nav>
 
 
 <div class="container-fluid d-flex " style="background: #e6faf8">
     <div class="col-2"> Item
+        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            <button><a href="/customeruseservice?action=showService" methods="get">Back to list service</a></button>
+        </p>
         <c:if test="${message!=null}">
             <p class="text-primary">${message}</p>
         </c:if>
     </div>
     <div class="col-8">
-        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            LIST CUSTOMER USE SERVICE</p>
-        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            <button><a href="/customer?action=create" methods="get">Create Customer</a></button>
+        <p class="py-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
+            LIST ATTACH SERVICE
         </p>
-        <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            <button onclick="yourFunction()"><a href="/customer?action=showListUseService" methods="get">showListUseService</a></button>
-        </p>
-        <table id="tableCustomer" class="table table-bordered table-striped ">
+        <c:if test="${name!=null}">
+            <p style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">${name}</p>
+        </c:if>
+        <c:if test="${startDate!=null&&endDate!=null}">
+            <p style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">use from ${startDate} to ${endDate}</p>
+        </c:if>
+        <table id="tableService" class="table table-bordered table-striped ">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Customer Type</th>
-                <th>Name</th>
-                <th>Birthday</th>
-                <th>Gender</th>
-                <th>Show Service Use</th>
-                <th>Show Attach Service</th>
+                <th>id</th>
+                <th>name</th>
+                <th>cost</th>
+                <th>unit</th>
+                <th>status</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${customers}" var="customer">
+            <c:forEach items="${attachServices}" var="attachService">
                 <tr>
-                    <td><a href="/customer?action=view&id=${customer.idCustomer}">${customer.idCustomer}</a></td>
-                    <c:forEach var="type" items="${customerTypes}">
-                        <c:if test="${type.idTypeCustomer == customer.idTypeCustomer}">
-                            <td>${type.customerTypeName}</td>
-                        </c:if>
-                    </c:forEach>
-                    <td>${customer.name}</td>
-                    <td>${customer.dateOfBirth}</td>
-                    <td>${customer.sex}</td>
-
-
+                    <td>${attachService.attachServiceId}</td>
+                    <td>${attachService.attachServiceName}</td>
+                    <td>${attachService.attachServiceCost}</td>
+                    <td>${attachService.attachServiceUnit}</td>
+                    <td>${attachService.attachServiceStatus}</td>
                     <td>
-                        <a href="/customer?action=showService&id=${customer.idCustomer}&name=${customer.name}">
-                            <button type="button" class="btn btn-primary text-center">Show <br> Service</button>
+                        <a href="">
+                            <button type="button" class="btn btn-primary">Edit</button>
                         </a>
                     </td>
-
-
                     <td>
-                        <a href="/customer?action=showAttachService&id=${customer.idCustomer}">
-                            <button type="button" class="btn btn-primary">Show Attach Service</button>
-                        </a>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                                onclick="myFunction(${service.serviceId})">
+                            Delete
+                        </button>
                     </td>
-
-
-
-
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+        <br><br><br><br><br><br><br><br><br>
     </div>
-    <div class="col-2"> Item <br>
+    <div class="col-2"> Item
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
-
 </div>
-<%--delete modal--%>
+
+
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="/customer?action=delete" method="post">
+        <form action="/service?action=delete" method="post">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Accept delete customer</h5>
+                    <h5 class="modal-title" id="myModalLabel">Accept delete employee</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Do you want to delete this customer???
+                    Do you want to delete this service???
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-danger btn-ok" id="delete" value="Delete">
-                    <input type="hidden" id="idCustomer" name="idCustomer">
+                    <input type="submit" class="btn btn-danger btn-ok" value="Delete">
+                    <input type="hidden" id="id" name="id">
                 </div>
             </div>
         </form>
 
     </div>
 </div>
-
-
-
 
 
 <footer class="text-white ">
@@ -227,19 +214,20 @@
 
 <script>
     $(document).ready(function () {
-        $('#tableCustomer').dataTable({
+        $('#tableService').dataTable({
             "dom": 'lrtip',
             "lengthChange": false,
             "pageLength": 10,
-
         });
     });
 </script>
 
 <script type="text/javascript">
     function myFunction(id) {
-        document.getElementById("idCustomer").value = id;
+        document.getElementById("id").value = id;
     }
 </script>
+
+
 </body>
 </html>

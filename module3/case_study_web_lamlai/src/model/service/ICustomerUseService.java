@@ -1,16 +1,13 @@
 package model.service;
 
-import model.bean.CustomerUseService;
-import model.bean.Employee;
+import model.bean.AttachService;
+import model.bean.Customer;
+import model.bean.Service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface ICustomerUseService {
-    List<CustomerUseService> findByAll() ;
-    List<CustomerUseService> findByName(String name) ;
-    CustomerUseService findById(int id);
-
-    boolean edit(int id,CustomerUseService  customerUseService);
-    boolean delete(int id);
+    List<Customer> findByAllUseService();
+    List<Service> findByAllService(int idCustomer);
+    List<AttachService> findByAllAttachService(int idContract);
 }

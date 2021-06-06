@@ -104,8 +104,8 @@
             <p class="text-primary">${message}</p>
         </c:if>
         <table id="tableService" class="table table-bordered table-striped ">
-            <thead style="position: sticky;z-index: 2">
-            <tr  >
+            <thead>
+            <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Area</th>

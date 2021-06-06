@@ -41,15 +41,7 @@ public class CustomerServiceImpl implements  ICustomerService {
         return customerRepository.edit(id,customer);
     }
 
-    @Override
-    public List<Customer> findByAllUseService() {
-        return customerRepository.findByAllUseService();
-    }
 
-    @Override
-    public List<Service> findByAllServiceUse(int id) {
-        return customerRepository.findByAllServiceUse(id);
-    }
 
 
 }
