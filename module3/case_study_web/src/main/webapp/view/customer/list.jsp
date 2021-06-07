@@ -240,9 +240,6 @@
     function myFunction(id) {
         document.getElementById("idCustomer").value = id;
     }
-    function yourFunction() {
-        document.getElementsByClassName("editdelete").style.display = none;
-    }
 </script>
 
 
