@@ -73,11 +73,11 @@ public class CustomerUseServiceRepository {
         Connection connection = baseRepository.connectDataBase();
         List<AttachService> attachServices = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("select ats.attach_service_id,attach_service_name,attach_service_cost,attach_service_unit,attach_service_status\n" +
+            PreparedStatement statement = connection.prepareStatement("select ats.attach_service_id,attach_service_name,attach_service_cost,attach_service_unit,attach_service_status,contract_detail_id  " +
                     "from attach_service ats\n" +
                     "join contract_detail cd on ats.attach_service_id=cd.attach_service_id\n" +
                     "join contract ct on ct.contract_id=cd.contract_id\n" +
-                    "where date(now()) between contract_start_date and contract_end_date and cd.contract_id=?;");
+                    "where date(now()) between contract_start_date and contract_end_date and customer_id=?;");
             statement.setInt(1,idContract);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -85,8 +85,9 @@ public class CustomerUseServiceRepository {
                 String attachName=resultSet.getString("attach_service_name");
                 double attachCost=resultSet.getDouble("attach_service_cost");
                 int attachUnit=resultSet.getInt("attach_service_unit");
-                String attachStatus=resultSet.getString("attach_service_unit");
-                attachServices.add(new AttachService(attachId,attachName,attachCost,attachUnit,attachStatus));
+                String attachStatus=resultSet.getString("attach_service_status");
+                int contractDTID=resultSet.getInt("contract_detail_id");
+                attachServices.add(new AttachService(attachId,attachName,attachCost,attachUnit,attachStatus,contractDTID));
             }
             statement.close();
             connection.close();
@@ -113,5 +114,46 @@ public class CustomerUseServiceRepository {
     }
 
 
+    public boolean deleteAttachService(int id) {
+        boolean check = false;
+        Connection connection = baseRepository.connectDataBase();
+        try {
+            PreparedStatement statement = connection.prepareStatement("delete from contract_detail where contract_detail_id=?;");
+            statement.setInt(1, id);
+            check = statement.executeUpdate() > 0;
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
 
+    public List<Customer> findByName(String nameS) {
+        Connection connection = baseRepository.connectDataBase();
+        List<Customer> customers = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("select c.customer_id,customer_name,customer_birthday,contract_id\n" +
+                    "from customer c\n" +
+                    "join contract ct on ct.customer_id=c.customer_id\n" +
+                    "where date(now()) between contract_start_date and contract_end_date and customer_name like ?" +
+                    "group by c.customer_id\n" +
+                    ";");
+            statement.setString(1,"%"+nameS+"%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int idCustomer = resultSet.getInt("customer_id");
+                String name = resultSet.getString("customer_name");
+                String dateOfBirth = resultSet.getString("customer_birthday");
+                int contractId=resultSet.getInt("contract_id");
+                customers.add(new Customer(idCustomer,name, dateOfBirth,contractId)
+                );
+            }
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customers;
+    }
 }

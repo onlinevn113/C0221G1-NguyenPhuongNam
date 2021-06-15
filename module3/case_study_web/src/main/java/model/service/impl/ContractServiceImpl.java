@@ -37,6 +37,11 @@ public class ContractServiceImpl implements IContractService {
     }
 
     @Override
+    public ContractDetail findByIdContractDT(int id) {
+        return contractRepository.findByIdContractDT(id);
+    }
+
+    @Override
     public boolean edit(int idContract, Contract contract) {
         return contractRepository.edit(idContract,contract);
     }

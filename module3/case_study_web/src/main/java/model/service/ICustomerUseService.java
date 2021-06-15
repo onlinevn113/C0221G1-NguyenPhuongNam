@@ -9,4 +9,6 @@ public interface ICustomerUseService {
     List<Service> findByAllService(int idCustomer);
     List<AttachService> findByAllAttachService(int idContract);
     boolean deleteServiceInContract(int id);
+    boolean deleteAttachService(int id);
+    List<Customer> findByName( String name);
 }

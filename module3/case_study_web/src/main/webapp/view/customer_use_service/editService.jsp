@@ -73,14 +73,13 @@
     </div>
 </nav>
 
-
 <div class="container-fluid d-flex " style="background: #e6faf8">
     <div class="col-2"> Item
         <c:if test="${message!=null}">
             <p class="text-primary">${message}</p>
         </c:if>
         <p class="text-center p-3 row" style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">
-            <button><a href="/customeruseservice?action=showService&id=" methods="get">Back to list service</a></button>
+            <button><a href="/customeruseservice" methods="get">Back to list customer using</a></button>
         </p>
     </div>
     <div class="col-8">

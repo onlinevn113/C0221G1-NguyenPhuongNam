@@ -68,7 +68,7 @@
                 <a class="text-white" href="/contract">Contract</a>
             </li>
         </ul>
-        <form method="post" action="/customer?action=search" class="form-inline pt-3 mr-1  align-items-end"
+        <form method="post" action="/customeruseservice?action=search" class="form-inline pt-3 mr-1  align-items-end"
               style="position: relative">
             <div class="pl-5">
                 <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="nameS">
@@ -100,7 +100,8 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Birthday</th>
-                <th class="text-center">Show Service Use</th>
+                <th class="text-center">Service Use</th>
+                <th class="text-center">Attach Service</th>
             </tr>
             </thead>
             <tbody>
@@ -111,7 +112,12 @@
                     <td>${customers.dateOfBirth}</td>
                     <td class="text-center">
                         <a href="/customeruseservice?action=showService&id=${customers.idCustomer}&name=${customers.name}">
-                            <button type="button" class="btn btn-primary text-center">Show Service</button>
+                            <button type="button" class="btn btn-primary ">Show Service</button>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a href="/customeruseservice?action=showAttachService&id=${customers.idCustomer}&name=${customers.name}">
+                            <button type="button" class="btn btn-primary">Attach Service</button>
                         </a>
                     </td>
                 </tr>

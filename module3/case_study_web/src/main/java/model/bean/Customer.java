@@ -12,6 +12,9 @@ public class Customer {
     private String address;
     private int contractId;
 
+
+
+
     public Customer(int idCustomer, String name, String dateOfBirth, int contractId) {
         this.idCustomer = idCustomer;
         this.name = name;

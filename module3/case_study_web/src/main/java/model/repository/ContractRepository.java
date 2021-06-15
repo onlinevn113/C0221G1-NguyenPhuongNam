@@ -13,24 +13,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContractRepository {
-    BaseRepository baseRepository=new BaseRepository();
-    String insertContract="insert into contract (employee_id,customer_id,service_id,contract_start_date,contract_end_date,contract_deposit,contract_total)\n" +
+    BaseRepository baseRepository = new BaseRepository();
+    String insertContract = "insert into contract (employee_id,customer_id,service_id,contract_start_date,contract_end_date,contract_deposit,contract_total)\n" +
             "values  \n" +
             "(?,?,?,?,?,?,?);";
-    String insertContractDetail="insert into contract_detail(contract_id,attach_service_id,quantity)\n" +
+    String insertContractDetail = "insert into contract_detail(contract_id,attach_service_id,quantity)\n" +
             " values (?,?,?);";
+
     public boolean createContract(Contract contract) throws SQLException {
         boolean check = false;
         Connection connection = baseRepository.connectDataBase();
         try {
             PreparedStatement statement = connection.prepareStatement(insertContract);
-            statement.setInt(1,contract.getEmployeeId());
-            statement.setInt(2,contract.getCustomerId());
-            statement.setInt(3,contract.getServiceId());
-            statement.setString(4,contract.getContractStartDate());
-            statement.setString(5,contract.getContractEndDate());
-            statement.setInt(6,contract.getContractDeposit());
-            statement.setInt(6,contract.getContractTotal());
+            statement.setInt(1, contract.getEmployeeId());
+            statement.setInt(2, contract.getCustomerId());
+            statement.setInt(3, contract.getServiceId());
+            statement.setString(4, contract.getContractStartDate());
+            statement.setString(5, contract.getContractEndDate());
+            statement.setInt(6, contract.getContractDeposit());
+            statement.setInt(6, contract.getContractTotal());
             check = statement.executeUpdate() > 0;
             statement.close();
             connection.close();
@@ -46,9 +47,9 @@ public class ContractRepository {
         Connection connection = baseRepository.connectDataBase();
         try {
             PreparedStatement statement = connection.prepareStatement(insertContractDetail);
-            statement.setInt(1,contractDetail.getContractId());
-            statement.setInt(2,contractDetail.getAttachServiceId());
-            statement.setInt(3,contractDetail.getQuantity());
+            statement.setInt(1, contractDetail.getContractId());
+            statement.setInt(2, contractDetail.getAttachServiceId());
+            statement.setInt(3, contractDetail.getQuantity());
             check = statement.executeUpdate() > 0;
             statement.close();
             connection.close();
@@ -65,15 +66,15 @@ public class ContractRepository {
             PreparedStatement statement = connection.prepareStatement("select * from contract");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                int contractId=resultSet.getInt("contract_id");
-                int employeeId=resultSet.getInt("employee_id");
-                int customerId=resultSet.getInt("customer_id");
-                int serviceId=resultSet.getInt("service_id");
-                String contractStartDate=resultSet.getString("contract_start_date");
-                String contractEndDate=resultSet.getString("contract_end_date");
-                int contractDeposit=resultSet.getInt("contract_deposit");
-                int contractTotal=resultSet.getInt("contract_total");
-                contracts.add(new Contract(contractId,employeeId,customerId,serviceId,contractStartDate,contractEndDate,contractDeposit,contractTotal));
+                int contractId = resultSet.getInt("contract_id");
+                int employeeId = resultSet.getInt("employee_id");
+                int customerId = resultSet.getInt("customer_id");
+                int serviceId = resultSet.getInt("service_id");
+                String contractStartDate = resultSet.getString("contract_start_date");
+                String contractEndDate = resultSet.getString("contract_end_date");
+                int contractDeposit = resultSet.getInt("contract_deposit");
+                int contractTotal = resultSet.getInt("contract_total");
+                contracts.add(new Contract(contractId, employeeId, customerId, serviceId, contractStartDate, contractEndDate, contractDeposit, contractTotal));
             }
             statement.close();
             connection.close();
@@ -91,12 +92,12 @@ public class ContractRepository {
             PreparedStatement statement = connection.prepareStatement("select * from attach_service");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                int attachServiceId=resultSet.getInt("attach_service_id");
-                String attachServiceName=resultSet.getString("attach_service_name");
-                double attachServiceCost=resultSet.getDouble("attach_service_cost");
-                int attachServiceUnit=resultSet.getInt("attach_service_until");
-                String attachServiceStatus=resultSet.getString("attach_service_status");
-                attachServices.add(new AttachService(attachServiceId,attachServiceName,attachServiceCost,attachServiceUnit,attachServiceStatus));
+                int attachServiceId = resultSet.getInt("attach_service_id");
+                String attachServiceName = resultSet.getString("attach_service_name");
+                double attachServiceCost = resultSet.getDouble("attach_service_cost");
+                int attachServiceUnit = resultSet.getInt("attach_service_until");
+                String attachServiceStatus = resultSet.getString("attach_service_status");
+                attachServices.add(new AttachService(attachServiceId, attachServiceName, attachServiceCost, attachServiceUnit, attachServiceStatus));
             }
             statement.close();
             connection.close();
@@ -109,6 +110,7 @@ public class ContractRepository {
     public static void main(String[] args) {
         System.out.println(new ContractRepository().findById(19));
     }
+
     public Contract findById(int id) {
         Connection connection = baseRepository.connectDataBase();
         Contract contract = null;
@@ -119,15 +121,15 @@ public class ContractRepository {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int contractId = resultSet.getInt("contract_id");
-                int employeeId= resultSet.getInt("employee_id");
-                int customerId=resultSet.getInt("customer_id");
-                int serviceId=resultSet.getInt("service_id");
-                String startDate=resultSet.getString("contract_start_date");
-                String endDate=resultSet.getString("contract_end_date");
-                int deposit=resultSet.getInt("contract_deposit");
-                int total=resultSet.getInt("contract_total");
-                contract=new Contract(contractId,employeeId,customerId,serviceId,startDate,endDate,deposit,total);
-               }
+                int employeeId = resultSet.getInt("employee_id");
+                int customerId = resultSet.getInt("customer_id");
+                int serviceId = resultSet.getInt("service_id");
+                String startDate = resultSet.getString("contract_start_date");
+                String endDate = resultSet.getString("contract_end_date");
+                int deposit = resultSet.getInt("contract_deposit");
+                int total = resultSet.getInt("contract_total");
+                contract = new Contract(contractId, employeeId, customerId, serviceId, startDate, endDate, deposit, total);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -142,12 +144,12 @@ public class ContractRepository {
             PreparedStatement statement = connection.prepareStatement("update contract\n" +
                     "set service_id=?,contract_start_date=?,contract_end_date=?,contract_deposit=?,contract_total=?\n" +
                     "where contract_id=?;");
-            statement.setInt(1,contract.getServiceId());
-            statement.setString(2,contract.getContractStartDate());
-            statement.setString(3,contract.getContractEndDate());
-            statement.setInt(4,contract.getContractDeposit());
-            statement.setInt(5,contract.getContractTotal());
-            statement.setInt(6,idContract);
+            statement.setInt(1, contract.getServiceId());
+            statement.setString(2, contract.getContractStartDate());
+            statement.setString(3, contract.getContractEndDate());
+            statement.setInt(4, contract.getContractDeposit());
+            statement.setInt(5, contract.getContractTotal());
+            statement.setInt(6, idContract);
             check = statement.executeUpdate() > 0;
             statement.close();
             connection.close();
@@ -155,5 +157,26 @@ public class ContractRepository {
             e.printStackTrace();
         }
         return check;
+    }
+
+    public ContractDetail findByIdContractDT(int id) {
+        Connection connection = baseRepository.connectDataBase();
+        ContractDetail contractDetail = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from contract_detail\n" +
+                    "where contract_detail_id=?;");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int contract_detail_id = resultSet.getInt("contract_detail_id");
+                int contract_id = resultSet.getInt("contract_id");
+                int attach_service_id = resultSet.getInt("attach_service_id");
+                int quantity = resultSet.getInt("quantity");
+                contractDetail=new ContractDetail(contract_detail_id,contract_id,attach_service_id,quantity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return contractDetail;
     }
 }

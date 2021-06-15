@@ -11,6 +11,13 @@
 <head>
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../../bootstrap/dataTables.bootstrap.min.css">
+    <script src="../bootstrap/jquery-3.6.0.min.js"></script>
+    <script src="../../bootstrap/jquery.dataTables.min.js"></script>
+    <script src="../../bootstrap/dataTables.bootstrap4.min.js"></script>
+    <script src="bootstrap/popper.min.js"></script>
+    <script src="../bootstrap/bootstrap.min.js"></script>
+
+
     <title>Employee List</title>
     <style>
         #footer {
@@ -224,11 +231,9 @@
 
 
 
-<script src="../bootstrap/jquery-3.6.0.min.js"></script>
-<script src="../../bootstrap/jquery.dataTables.min.js"></script>
-<script src="../../bootstrap/dataTables.bootstrap4.min.js"></script>
-<script src="bootstrap/popper.min.js"></script>
-<script src="../bootstrap/bootstrap.min.js"></script>
+
+
+
 
 <script>
     $(document).ready(function () {

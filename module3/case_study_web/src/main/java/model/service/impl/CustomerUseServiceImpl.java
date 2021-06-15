@@ -32,6 +32,15 @@ public class CustomerUseServiceImpl implements ICustomerUseService {
         return customerUseServiceRepository.deleteServiceInContract(id);
     }
 
+    @Override
+    public boolean deleteAttachService(int id) {
+        return customerUseServiceRepository.deleteAttachService(id);
+    }
+
+    @Override
+    public List<Customer> findByName(String name) {
+        return customerUseServiceRepository.findByName(name);
+    }
 
 
 }

@@ -19,7 +19,9 @@
             width: 100%;
             z-index: 3;
         }
-
+        .msg{
+            color: red;
+        }
         #nav-bar-sticky {
             position: -webkit-sticky;
             position: sticky;
@@ -89,48 +91,59 @@
     <div class="col-8">
         <span style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">CREATE CUSTOMER</span>
         <form action="/customer?action=create" method="post" class="container border border-dark mb-3 pt-3">
+
             <div class="form-group">
                 <label> Customer Type : </label>
                 <select class="form-control" name="customerTypeId">
                     <c:forEach var="type" items="${customerTypes}">
-                        <option value="${type.idTypeCustomer}">${type.customerTypeName}</option>
+                        <option value="${type.idTypeCustomer}" ${type.idTypeCustomer==customerFail.idTypeCustomer?"selected":""}>${type.customerTypeName}</option>
                     </c:forEach>
                 </select>
             </div>
+
             <div class="form-group">
                 <label>Name:</label>
-                <input type="text" class="form-control" placeholder="Enter name " name="customerName">
+                <input type="text" class="form-control" placeholder="Enter name" name="customerName" value="${customerFail.name}">
+                <p class="msg">${nameMsg}</p>
             </div>
             <div class="form-group">
                 <label>Birthday:</label>
-                <input type="date" class="form-control" placeholder="Enter birthday" name="customerBirthday">
+                <input type="date" class="form-control" placeholder="Enter birthday" name="customerBirthday" value="${customerFail.dateOfBirth}">
+                <p class="msg">${dateOfBirthMsg}</p>
             </div>
-
 
             <div class="form-group">
                 <label>Gender: </label>
                 <select class="form-control "  name="customerGender" aria-label="Default select example">
-                    <option selected>Choose gender</option>
-                    <option value="1">Male</option>
-                    <option value="0">Female</option>
+                    <option value="0" ${customerFail.sex==0?"selected":""} >Female</option>
+                    <option value="1" ${customerFail.sex==1?"selected":""} >Male</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label>ID Card: </label>
-                <input type="text" class="form-control" placeholder="Enter id card " name="customerIdCard">
+                <input type="text" class="form-control" placeholder="Enter id card " name="customerIdCard" value="${customerFail.idCard}" >
+                <p class="msg">${idCardMsg}</p>
             </div>
+
             <div class="form-group">
                 <label>Phone: </label>
-                <input type="number" class="form-control" placeholder="Enter phone" name="customerPhone">
+                <input type="number" class="form-control" placeholder="Enter phone" name="customerPhone" value="${customerFail.phoneNumber}" >
+                <p class="msg">${phoneNumberMsg}</p>
             </div>
+
             <div class="form-group">
                 <label>Email: </label>
-                <input type="email" class="form-control" placeholder="Enter email" name="customerEmail">
+                <input type="email" class="form-control" placeholder="Enter email" name="customerEmail"  value="${customerFail.email}">
+                <p class="msg">${emailMsg}</p>
             </div>
+
             <div class="form-group">
                 <label>Address: </label>
-                <input type="text" class="form-control" placeholder="Enter address " name="customerAddress">
+                <input type="text" class="form-control" placeholder="Enter address " name="customerAddress" value="${customerFail.address}">
+                <p class="msg">${addressMsg}</p>
             </div>
+
             <div class="d-flex justify-content-center ">
                 <button type="submit" class="btn btn-primary mb-3">Create</button>
             </div>

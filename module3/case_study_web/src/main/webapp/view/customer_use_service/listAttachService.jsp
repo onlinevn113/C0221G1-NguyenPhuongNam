@@ -73,18 +73,6 @@
             </li>
         </ul>
 
-
-        <form method="post" action="/service?action=search" class="form-inline pt-3 mr-1  align-items-end"
-              style="position: relative">
-            <div class="pl-5">
-                <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="nameS">
-                <button type="submit" class="rounded-circle">
-                    <img class="img-fluid rounded-circle" style="height: 32px;"
-                         src="https://static.vecteezy.com/system/resources/previews/001/504/972/original/search-icon-free-vector.jpg"
-                         alt="">
-                </button>
-            </div>
-        </form>
     </div>
 </nav>
 
@@ -105,13 +93,11 @@
         <c:if test="${name!=null}">
             <p style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">${name}</p>
         </c:if>
-        <c:if test="${startDate!=null&&endDate!=null}">
-            <p style="font-family: 'Comic Sans MS',cursive;font-weight: bold;font-size: 20px">use from ${startDate} to ${endDate}</p>
-        </c:if>
         <table id="tableService" class="table table-bordered table-striped ">
             <thead>
             <tr>
-                <th>id</th>
+                <th>ContractDTID</th>
+                <th>id service</th>
                 <th>name</th>
                 <th>cost</th>
                 <th>unit</th>
@@ -123,6 +109,7 @@
             <tbody>
             <c:forEach items="${attachServices}" var="attachService">
                 <tr>
+                    <td>${attachService.contractDTID}</td>
                     <td>${attachService.attachServiceId}</td>
                     <td>${attachService.attachServiceName}</td>
                     <td>${attachService.attachServiceCost}</td>
@@ -135,7 +122,7 @@
                     </td>
                     <td>
                         <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"
-                                onclick="myFunction(${service.serviceId})">
+                                onclick="myFunction(${attachService.contractDTID})">
                             Delete
                         </button>
                     </td>
@@ -153,7 +140,7 @@
 
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="/service?action=delete" method="post">
+        <form action="/customeruseservice?action=deleteAttachService" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel">Accept delete employee</h5>

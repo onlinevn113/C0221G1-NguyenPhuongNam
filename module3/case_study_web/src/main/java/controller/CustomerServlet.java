@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = {"/customer"})
 public class CustomerServlet extends HttpServlet {
@@ -152,16 +154,26 @@ public class CustomerServlet extends HttpServlet {
         String customerEmail = request.getParameter("customerEmail");
         String customerAddress = request.getParameter("customerAddress");
         Customer customer = new Customer(customerTypeId, customerName, customerBirthday, customerGender, customerIdCard, customerPhone, customerEmail, customerAddress);
+
         try {
-            iCustomerService.create(customer);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        request.setAttribute("message", "Create customer is success");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view/customer/create.jsp");
-        request.setAttribute("customerTypes", customerTypes);
-        try {
-            dispatcher.forward(request, response);
+            Map<String, String> mapMsg= iCustomerService.create(customer);
+            if (mapMsg.isEmpty()){
+                request.getRequestDispatcher("view/customer/create.jsp").forward(request,response);
+                request.setAttribute("message", "Create customer is success");
+                request.setAttribute("customerTypes", customerTypes);
+            }else {
+                request.setAttribute("customerTypes", customerTypes);
+                request.setAttribute("customerFail",customer);
+                request.setAttribute("nameMsg",mapMsg.get("name"));
+                request.setAttribute("dateOfBirthMsg",mapMsg.get("dateOfBirth"));
+                request.setAttribute("idCardMsg",mapMsg.get("idCard"));
+                request.setAttribute("phoneNumberMsg",mapMsg.get("phoneNumber"));
+                request.setAttribute("emailMsg",mapMsg.get("email"));
+                request.setAttribute("addressMsg",mapMsg.get("address"));
+                request.getRequestDispatcher("view/customer/create.jsp").forward(request,response);
+            }
+
+
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

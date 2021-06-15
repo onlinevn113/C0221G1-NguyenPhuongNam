@@ -72,19 +72,6 @@
                 <a class="text-white" href="/contract">Contract</a>
             </li>
         </ul>
-
-
-        <form method="post" action="/service?action=search" class="form-inline pt-3 mr-1  align-items-end"
-              style="position: relative">
-            <div class="pl-5">
-                <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="nameS">
-                <button type="submit" class="rounded-circle">
-                    <img class="img-fluid rounded-circle" style="height: 32px;"
-                         src="https://static.vecteezy.com/system/resources/previews/001/504/972/original/search-icon-free-vector.jpg"
-                         alt="">
-                </button>
-            </div>
-        </form>
     </div>
 </nav>
 
@@ -115,8 +102,6 @@
                 <th>Name</th>
                 <th>contract_start_date</th>
                 <th>contract_end_date</th>
-
-                <th>Attach Service</th>
                 <th>Edit</th>
                 <th>Delete</th>
 
@@ -131,11 +116,7 @@
                     <td>${service.startDate}</td>
                     <td>${service.endDate}</td>
 
-                    <td>
-                        <a href="/customeruseservice?action=showAttachService&id=${service.contractId}&name=${name}&startDate=${service.startDate}&endDate=${service.endDate}">
-                            <button type="button" class="btn btn-primary">Attach Service</button>
-                        </a>
-                    </td>
+
                     <td>
                         <a href="/customeruseservice?action=editService&idContract=${service.contractId}&idService=${service.serviceId}&nameService=${service.serviceName}">
                             <button type="button" class="btn btn-primary">Edit</button>

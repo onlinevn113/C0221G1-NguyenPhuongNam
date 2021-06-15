@@ -96,7 +96,7 @@ public class CustomerRepository {
     }
 
 
-    public boolean createCustomer(Customer customer) throws SQLException {
+    public boolean createCustomer(Customer customer) {
         boolean check = false;
         Connection connection = baseRepository.connectDataBase();
         try {

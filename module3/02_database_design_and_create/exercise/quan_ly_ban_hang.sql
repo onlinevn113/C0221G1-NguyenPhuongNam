@@ -28,3 +28,7 @@ p_id int,
 foreign key (p_id) references product(p_id),
 od_QTY varchar(45)
 );
+select * from order_detail;
+select * from product;
+select *from order_detail o join product p;
+select *from order_detail o join product p on o.p_id=p.p_id;

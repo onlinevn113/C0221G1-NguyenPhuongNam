@@ -14,5 +14,6 @@ public interface IContractService {
     List<Contract> findByAllContract() ;
     List<AttachService> findByAllAttachService() ;
     Contract findById(int id);
+    ContractDetail findByIdContractDT(int id);
     boolean edit(int idContract,Contract contract);
 }

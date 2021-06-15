@@ -6,11 +6,12 @@ import java.sql.SQLException;
 
 public class BaseRepository {
     Connection connectDataBase() {
-         final String URL = "jdbc:mysql://localhost:3306/case_study_db_web2?useSSL=false";
+         final String URL = "jdbc:mysql://localhost:3306/case_study_db_web2?allowPublicKeyRetrieval=true&useSSL=false";
          final String USER = "root";
          final String PASSWORD = "12345678";
         Connection connection = null;
         try {
+            
             // Khai báo Driver của mysql: không đổi
             Class.forName("com.mysql.cj.jdbc.Driver");
             try {

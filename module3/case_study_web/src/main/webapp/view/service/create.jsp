@@ -95,16 +95,16 @@
                 <label>serviceMaxPeople: </label>
                 <input type="number" class="form-control" placeholder="Enter serviceMaxPeople" name="serviceMaxPeople">
             </div>
+                <div class="form-group">
+                    <label> rentType : </label>
+                    <select class="form-control" name="rentTypeId">
+                        <c:forEach var="rentType" items="${rentTypeList}">
+                            <option value="${rentType.rentTypeId}">${rentType.rentTypeName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
             <div class="form-group">
-                <label> Customer Type : </label>
-                <select class="form-control" name="rentTypeId">
-                    <c:forEach var="rentType" items="${rentTypeList}">
-                        <option value="${rentType.rentTypeId}">${rentType.rentTypeName}</option>
-                    </c:forEach>
-                </select>
-            </div>
-            <div class="form-group">
-                <label> Customer Type : </label>
+                <label> serviceType: </label>
                 <select class="form-control" name="serviceTypeId">
                     <c:forEach var="serviceType" items="${serviceTypeList}">
                         <option value="${serviceType.serviceTypeId}">${serviceType.serviceTypeName}</option>

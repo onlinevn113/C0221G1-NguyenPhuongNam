@@ -1,11 +1,29 @@
 package model.bean;
 
 public class AttachService {
-   private int attachServiceId;
-   private String attachServiceName;
-   private double attachServiceCost;
-   private int attachServiceUnit;
-   private String attachServiceStatus;
+    private int attachServiceId;
+    private String attachServiceName;
+    private double attachServiceCost;
+    private int attachServiceUnit;
+    private String attachServiceStatus;
+    private int contractDTID;
+
+    public AttachService(int attachServiceId, String attachServiceName, double attachServiceCost, int attachServiceUnit, String attachServiceStatus, int contractDTID) {
+        this.attachServiceId = attachServiceId;
+        this.attachServiceName = attachServiceName;
+        this.attachServiceCost = attachServiceCost;
+        this.attachServiceUnit = attachServiceUnit;
+        this.attachServiceStatus = attachServiceStatus;
+        this.contractDTID = contractDTID;
+    }
+
+    public int getContractDTID() {
+        return contractDTID;
+    }
+
+    public void setContractDTID(int contractDTID) {
+        this.contractDTID = contractDTID;
+    }
 
     public AttachService(int attachServiceId, String attachServiceName, double attachServiceCost, int attachServiceUnit, String attachServiceStatus) {
         this.attachServiceId = attachServiceId;

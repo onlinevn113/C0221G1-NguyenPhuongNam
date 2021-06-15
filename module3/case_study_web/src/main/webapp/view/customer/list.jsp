@@ -8,10 +8,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
+<head>  <title>Customer List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../../bootstrap/dataTables.bootstrap.min.css">
-    <title>Customer List</title>
+
     <style>
         #footer {
             position: fixed;
@@ -53,13 +55,17 @@
 
     <div class="collapse navbar-collapse  " id="navbarsExample07">
         <ul class="navbar-nav mr-auto">
+
+
             <li class="nav-item active px-5">
                 <a class="text-white" href="/home.jsp">Home</a>
             </li>
 
+
             <li class="nav-item active px-5">
                 <a class="text-white" href="/customer">Customer</a>
             </li>
+
 
             <li class="nav-item active px-5">
                 <a class="text-white" href="/employee">Employee</a>
@@ -76,6 +82,7 @@
         </ul>
 
 
+
         <form method="post" action="/customer?action=search" class="form-inline pt-3 mr-1  align-items-end"
               style="position: relative">
             <div class="pl-5">
@@ -87,6 +94,8 @@
                 </button>
             </div>
         </form>
+
+
 
 
     </div>
@@ -115,19 +124,19 @@
         <table id="tableCustomer" class="table table-bordered table-striped ">
             <thead>
             <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Customer Type</th>
                 <th>Name</th>
                 <th>Birthday</th>
                 <th>Gender</th>
-                <th class="editdelete">Edit</th>
-                <th class="editdelete">Delete</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${customers}" var="customer">
+            <c:forEach items="${customers}" var="customer" varStatus="a">
                 <tr>
-                    <td><a href="/customer?action=view&id=${customer.idCustomer}">${customer.idCustomer}</a></td>
+                    <td>${a.count}</td>
                     <c:forEach var="type" items="${customerTypes}">
                         <c:if test="${type.idTypeCustomer == customer.idTypeCustomer}">
                             <td>${type.customerTypeName}</td>
@@ -135,17 +144,24 @@
                     </c:forEach>
                     <td>${customer.name}</td>
                     <td>${customer.dateOfBirth}</td>
-                    <td>${customer.sex}</td>
-
-
-                    <td class="editdelete">
+                    <td>
+                        ${customer.sex==1?"Male":"Female"}
+                    </td>
+<%--                    <td>--%>
+<%--                    <c:if test="${customer.sex==1}">--%>
+<%--                        Male--%>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${customer.sex==0}">--%>
+<%--                        FeMale--%>
+<%--                    </c:if>--%>
+<%--                    </td>--%>
+<%--                    --%>
+                    <td >
                         <a href="/customer?action=edit&id=${customer.idCustomer}">
                             <button type="button" class="btn btn-primary">Edit</button>
                         </a>
                     </td>
-
-
-                    <td class="editdelete">
+                    <td>
                         <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"
                                 onclick="myFunction(${customer.idCustomer})">
                             Delete
@@ -218,12 +234,12 @@
 </footer>
 <div class="row container-fluid"></div>
 
-
+<script src="../bootstrap/bootstrap.min.js"></script>
 <script src="../bootstrap/jquery-3.6.0.min.js"></script>
 <script src="../../bootstrap/jquery.dataTables.min.js"></script>
 <script src="../../bootstrap/dataTables.bootstrap4.min.js"></script>
 <script src="bootstrap/popper.min.js"></script>
-<script src="../bootstrap/bootstrap.min.js"></script>
+
 
 <script>
     $(document).ready(function () {
@@ -241,9 +257,6 @@
         document.getElementById("idCustomer").value = id;
     }
 </script>
-
-
-
 
 </body>
 </html>
