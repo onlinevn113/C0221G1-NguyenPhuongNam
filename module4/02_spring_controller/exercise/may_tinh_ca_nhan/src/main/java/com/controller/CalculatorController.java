@@ -2,6 +2,7 @@ package com.controller;
 
 import com.service.ICalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CalculatorController {
+
+    @Qualifier("calculatorServiceImpl")
     @Autowired
     ICalculatorService iCalculatorService;
-    @GetMapping
+    @GetMapping(value = "")
     public String home(){
         return "home";
     }
