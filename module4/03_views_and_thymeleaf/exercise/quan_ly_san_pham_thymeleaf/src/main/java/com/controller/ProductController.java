@@ -6,10 +6,7 @@ import com.service.IProductService;
 import com.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -57,6 +54,10 @@ public class ProductController {
     @GetMapping("/{id}/view")
     public ModelAndView view(@PathVariable int id){
         return new ModelAndView("/views","product",productService.findById(id));
+    }
+    @PostMapping("/search")
+    public ModelAndView search(@RequestParam String nameSearch){
+        return new ModelAndView("/index","products",productService.findByName(nameSearch));
     }
 
 }
