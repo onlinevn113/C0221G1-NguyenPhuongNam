@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CalculatorController {
 
     @Qualifier("calculatorServiceImpl")
-    @Autowired
-    ICalculatorService iCalculatorService;
+    @Autowired()
+    private ICalculatorService iCalculatorService;
+
+
     @GetMapping(value = "")
     public String home(){
         return "home";
