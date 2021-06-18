@@ -15,8 +15,6 @@
     name: <input type="text" name="name"><br>
     age: <input type="text" name="age"><br>
     mark: <input type="text" name="mark"><br>
-    class: <input type="text" name="classT"><br>
-    teacher: <input type="text" name="teach"><br>
     <input type="submit">
 </form>
 </body>

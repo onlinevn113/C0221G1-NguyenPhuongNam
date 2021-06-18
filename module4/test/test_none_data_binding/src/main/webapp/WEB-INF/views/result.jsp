@@ -14,7 +14,5 @@
 name: ${student.name}<br>
 age: ${student.age}<br>
 mark: ${student.mark}<br>
-class: ${teacher.classT}<br>
-teach: ${teacher.teach}<br>
 </body>
 </html>
