@@ -9,14 +9,11 @@ import javax.persistence.EntityTransaction;
 import java.util.List;
 @Service
 public class ImgServiceIpml implements ImgService {
-
     @Override
     public List<ImgOfDay> showAll() {
         return BaseRepository.entityManager.createQuery(
-                "select i " +
-                        "from ImgOfDay i",ImgOfDay.class).getResultList();
+                "select i from ImgOfDay i",ImgOfDay.class).getResultList();
     }
-
     @Override
     public void addComment(ImgOfDay imgOfDay) {
         EntityTransaction entityTransaction=BaseRepository.entityManager.getTransaction();
@@ -24,16 +21,13 @@ public class ImgServiceIpml implements ImgService {
         BaseRepository.entityManager.persist(imgOfDay);
         entityTransaction.commit();
     }
-
     @Override
     public void addLike(int id) {
         ImgOfDay imgOfDay=BaseRepository.entityManager.find(ImgOfDay.class,id);
-        imgOfDay.setLike(imgOfDay.getLike()+1);
+        imgOfDay.setLikee(imgOfDay.getLikee()+1);
         EntityTransaction entityTransaction=BaseRepository.entityManager.getTransaction();
         entityTransaction.begin();
         BaseRepository.entityManager.merge(imgOfDay);
         entityTransaction.commit();
     }
-
-
 }

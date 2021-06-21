@@ -15,26 +15,17 @@ public class ImgOfDay {
     private String author;
     private String feedBack;
     private Date time = new Date(System.currentTimeMillis());
-    private int like;
+    private int likee;
 
     public ImgOfDay() {
     }
 
-    public ImgOfDay(int rate, String author, String feedBack, Date time, int like) {
+    public ImgOfDay(int rate, String author, String feedBack, Date time, int likee) {
         this.rate = rate;
         this.author = author;
         this.feedBack = feedBack;
         this.time = time;
-        this.like = like;
-    }
-
-    public ImgOfDay(int id, int rate, String author, String feedBack, Date time, int like) {
-        this.id = id;
-        this.rate = rate;
-        this.author = author;
-        this.feedBack = feedBack;
-        this.time = time;
-        this.like = like;
+        this.likee = likee;
     }
 
     public int getId() {
@@ -77,11 +68,11 @@ public class ImgOfDay {
         this.time = time;
     }
 
-    public int getLike() {
-        return like;
+    public int getLikee() {
+        return likee;
     }
 
-    public void setLike(int like) {
-        this.like = like;
+    public void setLikee(int likee) {
+        this.likee = likee;
     }
 }
