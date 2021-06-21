@@ -12,9 +12,11 @@
 </head>
 <body>
 <form action="/create" method="post">
+    classT: <input type="text" name="classT"><br>
     name: <input type="text" name="name"><br>
     age: <input type="text" name="age"><br>
     mark: <input type="text" name="mark"><br>
+    teach: <input type="text" name="teach"><br>
     <input type="submit">
 </form>
 </body>

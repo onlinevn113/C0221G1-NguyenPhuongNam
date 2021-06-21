@@ -11,8 +11,12 @@
     <title>Title</title>
 </head>
 <body>
+student <br>
 name: ${student.name}<br>
 age: ${student.age}<br>
 mark: ${student.mark}<br>
+teacher <br>
+classT: ${teacher.classT}<br>
+teach: ${teacher.teach}<br>
 </body>
 </html>

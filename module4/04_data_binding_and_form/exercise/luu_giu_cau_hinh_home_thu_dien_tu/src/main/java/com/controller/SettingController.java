@@ -19,12 +19,7 @@ public class SettingController {
     @PostMapping("/update")
     public ModelAndView result(@ModelAttribute("setting") Setting setting) {
         ModelAndView modelAndView = new ModelAndView("result");
-        modelAndView.addObject("language", setting.getLanguage());
-        modelAndView.addObject("pagesize", setting.getPagesize());
-        modelAndView.addObject("spamFilter", setting.isSpamFilter());
-        modelAndView.addObject("signature", setting.getSignature());
+        modelAndView.addObject("setting", setting);
         return modelAndView;
     }
-
-
 }

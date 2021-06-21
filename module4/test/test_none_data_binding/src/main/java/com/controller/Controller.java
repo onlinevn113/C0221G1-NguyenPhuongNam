@@ -18,8 +18,8 @@ public class Controller {
         return "home";
     }
     @PostMapping("/create")
-    public ModelAndView result(@ModelAttribute Student student){
-        return new ModelAndView("result","student",iStudentService.save(student));
+    public ModelAndView result(Student student,Teacher teacher){
+        return new ModelAndView("result","student",student).addObject("teacher",teacher);
     }
 
 }

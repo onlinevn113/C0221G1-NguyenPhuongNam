@@ -23,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping("/create")
-    public ModelAndView create() {
+    public ModelAndView showCreate() {
         return new ModelAndView("/create", "product", new Product());
     }
 
@@ -31,22 +31,22 @@ public class ProductController {
     public String save(@ModelAttribute Product product) {
         product.setId((int) (Math.random() * 10000));
         productService.save(product);
-        return "redirect:/product";
+        return "redirect:/product/";
     }
 
     @GetMapping("/{id}/edit")
-    public ModelAndView edit(@PathVariable int id) {
+    public ModelAndView showEdit(@PathVariable int id) {
         return new ModelAndView("/edit", "product", productService.findById(id));
     }
 
     @PostMapping("/update")
     public String update(Product product) {
         productService.update(product.getId(), product);
-        return "redirect:/product";
+        return "redirect:/product/";
     }
 
     @GetMapping("/{id}/delete")
-    public ModelAndView delete(@PathVariable int id) {
+    public ModelAndView showDelete(@PathVariable int id) {
         return new ModelAndView("/delete", "product", productService.findById(id));
     }
 
@@ -54,7 +54,7 @@ public class ProductController {
     public String delete(Product product, RedirectAttributes redirectAttributes) {
         productService.remove(product.getId());
         redirectAttributes.addFlashAttribute("success", "Removed product successfully!");
-        return "redirect:/product";
+        return "redirect:/product/";
     }
 
     @GetMapping("/{id}/view")
@@ -62,11 +62,6 @@ public class ProductController {
         return new ModelAndView("/views", "product", productService.findById(id));
     }
 
-//    @PostMapping("/search")
-//    public String search(@RequestParam String nameSearch, RedirectAttributes redirectAttributes) {
-//        redirectAttributes.addFlashAttribute("products", productService.findByName(nameSearch));
-//        return "redirect:/product";
-//    }
     @PostMapping("/search")
     public ModelAndView search(@RequestParam String nameSearch){
         return new ModelAndView("/index","products",productService.findByName(nameSearch));
