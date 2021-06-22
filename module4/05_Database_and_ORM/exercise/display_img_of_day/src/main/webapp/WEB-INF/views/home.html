@@ -29,6 +29,8 @@
         <input type="submit" value="comment">
     </form>
 </div>
+
+
 <p th:each="comment,status:${listComment}">
     Stt:
     <th:block th:text="${status.count}"></th:block>---
@@ -55,5 +57,6 @@
     };
     request.send();
 </script>
+
 </body>
 </html>
