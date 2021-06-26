@@ -27,7 +27,8 @@ public class BlogController {
     private ICategoryService categoryService;
 
     @GetMapping({"/", "/search"})
-    public ModelAndView showListBlog(@RequestParam("nameS") Optional<String> nameS, @RequestParam("page") Optional<Integer> page) {
+    public ModelAndView showListBlog(@RequestParam("nameS") Optional<String> nameS,
+                                     @RequestParam("page") Optional<Integer> page) {
         Page<Blog> blogList;
         Pageable pageable = PageRequest.of(page.orElse(0), 5, Sort.by("date","id").descending());
         ModelAndView modelAndView = new ModelAndView("/blog/list");
