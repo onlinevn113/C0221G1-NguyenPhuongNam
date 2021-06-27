@@ -42,28 +42,45 @@ public class ProductController {
         return "create";
     }
 
-    @PostMapping("createProduct")
-    public String save(@ModelAttribute @Valid ProductDto productDto, BindingResult bindingResult) {
+    @PostMapping("/createProduct")
+    public ModelAndView save(@ModelAttribute @Valid ProductDto productDto, BindingResult bindingResult) {
         new ProductDto().validate(productDto,bindingResult);
         if (bindingResult.hasErrors()){
-            return "create";
+            return new ModelAndView("create","msg","create is fail something wrong!!");
         }
         Product product=new Product();
         BeanUtils.copyProperties(productDto,product);
         iProductService.save(product);
-        return "redirect:/";
+        return new ModelAndView("create","msg","Create is success");
     }
-    @PostMapping(value = "update")
-    public String update(@ModelAttribute @Valid ProductDto productDto, BindingResult bindingResult) {
+
+
+
+
+
+
+
+    @PostMapping(value = "/update")
+    public ModelAndView update(@ModelAttribute @Valid ProductDto productDto, BindingResult bindingResult) {
         new ProductDto().validate(productDto,bindingResult);
         if (bindingResult.hasErrors()){
-            return "edit";
+            return new ModelAndView("edit","msg","edit is fail something wrong!!");
         }
         Product product=new Product();
         BeanUtils.copyProperties(productDto,product);
         iProductService.save(product);
-        return "redirect:/";
+        return new ModelAndView("edit","msg","edit is success");
     }
+
+
+
+
+
+
+
+
+
+
 
 
     @GetMapping(value = "/{id}/show")

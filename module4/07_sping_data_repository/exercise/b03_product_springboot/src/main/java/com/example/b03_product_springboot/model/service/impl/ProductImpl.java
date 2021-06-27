@@ -35,23 +35,37 @@ public class ProductImpl implements IProductService {
     public void remove(Integer id) {
         productRepository.deleteById(id);
     }
-
-    @Override
-    public Page<Product> searchNameAndDate(String search, Pageable pageable) {
-
-        return productRepository.searchNameAndDate('%'+search+'%', pageable);
-    }
+//
 //    @Override
 //    public Page<Product> searchNameAndDate(String search, Pageable pageable) {
-//        Page<Product> pageable1=productRepository.searchNameAndDate('%'+search+'%', pageable);
-//        for(Product p:pageable1){
-//            p.setDate(LocalDate.parse(new SimpleDateFormat("dd/MM/yyyy").format(p.getDate())));
-//        }
-//        return pageable1;
+//
+//        return productRepository.searchNameAndDate('%'+search+'%', pageable);
 //    }
+    @Override
+    public Page<Product> searchNameAndDate(String search, Pageable pageable) {
+        Page<Product> pageable1=productRepository.searchNameAndDate('%'+search+'%', pageable);
+        for(Product p:pageable1){
+           String []a=p.getDate().split("-");
+           String temp;
+               temp=a[0];
+               a[0]=a[2];
+               a[2]=temp;
+           p.setDate(a[0]+"-"+a[1]+"-"+a[2]);
+        }
+        return pageable1;
+    }
 
     @Override
     public Page<Product> findAllSortDate(Pageable pageable) {
-        return productRepository.findAllSortDate(pageable);
+        Page<Product> pageable1=productRepository.findAllSortDate(pageable);
+        for(Product p:pageable1){
+            String []a=p.getDate().split("-");
+            String temp;
+            temp=a[0];
+            a[0]=a[2];
+            a[2]=temp;
+            p.setDate(a[0]+"-"+a[1]+"-"+a[2]);
+        }
+        return pageable1;
     }
 }

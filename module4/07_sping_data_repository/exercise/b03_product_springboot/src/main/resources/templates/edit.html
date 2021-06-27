@@ -6,7 +6,8 @@
 </head>
 <body>
 <h2>Edit new product</h2>
-<form action="update" method="post" th:object="${productDto}">
+<h1 th:text="${msg}"></h1>
+<form action="/update" method="post" th:object="${productDto}">
     <table>
         <tr>
             <td></td>

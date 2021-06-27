@@ -6,6 +6,7 @@
 </head>
 <body>
 <h2>Create new product</h2>
+<h1  th:text="${msg}"></h1>
 <form action="createProduct" method="post" th:object="${productDto}">
     <table>
         <tr>

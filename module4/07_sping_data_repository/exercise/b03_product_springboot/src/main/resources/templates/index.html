@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>List product</title>
 </head>
-
 <body>
 <p>
     <a th:href="@{/product/create}">
-        Add new customer
+        Add new product
     </a>
 </p>
 <form>
@@ -15,24 +15,22 @@
     <input name="search" type="text"/>
     <input type="submit" value="Search"/>
 </form>
+<h3 th:if="${products.hasContent()}" th:text="'Page: '+ ${products.number+1}"></h3>
 <table class="" border="1">
     <thead>
     <tr>
-        <th>#</th>
+
         <th>ID</th>
         <th>Name</th>
         <th>Price</th>
         <th>Description</th>
         <th>Manufacturer</th>
         <th>Time</th>
-        <th>Action</th>
+        <th colspan="3">Action</th>
     </tr>
     </thead>
-    <!--    <tr th:each="row,rowStat : ${customers}">-->
-
     <tbody>
-    <tr th:each="row,rowStat : ${products}">
-        <td th:text="${rowStat.count}"></td>
+    <tr th:each="row : ${products}">
         <td th:text="${row.id}"></td>
         <td th:text="${row.name}"></td>
         <td th:text="${row.price}"></td>
@@ -40,24 +38,53 @@
         <td th:text="${row.manufacturer}"></td>
         <td th:text="${row.date}"></td>
         <td>
-            <a  th:href="@{/product/{id}/show(id=${row.getId()})}">Show</a>
-            <a  th:href="@{/product/{id}/edit(id=${row.getId()})}">Edit</a>
-            <a   th:href="@{/product/{id}/delete(id=${row.getId()})}">Delete</a>
+            <button>
+                <a th:href="@{/product/{id}/show(id=${row.getId()})}">Show</a>
+            </button>
+
+        </td>
+        <td>
+            <button>
+                <a th:href="@{/product/{id}/edit(id=${row.getId()})}">Edit</a>
+            </button>
+
+
+        </td>
+        <td>
+            <button>
+                <a th:href="@{/product/{id}/delete(id=${row.getId()})}">Delete</a>
+            </button>
+
         </td>
     </tr>
     </tbody>
 
 </table>
-<div>
-    <a th:href="@{'/product'(page=${products.number - 1}, search=${search})}" th:if="${products.hasPrevious()}">Previous</a>
-    <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
-    <a th:href="@{'/product'(page=${products.number + 1}, search=${search})}" th:if="${products.hasNext()}">Next</a>
-</div>
 
-<p>
-    <span th:each="pageNo : ${#numbers.sequence(0, products.totalPages -1)}" >
-        <a th:href="@{'/product'(page = ${pageNo})}" th:text="${pageNo}"></a>
+
+
+<!--<div>-->
+<!--    <a th:href="@{'/product'(page=${products.number - 1}, search=${search})}"-->
+<!--       th:if="${products.hasPrevious()}">Previous</a>-->
+<!--    <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>-->
+<!--    <a th:href="@{'/product'(page=${products.number + 1}, search=${search})}" th:if="${products.hasNext()}">Next</a>-->
+<!--</div>-->
+<!--<p >-->
+<!--    <span th:if="${products.hasContent()}" th:each="pageNo : ${#numbers.sequence(0, products.totalPages -1)}">-->
+<!--        <a th:href="@{'/product'(page = ${pageNo})}" th:text="${pageNo}+1"></a>-->
+<!--    </span>-->
+<!--</p>-->
+
+
+<div>
+    <a th:href="@{'/product'(page=${products.number - 1},search=${search})}" th:if="${products.hasPrevious()}">Previous</a>
+    <span th:each="p : ${#numbers.sequence(0,products.totalPages -1)}" th:if="${products.hasContent()}">
+          <a th:href="@{'/product'(page=${p},search=${search})}"
+             th:text="${p +1}"
+             th:if="${(p >(products.number)-3)&&(p <(products.number+4))}"
+          ></a>
     </span>
-</p>
+    <a th:href="@{'/product'(page=${products.number + 1},search=${search})}" th:if="${products.hasNext()}">Next</a>
+</div>
 </body>
 </html>
