@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang List</title>
+</head>
+<body>
+<table border="1px" cellpadding="5px" cellspacing="0">
+    <tr>
+        <th>Book's name</th>
+        <th>Quantity</th>
+        <th colspan="2">Action</th>
+    </tr>
+
+    <th:block th:each="book: ${books}">
+        <tr>
+            <td><a th:href="@{/books/{id}(id=${book.getId()})}"><label th:text="${book.getName()}"></label></a></td>
+            <td th:text="${book.getQuantity()}"></td>
+            <td><a th:href="@{/books/borrow/{id}(id=${book.getId()})}"><label>Mượn</label></a></td>
+            <td><a th:href="@{/books/get/{id}(id=${book.getId()})}"><label>Trả</label></a></td>
+        </tr>
+
+    </th:block>
+</table>
+</body>
+</html>
