@@ -1,23 +1,15 @@
 package com.model;
 
 import com.model.entity.Product;
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@Data
 public class Cart {
     private Map<Product,Integer> products = new HashMap<>();
 
-    public Cart() {
-    }
 
-    public Cart(Map<Product,Integer> products) {
-        this.products = products;
-    }
-
-    public Map<Product,Integer> getProducts() {
-        return products;
-    }
 
     private boolean checkItemInCart(Product product){
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
@@ -75,6 +67,6 @@ public class Cart {
         }
     }
     public void deleteProduct(Product product){
-
+            products.remove(product);
     }
 }
