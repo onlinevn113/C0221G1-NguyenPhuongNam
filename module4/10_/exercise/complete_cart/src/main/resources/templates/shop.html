@@ -15,15 +15,14 @@
     <tr>
         <td>Name</td>
         <td>Price</td>
-        <td>Image</td>
+        <td>Detail</td>
         <td>Add To Cart</td>
     </tr>
     <th:block th:each="product:${products}">
         <tr>
-
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}"></td>
-            <td><img height="90" width="70" th:src="@{/image/__${product.img}__}"></td>
+            <td><a th:href="@{/add/__${product.id}__(action='detail')}">Detail</a></td>
             <td><a th:href="@{/add/__${product.id}__(action='list')}">Add To Cart</a></td>
         </tr>
         <div>

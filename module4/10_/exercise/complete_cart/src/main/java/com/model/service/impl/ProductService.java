@@ -20,4 +20,9 @@ public class ProductService implements IProductService {
     public Optional<Product> findById(Integer id) {
         return productRepository.findById(id);
     }
+
+    @Override
+    public Product findById2(Integer id) {
+        return productRepository.findById(id).orElse(null);
+    }
 }

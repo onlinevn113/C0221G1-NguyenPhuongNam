@@ -66,6 +66,7 @@ public class Cart {
                     selectItemInCart(product).getValue() - 1);
         }
     }
+
     public void deleteProduct(Product product){
             products.remove(product);
     }
