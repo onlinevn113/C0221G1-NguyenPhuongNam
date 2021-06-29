@@ -51,7 +51,7 @@ public class ProductController {
             return "redirect:/shopping-cart";
         }
         if (action.equals("detail")) {
-            model.addAttribute("product",productOptional.orElse(null));
+            model.addAttribute("product",productService.findById2(id));
             return "/detail";
         }
         redirectAttributes.addFlashAttribute("msg", "Add " + productOptional.get().getName() + " Successfully");

@@ -7,9 +7,9 @@
 </head>
 <body>
 <a href="/shop/">Back to shop</a>
-<p th:text="'Name: ' ${product.name}"></p>
-<p th:text="'Price: ' ${product.price}"></p>
-<img height="90" width="70" th:src="@{image/__${product.img}__}">
-<p th:text="'Description: ' ${product.description}"></p>
+<p th:text="'Name: '+ ${product.name}"></p>
+<p th:text="'Price: '+ ${product.price}"></p>
+<img height="90" width="70" th:src="@{/image/__${product.img}__}">
+<p th:text="'Description: '+ ${product.description}"></p>
 </body>
 </html>
