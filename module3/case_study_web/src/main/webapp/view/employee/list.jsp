@@ -116,7 +116,7 @@
         <table id="tableEmployee" class="table table-bordered table-striped ">
             <thead>
             <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Employee Name</th>
                 <th>Education Degree</th>
                 <th>Divison</th>
@@ -126,9 +126,12 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${employees}" var="employee">
+            <c:forEach items="${employees}" var="employee" varStatus="a">
                 <tr>
-                    <td><a href="/employee?action=view&id=${employee.employeeId}">${employee.employeeId}</a></td>
+<%--                    <td><a href="/employee?action=view&id=${employee.employeeId}">${employee.employeeId}</a></td>--%>
+
+                   <td>${a.count}</td>
+
                     <td>${employee.employeeName}</td>
 
                     <c:forEach var="educationDegree" items="${educationDegreeList}">
