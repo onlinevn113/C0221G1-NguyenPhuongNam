@@ -33,7 +33,7 @@ public class UserDto implements Validator {
 //    @Max(value = 150, message = "Please input age less than 150")
     private int age;
 
-
+    @Pattern(regexp = "^(84|0[3|5|7|8|9])([0-9]{8})$" )
     @Email(message = "Please input email invalid")
     private String email;
 
@@ -58,7 +58,7 @@ public class UserDto implements Validator {
     public void validate(Object target, Errors errors) {
         UserDto userDto = (UserDto) target;
         if (userDto.email.equals("")) {
-            errors.rejectValue("email", "email.valid", "Please input email");
+            errors.rejectValue("email", "email.valid");
         }
         if (userDto.age > 150) {
             errors.rejectValue("age", "age.valid", "You died!!");
