@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{list.title}"></title>
+    <link rel="stylesheet" href="/md_bootstrap/mdb.min.css">
+    <script src="/md_bootstrap/mdb.min.js"></script>
+
 </head>
 <body>
-<span th:text="#{list.language}"></span> <a href="?lang=vn">Vietnamese</a> | <a href="?lang=jp">Japanese</a><br>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid ">
+        <div class="col-8"></div>
+        <ul class="navbar-nav col-3">
+            <!-- Icon dropdown -->
+            <li class="nav-item dropdown">
+                <a
+                        class="nav-link dropdown-toggle"
+                        href="?lang=vn"
+                        id="navbarDropdown"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                >
+                    Change language
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="?lang=vn"
+                        ><i class="vietnam  flag"></i>VietNamese
+                            <i class="fa fa-check text-success ms-2"></i
+                            ></a>
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                        <a class="dropdown-item" href="?lang=jp"><i class="japan flag"></i>Japanese</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
 <a href="/create-customer" th:text="#{list.create}"></a>
 <h1 th:text="#{list.customer}"></h1>
 <form>
@@ -13,7 +49,7 @@
     <input name="search" type="text"/>
     <input type="submit" th:value="#{list.search}"/>
 </form>
-<table border="1">
+<table class="table-bordered">
     <tr>
         <th th:text="#{list.firstname}"></th>
         <th th:text="#{list.lastname}"></th>
