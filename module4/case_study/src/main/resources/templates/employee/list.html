@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+
+    <!--    <link rel="stylesheet" href="/md_bootstrap/mdb.min.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <style>
+        #footer-sticky {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+
+        }
+
+        #navbar {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+
+        }
+
+        body {
+            font-family: "Lato", sans-serif;
+            transition: background-color .5s;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+
+            background-color: #0F574B;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #f1eaea;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #111111;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"-->
+    <!--        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"-->
+    <!--        crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+            integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+            crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+
+<div class="container-fluid d-flex position-relative border-0 row ">
+    <div class="col-3 ">
+        <a href="" class="img-fluid"><img class=" img-fluid mx-5"
+                                          src="/img/logo_furama/logo_furama.png"
+                                          height="117" width="87"/></a>
+    </div>
+    <div class="col-3">
+        <a class=" img-fluid mx-5 px-5 align-items-center img-fluid"
+           href="https://www.tripadvisor.com/Hotel_Review-g298085-d302750-Reviews-Furama_Resort_Danang-Da_Nang.html">
+            <img
+                    class="img-fluid  " src="/img/logo_tripadvisor/logo_tripadvisor.png"
+            /></a>
+    </div>
+    <div class="col-6 text-right"><span>Nguyễn Phương Nam</span>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="navbar"
+     style=" height: 47px;background: #0F574B">
+    <div class="collapse navbar-collapse col-4 " id="navbarsExample07">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active px-3">
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            </li>
+            <li class="nav-item active px-5">
+                <a class="nav-link " href="/employee/create" style="text-decoration: none">+ Create new Employee</a>
+            </li>
+
+            <!--            <li class="nav-item active px-5">-->
+            <!--                <a class="nav-link " href="/#">#</a>-->
+            <!--            </li>-->
+
+            <!--            <li class="nav-item active px-5">-->
+            <!--                <a class="nav-link" href="/#">#</a>-->
+            <!--            </li>-->
+
+            <!--            <li class="nav-item active px-5">-->
+            <!--                <a class="nav-link" href="/#">#</a>-->
+            <!--            </li>-->
+
+            <!--            <li class="nav-item active px-5">-->
+            <!--                <a class="nav-link" href="/#">#</a>-->
+            <!--            </li>-->
+        </ul>
+    </div>
+    <form class="form-inline my-2 my-lg-0  col-4  " action="/employee/search" method="get">
+        <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search">
+    </form>
+    <div class="col-4 ">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active px-3">
+                <span th:text="${msg}"></span>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <table class="table">
+        <caption>List of employee</caption>
+        <thead style="font-weight: 1000">
+        <tr>
+            <th><h5>Id</h5></th>
+            <th><h5>Name</h5></th>
+            <th><h5>Birthday</h5></th>
+            <th><h5>IdCard</h5></th>
+            <th><h5>Phone Number</h5></th>
+            <th><h5>Address</h5></th>
+            <th><h5>position</h5></th>
+            <th><h5>Education</h5></th>
+            <th><h5>Division</h5></th>
+
+            <th><h5>Edit</h5></th>
+            <th><h5>Delete</h5></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c,status : ${employees}">
+            <!--        <td th:text="${status.count}"></td>-->
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.name}"></td>
+            <td th:text="${c.birthday}"></td>
+            <td th:text="${c.idCard}"></td>
+            <td th:text="${c.phone}"></td>
+            <td th:text="${c.address}"></td>
+            <td th:text="${c.position.name}"></td>
+            <td th:text="${c.educationDegree.name}"></td>
+            <td th:text="${c.division.name}"></td>
+
+            <td>
+                <a th:href="@{/employee/edit/{idc}(idc=${c.id})}" style="color: #090915">
+                    <button class="bi bi-pencil-square"></button>
+                </a>
+            </td>
+
+            <td>
+                <button data-toggle="modal" data-target="#myModal"
+                        th:data-parameter1="${c.id}" th:data-parameter2="${c.name}"
+                        onclick="showModal(this.getAttribute('data-parameter1'),this.getAttribute('data-parameter2'))">
+                    <i class="bi bi-trash"></i>
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--    Paging-->
+    <div>
+        <a class="btn btn-outline-dark  text-black"
+           th:href="@{'/employee'(page=${employees.number - 1},search=${search})}"
+           th:if="${employees.hasPrevious()}"> <span style="font-weight: bold"> < </span>
+        </a>
+        <span th:each="p : ${#numbers.sequence(0,employees.totalPages -1)}" th:if="${employees.hasContent()}">
+          <a class="btn btn-outline-dark" style="text-decoration: none"
+             th:href="@{'/employee'(page=${p},search=${search})}"
+             th:text="${p +1}"
+             th:if="${(p >(employees.number)-2)&&(p <(employees.number+2))}"
+          ></a>
+    </span>
+        <a class="btn btn-outline-dark   text-black"
+           th:href="@{'/employee'(page=${employees.number + 1},search=${search})}" th:if="${employees.hasNext()}">
+            <span style="font-weight: bold"> > </span>
+        </a>
+    </div>
+</div>
+
+<!--sidenav-->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" id="closeZ" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="nav-link " href="/home"><i class="bi bi-house"></i> &nbsp;Home</a> <br> <br>
+    <a class="nav-link " href="/customer">Customer</a> <br> <br>
+    <a class="nav-link" href="/employee">Employee</a> <br> <br>
+    <a class="nav-link" href="/service">Service</a> <br><br>
+    <a class="nav-link" href="/contract">Contract</a>
+</div>
+<!--modal-->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form th:action="@{/employee/delete}" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Accept delete employee</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Do you want to delete: <h5 id="employeeName">???</h5>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-danger btn-ok" id="delete" value="Delete">
+                    <input type="hidden" id="employeeId" name="id">
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<footer class="text-white " th:fragment="footer">
+    <div class="container px-4 pb-3 text-center">
+        <section class="mb-3">
+            <span style="color: rgba(0,0,0,0.48)">© For more information </span>
+            <a target="_blank" class="m-1 rounded-circle"
+               href="https://www.facebook.com/furamaresort/"
+               role="button">
+                <img src="/img/icon/facebook.png"
+                     class="img-fluid rounded-circle" style="height: 40px; width: 40px" alt="">
+            </a>
+            <a class="m-1 rounded-circle"
+               href="https://www.instagram.com/furama_resort_danang/?hl=vi"
+               role="button">
+                <img src="/img/icon/283-2831746_insta-icon-instagram.png"
+                     class="img-fluid rounded-circle" style="height: 30px; width: 30px" alt="">
+            </a>
+        </section>
+    </div>
+
+
+    <div class="text-center px-2 justify-content-center align-items-center " style=" background: #0F574B"
+         id="footer-sticky">
+        <span>COVID 19 UPDATE: The safety and well-being are our utmost priority</span>
+        <a href="https://furamavietnam.com/covid-19-update/">
+            <button class="my-1" style="background: #c1f8f0; border-radius: 5px; height: 25px">
+                <span style="color: #0F574B">Learn more</span>
+            </button>
+        </a>
+    </div>
+</footer>
+
+<script>
+    function showModal(id, name) {
+        document.getElementById("employeeId").value = id;
+        document.getElementById("employeeName").innerText = name;
+    }
+</script>
+<script>
+    document.addEventListener('keypress', openZ);
+
+    function openZ(e) {
+        if (e.code == "KeyZ") {
+            openNav()
+        }
+    }
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

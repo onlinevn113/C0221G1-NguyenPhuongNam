@@ -20,7 +20,7 @@ public class Blog {
     @Column(columnDefinition = "DATE")
     private String date;
     @ManyToOne
-    @JoinColumn( referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private Category category;
 
     public Blog() {

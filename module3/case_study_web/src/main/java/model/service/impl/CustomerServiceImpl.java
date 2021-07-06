@@ -79,7 +79,7 @@ public class CustomerServiceImpl implements  ICustomerService {
         }
         if ("".equals(customer.getAddress())){
             flag=false;
-            mapMsg.put("address","Please in put address");
+            mapMsg.put("address","Please input address");
         }
 
         if (flag) {

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        p {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form  th:object="${serviceDto}" class="well form-horizontal" action="/service/create" method="post">
+        <a href="/home"><button type="button" class="btn btn-warning" ><span class="glyphicon glyphicon-chevron-left"></span> Back to home</button></a>
+
+        <fieldset>
+            <!-- Form Name -->
+            <legend><center><h2><b>Create Form <br> <span th:text="${msg}"></span> </b></h2></center></legend><br>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Code</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i></span>
+                        <input  th:field="*{code}" placeholder="Code" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{code}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Name Service</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i></span>
+                        <input  th:field="*{name}" placeholder="Name Service" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{name}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Area </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input  th:field="*{area}" placeholder="Area" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{area}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Cost </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                        <input  th:field="*{cost}" placeholder="Cost" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{cost}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Max People </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input  th:field="*{maxPeople}" placeholder="Max People" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{maxPeople}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Standard Room </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i></span>
+                        <input  th:field="*{standardRoom}" placeholder="Standard Room" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{standardRoom}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Description  </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i></span>
+                        <input  th:field="*{description}" placeholder="Description" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{description}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">PoolArea  </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input  th:field="*{poolArea}" placeholder="PoolArea" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{poolArea}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Number Of Floor  </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input  th:field="*{floors}" placeholder="Number Of Floor" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{floors}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Service Type</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select th:field="*{serviceType}" class="form-control selectpicker">
+                            <option th:each="c : ${serviceTypes}"
+                                    th:value="${c.id}"
+                                    th:text="${c.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <p th:errors="*{serviceType}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Rent Type</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select th:field="*{rentType}" class="form-control selectpicker">
+                            <option th:each="c : ${rentTypes}"
+                                    th:value="${c.id}"
+                                    th:text="${c.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <p th:errors="*{rentType}"></p>
+                </div>
+            </div>
+
+
+
+
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button type="submit" class="btn btn-warning" ><span class="glyphicon glyphicon-send"></span>Submit</button>
+        </fieldset>
+    </form>
+</div>
+</div>
+</body>
+</html>

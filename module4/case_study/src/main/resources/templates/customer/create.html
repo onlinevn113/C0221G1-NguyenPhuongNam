@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        p {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+     <form  th:object="${customerDto}" class="well form-horizontal" action="/customer/create" method="post">
+         <a href="/customer"><button type="button" class="btn btn-warning" ><span class="glyphicon glyphicon-chevron-left"></span> Back to list</button></a>
+
+         <fieldset>
+            <!-- Form Name -->
+            <legend><center><h2><b>Create Form <br> <span th:text="${msg}"></span> </b></h2></center></legend><br>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Customer Type</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select th:field="*{customerType}" class="form-control selectpicker">
+                            <option th:each="c : ${customerTypes}"
+                                    th:value="${c.id}"
+                                    th:text="${c.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <p th:errors="*{customerType}"></p>
+                </div>
+            </div>
+             <div class="form-group">
+                 <label class="col-md-4 control-label ">Code</label>
+                 <div class="col-md-4 inputGroupContainer">
+                     <div class="input-group">
+                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                         <input  th:field="*{code}" placeholder="Code" class="form-control"  type="text">
+                     </div>
+                     <p th:errors="*{code}"></p>
+                 </div>
+             </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Name</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  th:field="*{name}" placeholder="Name" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{name}"></p>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Birthday</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  th:field="*{birthday}" placeholder="Birthday" class="form-control"  type="date">
+                    </div>
+                    <p th:errors="*{birthday}"></p>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Id Card</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input th:field="*{idCard}"  class="form-control" type="number">
+                    </div>
+                    <p th:errors="*{idCard}"></p>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Gender</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
+                        <select th:field="*{gender}" class="form-control selectpicker">
+                            <option value="1">Male</option>
+                            <option value="0">FeMale</option>
+                            <option value="2">Other</option>
+                        </select>
+                    </div>
+                    <p th:errors="*{gender}"></p>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Phone Number</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input th:field="*{phone}" placeholder="(84)" class="form-control" type="number">
+                    </div>
+                    <p th:errors="*{phone}"></p>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">E-Mail</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input th:field="*{email}" placeholder="E-Mail Address" class="form-control"  type="email">
+                    </div>
+                    <p th:errors="*{email}"></p>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Address</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input  th:field="*{address}" placeholder="Address" class="form-control"  type="text">
+                    </div>
+                    <p th:errors="*{address}"></p>
+                </div>
+            </div>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button type="submit" class="btn btn-warning" ><span class="glyphicon glyphicon-send"></span>Submit</button>
+        </fieldset>
+    </form>
+</div>
+</div>
+
+
+
+</body>
+</html>

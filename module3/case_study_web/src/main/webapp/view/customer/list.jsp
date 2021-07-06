@@ -94,10 +94,6 @@
                 </button>
             </div>
         </form>
-
-
-
-
     </div>
 </nav>
 
@@ -180,6 +176,11 @@
 
 </div>
 
+
+
+
+
+
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form action="/customer?action=delete" method="post">
@@ -203,6 +204,11 @@
 
     </div>
 </div>
+
+
+
+
+
 
 
 <footer class="text-white ">

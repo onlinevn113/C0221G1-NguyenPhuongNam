@@ -163,7 +163,11 @@ public class CustomerServlet extends HttpServlet {
                 request.setAttribute("customerTypes", customerTypes);
             }else {
                 request.setAttribute("customerTypes", customerTypes);
+
                 request.setAttribute("customerFail",customer);
+
+
+
                 request.setAttribute("nameMsg",mapMsg.get("name"));
                 request.setAttribute("dateOfBirthMsg",mapMsg.get("dateOfBirth"));
                 request.setAttribute("idCardMsg",mapMsg.get("idCard"));

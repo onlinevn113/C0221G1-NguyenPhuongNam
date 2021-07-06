@@ -16,6 +16,6 @@ public class Regex {
                 + "|^(((19|2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$"
                 + "|^(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$";
         String idCard = "^((\\d){12}||(\\d){9}){1}$";
-        System.out.println("1999-07-02".matches(a));
+        System.out.println("Nguyễn Phương Nam".matches(NAME));
     }
 }
