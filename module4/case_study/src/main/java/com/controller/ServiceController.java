@@ -26,8 +26,11 @@ import javax.validation.Valid;
 public class ServiceController {
     @Autowired
     IServiceService serviceService;
-
-    @GetMapping({"/create",""})
+    @GetMapping
+    public ModelAndView showList(){
+        return new ModelAndView("/home");
+    }
+    @GetMapping({"/create"})
     public ModelAndView showCreate(){
         ModelAndView modelAndView=new ModelAndView("service/create");
         modelAndView.addObject("serviceDto",new ServiceDto());
@@ -48,7 +51,7 @@ public class ServiceController {
         Service service=new Service();
         BeanUtils.copyProperties(serviceDto,service);
         serviceService.save(service);
-        redirectAttributes.addFlashAttribute("msg","Create is successful!!");
+        redirectAttributes.addFlashAttribute("msg","Create service is successful!!");
         return new ModelAndView("redirect:/home");
     }
 }

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/md_bootstrap/mdb.min.css">
 
     <style>
+
         #footer-sticky {
             position: fixed;
             bottom: 0;
@@ -86,15 +87,16 @@
     <a class="nav-link " href="/customer">Customer</a> <br>
     <a class="nav-link" href="/employee">Employee</a> <br>
     <a class="nav-link" href="/service">Service</a> <br>
-    <a class="nav-link" href="/contract">Contract</a>
+    <a class="nav-link" href="/contract">Customer <br> Using </a>
+    <a th:if="${#request.userPrincipal != null}" class="nav-link" href="/logout">Logout</a>
 </div>
 
 
-<div class="container-fluid d-flex position-relative border-0 row " >
+<div class="container-fluid d-flex position-relative border-0 row ">
     <div class="col-3 ">
         <a href="/home" class="img-fluid"><img class=" img-fluid mx-5"
-                                          src="/img/logo_furama/logo_furama.png"
-                                          height="117" width="87"/></a>
+                                               src="/img/logo_furama/logo_furama.png"
+                                               height="117" width="87"/></a>
     </div>
     <div class="col-3">
         <a class=" img-fluid mx-5 px-5 align-items-center img-fluid"
@@ -141,18 +143,32 @@
     </form>
     <div class="col-4 ">
         <ul class="navbar-nav mr-auto">
+
             <li class="nav-item active px-3">
                 <span th:text="${msg}"></span>
             </li>
+
         </ul>
     </div>
 </nav>
-<a class="btn btn-outline-dark" href="/service/create">+ Create new Service</a> <br>
-<a class="btn btn-outline-dark" href="/contract/create-contract">+ Create new contract</a>
-<a class="btn btn-outline-dark" href="/contract/create-contract-detail">+ Create new contract detail</a>
+<div class="text-center">
+    <a class="btn btn-outline-dark" href="/service/create">+ Create new Service</a> <br> <br>
+    <a class="btn btn-outline-dark" href="/contract/create-contract">+ Create new contract</a> <br> <br>
+    <a class="btn btn-outline-dark" href="/contract/create-contract-detail">+ Create new contract detail</a> <br> <br>
 
+    <th:block th:if="${#request.userPrincipal == null}">
+        <a class="btn btn-outline-dark" href="/login">Login</a> <br> <br>
+    </th:block>
+
+
+    <th:block th:if="${#request.userPrincipal != null}">
+        <span th:text="${#request.userPrincipal.name}"></span>
+        <a class="btn btn-outline-dark" href="/logout">Logout</a>
+    </th:block>
+
+
+</div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
 
 
 <footer class="text-white " th:fragment="footer">
@@ -189,11 +205,15 @@
 
 <script>
     document.addEventListener('keypress', openZ);
+
     function openZ(e) {
-        if (e.code=="KeyZ"){
+        if (e.code == "KeyZ") {
             openNav()
+        } else if (e.code == "KeyX") {
+            closeNav()
         }
     }
+
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
         document.getElementById("main").style.marginLeft = "250px";

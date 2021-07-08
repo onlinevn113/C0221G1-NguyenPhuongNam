@@ -1,7 +1,5 @@
 package com.model.entity.employee;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,29 +12,27 @@ public class User {
     private String username;
     private String password;
 
-
-
     @OneToMany(mappedBy = "id")
     private List<Employee> employeeList;
     @OneToMany(mappedBy = "id")
-    private List<UserRole> userRoleList;
+    private List<UserRole1> userRole1List;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, List<Employee> employeeList, List<UserRole> userRoleList) {
+    public User(Long id, String username, String password, List<Employee> employeeList, List<UserRole1> userRole1List) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.employeeList = employeeList;
-        this.userRoleList = userRoleList;
+        this.userRole1List = userRole1List;
     }
 
-    public User(String username, String password, List<Employee> employeeList, List<UserRole> userRoleList) {
+    public User(String username, String password, List<Employee> employeeList, List<UserRole1> userRole1List) {
         this.username = username;
         this.password = password;
         this.employeeList = employeeList;
-        this.userRoleList = userRoleList;
+        this.userRole1List = userRole1List;
     }
 
     public Long getId() {
@@ -71,11 +67,11 @@ public class User {
         this.employeeList = employeeList;
     }
 
-    public List<UserRole> getUserRoleList() {
-        return userRoleList;
+    public List<UserRole1> getUserRoleList() {
+        return userRole1List;
     }
 
-    public void setUserRoleList(List<UserRole> userRoleList) {
-        this.userRoleList = userRoleList;
+    public void setUserRoleList(List<UserRole1> userRole1List) {
+        this.userRole1List = userRole1List;
     }
 }

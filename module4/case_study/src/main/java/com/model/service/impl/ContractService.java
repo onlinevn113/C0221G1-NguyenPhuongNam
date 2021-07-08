@@ -40,18 +40,20 @@ public class ContractService implements IContractService {
     }
 
     @Override
+    public Page<Contract> findAll(String search, Pageable pageable) {
+
+        return contractRepository.findAllContract("%"+search+"%",pageable);
+    }
+
+    @Override
     public void save(ContractDetail o) {
         contractDetailRepository.save(o);
     }
 
-    @Override
-    public Page<Contract> findAll(String name, Pageable pageable) {
-        return null;
-    }
 
     @Override
     public Contract findById(Long id) {
-        return null;
+        return contractRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -61,6 +63,6 @@ public class ContractService implements IContractService {
 
     @Override
     public void remove(Long id) {
-
+        contractRepository.deleteById(id);
     }
 }

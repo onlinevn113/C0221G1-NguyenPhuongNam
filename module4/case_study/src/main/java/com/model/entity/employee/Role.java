@@ -1,7 +1,5 @@
 package com.model.entity.employee;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,20 +11,20 @@ public class Role {
     private Long id;
     private String name;
     @OneToMany(mappedBy = "id")
-    private List<UserRole> userRoleList;
+    private List<UserRole1> userRole1List;
 
     public Role() {
     }
 
-    public Role(Long id, String name, List<UserRole> userRoleList) {
+    public Role(Long id, String name, List<UserRole1> userRole1List) {
         this.id = id;
         this.name = name;
-        this.userRoleList = userRoleList;
+        this.userRole1List = userRole1List;
     }
 
-    public Role(String name, List<UserRole> userRoleList) {
+    public Role(String name, List<UserRole1> userRole1List) {
         this.name = name;
-        this.userRoleList = userRoleList;
+        this.userRole1List = userRole1List;
     }
 
     public Long getId() {
@@ -45,11 +43,11 @@ public class Role {
         this.name = name;
     }
 
-    public List<UserRole> getUserRoleList() {
-        return userRoleList;
+    public List<UserRole1> getUserRoleList() {
+        return userRole1List;
     }
 
-    public void setUserRoleList(List<UserRole> userRoleList) {
-        this.userRoleList = userRoleList;
+    public void setUserRoleList(List<UserRole1> userRole1List) {
+        this.userRole1List = userRole1List;
     }
 }

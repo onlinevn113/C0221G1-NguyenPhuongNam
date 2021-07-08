@@ -96,7 +96,7 @@
 
 <div class="container-fluid d-flex position-relative border-0 row ">
     <div class="col-3 ">
-        <a href="" class="img-fluid"><img class=" img-fluid mx-5"
+        <a href="/home" class="img-fluid"><img class=" img-fluid mx-5"
                                           src="/img/logo_furama/logo_furama.png"
                                           height="117" width="87"/></a>
     </div>
@@ -221,17 +221,17 @@
 
 <!--sidenav-->
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" id="closeZ" class="closebtn" onclick="closeNav()">&times;</a>
-    <a class="nav-link " href="/home"><i class="bi bi-house"></i> &nbsp;Home</a> <br> <br>
-    <a class="nav-link " href="/customer">Customer</a> <br> <br>
-    <a class="nav-link" href="/employee">Employee</a> <br> <br>
-    <a class="nav-link" href="/service">Service</a> <br><br>
-    <a class="nav-link" href="/contract">Contract</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="nav-link " href="/home"> <span class="glyphicon glyphicon-home"></span> &nbsp;Home</a> <br> <br>
+    <a class="nav-link " href="/customer">Customer</a> <br>
+    <a class="nav-link" href="/employee">Employee</a> <br>
+    <a class="nav-link" href="/service">Service</a> <br>
+    <a class="nav-link" href="/contract">Customer <br> Using </a>
 </div>
 <!--modal-->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form th:action="@{/employee/delete}" method="post">
+        <form th:action="@{/employee/delete}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel">Accept delete employee</h5>
@@ -298,6 +298,8 @@
     function openZ(e) {
         if (e.code == "KeyZ") {
             openNav()
+        }else if (e.code=="KeyX"){
+            closeNav()
         }
     }
 

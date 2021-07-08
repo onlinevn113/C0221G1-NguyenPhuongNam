@@ -28,10 +28,21 @@ public class CustomerDto implements Validator {
         return false;
     }
 
+    public static void main(String[] args) {
+        System.out.println("KH-1234".matches("^KH-\\d{4}$"));
+    }
     @Override
     public void validate(Object target, Errors errors) {
         Regex regex=new Regex();
         CustomerDto customerDto = (CustomerDto) target;
+        if (!customerDto.code.matches("^KH-\\d{4}$")){
+            errors.rejectValue("code", "code.valid", "Please input valid KH-XXXX");
+        }
+
+
+
+
+
         if (customerDto.name.matches("")) {
             errors.rejectValue("name", "name.valid", "Please input name");
         }else if (!customerDto.name.matches(regex.VIETNAMESENAME)){
@@ -62,7 +73,7 @@ public class CustomerDto implements Validator {
 
         if (customerDto.idCard.matches("")) {
             errors.rejectValue("idCard", "idCard.valid", "Please input idCard");
-        }else if (!customerDto.idCard.matches("^\\d{9}$")){
+        }else if (!customerDto.idCard.matches("^\\d{9}||\\d{12}$")){
             errors.rejectValue("idCard", "idCard.valid", "Please input in valid");
 
         }

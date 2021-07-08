@@ -20,7 +20,6 @@ public class Contract {
     private String endDate;
     @Column(nullable = false)
     private Double deposit;
-    @Column(nullable = false)
     private Double totalMoney;
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -32,7 +31,7 @@ public class Contract {
     @JoinColumn(nullable = false)
     private Service service;
     private boolean flag;
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "contract")
     private List<ContractDetail> contractDetailList;
 
     public Contract() {

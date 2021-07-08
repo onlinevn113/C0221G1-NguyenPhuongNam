@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 import java.util.List;
+
 @Service
 public class EmployeeService implements IEmployeeService {
     @Autowired
@@ -24,6 +27,7 @@ public class EmployeeService implements IEmployeeService {
     IDivisionRepository divisionRepository;
     @Autowired
     IPositionRepository positionRepository;
+
     @Override
     public List<EducationDegree> educationDegreeList() {
         return (List<EducationDegree>) educationDegreeRepository.findAll();
@@ -46,7 +50,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public Page<Employee> findAll(String name, Pageable pageable) {
-        return employeeRepository.findAllEmployee(name,pageable);
+        return employeeRepository.findAllEmployee(name, pageable);
     }
 
     @Override
@@ -56,6 +60,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void save(Employee o) {
+
         employeeRepository.save(o);
     }
 

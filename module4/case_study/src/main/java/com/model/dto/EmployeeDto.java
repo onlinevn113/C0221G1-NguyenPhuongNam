@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -19,6 +20,7 @@ public class EmployeeDto implements Validator {
     private String name;
     private String birthday;
     private String idCard;
+    @NotNull
     private Double salary;
     private String phone;
     private String email;
@@ -29,7 +31,6 @@ public class EmployeeDto implements Validator {
     private boolean flag;
 
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return false;
@@ -37,46 +38,46 @@ public class EmployeeDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Regex regex=new Regex();
+        Regex regex = new Regex();
         EmployeeDto employeeDto = (EmployeeDto) target;
         if (employeeDto.name.matches("")) {
             errors.rejectValue("name", "name.valid", "Please input name");
-        }else if (!employeeDto.name.matches(regex.VIETNAMESENAME)){
+        } else if (!employeeDto.name.matches(regex.VIETNAMESENAME)) {
             errors.rejectValue("name", "name.valid", "Please input in valid");
         }
 
 
-
-
-
-
         if (employeeDto.birthday.matches("")) {
             errors.rejectValue("birthday", "birthday.valid", "Please input birthday");
-        }else if (!employeeDto.birthday.matches(regex.DATE)){
+        } else if (!employeeDto.birthday.matches(regex.DATE)) {
             errors.rejectValue("birthday", "birthday.valid", "FU");
         }
 
 
-
-
-
-
         if (employeeDto.idCard.matches("")) {
             errors.rejectValue("idCard", "idCard.valid", "Please input idCard");
-        }else if (!employeeDto.idCard.matches("^\\d{9}$")){
+        } else if (!employeeDto.idCard.matches("^\\d{9}||\\d{12}$")) {
             errors.rejectValue("idCard", "idCard.valid", "Please input in valid");
 
         }
 
 
+        if (employeeDto.salary <= 0) {
+            errors.rejectValue("salary", "salary.valid", "Please input positive integer");
+        }
+
+
+
+
+
+
 
         if (employeeDto.phone.matches("")) {
             errors.rejectValue("phone", "phone.valid", "Please input phone");
-        }else if (!employeeDto.phone.matches(regex.PHONENUMBER)){
+        } else if (!employeeDto.phone.matches(regex.PHONENUMBER)) {
             errors.rejectValue("phone", "phone.valid", "Please input phone");
 
         }
-
 
 
         if (employeeDto.email.matches("")) {

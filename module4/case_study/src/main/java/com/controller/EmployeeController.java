@@ -79,7 +79,7 @@ public class EmployeeController {
         redirectAttributes.addFlashAttribute("msg","Edit is successful!!");
         return new ModelAndView("redirect:/employee");
     }
-    @PostMapping("/delete")
+    @GetMapping("/delete")
     public ModelAndView delete(@RequestParam Long id,RedirectAttributes redirectAttributes){
         Employee employee=employeeService.findById(id);
         if (employee==null){

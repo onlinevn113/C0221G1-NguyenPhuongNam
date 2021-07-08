@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface ICustomerRepository extends PagingAndSortingRepository<Customer,Long> {
     @Query(value = "select * from customer where name like %?1% && flag = 0 order by id desc ",nativeQuery = true)
     Page<Customer> findAllCustomer(String name, Pageable pageable);
+
 }

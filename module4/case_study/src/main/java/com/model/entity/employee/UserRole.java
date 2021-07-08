@@ -1,33 +1,36 @@
 package com.model.entity.employee;
 
-import lombok.Data;
-import javax.persistence.*;
+import com.model.entity.employee.AppRole;
+import com.model.entity.employee.AppUser;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(name = "User_Role", //
+        uniqueConstraints = { //
+                @UniqueConstraint(name = "USER_ROLE_UK", columnNames = { "User_Id", "Role_Id" }) })
 public class UserRole {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @Column(name = "Id", nullable = false)
     private Long id;
-    @ManyToOne
-    private Role role;
 
     @ManyToOne
-    private User user;
+    @JoinColumn(name = "User_Id", nullable = false)
+    private AppUser appUser;
 
-    public UserRole() {
-    }
-
-    public UserRole(Long id, Role role, User user) {
-        this.id = id;
-        this.role = role;
-        this.user = user;
-    }
-
-    public UserRole(Role role, User user) {
-        this.role = role;
-        this.user = user;
-    }
+    @ManyToOne
+    @JoinColumn(name = "Role_Id", nullable = false)
+    private AppRole appRole;
 
     public Long getId() {
         return id;
@@ -37,19 +40,20 @@ public class UserRole {
         this.id = id;
     }
 
-    public Role getRole() {
-        return role;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
-    public User getUser() {
-        return user;
+    public AppRole getAppRole() {
+        return appRole;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAppRole(AppRole appRole) {
+        this.appRole = appRole;
     }
+
 }

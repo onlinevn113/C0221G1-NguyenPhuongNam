@@ -1,43 +1,331 @@
-<html>
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Nunito');
+        @import url('https://fonts.googleapis.com/css?family=Poiret+One');
 
-    <title>Key Events</title>
+        body, html {
+            height: 100%;
+            background-repeat: no-repeat; /*background-image: linear-gradient(rgb(12, 97, 33),rgb(104, 145, 162));*/
+            background: black;
+            position: relative;
+        }
 
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/md_bootstrap/mdb.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        #login-box {
+            position: absolute;
+            top: 0px;
+            top: 20%;
+            left: 45%;
+            transform: translateX(-50%);
+            width: 350px;
+            margin: 0 auto;
 
+
+            min-height: 250px;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        #login-box .logo .logo-caption {
+            font-family: 'Poiret One', cursive;
+            color: white;
+            text-align: center;
+            margin-bottom: 0px;
+        }
+
+        #login-box .logo .tweak {
+            color: #ff5252;
+        }
+
+        #login-box .controls {
+            padding-top: 30px;
+        }
+
+        #login-box .controls input {
+            border-radius: 0px;
+            background: rgb(98, 96, 96);
+            border: 0px;
+            color: white;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        #login-box .controls input:focus {
+            box-shadow: none;
+        }
+
+        #login-box .controls input:first-child {
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+        }
+
+        #login-box .controls input:last-child {
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        #login-box button.btn-custom {
+            border-radius: 2px;
+            margin-top: 8px;
+            background: #ff5252;
+            border-color: rgba(48, 46, 45, 1);
+            color: white;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        #login-box button.btn-custom:hover {
+            -webkit-transition: all 500ms ease;
+            -moz-transition: all 500ms ease;
+            -ms-transition: all 500ms ease;
+            -o-transition: all 500ms ease;
+            transition: all 500ms ease;
+            background: rgba(48, 46, 45, 1);
+            border-color: #ff5252;
+        }
+
+        #particles-js {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: 50% 50%;
+            position: fixed;
+            top: 0px;
+            z-index: 1;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        #box {
+            height: 2px;
+            width: 1px;
+            background-color: #66f9ff;
+            border-radius: 10px;
+            line-height: 70px;
+            box-shadow: 0 0 15px #66ffff;
+        }
+
+        #circle {
+            height: 100%;
+            width: 75%;
+            border-radius: 400px;
+
+            padding-bottom: 30px;
+            border: 4px solid #00cccc;
+        }
+
+        #in {
+            width: 90%;
+            height: 50px;
+            border-radius: 10px;
+            padding: 5px;
+            border: 4px solid #00cccc;
+            background-color: #333333;
+            color: white;
+        }
+
+        #in:focus {
+            border: 6px solid #00cccc;
+        }
+
+        #inBtn {
+            width: 90%;
+            height: 50px;
+            border-radius: 10px;
+            line-height: 10px;
+            border: 4px solid #00cccc;
+            background-color: #333333;
+            color: white;
+            cursor: pointer;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            margin-bottom: 0px;
+        }
+
+    </style>
 </head>
 <body>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+
+<div class="container" id="circle">
+    <br><br><br>
+    <div class="text-center" th:if="${#request.getParameter('error') == 'true'}"
+         style="color:red;margin:10px 0px;">
+        Login Failed!!!<br/>
+        Reason :
+        <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+              th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                Static summary
+         </span>
+    </div>
+    <div id="login-box" class="text-center">
+        <div>
+            <h1 id="blinking" style="color: #00cccc;margin-left: 130px"><span style="color: white">L</span>ogin <span
+                    style="color: white">H</span>er<span style="color: white">e</span></h1>
+            <div id="box">
+                <form name='f' th:action="@{/home}" method="post">
+                    <input type="text" name="username" id="in" placeholder="User name">
+                    <input type="password" name="password" placeholder="Password" id="in">
+                    <br> <input type="checkbox" name="remember-me" />
+                    <br> <input type="button" name="login" value="Login" id="inBtn" style="color:white;">
+                </form>
+
             </div>
         </div>
     </div>
 </div>
+
+
+<div id="particles-js"></div>
+<script>
+    $(document).ready(function () {
+        $("#circle").hide();
+        $("#box").animate({height: "280px"}, "slow");
+        $("#box").animate({width: "450px"}, "slow");
+        $("#circle").fadeIn(1000);
+
+    });
+
+    function blinker() {
+        $('#blinking').fadeOut("slow");
+        $('#blinking').fadeIn("slow");
+    }
+
+    setInterval(blinker, 1000);
+
+    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js", function () {
+        particlesJS('particles-js',
+            {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        },
+                        "image": {
+                            "width": 100,
+                            "height": 100
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 5,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 6,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "repulse"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 400,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true,
+                "config_demo": {
+                    "hide_card": false,
+
+                    "background_image": "",
+                    "background_position": "50% 50%",
+                    "background_repeat": "no-repeat",
+                    "background_size": "cover"
+                }
+            }
+        );
+
+    });
+
+
+</script>
 </body>
 </html>

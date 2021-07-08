@@ -5,6 +5,7 @@ import com.model.entity.customer.Customer;
 import com.model.service.ICustomerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,8 @@ public class CustomerController {
     ICustomerService customerService;
     @GetMapping({"","/search"})
     public ModelAndView showList(@RequestParam("search") Optional<String> search, @PageableDefault(value = 2) Pageable pageable){
-        return new ModelAndView("customer/list","customers",customerService.findAll(search.orElse(""),pageable)).
+        Page<Customer> customerPage=customerService.findAll(search.orElse(""),pageable);
+        return new ModelAndView("customer/list","customers",customerPage).
                 addObject("search",search.orElse(""));
     }
     @GetMapping("/create")
@@ -59,7 +61,7 @@ public class CustomerController {
     public ModelAndView edit(@ModelAttribute @Valid CustomerDto customerDto,BindingResult bindingResult,RedirectAttributes redirectAttributes){
         new CustomerDto().validate(customerDto,bindingResult);
         if (bindingResult.hasErrors()){
-            return new ModelAndView("customer/create","msg","Something wrong!! <br> Try again").
+            return new ModelAndView("customer/edit","msg","Something wrong!! Try again").
                     addObject("customerTypes",customerService.findAllCustomerType());
         }
         Customer customer=new Customer();

@@ -25,15 +25,17 @@ public class Service {
     @ManyToOne()
     @JoinColumn(nullable = false)
     private ServiceType serviceType;
+
     private String standardRoom;
     private String description;
     private Double poolArea;
     private Integer floors;
+
+
+
     @OneToMany(mappedBy = "id")
     private List<Contract> contractList;
     private boolean flag;
-
-
 
 
 
