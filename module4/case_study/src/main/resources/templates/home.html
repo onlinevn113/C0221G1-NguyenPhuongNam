@@ -77,8 +77,9 @@
         }
     </style>
 
-</head>
-<body>
+
+<body background="https://img.lovepik.com/photo/50030/4829.jpg_wh860.jpg"
+      style="background-repeat:no-repeat;background-size:cover;">
 
 
 <div id="mySidenav" class="sidenav">
@@ -148,28 +149,67 @@
                 <span th:text="${msg}"></span>
             </li>
 
+            <li class="nav-item active px-3">
+                <th:block th:if="${#request.userPrincipal == null}">
+                    <a class="btn-outline-light w-25 h-25" href="/login">Login</a>
+                </th:block>
+                <th:block th:if="${#request.userPrincipal != null}">
+                    <span th:text="${#request.userPrincipal.name}"></span>
+                    <a class="btn-outline-light" href="/logout">Logout</a>
+                </th:block>
+            </li>
+
+
         </ul>
     </div>
+
 </nav>
 <div class="text-center">
-    <a class="btn btn-outline-dark" href="/service/create">+ Create new Service</a> <br> <br>
-    <a class="btn btn-outline-dark" href="/contract/create-contract">+ Create new contract</a> <br> <br>
-    <a class="btn btn-outline-dark" href="/contract/create-contract-detail">+ Create new contract detail</a> <br> <br>
-
-    <th:block th:if="${#request.userPrincipal == null}">
-        <a class="btn btn-outline-dark" href="/login">Login</a> <br> <br>
-    </th:block>
-
-
-    <th:block th:if="${#request.userPrincipal != null}">
-        <span th:text="${#request.userPrincipal.name}"></span>
-        <a class="btn btn-outline-dark" href="/logout">Logout</a>
-    </th:block>
-
+    <a class="btn btn-outline-light" href="/service/create">+ Create new Service</a> <br> <br>
+    <a class="btn btn-outline-light" href="/contract/create-contract">+ Create new contract</a> <br> <br>
+    <a class="btn btn-outline-light" href="/contract/create-contract-detail">+ Create new contract detail</a> <br> <br>
 
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <footer class="text-white " th:fragment="footer">
     <div class="container px-4 pb-3 text-center">

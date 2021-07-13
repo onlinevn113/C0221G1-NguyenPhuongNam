@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IContractRepository extends PagingAndSortingRepository<Contract,Long> {
 
     @Query(value = "select *" +
-            " from contract  " +
+            "   from contract  " +
             "join customer on contract.customer_id=customer.id " +
             "where customer.name  like :nameS and contract.flag=0 and (curdate() between start_date and end_date) order by contract.id desc",nativeQuery = true)
     Page<Contract> findAllContract(@Param("nameS") String name, Pageable pageable);
