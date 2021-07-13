@@ -42,21 +42,22 @@ public class ContractDto implements Validator {
     public void validate(Object target, Errors errors) {
 
 
-
         Regex regex = new Regex();
         ContractDto contractDto = (ContractDto) target;
-
-        if (!contractDto.startDate.matches(regex.DATE)) {
+        if (contractDto.startDate.matches("")) {
+            errors.rejectValue("startDate", "startDate.valid", "Please input");
+        } else if (!contractDto.startDate.matches(regex.DATE)) {
             errors.rejectValue("startDate", "startDate.valid", "FU");
-        }
-
-        if (!contractDto.endDate.matches(regex.DATE)) {
+        } else if (contractDto.endDate.matches("")) {
+            errors.rejectValue("endDate", "endDate.valid", "Please input");
+        } else if (!contractDto.endDate.matches(regex.DATE)) {
             errors.rejectValue("endDate", "endDate.valid", "FU");
-        }
-        Date sDate= new SimpleDateFormat("yyyy-MM-dd").parse(contractDto.startDate);
-        Date eDate= new SimpleDateFormat("yyyy-MM-dd").parse(contractDto.endDate);
-        if (eDate.getTime()<sDate.getTime()){
-            errors.rejectValue("endDate", "endDate.valid", "End date must be more start date");
+        } else {
+            Date sDate = new SimpleDateFormat("yyyy-MM-dd").parse(contractDto.startDate);
+            Date eDate = new SimpleDateFormat("yyyy-MM-dd").parse(contractDto.endDate);
+            if (eDate.getTime() < sDate.getTime()) {
+                errors.rejectValue("endDate", "endDate.valid", "End date must be more start date");
+            }
         }
 
     }

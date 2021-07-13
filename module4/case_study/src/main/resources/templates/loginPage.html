@@ -92,6 +92,7 @@
 <br><br>
 <br><br>
 <center>
+
     <div th:if="${#request.getParameter('error') == 'true'}"
          style="color:red;margin:10px 0px;">
         Login Failed!!!<br />
@@ -101,17 +102,17 @@
                 Static summary
          </span>
     </div>
+    <a class="btn " style="color: #00cccc" href="/home">Back to home</a>
 </center>
 <form name='f' th:action="@{/home}" method='POST'>
     <center>
         <div id="circle">
-
-
-            <h1 id="blinking" style="color: #00cccc;"><span style="color: white">P</span>lease <span
-                    style="color: white">L</span>ogin <span style="color: white">H</span>ere </h1>
+            <h1 id="blinking" style="color: #00cccc;"><span style="color: white">P</span>lease
+                <span style="color: white">L</span>ogin <span style="color: white">H</span>ere </h1>
             <div id="box">
                 <input type="text" name="username" id="in" placeholder="Username"><br>
-                <input type="password" name="password" placeholder="Password" id="in">
+                <input type="password"   name="password" placeholder="Password" id="in">
+
                 <p><input type="checkbox" name="remember-me" id="remember"> Remember me</p>
                 <input type="submit" name="login" value="Login" id="inBtn" style="color:white;">
             </div>
@@ -136,7 +137,6 @@ Username/pass:
         $('#blinking').fadeOut("slow");
         $('#blinking').fadeIn("slow");
     }
-
     setInterval(blinker, 1000);
 </script>
 </body>

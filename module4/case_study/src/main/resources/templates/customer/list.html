@@ -104,8 +104,8 @@
 <div class="container-fluid d-flex position-relative border-0 row ">
     <div class="col-3 ">
         <a href="/home" class="img-fluid"><img class=" img-fluid mx-5"
-                                          src="/img/logo_furama/logo_furama.png"
-                                          height="117" width="87"/></a>
+                                               src="/img/logo_furama/logo_furama.png"
+                                               height="117" width="87"/></a>
     </div>
     <div class="col-3">
         <a class=" img-fluid mx-5 px-5 align-items-center img-fluid"
@@ -119,12 +119,12 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="navbar"
      style=" height: 47px;background: #0F574B">
-    <div class="collapse navbar-collapse col-4 " id="navbarsExample07">
+    <div class="collapse navbar-collapse col-3 " id="navbarsExample07">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active px-3">
                 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
             </li>
-            <li class="nav-item active px-5">
+            <li class="nav-item active " style="padding-left: 40px">
                 <a class="nav-link " href="/customer/create" style="text-decoration: none">+ Create new Customer</a>
             </li>
 
@@ -145,10 +145,13 @@
             <!--            </li>-->
         </ul>
     </div>
-    <form class="form-inline my-2 my-lg-0  col-4  " action="/customer/search" method="get">
-        <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search">
+    <form class="d-flex col-6" action="/customer/search" method="get">
+        <input class="form-control" name="search" type="search" placeholder="name">
+        <input class="form-control" name="birthday" type="search" placeholder="birthday">
+        <input class="form-control" name="idCard" type="search" placeholder="id card">
+        <input class="btn btn-light" type="submit" value="Search">
     </form>
-    <div class="col-4 ">
+    <div class="col-3 ">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active px-3">
                 <span th:text="${msg}"></span>
@@ -159,64 +162,86 @@
 
 
 <div class="container">
-    <table class="table">
-        <caption>List of customer</caption>
-        <thead style="font-weight: 1000">
-        <tr>
-            <th><h5>Id</h5></th>
-            <th><h5>Type</h5></th>
-            <th><h5>Code</h5></th>
-            <th><h5>Name</h5></th>
-            <th><h5>Birthday</h5></th>
-            <th><h5>Gender</h5></th>
-            <th><h5>IdCard</h5></th>
-            <th><h5>Edit</h5></th>
-            <th><h5>Delete</h5></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="c,status : ${customers}">
-            <!--        <td th:text="${status.count}"></td>-->
-            <td th:text="${c.id}"></td>
-            <td th:text="${c.customerType.name}">customerType</td>
-            <td th:text="${c.code}"></td>
-            <td th:text="${c.name}">name</td>
-            <td th:text="${c.birthday}">birthday</td>
-            <td th:switch="${c.gender}">
-                <span th:case="1">Male</span>
-                <span th:case="0">Female</span>
-                <span th:case="*">Other</span>
-            </td>
-            <td th:text="${c.idCard}">idCard</td>
-            <td>
-                <a th:href="@{/customer/edit/{idc}(idc=${c.id})}" style="color: #090915">
-                    <button class="bi bi-pencil-square"></button>
-                </a>
-            </td>
-            <td>
-                <button class="bi bi-trash" data-toggle="modal" data-target="#myModal"
-                        th:data-parameter1="${c.id}" th:data-parameter2="${c.name}"
-                        onclick="showModal(this.getAttribute('data-parameter1'),this.getAttribute('data-parameter2'))">
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <form action="/customer/delete" method="post">
+        <table class="table">
+            <caption>List of customer</caption>
+            <thead style="font-weight: 1000">
+            <tr>
+                <th><h5>Id</h5></th>
+                <th><h5>Type</h5></th>
+                <th><h5>Code</h5></th>
+                <th><h5>Name</h5></th>
+                <th><h5>Birthday</h5></th>
+                <th><h5>Gender</h5></th>
+                <th><h5>IdCard</h5></th>
+                <th><h5>Edit</h5></th>
+                <th><h5>Delete</h5></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c,status : ${customers}">
+                <!--        <td th:text="${status.count}"></td>-->
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.customerType.name}">customerType</td>
+                <td th:text="${c.code}"></td>
+                <td th:text="${c.name}">name</td>
+                <td th:text="${c.birthday}">birthday</td>
+                <td th:switch="${c.gender}">
+                    <span th:case="1">Male</span>
+                    <span th:case="0">Female</span>
+                    <span th:case="*">Other</span>
+                </td>
+                <td th:text="${c.idCard}">idCard</td>
+                <td>
+                    <a  th:href="@{/customer/edit/{idc}(idc=${c.id})}"
+                       style="color: #090915">
+                        <button type="button" class="bi bi-pencil-square">
+                        </button>
+                    </a>
+
+                </td>
+                <td>
+                    <input type="checkbox" name="listId" th:value="${c.id}">
+
+                    <!--                <button class="bi bi-trash" data-toggle="modal" data-target="#myModal"-->
+                    <!--                        th:data-parameter1="${c.id}" th:data-parameter2="${c.name}"-->
+                    <!--                        onclick="showModal(this.getAttribute('data-parameter1'),this.getAttribute('data-parameter2'))">-->
+                    <!--                </button>-->
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="submit" value="Delete"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+
     <!--    Paging-->
     <div>
         <a class="btn btn-outline-dark  text-black"
-           th:href="@{'/customer'(page=${customers.number - 1},search=${search})}"
+           th:href="@{'/customer'(page=${customers.number - 1},search=${search},birthday=${birthday},idCard=${idCard})}"
            th:if="${customers.hasPrevious()}"> <span style="font-weight: bold"> < </span>
         </a>
         <span th:each="p : ${#numbers.sequence(0,customers.totalPages -1)}" th:if="${customers.hasContent()}">
           <a class="btn btn-outline-dark" style="text-decoration: none"
-             th:href="@{'/customer'(page=${p},search=${search})}"
+             th:href="@{'/customer'(page=${p},search=${search},birthday=${birthday},idCard=${idCard})}"
              th:text="${p +1}"
              th:if="${(p >(customers.number)-2)&&(p <(customers.number+2))}"
           ></a>
     </span>
         <a class="btn btn-outline-dark   text-black"
-           th:href="@{'/customer'(page=${customers.number + 1},search=${search})}" th:if="${customers.hasNext()}">
+           th:href="@{'/customer'(page=${customers.number + 1},search=${search},birthday=${birthday},idCard=${idCard})}"
+           th:if="${customers.hasNext()}">
             <span style="font-weight: bold"> > </span>
         </a>
     </div>
@@ -293,7 +318,7 @@
     function openZ(e) {
         if (e.code == "KeyZ") {
             openNav()
-        }else if (e.code=="KeyX"){
+        } else if (e.code == "KeyX") {
             closeNav()
         }
     }

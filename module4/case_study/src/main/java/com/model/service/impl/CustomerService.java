@@ -20,13 +20,18 @@ public class CustomerService implements ICustomerService {
     ICustomerTypeRepository customerTypeRepository;
 
     @Override
+    public Page<Customer> findAll(String name, Pageable pageable) {
+        return null;
+    }
+
+    @Override
     public Customer findById(Long id) {
         return customerRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Page<Customer> findAll(String name,Pageable pageable) {
-        return customerRepository.findAllCustomer(name,pageable);
+    public Page<Customer> findAll(String name,String birthday,String idCard,Pageable pageable) {
+        return customerRepository.findAllCustomer(name,birthday,idCard,pageable);
     }
 
 

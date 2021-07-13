@@ -1,0 +1,305 @@
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="sumit kumar">
+  <title>Trial</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
+  <style>
+    .showHalfMenu{position:absolute;top:0px;left:-250px;width:300px;height:100%;overflow: hidden;transition: 0.9s;}
+    #showFullMenu{position: absolute;top:0px;left:0px;width:300px;height:100%;overflow: hidden;transition: 0.9s;}
+
+
+    #nav-1 #main-nav {
+      position:absolute;
+      top:0px;left:0px;
+      width: 300px;
+      background-color: #00BCD4;
+      height: 100%;overflow: hidden;
+      min-height: 720px;
+    }
+
+    #main-menu{display: none;}
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #FFEB3B;
+      padding: 15px 15px;
+      border-bottom: solid 1px #000;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+
+    .title > a .fa{color:#fff;}
+    .ul{margin:0px;padding:0px;}
+    .ul li{list-style-type:none;width:100%;border-bottom: solid 1px #000;}
+    .ul li a{text-align:left;text-decoration:none;font-size:16px;text-transform: capitalize;color:#fff;padding:10px 15px;display:block;}
+    .ul li a .fa{margin-right:10px;}
+    .ul li a:hover{background-color:#00acc1;}
+
+
+
+
+    /*NAV BAR-2**************************/
+
+    #nav-2 .main-nav {
+      position:absolute;
+      top:0px;left:0px;
+      width: 250px;
+      background-color: #00BCD4;
+      height: 100%;overflow: hidden;
+      min-height: 720px;
+      z-index: 2;display: none;
+      box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    /*NAV BAR-3**************************/
+    #nav-3 .main-nav {
+      position:absolute;
+      top:0px;left:0px;
+      width: 250px;
+      background-color: #00BCD4;
+      height: 100%;overflow: hidden;
+      min-height: 720px;
+      z-index: 3;display: none;
+      box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+
+    /*NAV BAR-4**************************/
+    #nav-4 .main-nav {
+      position:absolute;
+      top:0px;left:0px;
+      width: 200px;
+      background-color: #00BCD4;
+      height: 100%;overflow: hidden;
+      min-height: 720px;
+      z-index: 4;display: none;
+      box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+  </style>
+</head>
+
+<body>
+<section class="showHalfMenu" id="haff-menu">
+  <div class="container-fluid">
+    <!--=======SLID-NAV 1============-->
+    <section id="nav-1">
+      <nav id="main-nav">
+        <h2 class="title">All Categoris <a href="javascript:;">
+          <span class="menu-icon pull-right" id="menu-btn"><i class="fa fa-bars" aria-hidden="true" id="chang-menu-icon"></i></span></a></h2>
+        <ul class="ul" id="main-menu">
+          <li id="home">
+            <a href="javascript:;">
+              <i class="fa fa-laptop" aria-hidden="true"></i> Divice
+              <i class="fa fa fa-chevron-left pull-right arow"></i>
+            </a>
+          </li>
+          <li id="link">
+            <a href="javascript:;">
+              <i class="fa fa-link"></i> Social link <i class="fa fa fa-chevron-left pull-right arow"></i>
+            </a>
+          </li>
+          <li id="news">
+            <a href="javascript:;">
+              <i class="fa fa-newspaper-o"></i> News
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-edit"></i> edit
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-inbox"></i> inbox
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-envelope"></i> sumi9xm@gmail.com
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+
+    <!--=======SLID-NAV 2============-->
+    <section class="nav-2" id="nav-2">
+      <nav class="main-nav" id="home-sub-nav">
+        <h2 class="title">All Divice <a href="javascript:;">
+          <span class="home-icon pull-right" id="menu-home"><i class="fa fa-laptop" aria-hidden="true"></i></span></a></h2>
+        <ul class="ul">
+          <li class="back">
+            <a href="javascript:;">
+              <i class="fa fa-angle-double-left" aria-hidden="true"></i>Back
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-television"></i> television
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-phone"></i> phone
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-mobile"></i> mobile
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-tablet"></i> tablet
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+
+    <!--=======SLID-NAV 3============-->
+    <section class="nav-3" id="nav-3">
+      <nav class="main-nav" id="link-sub-nav">
+        <h2 class="title">Social Link <a href="javascript:;">
+          <span class="home-icon pull-right" id="menu-home"><i class="fa fa-link" aria-hidden="true"></i></span></a></h2>
+        <ul class="ul">
+          <li class="back">
+            <a href="javascript:;">
+              <i class="fa fa-angle-double-left" aria-hidden="true"></i>Back
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-facebook"></i> facebook
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-google-plus"></i> google
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-twitter"></i> twitter
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-youtube"></i> youtube
+            </a>
+          </li>
+          <li id="not">
+            <a href="javascript:;">
+              <i class="fa fa-bell"></i>Notification<i class="fa fa fa-chevron-left pull-right" id="arow"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+
+    <!--=======SLID-NAV 4============-->
+    <section class="nav-4" id="nav-4">
+      <nav class="main-nav" id="not-sub-nav">
+        <h2 class="title">Notification <a href="javascript:;">
+          <span class="home-icon pull-right" id="menu-home"><i class="fa fa-bell" aria-hidden="true"></i></span></a></h2>
+        <ul class="ul">
+          <li class="sub-back">
+            <a href="javascript:;">
+              <i class="fa fa-angle-double-left" aria-hidden="true"></i>Back
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-envelope"></i> mail
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-commenting"></i> hangout
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-comments"></i> chat
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-trash"></i> trash
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+
+  </div>
+</section>
+<script src="js/jquery-3.1.1.js"></script>
+<script src="js/bootstrap.js"></script>
+
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $("#home").click(function(){
+      $("#home-sub-nav").toggle(500);
+      $("#main-menu").hide(500);
+
+    });
+
+
+    $(".back").click(function(){
+      $("#home-sub-nav").hide(200);
+      $("#link-sub-nav").hide(200);
+      $("#main-menu").show(500);
+
+    });
+
+    $("#link").click(function(){
+      $("#link-sub-nav").toggle(200);
+      $("#main-menu").hide(500);
+    });
+
+    $("#not").click(function(){
+      $("#not-sub-nav").toggle(200);
+      $("#main-menu").hide(500);
+    });
+
+    $(".sub-back").click(function(){
+      $("#not-sub-nav").hide(200);
+
+
+    });
+
+
+    $("#menu-btn").click(function(){
+      $("#haff-menu").toggleClass("showHalfMenu");
+      $("#main-menu").toggle( );
+
+
+    });
+
+  });
+</script>
+
+</body>
+</html>

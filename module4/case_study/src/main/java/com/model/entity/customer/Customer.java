@@ -6,12 +6,14 @@ import java.util.List;
 
 
 @Entity
+
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String code;
     @ManyToOne()
+
     @JoinColumn(nullable = false)
     private CustomerType customerType;
     @Column(nullable = false)

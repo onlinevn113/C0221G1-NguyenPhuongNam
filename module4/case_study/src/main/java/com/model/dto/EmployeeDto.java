@@ -12,6 +12,8 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Data
@@ -51,6 +53,13 @@ public class EmployeeDto implements Validator {
             errors.rejectValue("birthday", "birthday.valid", "Please input birthday");
         } else if (!employeeDto.birthday.matches(regex.DATE)) {
             errors.rejectValue("birthday", "birthday.valid", "FU");
+        } else {
+            int age= Period.between(LocalDate.parse(employeeDto.birthday),LocalDate.now()).getYears();
+            if (age < 18) {
+                errors.rejectValue("birthday", "birthday.valid", "Age must be more than 18");
+            }else if (age>150){
+                errors.rejectValue("birthday", "birthday.valid", "You die");
+            }
         }
 
 
