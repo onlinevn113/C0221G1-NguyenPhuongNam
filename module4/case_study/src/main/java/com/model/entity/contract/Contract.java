@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-
 public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

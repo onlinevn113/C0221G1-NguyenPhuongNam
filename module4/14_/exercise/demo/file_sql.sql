@@ -1,5 +1,4 @@
-create database spring_security;
-use spring_security;
+
 create table app_user(user_id bigint not null primary key,
                       user_name varchar(36)not null unique,
                       encryted_password varchar(128) not null,

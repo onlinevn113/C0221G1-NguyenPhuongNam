@@ -40,8 +40,6 @@ public class ContractDto implements Validator {
     @SneakyThrows
     @Override
     public void validate(Object target, Errors errors) {
-
-
         Regex regex = new Regex();
         ContractDto contractDto = (ContractDto) target;
         if (contractDto.startDate.matches("")) {
@@ -59,6 +57,5 @@ public class ContractDto implements Validator {
                 errors.rejectValue("endDate", "endDate.valid", "End date must be more start date");
             }
         }
-
     }
 }

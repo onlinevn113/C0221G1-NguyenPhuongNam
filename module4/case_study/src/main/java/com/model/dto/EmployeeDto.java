@@ -1,20 +1,16 @@
 package com.model.dto;
 
 import com.model.common.Regex;
-import com.model.entity.contract.Contract;
 import com.model.entity.employee.Division;
 import com.model.entity.employee.EducationDegree;
 import com.model.entity.employee.Position;
-import com.model.entity.employee.User;
 import lombok.Data;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.List;
 
 @Data
 public class EmployeeDto implements Validator {

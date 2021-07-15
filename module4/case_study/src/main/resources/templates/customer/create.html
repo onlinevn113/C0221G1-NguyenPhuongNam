@@ -75,7 +75,7 @@
 
          <fieldset>
             <!-- Form Name -->
-            <legend><center><h2><b>Create Form <br> <span th:text="${msg}"></span> </b></h2></center></legend><br>
+            <legend><center><h2><b id="#blinking">Create Form <br> <span th:text="${msg}"></span> </b></h2></center></legend><br>
 
             <div class="form-group">
                 <label class="col-md-4 control-label">Customer Type</label>
@@ -92,6 +92,7 @@
                     <p th:errors="*{customerType}"></p>
                 </div>
             </div>
+
              <div class="form-group">
                  <label class="col-md-4 control-label ">Code</label>
                  <div class="col-md-4 inputGroupContainer">
@@ -115,7 +116,6 @@
             </div>
 
 
-
             <div class="form-group">
                 <label class="col-md-4 control-label">Birthday</label>
                 <div class="col-md-4 inputGroupContainer">
@@ -126,8 +126,6 @@
                     <p th:errors="*{birthday}"></p>
                 </div>
             </div>
-
-
 
             <div class="form-group">
                 <label class="col-md-4 control-label">Id Card</label>
@@ -199,20 +197,7 @@
     </form>
 </div>
 </div>
-<script>
 
-    $(document).ready(function(){
-        $("#box").animate({height:"280px"},"slow");
-        $("#box").animate({width:"450px"},"slow");
-        $("#circle").fadeIn(1000);
-
-    });
-    function blinker(){
-        $('#blinking').fadeOut("slow");
-        $('#blinking').fadeIn("slow");
-    }
-    setInterval(blinker, 1000);
-</script>
 
 
 </body>

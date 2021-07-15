@@ -97,8 +97,8 @@
 <div class="container-fluid d-flex position-relative border-0 row ">
     <div class="col-3 ">
         <a href="/home" class="img-fluid"><img class=" img-fluid mx-5"
-                                          src="/img/logo_furama/logo_furama.png"
-                                          height="117" width="87"/></a>
+                                               src="/img/logo_furama/logo_furama.png"
+                                               height="117" width="87"/></a>
     </div>
     <div class="col-3">
         <a class=" img-fluid mx-5 px-5 align-items-center img-fluid"
@@ -154,7 +154,7 @@
         <caption>List of employee</caption>
         <thead style="font-weight: 1000">
         <tr>
-            <th><h5>Id</h5></th>
+            <th><h5>STT</h5></th>
             <th><h5>Name</h5></th>
             <th><h5>Birthday</h5></th>
             <th><h5>IdCard</h5></th>
@@ -170,8 +170,8 @@
         </thead>
         <tbody>
         <tr th:each="c,status : ${employees}">
-            <!--        <td th:text="${status.count}"></td>-->
-            <td th:text="${c.id}"></td>
+            <td th:text="${status.count + employees.number * employees.size} "></td>
+            <!--            <td th:text="${c.id}"></td>-->
             <td th:text="${c.name}"></td>
             <td th:text="${c.birthday}"></td>
             <td th:text="${c.idCard}"></td>
@@ -208,7 +208,7 @@
         <span th:each="p : ${#numbers.sequence(0,employees.totalPages -1)}" th:if="${employees.hasContent()}">
           <a class="btn btn-outline-dark" style="text-decoration: none"
              th:href="@{'/employee'(page=${p},search=${search})}"
-             th:text="${p +1}"
+             th:text="${p+1}"
              th:if="${(p >(employees.number)-2)&&(p <(employees.number+2))}"
           ></a>
     </span>
@@ -298,7 +298,7 @@
     function openZ(e) {
         if (e.code == "KeyZ") {
             openNav()
-        }else if (e.code=="KeyX"){
+        } else if (e.code == "KeyX") {
             closeNav()
         }
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -81,23 +82,10 @@ public class CustomerController {
     public ModelAndView edit(@ModelAttribute @Valid CustomerDto customerDto,BindingResult bindingResult,RedirectAttributes redirectAttributes){
         new CustomerDto().validate(customerDto,bindingResult);
         if (bindingResult.hasErrors()){
-            for (Customer c:customerService.findAll()){
-                if (customerDto.getCode().equals(c.getCode())){
-                    return new ModelAndView("customer/edit","msg","Something wrong!! Try again").
-                            addObject("customerTypes",customerService.findAllCustomerType()).
-                            addObject("codeDuplicate","Duplicate code");
-                }
-            }
             return new ModelAndView("customer/edit","msg","Something wrong!! Try again").
                     addObject("customerTypes",customerService.findAllCustomerType());
         }
-        for (Customer c:customerService.findAll()){
-            if (customerDto.getCode().equals(c.getCode())){
-                return new ModelAndView("customer/edit","msg","Something wrong!! Try again").
-                        addObject("customerTypes",customerService.findAllCustomerType()).
-                        addObject("codeDuplicate","Duplicate code");
-            }
-        }
+
         Customer customer=new Customer();
         BeanUtils.copyProperties(customerDto,customer);
         customerService.save(customer);
@@ -105,16 +93,19 @@ public class CustomerController {
         return new ModelAndView("redirect:/customer");
     }
     @PostMapping("/delete")
-    public ModelAndView delete(@RequestParam("listId") List<Long> listId, RedirectAttributes redirectAttributes){
-        for (Long id: listId) {
-            Customer customer=customerService.findById(id);
-            if (customer==null){
-                return new ModelAndView("error-404");
+    public ModelAndView delete(@RequestParam("listId") Optional<List<Long>> listId, RedirectAttributes redirectAttributes){
+        if (listId.isPresent()){
+            for (Long id: listId.get()) {
+                Customer customer=customerService.findById(id);
+                if (customer==null){
+                    return new ModelAndView("error-404");
+                }
+                customer.setFlag(true);
+                customerService.save(customer);
             }
-            customer.setFlag(true);
-            customerService.save(customer);
+            redirectAttributes.addFlashAttribute("msg","Delete is successful!!");
+            return new ModelAndView("redirect:/customer");
         }
-        redirectAttributes.addFlashAttribute("msg","Delete is successful!!");
-        return new ModelAndView("redirect:/customer");
+        return new ModelAndView("error-404");
     }
 }

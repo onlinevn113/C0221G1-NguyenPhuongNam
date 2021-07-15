@@ -30,8 +30,7 @@ public class Employee {
     @ManyToOne()
     @JoinColumn(nullable = false)
     private Division division;
-    @ManyToOne()
-    private User user;
+
     private boolean flag;
     @OneToMany(mappedBy = "id")
     private List<Contract> contractList;
@@ -46,43 +45,12 @@ public class Employee {
 
 
 
-    public void setDivision(Division division) {
-        this.division = division;
-    }
+
 
     public Employee() {
     }
-    public Employee(Long id, String name, String birthday, String idCard, Double salary, String phone, String email, String address, Position position, EducationDegree educationDegree, Division division, User user, boolean flag, List<Contract> contractList) {
-        this.id = id;
-        this.name = name;
-        this.birthday = birthday;
-        this.idCard = idCard;
-        this.salary = salary;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.position = position;
-        this.educationDegree = educationDegree;
+    public void setDivision(Division division) {
         this.division = division;
-        this.user = user;
-        this.flag = flag;
-        this.contractList = contractList;
-    }
-
-    public Employee(String name, String birthday, String idCard, Double salary, String phone, String email, String address, Position position, EducationDegree educationDegree, Division division, User user, boolean flag, List<Contract> contractList) {
-        this.name = name;
-        this.birthday = birthday;
-        this.idCard = idCard;
-        this.salary = salary;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.position = position;
-        this.educationDegree = educationDegree;
-        this.division = division;
-        this.user = user;
-        this.flag = flag;
-        this.contractList = contractList;
     }
 
     public Long getId() {
@@ -173,13 +141,6 @@ public class Employee {
         this.division = division;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public boolean isFlag() {
         return flag;

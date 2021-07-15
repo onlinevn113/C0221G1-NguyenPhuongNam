@@ -1,17 +1,18 @@
 package com.model.entity.customer;
 
 import com.model.entity.contract.Contract;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
-
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String code;
+    private   String code;
     @ManyToOne()
 
     @JoinColumn(nullable = false)
@@ -41,7 +42,7 @@ public class Customer {
 
 
 
-    public String getCode() {
+    public  String getCode() {
         return code;
     }
 
@@ -49,22 +50,6 @@ public class Customer {
         this.code = code;
     }
 
-    public Customer() {
-    }
-
-    public Customer(Long id, CustomerType customerType, String name, String birthday, Byte gender, String idCard, String phone, String email, String address, boolean flag, List<Contract> contractList) {
-        this.id = id;
-        this.customerType = customerType;
-        this.name = name;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.idCard = idCard;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.flag = flag;
-        this.contractList = contractList;
-    }
 
     public boolean isFlag() {
         return flag;
@@ -74,30 +59,6 @@ public class Customer {
         this.flag = flag;
     }
 
-    public Customer(Long id, CustomerType customerType, String name, String birthday, Byte gender, String idCard, String phone, String email, String address, List<Contract> contractList) {
-        this.id = id;
-        this.customerType = customerType;
-        this.name = name;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.idCard = idCard;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.contractList = contractList;
-    }
-
-    public Customer(CustomerType customerType, String name, String birthday, Byte gender, String idCard, String phone, String email, String address, List<Contract> contractList) {
-        this.customerType = customerType;
-        this.name = name;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.idCard = idCard;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.contractList = contractList;
-    }
 
     public Long getId() {
         return id;
