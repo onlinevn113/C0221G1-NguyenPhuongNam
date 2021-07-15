@@ -159,72 +159,75 @@
     </div>
 </nav>
 <div class="container">
-    <form action="/customer/delete" method="post">
-        <table class="table">
-            <caption>List of customer</caption>
-            <thead style="font-weight: 1000">
-            <tr>
-                <th><h5>STT</h5></th>
-                <th><h5>Type</h5></th>
-                <th><h5>Code</h5></th>
-                <th><h5>Name</h5></th>
-                <th><h5>Birthday</h5></th>
-                <th><h5>Gender</h5></th>
-                <th><h5>IdCard</h5></th>
-                <th><h5>Edit</h5></th>
-                <th><h5>Delete</h5></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="c,status : ${customers}">
-                <td th:text="${status.count + customers.number * customers.size} "></td>
-<!--                <td th:text="${c.id}"></td>-->
-                <td th:text="${c.customerType.name}">customerType</td>
-                <td th:text="${c.code}"></td>
-                <td th:text="${c.name}">name</td>
-                <td th:text="${c.birthday}">birthday</td>
-                <td th:switch="${c.gender}">
-                    <span th:case="1">Male</span>
-                    <span th:case="0">Female</span>
-                    <span th:case="*">Other</span>
-                </td>
-                <td th:text="${c.idCard}">idCard</td>
-                <td>
-                    <a  th:href="@{/customer/edit/{idc}(idc=${c.id})}"
-                       style="color: #090915">
-                        <button type="button" class="bi bi-pencil-square">
-                        </button>
-                    </a>
+    <table class="table">
+        <caption>List of customer</caption>
+        <thead style="font-weight: 1000">
+        <tr>
+            <th><h5>STT</h5></th>
+            <th><h5>Type</h5></th>
+            <th><h5>Code</h5></th>
+            <th><h5>Name</h5></th>
+            <th><h5>Birthday</h5></th>
+            <th><h5>Gender</h5></th>
+            <th><h5>IdCard</h5></th>
+            <th><h5>Edit</h5></th>
+            <th><h5>Delete</h5></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c,status : ${customers}">
+            <td th:text="${status.count + customers.number * customers.size} "></td>
+            <!--                <td th:text="${c.id}"></td>-->
+            <td th:text="${c.customerType.name}">customerType</td>
+            <td th:text="${c.code}"></td>
+            <td th:text="${c.name}">name</td>
+            <td th:text="${c.birthday}">birthday</td>
+            <td th:switch="${c.gender}">
+                <span th:case="1">Male</span>
+                <span th:case="0">Female</span>
+                <span th:case="*">Other</span>
+            </td>
+            <td th:text="${c.idCard}">idCard</td>
+            <td>
+                <a th:href="@{/customer/edit/{idc}(idc=${c.id})}"
+                   style="color: #090915">
+                    <button type="button" class="bi bi-pencil-square">
+                    </button>
+                </a>
 
-                </td>
-                <td>
-                    <input type="checkbox" name="listId" th:value="${c.id}">
+            </td>
+            <td>
+                <input type="checkbox" class="listId" id="listId" name="listId" th:value="${c.id}">
 
-<!--                    <button class="bi bi-trash" data-toggle="modal" data-target="#myModal"-->
-<!--                            th:data-parameter1="${c.id}" th:data-parameter2="${c.name}"-->
-<!--                            onclick="showModal(this.getAttribute('data-parameter1'),this.getAttribute('data-parameter2'))">-->
-<!--                    </button>-->
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="submit" value="Delete"></td>
-            </tr>
-            </tbody>
-        </table>
+                <!--                    <button class="bi bi-trash" data-toggle="modal" data-target="#myModal"-->
+                <!--                            th:data-parameter1="${c.id}" th:data-parameter2="${c.name}"-->
+                <!--                            onclick="showModal(this.getAttribute('data-parameter1'),this.getAttribute('data-parameter2'))">-->
+                <!--                    </button>-->
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button class="bi bi-trash " data-toggle="modal" data-target="#myModal"
+                        onclick="showModal()">
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
     </form>
     <!--modal-->
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form th:action="@{/customer/delete}" method="post">
+            <form action="/customer/delete" method="post">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="myModalLabel">Accept delete customer</h5>
@@ -233,12 +236,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        Do you want to delete: <h5 id="customerName">???</h5>
+                        Do you want to delete
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
                         <input type="submit" class="btn btn-danger btn-ok" id="delete" value="Delete">
-                        <input type="hidden" id="customerId" name="id">
+                        <input  type="hidden" id="customerId" name="listId">
                     </div>
                 </div>
             </form>
@@ -297,10 +300,17 @@
     </div>
 </footer>
 <script>
-    function showModal(id, name) {
-        document.getElementById("customerId").value = id;
-        document.getElementById("customerName").innerText = name;
+    function showModal() {
+        let  a =document.getElementsByClassName("listId");
+        let b=[];
+        for (let i = 0; i < a.length; i++) {
+            if (a[i].checked){
+                b.push(a[i].value)              ;
+            }
+        }
+        document.getElementById("customerId").value=b;
     }
+
 </script>
 <script>
     document.addEventListener('keypress', openZ);

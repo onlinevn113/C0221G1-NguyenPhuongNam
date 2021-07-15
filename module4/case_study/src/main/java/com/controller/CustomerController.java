@@ -106,6 +106,6 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("msg","Delete is successful!!");
             return new ModelAndView("redirect:/customer");
         }
-        return new ModelAndView("error-404");
+        return new ModelAndView("redirect:/customer");
     }
 }
