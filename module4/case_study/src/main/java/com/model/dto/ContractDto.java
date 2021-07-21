@@ -5,6 +5,8 @@ import com.model.entity.customer.Customer;
 import com.model.entity.employee.Employee;
 import com.model.entity.service.Service;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -15,7 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-@Data
+
+@Getter
+@Setter
 public class ContractDto implements Validator {
     private Long id;
 

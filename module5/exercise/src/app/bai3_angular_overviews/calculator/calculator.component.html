@@ -1,0 +1,7 @@
+<select (change)="calculator($event)">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="*">*</option>
+  <option value="/">/</option>
+</select>
+&nbsp;<input type="number" [(ngModel)]="a">&nbsp; <span style="font-size: 25px" [textContent]="tinhToan"></span> &nbsp;<input type="number" [(ngModel)]=" b"> &nbsp;= &nbsp;<output [value]="c "></output>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Tính" (click)="result()">

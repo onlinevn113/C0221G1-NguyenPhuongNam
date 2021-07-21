@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <style>
+    p {
+      color: red;
+    }
+
+
+    #box{
+      height: 2px;
+      width: 1px;
+      padding: 5px;
+      background-color: #66f9ff;
+      border-radius: 10px;
+      line-height:90px;
+      box-shadow: 0 0 15px #66ffff;
+    }
+    #circle{
+      height: 100%;
+      width: 75%;
+      border-radius: 400px;
+
+      padding-bottom: 30px;
+      border : 4px solid #00cccc;
+    }
+    #in{
+      width: 90%;
+      height: 50px;
+      border-radius: 10px;
+      padding: 8px;
+      border : 4px solid #00cccc;
+      background-color: #333333;
+      color: white;
+    }
+    #in:focus{
+      border:6px solid #00cccc;
+    }
+    #inBtn{
+      width: 90%;
+      height: 50px;
+      border-radius: 10px;
+      line-height:10px;
+      border : 4px solid #00cccc;
+      background-color: #333333;
+      color:white;
+      cursor: pointer;
+    }
+    #copy{
+      color: #00cccc;
+      text-align: center;
+      font-style: italic;
+    }
+    footer{
+      position:fixed;
+      bottom:0px;
+      left:0px;
+      right:0px;
+      margin-bottom:0px;
+    }
+    hr{
+      color: #00cccc;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <form  th:object="${questionDto}" class="well form-horizontal" action="/question/edit" method="post">
+    <a href="/question"><button type="button" class="btn btn-warning" ><span class="glyphicon glyphicon-chevron-left"></span>Trở lại danh sách </button></a>
+
+    <fieldset>
+      <!-- Form Name -->
+      <legend><center><h2><b id="#blinking"> Tạo mới câu hỏi <br> <span th:text="${msg}"></span> </b></h2></center></legend><br>
+      <input type="hidden" th:field="*{id}">
+      <div class="form-group">
+        <label class="col-md-4 control-label ">Tiêu đề</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input  th:field="*{title}" placeholder="Tiêu đề" class="form-control"  type="text">
+          </div>
+          <p th:errors="*{title}"></p>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Nội dung</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <textarea  th:field="*{question}" placeholder="Nội dung" class="form-control" rows="5"></textarea>
+          </div>
+          <p th:errors="*{question}"></p>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Loại câu hỏi</label>
+        <div class="col-md-4 selectContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select th:field="*{questionType}" class="form-control selectpicker">
+              <option th:each="c : ${questionTypes}"
+                      th:value="${c.id}"
+                      th:text="${c.name}">
+              </option>
+            </select>
+          </div>
+          <p th:errors="*{questionType}"></p>
+        </div>
+      </div>
+      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+      <button type="submit" class="btn btn-warning" ><span class="glyphicon glyphicon-send"></span>Submit</button>
+    </fieldset>
+  </form>
+</div>
+</div>
+
+
+
+</body>
+</html>

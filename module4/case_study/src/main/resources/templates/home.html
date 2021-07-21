@@ -78,8 +78,7 @@
     </style>
 
 
-<body background="https://img.lovepik.com/photo/50030/4829.jpg_wh860.jpg"
-      style="background-repeat:no-repeat;background-size:cover;">
+<body  style="background: rgb(173,220,207);">
 
 
 <div id="mySidenav" class="sidenav">
@@ -156,7 +155,7 @@
                 </th:block>
                 <th:block th:if="${#request.userPrincipal != null}">
                     <span th:text="${#request.userPrincipal.name}"></span>
-                    <a class="btn-outline-light" href="/logout">Logout</a>
+                    <a class="btn-outline-light  w-25 h-25" href="/logout">Logout</a>
                 </th:block>
             </li>
 

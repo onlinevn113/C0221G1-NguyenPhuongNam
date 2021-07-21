@@ -12,9 +12,8 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private   String code;
+    private String code;
     @ManyToOne()
-
     @JoinColumn(nullable = false)
     private CustomerType customerType;
     @Column(nullable = false)
@@ -32,15 +31,6 @@ public class Customer {
     private boolean flag;
     @OneToMany(mappedBy = "id")
     private List<Contract> contractList;
-
-
-
-
-
-
-
-
-
 
     public  String getCode() {
         return code;
