@@ -1,0 +1,78 @@
+<h3>CUSTOMER</h3>
+<div style="float: right">
+<input type="text" id="searchName" [(ngModel)]="nameSearch" placeholder="Search name">
+<input type="text" id="searchEmail" [(ngModel)]="addressSearch" placeholder="Search email">
+<button class="btn btn-primary" (click)="search()">Search</button>
+</div>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th> STT</th>
+    <th> Code</th>
+    <th> Name</th>
+    <th> birthday</th>
+    <th> gender</th>
+<!--    <th> idCard</th>-->
+<!--    <th> phone</th>-->
+<!--    <th> email</th>-->
+    <th> address</th>
+    <th> customerType</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let c of customers | paginate:{itemsPerPage: 2, currentPage:page }; index as i ">
+    <td>{{i + page * 2 - 1 }}</td>
+    <td>{{c.code}}</td>
+    <td>{{c.name}}</td>
+    <td>{{c.birthday | date:'dd/MM/yyyy'}}</td>
+
+<!--    <div *ngIf="c.gender == 1; then male; else female"></div>-->
+<!--    <ng-template #male>-->
+<!--      <td>Male</td>-->
+<!--    </ng-template>-->
+<!--    <ng-template #female>-->
+<!--      <td>Female</td>-->
+<!--    </ng-template>-->
+    <td>{{c.gender == 1? 'male': 'female'}}</td>
+<!--    <td>{{c.idCard}}</td>-->
+<!--    <td>{{c.phone}}</td>-->
+<!--    <td>{{c.email}}</td>-->
+    <td>{{c.address}}</td>
+    <td>{{c.customerType.name}}</td>
+    <td>
+      <button [routerLink]="['/edit', c.id]" class="btn btn-warning">Edit</button>
+    </td>
+    <td>
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
+              (click)="sendIdDelete(c.id)">
+        Delete
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="page=$event" nextLabel="sau" previousLabel="trước" ></pagination-controls>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete <span>{{nameDelete}}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteCustomer()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+

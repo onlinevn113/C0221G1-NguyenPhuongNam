@@ -1,0 +1,69 @@
+<div class="nav-side-menu" style="top: 50px;">
+  <div class="brand">Menu</div>
+  <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+  <div class="menu-list">
+
+    <ul id="menu-content" class="menu-content collapse out">
+      <li>
+        <a href="#">
+          Home
+        </a>
+      </li>
+
+      <li data-toggle="collapse" data-target="#customer" class="collapsed active">
+        <a href="#"><i class="fab fa-jenkins"></i> Customer <span class="arrow"></span></a>
+      </li>
+      <ul class="sub-menu collapse" id="customer">
+        <a routerLink="/list-customer">
+          <li class="active"> List customer</li>
+        </a>
+        <a routerLink="/create-customer">
+          <li>create customer</li>
+        </a>
+        <li><a href="#">update customer</a></li>
+        <li><a href="#">delete customer</a></li>
+      </ul>
+
+      <li data-toggle="collapse" data-target="#employee" class="collapsed">
+        <a href="#"> <i class="fa fa-user fa-lg"></i> Employee <span class="arrow"></span></a>
+      </li>
+      <ul class="sub-menu collapse" id="employee">
+        <a routerLink="/list-employee">
+          <li>List employee</li>
+        </a>
+        <a routerLink="/create-employee">
+          <li>create employee</li>
+        </a>
+        <li>update employee</li>
+        <li>delete employee</li>
+      </ul>
+
+
+      <li data-toggle="collapse" data-target="#service" class="collapsed">
+        <a href="#"><i class="fas fa-laptop-house"></i>Service <span class="arrow"></span></a>
+      </li>
+      <ul class="sub-menu collapse" id="service">
+        <a routerLink="/list-service">
+          <li>list Service</li>
+        </a>
+        <a routerLink="/create-service">
+          <li>create Service</li>
+        </a>
+        <li>update Service</li>
+        <li>delete Service</li>
+      </ul>
+      <li data-toggle="collapse" data-target="#contract" class="collapsed">
+        <a href="#"><i class="fas fa-laptop-house"></i>contract <span class="arrow"></span></a>
+      </li>
+      <ul class="sub-menu collapse" id="contract">
+        <a routerLink="/create-contract">
+          <li>create contract</li>
+        </a>
+        <a routerLink="/create-contract-detail">
+          <li>create contract detail</li>
+        </a>
+      </ul>
+    </ul>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 
 
 @Component({
@@ -9,25 +9,29 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 export class CountdownTimerComponent implements OnInit, OnDestroy {
   private interval: number;
   message = '';
-  @Input()
-  seconds;
+  @Input() seconds: number;
+  num;
   check = true;
+  @Output() countChanged = new EventEmitter<string []>();
 
   constructor() {
   }
 
   ngOnInit() {
+    this.reset();
   }
 
   ngOnDestroy() {
+    this.clearTimer();
   }
 
   start() {
     this.message = 'Start';
     this.countDown();
     this.check = false;
-    // tslint:disable-next-line:triple-equals
-
+    if (this.num <= 0) {
+      this.num = this.seconds;
+    }
   }
 
   clearTimer() {
@@ -35,30 +39,27 @@ export class CountdownTimerComponent implements OnInit, OnDestroy {
   }
 
   stop() {
-    // tslint:disable-next-line:triple-equals
     this.message = 'Stop';
     this.clearTimer();
     this.check = true;
   }
 
   reset() {
-    this.message = 'Reset';
-    this.seconds = 0;
     this.stop();
+    this.num = this.seconds;
+    this.message = 'Reset';
+    this.countChanged.emit([this.num + '', this.message]);
   }
 
   private countDown() {
-
+    this.clearTimer();
     this.interval = setInterval(() => {
-      this.seconds = this.seconds + 1;
-      // if (this.seconds <= -1) {
-      //   this.stop();
-      //   this.reset();
-      // }
-      // tslint:disable-next-line:triple-equals
-      if (this.seconds == 100){
-        this.seconds = 101;
+      this.countChanged.emit([this.num + '', this.message]);
+      this.num--;
+      if (this.num === 0) {
+        this.message = 'Time out';
+        this.clearTimer();
       }
-    }, 25);
+    }, 1000);
   }
 }

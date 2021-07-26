@@ -1,7 +1,7 @@
 {{choice}}
 <div style="display: flex">
 <div *ngFor="let num of arr" >
-    <div style="width: 100px; height: 100px; border-radius: 50px" (mouseover)="mounseOver(num)" [ngStyle]="{background: choice>=num?'blue':'white'}">
+    <div style="width: 100px; height: 100px; border-radius: 50px" (mouseover)="mounseOver(num)" [ngStyle]="{background: choice>=num?'blue':'red'}">
     </div>
 </div >
 </div>
