@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from '../../model/customer';
-
 import {LoadCssService} from '../../bootstrap/load-css.service';
 import {CustomerService} from '../../service/customer.service';
-
-
-
+import {FormBuilder} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -21,21 +19,26 @@ export class CustomerListComponent implements OnInit {
   customer: Customer;
   nameSearch = '';
   addressSearch = '';
-  constructor(private loadCss: LoadCssService, private cs: CustomerService) {
+
+
+  // tslint:disable-next-line:max-line-length
+  constructor(private loadCss?: LoadCssService, private cs?: CustomerService) {
     loadCss.loadCss('https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css');
+    loadCss.loadScript('https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js');
     loadCss.loadScript('https://code.jquery.com/jquery-3.5.1.slim.min.js');
     loadCss.loadScript('https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js');
-    loadCss.loadScript('https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js');
-
   }
+
   ngOnInit(): void {
     this.getAll();
   }
+
   getAll() {
     this.cs.getAll().subscribe(customers => {
       this.customers = customers;
     });
   }
+
   sendIdDelete(id: number) {
     this.idDelete = id;
     this.cs.findById(id).subscribe(c => {
@@ -43,15 +46,17 @@ export class CustomerListComponent implements OnInit {
       this.nameDelete = c.name;
     });
   }
+
   deleteCustomer() {
     console.log(this.idDelete);
     this.cs.delete(this.idDelete).subscribe(() => {
       this.getAll();
     });
   }
+
   search() {
     console.log(this.nameSearch);
-    this.cs.search(this.nameSearch , this.addressSearch).subscribe(c => {
+    this.cs.search(this.nameSearch, this.addressSearch).subscribe(c => {
       this.customers = c;
       this.page = 1;
     });

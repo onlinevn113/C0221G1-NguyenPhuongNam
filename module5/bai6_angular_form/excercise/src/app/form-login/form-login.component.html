@@ -1,0 +1,50 @@
+<h2 class="text-center">Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col-md-6 offset-md-3">
+  <div class="form-group row">
+    <label class="col">
+      Email
+      <input type="email" class="form-control" formControlName="email">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
+    Invalid email!
+  </div>
+  <div class="form-group row">
+    <label class="col">
+      Password
+      <input type="password" class="form-control" formControlName="password">
+    </label>
+  </div>
+
+  <div class="alert alert-danger" role="alert" *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+    Invalid password!
+  </div>
+  <div class="form-group">
+    <button class="btn btn-info" type="submit">Submit</button>
+  </div>
+</form>
+
+<pre>
+{{ loginForm.value | json}}
+</pre>
+
+
+<hr>
+
+<h2 class="text-center">Form login</h2>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate >
+  <div>
+    <label for="email">Email</label>
+    <input type="email" id="email" formControlName="email"><br>
+    <small *ngIf="!loginForm.controls.email?.valid" style="color: red">Email is not valid</small><br>
+    <small *ngIf="loginForm.controls.email.hasError('required')" style="color: red">Email is not Empty</small><br>
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password"><br>
+    <small *ngIf="!loginForm.controls.password?.valid" style="color: red"> character > 6</small><br>
+    <small *ngIf="loginForm.controls.password.hasError('required')"  style="color: red" >Not Empty </small><br>
+  </div>
+  <button type="submit" [disabled]="!loginForm.valid">Submit</button>
+</form>

@@ -1,1 +1,45 @@
-<p>customer-create works!</p>
+<div class="container">
+  <form [formGroup]="createForm" (ngSubmit)="saveCustomer()" class="well form-horizontal"
+        style=" box-shadow: 2px 1px #637fff;">
+    <a href="/customer">
+      <button type="button" style="background: #5264AE" class="btn btn-dark"><span
+        class="glyphicon glyphicon-chevron-left"></span> Back to list
+      </button>
+    </a>
+    <fieldset>
+      <!-- Form Name -->
+      <legend>
+        <h2 class="text-center"><b id="#blinking">Create Form <br></b></h2>
+      </legend>
+      <br>
+      <div class="group">
+        <select name="typeCustomer" class="form-control">
+          <option></option>
+        </select>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Customer type</label>
+        <!--        <div class="text-danger" *ngFor="let valid of validateMsg.customerType">-->
+        <!--          <div *ngIf="getValidate('customerType', valid)">{{valid.msg1}}</div>-->
+        <!--        </div>-->
+      </div>
+
+      <div class="group">
+        <div class="forError" *ngIf="createForm.get('email').dirty">Email</div>
+        <input type="text" class="form-control" formControlName="email">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label *ngIf="!createForm.get('email').dirty">Email</label>
+        <div class="text-danger" *ngFor="let v of validMsg.email" style="margin-top: 2px">
+          <small *ngIf="getValidate('email',v)">{{v.msg}}</small>
+        </div>
+      </div>
+
+      <button style="background: #5264AE; margin-left: 175px " type="submit" class="btn btn-dark "><span
+        class=" glyphicon glyphicon-send"></span>Submit
+      </button>
+    </fieldset>
+  </form>
+</div>
+
+

@@ -1,7 +1,8 @@
-<h3>CUSTOMER</h3>
+
 <div style="float: right">
+  <a href="/customer/create">Create new customer</a>
 <input type="text" id="searchName" [(ngModel)]="nameSearch" placeholder="Search name">
-<input type="text" id="searchEmail" [(ngModel)]="addressSearch" placeholder="Search email">
+<input type="text" id="searchEmail" [(ngModel)]="addressSearch" placeholder="Search address">
 <button class="btn btn-primary" (click)="search()">Search</button>
 </div>
 <table class="table">
@@ -42,7 +43,7 @@
     <td>{{c.address}}</td>
     <td>{{c.customerType.name}}</td>
     <td>
-      <button [routerLink]="['/edit', c.id]" class="btn btn-warning">Edit</button>
+      <button [routerLink]="['/customer/edit', c.id]" class="btn btn-warning">Edit</button>
     </td>
     <td>
       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
