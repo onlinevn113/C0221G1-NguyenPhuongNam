@@ -98,11 +98,14 @@ export class CustomerListComponent implements OnInit {
     const customer = this.createForm.value;
     this.cs.save(customer).subscribe(() => {
       this.createForm.reset();
+      this.getAll();
       alert('Create is success');
-      this.router.navigateByUrl('customer');
+      window.alert();
+
     }, error => {
       console.log(error);
     });
   }
+
 
 }
