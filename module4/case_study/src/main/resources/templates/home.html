@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
+<head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/md_bootstrap/mdb.min.css">
@@ -88,8 +88,6 @@
     <a class="nav-link " href="/customer">Customer</a> <br>
     <a class="nav-link" href="/employee">Employee</a> <br>
     <a class="nav-link" href="/service">Service</a> <br>
-    <a class="nav-link" href="/contract">Customer <br> Using </a>
-    <a th:if="${#request.userPrincipal != null}" class="nav-link" href="/logout">Logout</a>
 </div>
 
 
@@ -162,7 +160,6 @@
 
         </ul>
     </div>
-
 </nav>
 <div class="text-center">
     <a class="btn btn-outline-light" href="/service/create">+ Create new Service</a> <br> <br>

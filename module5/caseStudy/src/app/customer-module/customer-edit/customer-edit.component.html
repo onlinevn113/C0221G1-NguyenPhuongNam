@@ -2,36 +2,26 @@
   <h2 class="text-center">Edit Customer</h2>
   <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="editCustomer()">
     <div class="form-group">
-      <label for="id">Id</label>
+
       <input type="text" class="form-control" id="id" formControlName="id" readonly>
-      <div *ngIf="!editForm.controls.id?.valid && (editForm.controls.id?.dirty || editForm.controls.id?.touched)">
-        <div [hidden]="!editForm.controls.id.errors.required">
-          <small style="color: red"> not empty</small>
-        </div>
-        <div [hidden]="!editForm.controls.id.errors.min">
-          <small style="color: red"> > 0</small>
-        </div>
-      </div>
     </div>
     <div class="form-group">
       <label for="code">Code</label>
       <input type="text" class="form-control" id="code" formControlName="code">
-      <div
-        *ngIf="!editForm.controls.customerCode?.valid && (editForm.controls.customerCode?.dirty || editForm.controls.customerCode?.touched)">
-        <div [hidden]="!editForm.controls.customerCode.errors.required">
-          <small style="color: red"> Not empty</small>
+      <div *ngIf="!editForm.controls.code?.valid && (editForm.controls.code?.dirty || editForm.controls.code?.touched)">
+        <div [hidden]="!editForm.controls.code.errors.required">
+          <small style="color: red"> not empty</small>
         </div>
-        <div [hidden]="!editForm.controls.customerCode.errors.pattern">
-          <small style="color: red"> pattern (KH - XXX)</small>
+        <div [hidden]="!editForm.controls.code.errors.pattern">
+          <small style="color: red"> input valid </small>
         </div>
       </div>
     </div>
     <div class="form-group">
       <label  for="customerType"> Customer Type</label>
-      <select id="customerType" class="form-control" formControlName="customerType">
+      <select id="customerType" class="form-control" formControlName="customerType" [compareWith]="compareFn">
         <ng-container *ngFor="let c of customerTypes">
-          <option [value]="c" *ngIf="customer.customerType.id === c.id" selected >{{c.name}}</option>
-          <option [ngValue]="c"  *ngIf="customer.customerType.id != c.id" >{{c.name}}</option>
+          <option [ngValue]="c">{{c.name}}</option>
         </ng-container>
       </select>
     </div>
@@ -39,7 +29,8 @@
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" formControlName="name">
       <div *ngIf="!editForm.controls.name?.valid && (editForm.controls.name?.dirty || editForm.controls.name?.touched)">
-        <small style="color: red">  character > 0 </small>
+        <small [hidden]="!editForm.controls.name.errors.required" style="color: red"> not empty</small>
+        <small [hidden]="!editForm.controls.name.errors.minLength" style="color: red"> input valid </small>
       </div>
     </div>
 
@@ -55,15 +46,15 @@
       <input type="text" class="form-control" id="idCard" formControlName="idCard">
       <div *ngIf="!editForm.controls.idCard?.valid && (editForm.controls.idCard?.dirty || editForm.controls.idCard?.touched)">
         <small [hidden]="!editForm.controls.idCard.errors.required" style="color: red"> not empty</small>
-        <small [hidden]="!editForm.controls.idCard.errors.pattern" style="color: red"> pattern (XXX - XXX - XXX) </small>
+        <small [hidden]="!editForm.controls.idCard.errors.pattern" style="color: red"> input valid </small>
       </div>
     </div>
     <div class="form-group">
       <label for="phoneNumber">Phone Number</label>
       <input type="text" class="form-control" id="phoneNumber" formControlName="phone">
-      <div *ngIf="!editForm.controls.phoneNumber?.valid && (editForm.controls.phoneNumber?.dirty || editForm.controls.phoneNumber?.touched)">
-        <!--        <small [hidden]="!createFrom.controls.phoneNumber.errors.required" style="color: red"> insert phoneNumber</small>-->
-        <small [hidden]="!editForm.controls.phoneNumber.errors.pattern" style="color: red"> pattern ( 090 X -XXX-XXX)</small>
+      <div *ngIf="!editForm.controls.phone?.valid && (editForm.controls.phone?.dirty || editForm.controls.phone?.touched)">
+        <small [hidden]="!editForm.controls.phone.errors.required" style="color: red"> not empty</small>
+        <small [hidden]="!editForm.controls.phone.errors.pattern" style="color: red">input valid</small>
       </div>
     </div>
     <div class="form-group">
@@ -80,15 +71,6 @@
       <div *ngIf="!editForm.controls.address?.valid && (editForm.controls.address?.dirty || editForm.controls.address?.touched)">
         <small [hidden]="!editForm.controls.address.errors.required" style="color: red"> Not empty </small>
         <small [hidden]="!editForm.controls.address.errors.minlength" style="color: red"> character >5  </small>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
-        </label>
       </div>
     </div>
     <div style="float: right">

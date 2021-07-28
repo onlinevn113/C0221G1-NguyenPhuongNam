@@ -88,7 +88,7 @@ export class CustomerCreateComponent implements OnInit {
     this.cs.save(customer).subscribe(() => {
       this.createForm.reset();
       alert('Create is success');
-      this.router.navigateByUrl('/customer/list');
+      this.router.navigateByUrl('customer');
     }, error => {
       console.log(error);
     });

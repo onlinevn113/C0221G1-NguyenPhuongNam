@@ -25,19 +25,22 @@
     {
       "id": 1,
       "code": "KH-001",
-      "customerType": "1",
+      "customerType": {
+        "id": 1,
+        "name": "Gold"
+      },
       "name": "Lươn Gia Khánh",
       "birthday": "1999-06-27",
       "idCard": "123456789",
       "phone": "0123456789",
-      "email": "",
+      "email": "luongiakhanh@gmail.com",
       "address": "Đà Nẵng"
     },
     {
       "id": 2,
       "code": "KH-002",
       "customerType": {
-        "id": 2,
+        "id": 3,
         "name": "Gold"
       },
       "name": "Hà bụng bự",
@@ -45,8 +48,7 @@
       "idCard": "123456789",
       "phone": "0123456789",
       "email": "habungbu@gmail.com",
-      "address": "Đà Nẵng",
-      "gender": "1"
+      "address": "Đà Nẵng"
     },
     {
       "id": 3,
@@ -64,18 +66,116 @@
       "gender": "1"
     },
     {
-      "code": "KH-1234",
+      "id": 4,
+      "code": "KH-124",
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "name": "Lươn Khánh",
+      "birthday": "2021-07-30",
+      "idCard": "123567890",
+      "phone": 1234567890,
+      "email": "onlinvn113@gmail.com",
+      "address": "adasdasds"
+    },
+    {
+      "code": "KH-123",
       "customerType": {
         "id": 1,
         "name": "Diamond"
       },
-      "name": "Lươn Khánh",
-      "birthday": "2021-07-30",
-      "phone": 1234567890,
-      "email": "onlinvn113@gmail.com",
-      "address": "adasdasds",
-      "idCard": "1235678902",
-      "id": 4
+      "name": "Nguyễn Nam",
+      "birthday": "2021-07-14",
+      "idCard": 201807687,
+      "phone": 774501871,
+      "email": "onllinevn113@gmail.com",
+      "address": "K110/08",
+      "id": 5
+    },
+    {
+      "code": "KH-111",
+      "customerType": {
+        "id": 1,
+        "name": "Diamond"
+      },
+      "name": "Nam N",
+      "birthday": "2021-07-29",
+      "idCard": 774501871,
+      "phone": 774501871,
+      "email": "onlinevn113@gmail.com",
+      "address": "K110/08",
+      "id": 6
+    },
+    {
+      "code": "KH-012",
+      "customerType": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "name": "Nguyễn Nam",
+      "birthday": "2021-07-22",
+      "idCard": 201807687,
+      "phone": 774501871,
+      "email": "onlinevn113@gmail.com",
+      "address": "Sơn Trà",
+      "id": 7
+    },
+    {
+      "code": "KH-987",
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "name": "Nam Nam",
+      "birthday": "2021-07-31",
+      "idCard": 201807697,
+      "phone": 774501871,
+      "email": "onlinevn113@gmail.com",
+      "address": "Hải Phòng",
+      "id": 8
+    },
+    {
+      "code": "KH-789",
+      "customerType": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "name": "Nguyễn Nguyễn",
+      "birthday": "2019-10-28",
+      "idCard": 123456789,
+      "phone": 232345678,
+      "email": "onlinevn113@gmail.com",
+      "address": "Hải Dương",
+      "id": 9
+    },
+    {
+      "code": "KH-232",
+      "customerType": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "name": "NAM NAMANA",
+      "birthday": "2020-11-30",
+      "idCard": 123456789,
+      "phone": 123456789,
+      "email": "ONLOASYV@GMAIL.COM",
+      "address": "23ERG",
+      "id": 10
+    },
+    {
+      "code": "KH-789",
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "name": "Nam Nam Nam",
+      "birthday": "2019-12-31",
+      "idCard": 774508171,
+      "phone": 774501871,
+      "email": "onliasdn@gmail.com",
+      "address": "kjabdygybd",
+      "id": 11
     }
   ]
 }
