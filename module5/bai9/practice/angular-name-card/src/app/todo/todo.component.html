@@ -1,0 +1,23 @@
+<h2 class="text-center">
+  Todo App
+</h2>
+<div class="col-md-8 offset-md-2">
+  <input #e (click)="create(e)" type="text" placeholder="Thêm mới todo">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <tr *ngFor="let t of todos">
+      <td>{{t.name}}</td>
+      <td>
+        <button (click)="update(t.id)">Edit</button>
+      </td>
+      <td>
+        <button (click)="delete(t.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+
+</div>

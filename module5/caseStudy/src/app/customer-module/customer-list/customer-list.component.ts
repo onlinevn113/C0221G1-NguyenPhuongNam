@@ -21,7 +21,8 @@ export class CustomerListComponent implements OnInit {
   nameSearch = '';
   addressSearch = '';
   customerTypes: CustomerType[] = [];
-  validMsg;
+  // tslint:disable-next-line:max-line-length
+  validMsg: { birthday: { msg: string; type: string }[]; customerType: { msg: string; type: string }[]; addresss: ({ msg: string; type: string } | { msg: string; type: string })[]; idCard: ({ msg: string; type: string } | { msg: string; type: string })[]; name: ({ msg: string; type: string } | { msg: string; type: string })[]; phonee: ({ msg: string; type: string } | { msg: string; type: string })[]; customer_code: ({ msg: string; type: string } | { msg: string; type: string })[]; email: ({ msg: string; type: string } | { msg: string; type: string })[] };
   editForm;
 
   createForm = new FormGroup({
@@ -165,25 +166,26 @@ export class CustomerListComponent implements OnInit {
     return this.cs.findById(id).subscribe(c => {
       console.log(c.name);
       this.editForm = new FormGroup({
-        // id: new FormControl(c.id),
+        id: new FormControl(c.id),
         code: new FormControl(c.code, [Validators.required, Validators.pattern('KH-\\d{3}')]),
-        // customerType: new FormControl(c.customerType),
-        // name: new FormControl(c.name, [Validators.required, Validators.minLength(5)]),
-        // birthday: new FormControl(c.birthday, [Validators.required]),
-        // idCard: new FormControl(c.idCard, [Validators.required, Validators.pattern('[0-9]{9}')]),
-        // phone: new FormControl(c.phone, [Validators.required, Validators.pattern('[0-9]{10}')]),
-        // email: new FormControl(c.email, [Validators.required, Validators.email]),
-        // address: new FormControl(c.address, [Validators.required, Validators.minLength(5)]),
+        customerType: new FormControl(c.customerType),
+        name: new FormControl(c.name, [Validators.required, Validators.minLength(5)]),
+        birthday: new FormControl(c.birthday, [Validators.required]),
+        idCard: new FormControl(c.idCard, [Validators.required, Validators.pattern('[0-9]{9}')]),
+        phone: new FormControl(c.phone, [Validators.required, Validators.pattern('[0-9]{10}')]),
+        email: new FormControl(c.email, [Validators.required, Validators.email]),
+        address: new FormControl(c.address, [Validators.required, Validators.minLength(5)]),
       });
     });
   }
 
   sendIdEdit(id: number) {
+    this.validMsg = new ValidateMsg().msgArr();
     this.showFormEdit(id);
     // tslint:disable-next-line:only-arrow-functions
     setTimeout(function() {
       document.getElementById('showEditModal').click();
-    }, 1000);
+    }, 1);
   }
 
   editCustomer() {

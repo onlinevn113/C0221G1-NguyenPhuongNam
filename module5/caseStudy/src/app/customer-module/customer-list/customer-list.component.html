@@ -114,8 +114,8 @@
   </tr>
   </tbody>
 </table>
-
-<button id="showEditModal" data-toggle="modal" data-target="#myModal2">
+<!--show modal edit-->
+<button hidden id="showEditModal" data-toggle="modal" data-target="#myModal2">
 </button>
 <!--paging-->
 <pagination-controls (pageChange)="page=$event" nextLabel="" previousLabel=""></pagination-controls>
@@ -186,7 +186,6 @@
         <div class="modal-body">
           <fieldset>
             <!-- Form Name -->
-
             <div class="group">
               <div class="forError" *ngIf="createForm.get('code').dirty">Code</div>
               <input type="text" class="form-control" formControlName="code">
@@ -197,8 +196,6 @@
                 <small *ngIf="getValidate('code',v)">{{v.msg}}</small>
               </div>
             </div>
-
-
             <div class="group">
               <div class="forError" *ngIf="createForm.get('customerType').dirty">Customer type</div>
               <select name="typeCustomer" formControlName="customerType" class="form-control">
@@ -272,7 +269,6 @@
               </div>
             </div>
 
-
             <div class="group">
               <div class="forError" *ngIf="createForm.get('address').dirty">Address</div>
               <input type="text" class="form-control" formControlName="address">
@@ -283,7 +279,6 @@
                 <small *ngIf="getValidate('address',v)">{{v.msg}}</small>
               </div>
             </div>
-
 
           </fieldset>
         </div>
@@ -299,24 +294,31 @@
 <!--modal edit-->
 <div class="modal fade" id="myModal2" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
   <div class="modal-dialog">
-    <form [formGroup]="editForm" (ngSubmit)="editCustomer()">
+    <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="editCustomer()">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title " style="padding-left: 155px" id="myModalLabel2">Edit customer</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" (click)="clearFormEdit()">&times;</span>
+            <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <fieldset>
             <!-- Form Name -->
-
+            <input type="hidden" formControlName="id">
             <div class="group">
+              <div class="forError">Code</div>
               <input type="text" class="form-control" id="code" formControlName="code">
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label>Code</label>
+              <ng-container *ngIf="editForm">
+                <div class="text-danger" *ngFor="let v of validMsg.customer_code" style="margin-top: 2px">
+                  <small *ngIf="getValidate('code',v)">{{v.msg}}</small>
+                </div>
+              </ng-container>
+
             </div>
+
 
           </fieldset>
         </div>
