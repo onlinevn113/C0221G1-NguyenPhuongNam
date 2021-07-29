@@ -40,6 +40,6 @@ export class CustomerService {
   }
 
   search(name: string, address: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(API_URL + '/customers?name_like=' + name + '&address_like=' + address);
+    return this.http.get<Customer[]>(API_URL + '/customers?name_like=' + name + '&' + 'address_like=' + address);
   }
 }

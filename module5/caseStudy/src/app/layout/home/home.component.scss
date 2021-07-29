@@ -47,6 +47,12 @@ body {
   margin-left: 50px;
 }
 
+#footer-sticky {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+}
 
 @media screen and (max-height: 450px) {
   .sidenav {

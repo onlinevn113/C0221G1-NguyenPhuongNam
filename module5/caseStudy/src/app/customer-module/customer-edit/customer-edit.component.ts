@@ -43,14 +43,14 @@ export class CustomerEditComponent implements OnInit {
       this.customer = customer;
       this.editForm = new FormGroup({
         id: new FormControl(customer.id),
-        code: new FormControl(customer.code, [Validators.required, Validators.pattern('KH-\\d{3}')]),
-        customerType: new FormControl(customer.customerType),
-        name: new FormControl(customer.name, [Validators.required, Validators.minLength(5)]),
-        birthday: new FormControl(customer.birthday, [Validators.required]),
-        idCard: new FormControl(customer.idCard, [Validators.required, Validators.pattern('[0-9]{9}')]),
-        phone: new FormControl(customer.phone, [Validators.required, Validators.pattern('[0-9]{10}')]),
-        email: new FormControl(customer.email, [Validators.required, Validators.email]),
-        address: new FormControl(customer.address, [Validators.required, Validators.minLength(5)]),
+        code: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{3}$')]),
+        customerType: new FormControl('', [Validators.required]),
+        name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+        birthday: new FormControl('', [Validators.required]),
+        idCard: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]),
+        phone: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        address: new FormControl('', [Validators.required, Validators.minLength(5)]),
       });
     });
   }
