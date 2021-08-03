@@ -5,7 +5,6 @@ import {CustomerCreateComponent} from './customer-create/customer-create.compone
 import {CustomerEditComponent} from './customer-edit/customer-edit.component';
 import {CustomerListComponent} from './customer-list/customer-list.component';
 
-
 const routes: Routes = [
   {
     path: '',

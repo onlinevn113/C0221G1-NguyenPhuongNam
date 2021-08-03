@@ -1,0 +1,169 @@
+<div class="container-fluid d-flex position-relative border-0" style="background: #0F574B">
+  <div class="col-3 " style="left: 25px">
+    <a href="/" class="img-fluid"><img class=" img-fluid mx-5"
+                                       src="https://www.sambacouture.com/wp-content/uploads/2017/12/Sambacouture-logo-icon.png"
+                                       height="117" width="87"/></a>
+  </div>
+
+  <div style="margin-top: 30px; margin-left: 150px">
+    <input type="text" [(ngModel)]="nameSearch" placeholder="search by name">
+    <input type="text" [(ngModel)]="emailSearch" placeholder="search by email">
+    <button type="submit" class="btn-light bi bi-search" (click)="search()"></button>
+  </div>
+
+</div>
+<a href="/customer/create" class="btn-block bi bi-plus-circle text-dark font-weight-bold "
+   style="padding-left: 118px;padding-top: 30px;text-decoration: none; width: 230px"> Add new
+</a>
+<div class="container">
+  <table class="table mt-3">
+    <thead class="thead-light">
+    <tr>
+
+      <th>STT</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Birthday</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Type</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      <!--      <th>-->
+      <!--        <b>-->
+      <!--          <a href="/customer/create" class="btn-block bi bi-plus-circle text-dark" style="margin-top: 30px ">-->
+      <!--          </a>-->
+      <!--        </b>-->
+      <!--      </th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of customers| paginate:{itemsPerPage: 3, currentPage:page};index as i">
+      <td>{{i + page * 3 - 2}}</td>
+      <td>{{c.id}}</td>
+      <td>{{c.name}}</td>
+      <td>{{c.birthday}}</td>
+      <td>{{c.gender == 1 ? 'Male' : c.gender == 0 ? 'Female' : 'other'}}</td>
+      <td>{{c.email}}</td>
+      <td>{{c.customerType.name}}</td>
+      <td>
+        <button [routerLink]="['/customer/edit',c.id]" class="bi bi-pencil-square">
+
+        </button>
+      </td>
+      <td>
+        <button (click)="delete(c.id)" class="bi bi-trash"></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="page=$event" nextLabel="sau" previousLabel="trước"></pagination-controls>
+</div>
+<!--side-nav-->
+<div class="navigation " style="z-index: 5">
+  <ul>
+    <li class="list active">
+    </li>
+    <li class="list active">
+      <div class="toggle ">
+        <i class=" bi bi-list open close" name="menu-outline close-outline"></i>
+      </div>
+    </li>
+    <li class="list active">
+    </li>
+    <li class="list active">
+      <b></b>
+      <b></b>
+      <a href="">
+        <span class="icon"><i class="bi bi-house-door"></i></span>
+        <span class="title">Home</span>
+      </a>
+    </li>
+    <li class="list">
+      <b></b>
+      <b></b>
+      <a href="/customer">
+        <span class="icon"><i class="bi bi-person"></i></span>
+        <span class="title">Customer</span>
+      </a>
+    </li>
+    <li class="list">
+      <b></b>
+      <b></b>
+      <a href="#">
+        <span class="icon"><i class="bi bi-chat-left-dots"></i></span>
+        <span class="title">Messages</span>
+      </a>
+    </li>
+
+  </ul>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<footer class="text-white">
+  <div class="container px-4 pb-3 text-center">
+    <section class="mb-3">
+      <span style="color: rgba(0,0,0,0.48)">© For more information </span>
+      <a target="_blank" class="m-1 rounded-circle"
+         href="https://www.facebook.com/furamaresort/"
+         role="button">
+        <img src="http://simpleicon.com/wp-content/uploads/facebook-2.png"
+             class="img-fluid rounded-circle" style="height: 30px; width: 30px" alt="">
+      </a>
+      <a class="m-1 rounded-circle"
+         href="https://www.instagram.com/furama_resort_danang/?hl=vi"
+         role="button">
+        <img src="https://cdn4.iconfinder.com/data/icons/picons-social/57/38-instagram-3-512.png"
+             class="img-fluid rounded-circle" style="height: 30px; width: 30px" alt="">
+      </a>
+    </section>
+  </div>
+  <div class="text-center px-2 justify-content-center align-items-center " style=" background: #0F574B"
+       id="footer-sticky">
+    <span>COVID 19 UPDATE: The safety and well-being are our utmost priority</span>
+    <a href="https://furamavietnam.com/covid-19-update/">
+      <button class="my-1" style="background: #c1f8f0; border-radius: 5px; height: 25px">
+        <span style="color: #0F574B">Learn more</span>
+      </button>
+    </a>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

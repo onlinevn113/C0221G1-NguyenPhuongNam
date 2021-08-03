@@ -42,4 +42,11 @@ export class CustomerService {
   search(name: string, address: string): Observable<Customer[]> {
     return this.http.get<Customer[]>(API_URL + '/customers?name_like=' + name + '&' + 'address_like=' + address);
   }
+  // '&date_gte=' + date1 + '&date_lte=' + date2
+  searchBirthDate(startDate: string, endDate: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(API_URL + '/customers?birthday_gte=' + startDate + '&' + 'birthday_lte=' + endDate);
+  }
+  searchByType(type: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(API_URL + '/customers?customerType.name_like=' + type);
+  }
 }

@@ -8,12 +8,16 @@ import {CustomerType} from '../../model/customer-type';
 import {ValidateMsg} from '../../service/validate-msg';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
+  a = '[(A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴa-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ)\\p{P}]+(\\s[(A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴa-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ)\\p{P}]+)+';
+  b = '[\\w\\p{P}]+(?:\\s[\\w\\p{P}]+)+';
+  isEdit = false;
   page = 1;
   idDelete: number;
   nameDelete: string;
@@ -21,24 +25,39 @@ export class CustomerListComponent implements OnInit {
   nameSearch = '';
   addressSearch = '';
   customerTypes: CustomerType[] = [];
-  // tslint:disable-next-line:max-line-length
-  validMsg: { birthday: { msg: string; type: string }[]; customerType: { msg: string; type: string }[]; addresss: ({ msg: string; type: string } | { msg: string; type: string })[]; idCard: ({ msg: string; type: string } | { msg: string; type: string })[]; name: ({ msg: string; type: string } | { msg: string; type: string })[]; phonee: ({ msg: string; type: string } | { msg: string; type: string })[]; customer_code: ({ msg: string; type: string } | { msg: string; type: string })[]; email: ({ msg: string; type: string } | { msg: string; type: string })[] };
-  editForm;
+  startDate = '';
+  endDate = '';
+  validMsg;
+  searchType = '';
+  editForm = new FormGroup({
+    id: new FormControl(''),
+    code: new FormControl('', [Validators.required, Validators.pattern('KH-\\d{3}')]),
+    customerType: new FormControl(''),
+    gender: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.pattern(this.a)]),
+    birthday: new FormControl('', [Validators.required]),
+    idCard: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{9}$')]),
+    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{9}$')]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    address: new FormControl('', [Validators.required, Validators.minLength(5)]),
+  });
 
   createForm = new FormGroup({
     code: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{3}$')]),
     customerType: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    gender: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.pattern(this.a)]),
     birthday: new FormControl('', [Validators.required]),
+
     idCard: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]),
     phone: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     address: new FormControl('', [Validators.required, Validators.minLength(5)]),
   });
 
-  // tslint:disable-next-line:max-line-length
   constructor(private loadCss?: LoadCssService, private cs?: CustomerService, private router?: Router) {
     loadCss.loadCss('https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css');
+    // loadCss.loadCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css');
     loadCss.loadCss('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css');
     loadCss.loadScript('assets/script/nav-bar.js');
     loadCss.loadScript('https://code.jquery.com/jquery-3.5.1.slim.min.js');
@@ -58,21 +77,12 @@ export class CustomerListComponent implements OnInit {
     });
   }
 
-  sendIdDelete(id: number) {
-    this.idDelete = id;
-    this.cs.findById(id).subscribe(c => {
-      this.nameDelete = c.name;
-    });
-  }
-
   deleteCustomer() {
     this.cs.delete(this.idDelete).subscribe(() => {
       this.getAll();
       alert('Delete is success');
     });
-
   }
-
 
   deleteCustomer2(id: number, name: string) {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -84,7 +94,7 @@ export class CustomerListComponent implements OnInit {
     });
     swalWithBootstrapButtons.fire({
       title: 'Are you sure?',
-      text: 'Do you want to delete ' + name,
+      text: 'Do you want to delete' + ' ' + name.toUpperCase(),
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
@@ -98,16 +108,13 @@ export class CustomerListComponent implements OnInit {
         swalWithBootstrapButtons.fire(
           'Deleted!',
           '',
-          'success'
+          'success',
         );
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
+      } else {
         swalWithBootstrapButtons.fire(
           'Cancelled',
           '',
-          'error'
+          'error',
         );
       }
     });
@@ -121,6 +128,22 @@ export class CustomerListComponent implements OnInit {
     });
   }
 
+  searchBirthDate() {
+    this.cs.searchBirthDate(this.startDate, this.endDate).subscribe(c => {
+      this.customers = c;
+      this.page = 1;
+      this.startDate = '';
+      this.endDate = '';
+    });
+  }
+
+  searchByType() {
+    this.cs.searchByType(this.searchType).subscribe(c => {
+      this.customers = c;
+      this.page = 1;
+      // this.searchType = '';
+    });
+  }
 
   getALlTypeCustomer() {
     this.cs.getAllCustomerType().subscribe(tc => {
@@ -128,18 +151,26 @@ export class CustomerListComponent implements OnInit {
     });
   }
 
-  getValidate(attribute: string, valid): boolean {
+  getValidateCreate(attribute: string, valid): boolean {
     return this.createForm.get(attribute)?.hasError(valid.type) &&
       (this.createForm.get(attribute)?.touched || this.createForm.get(attribute)?.dirty);
   }
 
-  clearFormCreate() {
-    this.createForm.reset();
-
+  getValidateEdit(attribute: string, valid): boolean {
+    return this.editForm.get(attribute)?.hasError(valid.type) &&
+      (this.editForm.get(attribute)?.touched || this.editForm.get(attribute)?.dirty);
   }
 
-  clearFormEdit() {
-    this.editForm.reset();
+  clearFormCreate() {
+    this.createForm.reset();
+  }
+
+  changeViewEdit() {
+    if (this.isEdit) {
+      this.isEdit = false;
+    } else {
+      this.isEdit = true;
+    }
   }
 
   saveCustomer() {
@@ -150,32 +181,20 @@ export class CustomerListComponent implements OnInit {
       Swal.fire({
         icon: 'success',
         title: 'Creat is success',
-
       });
     }, error => {
       console.log(error);
     });
   }
 
-
   compareFn(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
   showFormEdit(id: number) {
+    this.isEdit = false;
     return this.cs.findById(id).subscribe(c => {
-      console.log(c.name);
-      this.editForm = new FormGroup({
-        id: new FormControl(c.id),
-        code: new FormControl(c.code, [Validators.required, Validators.pattern('KH-\\d{3}')]),
-        customerType: new FormControl(c.customerType),
-        name: new FormControl(c.name, [Validators.required, Validators.minLength(5)]),
-        birthday: new FormControl(c.birthday, [Validators.required]),
-        idCard: new FormControl(c.idCard, [Validators.required, Validators.pattern('[0-9]{9}')]),
-        phone: new FormControl(c.phone, [Validators.required, Validators.pattern('[0-9]{10}')]),
-        email: new FormControl(c.email, [Validators.required, Validators.email]),
-        address: new FormControl(c.address, [Validators.required, Validators.minLength(5)]),
-      });
+      this.editForm.patchValue(c);
     });
   }
 
@@ -185,13 +204,19 @@ export class CustomerListComponent implements OnInit {
     // tslint:disable-next-line:only-arrow-functions
     setTimeout(function() {
       document.getElementById('showEditModal').click();
-    }, 1);
+    }, 0);
   }
 
   editCustomer() {
     const customer = this.editForm.value;
     this.cs.update(customer.id, customer).subscribe(() => {
-      alert('edit is success');
+      this.getAll();
+      document.getElementById('editOut').click();
+      Swal.fire({
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1000
+      });
     });
   }
 }

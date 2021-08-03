@@ -2,9 +2,7 @@
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a class="nav-link " href=""> <span class="glyphicon glyphicon-home"></span> &nbsp;Home</a> <br> <br>
-  <a class="nav-link " href="/customer">Customer</a> <br>
-  <a class="nav-link" href="/employee">Employee</a> <br>
-  <a class="nav-link" href="/service">Service</a> <br>
+  <a class="nav-link " href="/customer"><span class="bi bi-person"></span>Customer</a> <br>
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="navbar"
      style=" height: 47px;background: #0F574B">
@@ -27,12 +25,14 @@
     </ul>
   </div>
 </nav>
-<img src="assets/furama-body.png" height="596" width="1356"/>
-<img src="assets/furama-body2.png" height="596" width="1360"/>
+<div class="container-fluid">
+  <img class="img-fluid" src="assets/furama-body.png" height="596" width="1356"/>
+  <img  class="img-fluid" src="assets/furama-body2.png" height="596" width="1360"/>
+</div>
 
-<app-root></app-root>
+
 <!--foooter-->
-<footer class="text-white ">
+<footer class="text-white mb-3">
   <div class="container px-4 pb-3 text-center">
     <section class="mb-3">
       <span style="color: rgba(0,0,0,0.48)">© For more information </span>
@@ -54,23 +54,10 @@
        id="footer-sticky">
     <span>COVID 19 UPDATE: The safety and well-being are our utmost priority</span>
     <a href="https://furamavietnam.com/covid-19-update/">
-      <button class="my-1" style="background: #c1f8f0; border-radius: 5px; height: 25px">
+      <button class="my-1 mb-1" style="background: #c1f8f0; border-radius: 5px; height: 25px">
         <span style="color: #0F574B">Learn more</span>
       </button>
     </a>
   </div>
 </footer>
-<script>
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-  }
 
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-    document.body.style.backgroundColor = "white";
-  }
-
-</script>

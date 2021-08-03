@@ -8,12 +8,16 @@ export class ValidateMsg {
       {type: 'pattern', msg: 'Please Input invalid'},
     ],
     customerType: [
-      {type: 'required', msg: 'Please Input'}
+      {type: 'required', msg: 'Please choice'}
+    ],
+    gender: [
+      {type: 'required', msg: 'Please choice'}
 
     ],
     name: [
       {type: 'required', msg: 'Please Input'},
-      {type: 'minLength', msg: 'Please Input >5 letter'}
+      {type: 'minlength', msg: 'Please Input >5 letter'},
+      {type: 'pattern', msg: 'Please Input invalid'}
     ],
     birthday: [
       {type: 'required', msg: 'Please Input'}
@@ -32,7 +36,7 @@ export class ValidateMsg {
     ],
     addresss: [
       {type: 'required', msg: 'Please Input'},
-      {type: 'minLength', msg: 'Please Input >5 letter'},
+      {type: 'minlength', msg: 'Please Input >5 letter'},
     ],
   };
   }

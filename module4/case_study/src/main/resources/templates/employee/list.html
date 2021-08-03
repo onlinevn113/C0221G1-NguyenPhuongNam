@@ -209,7 +209,7 @@
           <a class="btn btn-outline-dark" style="text-decoration: none"
              th:href="@{'/employee'(page=${p},search=${search})}"
              th:text="${p+1}"
-             th:if="${(p >(employees.number)-2)&&(p <(employees.number+2))}"
+             th:if="${(p >(employees.number)-3)&&(p <(employees.number+2))}"
           ></a>
     </span>
         <a class="btn btn-outline-dark   text-black"
@@ -218,6 +218,20 @@
         </a>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!--sidenav-->
 <div id="mySidenav" class="sidenav">

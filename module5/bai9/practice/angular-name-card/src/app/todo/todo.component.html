@@ -2,7 +2,8 @@
   Todo App
 </h2>
 <div class="col-md-8 offset-md-2">
-  <input #e (click)="create(e)" type="text" placeholder="Thêm mới todo">
+  <input #b   type="text"  placeholder="Thêm mới todo" >
+  <input type="submit"  (click)="create(b.value)" value="Thêm">
   <table>
     <tr>
       <th>Name</th>

@@ -11,21 +11,24 @@ import { HomeComponent } from './layout/home/home.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TestComponent,
+    declarations: [
+        AppComponent,
+        TestComponent,
+        FooterComponent,
+        HeaderComponent,
+        HomeComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule
+    ],
+    providers: [],
+  exports: [
     FooterComponent,
-    HeaderComponent,
-    HomeComponent,
-
-
+    FooterComponent,
+    FooterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

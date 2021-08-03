@@ -1,0 +1,38 @@
+
+import {Component, OnInit} from '@angular/core';
+import {ProductService} from '../../service/product.service';
+import {Product} from '../../model/product';
+import {LoadCssService} from '../../data/load-css.service';
+
+@Component({
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss']
+})
+export class ProductListComponent implements OnInit {
+  products: Product[] = [];
+  idDelete: number;
+  message: string;
+
+  constructor(private productService: ProductService, private loadCss: LoadCssService) {
+    loadCss.loadCss('https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css');
+    loadCss.loadScript('https://code.jquery.com/jquery-3.5.1.slim.min.js');
+    loadCss.loadScript('https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js');
+    loadCss.loadScript('https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js');
+  }
+
+  ngOnInit(): void {
+    this.products = this.productService.getAll();
+  }
+
+  changeId(id: number) {
+    this.idDelete = id;
+  }
+  mes(){
+    alert('xoa thanh công');
+  }
+  deleteModal() {
+    this.productService.deleteProduct(this.idDelete);
+    this.mes();
+  }
+}

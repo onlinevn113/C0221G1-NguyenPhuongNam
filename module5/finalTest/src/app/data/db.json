@@ -1,0 +1,59 @@
+{
+  "customerTypes": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinum"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
+    }
+  ],
+  "customers": [
+    {
+      "id": 21,
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "name": "bụng siêu bự",
+      "birthday": "1999-06-27",
+      "email": "aToan@gmail.com",
+      "gender": "1"
+    },
+    {
+      "id": 1,
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "name": "Nam",
+      "birthday": "1999-06-27",
+      "email": "name@gmail.com",
+      "gender": "3"
+    },
+    {
+      "name": "Nguyen Nam",
+      "birthday": "2021-07-03",
+      "gender": "0",
+      "email": "online@gmail.com",
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "id": 22
+    }
+  ]
+}

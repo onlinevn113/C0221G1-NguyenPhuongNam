@@ -1,0 +1,21 @@
+<!--tim kiem-->
+<div class="form-group col-md-4">
+  <input type="text" class="form-control"  placeholder="Enter Keyword for filter result" [(ngModel)]="searchedKeyword">
+</div>
+<h1>Danh sách sản phẩm</h1>
+<table class="table ">
+  <tr>
+    <td>STT</td>
+    <td>Tên</td>
+    <td>Giá</td>
+    <td>Mô tả</td>
+  </tr>
+  <tr *ngFor="let product of products  ; index as i">
+    <td>{{config.currentPage*2+i-1}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.description}}</td>
+  </tr>
+</table>
+<!-- phan trang-->
+<!--<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>-->

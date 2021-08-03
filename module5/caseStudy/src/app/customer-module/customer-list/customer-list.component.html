@@ -1,5 +1,5 @@
 <!--navbar-->
-<div class="container-fluid d-flex position-relative border-0 row ">
+<div class="container-fluid d-flex position-relative border-0 row " >
   <div class="col-3 ">
     <a href="/home" class="img-fluid"><img class=" img-fluid mx-5"
                                            src="https://www.sambacouture.com/wp-content/uploads/2017/12/Sambacouture-logo-icon.png"
@@ -9,10 +9,8 @@
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a class="nav-link " href=""> <span class="glyphicon glyphicon-home"></span> &nbsp;Home</a> <br> <br>
-  <a class="nav-link " href="/customer">Customer</a> <br>
-  <a class="nav-link" href="/employee">Employee</a> <br>
-  <a class="nav-link" href="/service">Service</a> <br>
+  <a class="nav-link " href=""> <span class="bi bi-house-door"></span> &nbsp;Home</a> <br> <br>
+  <a class="nav-link " href="/customer"><span class="bi bi-person"></span>Customer</a> <br>
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark  container-fluid font-weight-bolder px-0 text-white" id="navbar"
      style=" height: 47px;background: #0F574B">
@@ -22,16 +20,18 @@
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       </li>
       <li class="nav-item active px-5 pt-2">
-        <button style="background: white; color: #0F574B" class="btn-block" data-toggle="modal" data-target="#myModal">
-          +Create new customer
+        <button style="background: white; color: #0F574B" class="btn-block bi bi-plus-circle" data-toggle="modal"
+                data-target="#myModal">
+          Add new customer
         </button>
       </li>
     </ul>
   </div>
   <div class="form-inline my-2 col-6  ">
+
+
     <input type="text" style="height: 30px ;width: 200px" id="searchName" [(ngModel)]="nameSearch"
-           placeholder="Search name">
-    &nbsp;
+           placeholder="Search name">&nbsp;
     <input type="text" style="height: 30px ;width: 200px" id="searchEmail" [(ngModel)]="addressSearch"
            placeholder="Search address">
     <button style="background: #0F574B; color: white" class="btn-light bi bi-search" (click)="search()"></button>
@@ -41,24 +41,34 @@
     </ul>
   </div>
 </nav>
+<div class="d-flex">
+  <input type="date" style="height: 30px ;width: 200px" [(ngModel)]="startDate">
+  <input type="date" style="height: 30px ;width: 200px" [(ngModel)]="endDate">
+  <button style="background: #0F574B; color: white"
+          (click)="searchBirthDate()">Search birthdate
+  </button>
+  <select  [(ngModel)]="searchType">
+    <option value=""  hidden >Select type</option>
+    <option value=""  selected>None</option>
+    <option *ngFor="let ct of customerTypes" [ngValue]="ct.name">{{ct.name}}</option>
+  </select>
+  <button style="background: #0F574B; color: white"
+          (click)="searchByType()">Search type
+  </button>
+</div>
 
-<br>
-
-<table class="table">
+<table class="table mt-3 container-fluid" >
   <thead class="thead-light">
   <tr>
-    <th> STT</th>
-    <th> Code</th>
-    <th> Name</th>
-    <th> birthday</th>
-    <th> gender</th>
-    <!--    <th> idCard</th>-->
-    <!--    <th> phone</th>-->
-    <!--    <th> email</th>-->
-    <th> address</th>
-    <th> customerType</th>
-    <th>Edit</th>
-    <th>Edit2</th>
+    <th>STT</th>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Birthday</th>
+    <th>Gender</th>
+    <th>Address</th>
+    <th>Customer Type</th>
+    <!--    <th>Edit</th>-->
+    <th>Views</th>
     <!--    <th>Delete with modal</th>-->
     <th>Delete</th>
     <!--    <th>View</th>-->
@@ -78,19 +88,18 @@
     <!--    <ng-template #female>-->
     <!--      <td>Female</td>-->
     <!--    </ng-template>-->
-    <td>{{c.gender == 1 ? 'male' : 'female'}}</td>
+    <td>{{c.gender == 1 ? 'Male' : 'Female'}}</td>
     <!--    <td>{{c.idCard}}</td>-->
     <!--    <td>{{c.phone}}</td>-->
     <!--    <td>{{c.email}}</td>-->
     <td>{{c.address}}</td>
     <td>{{c.customerType.name}}</td>
+    <!--    <td>-->
+    <!--      <button [routerLink]="['/customer/edit', c.id]" class="btn-dark bi bi-pencil-square"></button>-->
+    <!--    </td>-->
     <td>
-      <button [routerLink]="['/customer/edit', c.id]" class="btn-dark bi bi-pencil-square"></button>
-    </td>
-    <td>
-      <button class="btn-dark bi bi-pencil-square"
+      <button class="btn-dark bi bi-eyedropper"
               (click)="sendIdEdit(c.id)">
-        Edit
       </button>
 
     </td>
@@ -119,31 +128,28 @@
 </button>
 <!--paging-->
 <pagination-controls (pageChange)="page=$event" nextLabel="" previousLabel=""></pagination-controls>
-
-
 <!-- Modal Delete -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Do you want to delete <span>{{nameDelete}}</span>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteCustomer()">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        Do you want to delete <span>{{nameDelete}}</span>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteCustomer()">Delete</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <!--foooter-->
-<footer class="text-white ">
+<footer class="text-white mb-3">
   <div class="container px-4 pb-3 text-center">
     <section class="mb-3">
       <span style="color: rgba(0,0,0,0.48)">© For more information </span>
@@ -165,13 +171,12 @@
        id="footer-sticky">
     <span>COVID 19 UPDATE: The safety and well-being are our utmost priority</span>
     <a href="https://furamavietnam.com/covid-19-update/">
-      <button class="my-1" style="background: #c1f8f0; border-radius: 5px; height: 25px">
+      <button class="my-1 mb-1" style="background: #c1f8f0; border-radius: 5px; height: 25px">
         <span style="color: #0F574B">Learn more</span>
       </button>
     </a>
   </div>
 </footer>
-
 <!--modal create-->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -193,23 +198,35 @@
               <span class="bar"></span>
               <label *ngIf="!createForm.get('code').dirty">Code</label>
               <div class="text-danger" *ngFor="let v of validMsg.customer_code" style="margin-top: 2px">
-                <small *ngIf="getValidate('code',v)">{{v.msg}}</small>
+                <small *ngIf="getValidateCreate('code',v)">{{v.msg}}</small>
               </div>
             </div>
             <div class="group">
               <div class="forError" *ngIf="createForm.get('customerType').dirty">Customer type</div>
-              <select name="typeCustomer" formControlName="customerType" class="form-control">
-                <option value="" selected disabled></option>
+              <select formControlName="customerType" class="form-control">
                 <option *ngFor="let ct of customerTypes" [ngValue]="ct">{{ct.name}}</option>
               </select>
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label *ngIf="!createForm.get('customerType').dirty">Select type</label>
+              <label *ngIf="!createForm.get('customerType').dirty">Customer type</label>
               <div class="text-danger" *ngFor="let valid of validMsg.customerType">
-                <div *ngIf="getValidate('customerType', valid)">{{valid.msg}}</div>
+                <div *ngIf="getValidateCreate('customerType', valid)">{{valid.msg}}</div>
               </div>
             </div>
 
+            <div class="group">
+              <div class="forError" *ngIf="createForm.get('gender').dirty">Gender</div>
+              <select formControlName="gender" class="form-control">
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+              </select>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label *ngIf="!createForm.get('gender').dirty">Gender</label>
+              <div class="text-danger" *ngFor="let valid of validMsg.gender">
+                <div *ngIf="getValidateCreate('gender', valid)">{{valid.msg}}</div>
+              </div>
+            </div>
 
             <div class="group">
               <div class="forError" *ngIf="createForm.get('name').dirty">Name</div>
@@ -218,7 +235,7 @@
               <span class="bar"></span>
               <label *ngIf="!createForm.get('name').dirty">Name</label>
               <div class="text-danger" *ngFor="let v of validMsg.name" style="margin-top: 2px">
-                <small *ngIf="getValidate('name',v)">{{v.msg}}</small>
+                <small *ngIf="getValidateCreate('name',v)">{{v.msg}}</small>
               </div>
             </div>
 
@@ -229,7 +246,7 @@
               <span class="highlight"></span>
               <span class="bar"></span>
               <div class="text-danger" *ngFor="let v of validMsg.birthday" style="margin-top: 2px">
-                <small *ngIf="getValidate('birthday',v)">{{v.msg}}</small>
+                <small *ngIf="getValidateCreate('birthday',v)">{{v.msg}}</small>
               </div>
             </div>
 
@@ -241,7 +258,7 @@
               <span class="bar"></span>
               <label *ngIf="!createForm.get('idCard').dirty">Id Card</label>
               <div class="text-danger" *ngFor="let v of validMsg.idCard" style="margin-top: 2px">
-                <small *ngIf="getValidate('idCard',v)">{{v.msg}}</small>
+                <small *ngIf="getValidateCreate('idCard',v)">{{v.msg}}</small>
               </div>
             </div>
 
@@ -253,7 +270,7 @@
               <span class="bar"></span>
               <label *ngIf="!createForm.get('phone').dirty">Phone number</label>
               <div class="text-danger" *ngFor="let v of validMsg.phonee" style="margin-top: 2px">
-                <small *ngIf="getValidate('phone',v)">{{v.msg}}</small>
+                <small *ngIf="getValidateCreate('phone',v)">{{v.msg}}</small>
               </div>
             </div>
 
@@ -265,7 +282,7 @@
               <span class="bar"></span>
               <label *ngIf="!createForm.get('email').dirty">Email</label>
               <div class="text-danger" *ngFor="let v of validMsg.email" style="margin-top: 2px">
-                <small *ngIf="getValidate('email',v)">{{v.msg}}</small>
+                <small *ngIf="getValidateCreate('email',v)">{{v.msg}}</small>
               </div>
             </div>
 
@@ -276,7 +293,7 @@
               <span class="bar"></span>
               <label *ngIf="!createForm.get('address').dirty">Address</label>
               <div class="text-danger" *ngFor="let v of validMsg.addresss" style="margin-top: 2px">
-                <small *ngIf="getValidate('address',v)">{{v.msg}}</small>
+                <small *ngIf="getValidateCreate('address',v)">{{v.msg}}</small>
               </div>
             </div>
 
@@ -284,49 +301,152 @@
         </div>
         <div class="modal-footer">
           <!--          <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">-->
-          <input type="submit" style="width: 100%" class=" btn btn-danger btn-ok" value="Create">
+          <input type="submit" style="width: 100%; background: #0F574B" class=" btn btn-dark"
+                 [disabled]="!createForm.valid"
+                 value="Create">
         </div>
       </div>
     </form>
   </div>
 </div>
-
 <!--modal edit-->
 <div class="modal fade" id="myModal2" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
   <div class="modal-dialog">
     <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="editCustomer()">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " style="padding-left: 155px" id="myModalLabel2">Edit customer</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <input type="button" (click)="changeViewEdit()" [value]="isEdit?'View':'Edit'">
+          <h5 class="modal-title " style="padding-left: 155px" id="myModalLabel2">Information</h5>
+          <button type="button" id="editOut" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <fieldset>
             <!-- Form Name -->
-            <input type="hidden" formControlName="id">
             <div class="group">
               <div class="forError">Code</div>
-              <input type="text" class="form-control" id="code" formControlName="code">
+              <input type="text" class="form-control" formControlName="code" [readOnly]="!isEdit">
               <span class="highlight"></span>
               <span class="bar"></span>
               <ng-container *ngIf="editForm">
                 <div class="text-danger" *ngFor="let v of validMsg.customer_code" style="margin-top: 2px">
-                  <small *ngIf="getValidate('code',v)">{{v.msg}}</small>
+                  <small *ngIf="getValidateEdit('code',v)">{{v.msg}}</small>
                 </div>
               </ng-container>
+            </div>
+            <div class="group">
+              <div class="forError">Customer Type</div>
+              <select formControlName="customerType" [compareWith]="compareFn" class="form-control"
+                      [attr.disabled]="!isEdit?'':null">
+                <ng-container *ngFor="let c of customerTypes">
+                  <option [ngValue]="c">{{c.name}}</option>
+                </ng-container>
+              </select>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <div class="text-danger" *ngFor="let valid of validMsg.customerType">
+                <div *ngIf="getValidateEdit('customerType', valid)">{{valid.msg}}</div>
+              </div>
+            </div>
 
+            <div class="group">
+              <div class="forError">Gender</div>
+              <select formControlName="gender" class="form-control" [attr.disabled]="!isEdit?'':null">
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+              </select>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <div class="text-danger" *ngFor="let valid of validMsg.gender">
+                <div *ngIf="getValidateEdit('gender', valid)">{{valid.msg}}</div>
+              </div>
             </div>
 
 
+            <div class="group">
+              <div class="forError">Name</div>
+              <input type="text" class="form-control" formControlName="name" [readOnly]="!isEdit">
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <ng-container *ngIf="editForm">
+                <div class="text-danger" *ngFor="let v of validMsg.name" style="margin-top: 2px">
+                  <small *ngIf="getValidateEdit('name',v)">{{v.msg}}</small>
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="group">
+              <div class="forError">Birthday</div>
+              <input type="date" class="form-control" formControlName="birthday" [readOnly]="!isEdit">
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <ng-container *ngIf="editForm">
+                <div class="text-danger" *ngFor="let v of validMsg.birthday" style="margin-top: 2px">
+                  <small *ngIf="getValidateEdit('birthday',v)">{{v.msg}}</small>
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="group">
+              <div class="forError">Id Card</div>
+              <input type="number" class="form-control" formControlName="idCard" [readOnly]="!isEdit">
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <ng-container *ngIf="editForm">
+                <div class="text-danger" *ngFor="let v of validMsg.idCard" style="margin-top: 2px">
+                  <small *ngIf="getValidateEdit('idCard',v)">{{v.msg}}</small>
+                </div>
+              </ng-container>
+            </div>
+
+
+            <div class="group">
+              <div class="forError">Phone</div>
+              <input type="number" class="form-control" formControlName="phone" [readOnly]="!isEdit">
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <ng-container *ngIf="editForm">
+                <div class="text-danger" *ngFor="let v of validMsg.phonee" style="margin-top: 2px">
+                  <small *ngIf="getValidateEdit('phone',v)">{{v.msg}}</small>
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="group">
+              <div class="forError">Email</div>
+              <input type="text" class="form-control" formControlName="email" [readOnly]="!isEdit">
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <ng-container *ngIf="editForm">
+                <div class="text-danger" *ngFor="let v of validMsg.email" style="margin-top: 2px">
+                  <small *ngIf="getValidateEdit('email',v)">{{v.msg}}</small>
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="group">
+              <div class="forError">Address</div>
+              <input type="text" class="form-control" formControlName="address" [readOnly]="!isEdit">
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <ng-container *ngIf="editForm">
+                <div class="text-danger" *ngFor="let v of validMsg.addresss" style="margin-top: 2px">
+                  <small *ngIf="getValidateEdit('address',v)">{{v.msg}}</small>
+                </div>
+              </ng-container>
+            </div>
           </fieldset>
-        </div>
-        <div class="modal-footer">
-          <!--          <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">-->
-          <input type="submit" style="width: 100%" class=" btn btn-danger btn-ok" value="Edit">
+          <div class="modal-footer">
+            <!--          <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">-->
+            <input type="submit" style="width: 50%; background: #0F574B" class=" btn btn-danger" value="Confirm"
+                   [disabled]="!editForm.valid" [hidden]="!isEdit">
+          </div>
         </div>
       </div>
     </form>
+
   </div>
+
 </div>
+

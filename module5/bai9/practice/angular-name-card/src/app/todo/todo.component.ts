@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Todo} from '../todo';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+
 import {TodoService} from '../todo.service';
 import Swal from 'sweetalert2';
 
@@ -13,8 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class TodoComponent implements OnInit {
   todos: Todo[] = [];
-  content = new FormControl();
-  name: string;
+  name = '';
   todo: Todo;
 
   constructor(private s: TodoService) {
@@ -30,40 +29,40 @@ export class TodoComponent implements OnInit {
     });
   }
 
-  create(name: string) {
+  create(a) {
     Swal.fire({
       text: 'Create new Todo' +
-        '<br><input type="text" placeholder="name">',
+        '',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, create it!'
     }).then((result) => {
-      this.todo.name = name;
-      this.s.save(this.todo).subscribe();
-      Swal.fire(
-        'Createed!',
-        '',
-        'success'
-      );
+      console.log(this.name);
+      if (result.isConfirmed) {
+        console.log(a)
+        this.todo.name = a;
+        this.s.save(this.todo).subscribe();
+        Swal.fire(
+          'created!',
+          '',
+          'success'
+        );
+      }
     });
   }
 
   update(id: number) {
-    this.s.findById(id).subscribe(c => {
-      this.name = c.name;
-    });
     Swal.fire({
-      text: 'Create new Todo' +
-        '<br><input type="text" value="{{name}}" placeholder="name">',
+      text: 'edit new Todo',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: ''
     }).then((result) => {
       if (result.isConfirmed) {
         this.s.findById(id).subscribe(c => {
-          this.s.update(id, c);
+          this.s.update(id, c).subscribe();
         });
         Swal.fire(
           'Updated!',
@@ -72,7 +71,6 @@ export class TodoComponent implements OnInit {
         );
       }
     });
-
   }
 
   delete(id: number) {
@@ -86,7 +84,7 @@ export class TodoComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.s.delete(id);
+        this.s.delete(id).subscribe();
         Swal.fire(
           'Deleted!',
           'Your file has been deleted.',
@@ -96,4 +94,7 @@ export class TodoComponent implements OnInit {
     });
   }
 
+  chang(value) {
+    this.name = value.value;
+  }
 }

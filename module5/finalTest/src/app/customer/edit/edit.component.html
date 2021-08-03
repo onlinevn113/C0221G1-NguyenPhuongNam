@@ -1,0 +1,27 @@
+<button (click)="changeFlag()">Confirm Edit</button>
+<form action="" [formGroup]="editForm" (ngSubmit)="edit()">
+  name: <input type="text" formControlName="name" [readOnly]="!flag">
+  <div *ngFor="let m of msg.name">
+    <small *ngIf="getValidateEdit('name',m)">{{m.msg}}</small>
+  </div>
+
+  <br>
+  birthday: <input type="date" formControlName="birthday"><br>
+  gender: <select formControlName="gender">
+  <option value="0">Female</option>
+  <option value="1">Male</option>
+</select> <br>
+  email: <input type="text" formControlName="email">
+  <div *ngFor="let m of msg.email">
+    <small *ngIf="getValidateEdit('email',m)">{{m.msg}}</small>
+  </div>
+  <br>
+  customerType:
+  <select formControlName="customerType" [compareWith]="compareFn">
+    <option *ngFor="let ct of customerTypes" [ngValue]="ct">{{ct.name}}</option>
+    <div *ngFor="let m of msg.customerType">
+      <small *ngIf="getValidateEdit('customerType',m)">{{m.msg}}</small>
+    </div>
+  </select>
+  <input type="submit" value="Edit" [disabled]="!editForm.valid">
+</form>
