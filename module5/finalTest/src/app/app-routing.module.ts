@@ -5,6 +5,8 @@ import {CreateComponent} from './customer/create/create.component';
 import {EditComponent} from './customer/edit/edit.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
+import {DanhSachComponent} from './benh_vien/danh-sach/danh-sach.component';
+import {ChinhSuaComponent} from './benh_vien/chinh-sua/chinh-sua.component';
 
 
 
@@ -24,6 +26,14 @@ const routes: Routes = [
   {
     path:'customer/edit/:id',
     component: EditComponent
+  },
+  {
+    path:'benh-nhan',
+    component: DanhSachComponent
+  },
+  {
+    path:'benh-nhan/chinh-sua/:id',
+    component: ChinhSuaComponent
   }
 ];
 

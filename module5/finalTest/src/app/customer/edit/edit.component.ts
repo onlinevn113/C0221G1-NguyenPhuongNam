@@ -12,7 +12,7 @@ import {CustomerType} from '../../model/customer/customer-type';
 })
 export class EditComponent implements OnInit {
   idEdit: number;
-  flag = false;
+
   customer: Customer;
   editForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -44,8 +44,12 @@ export class EditComponent implements OnInit {
     activatedRoute.paramMap.subscribe((param) => {
       this.idEdit = +param.get('id');
       sv.findById(this.idEdit).subscribe(c => {
+
         this.customer = c;
+        console.log(this.customer);
         this.editForm.patchValue(c);
+
+        console.log(c);
       });
     });
 
@@ -77,10 +81,9 @@ export class EditComponent implements OnInit {
     this.sv.update(this.idEdit, this.customer).subscribe(() => {
       alert('OK');
       this.router.navigateByUrl('customer');
+    },error => {
+      alert("Error")
     });
   }
 
-  changeFlag() {
-    this.flag = true;
-  }
 }

@@ -10,6 +10,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomeComponent} from './home/home.component';
+import { DanhSachComponent } from './benh_vien/danh-sach/danh-sach.component';
+import { ChinhSuaComponent } from './benh_vien/chinh-sua/chinh-sua.component';
+
 
 
 
@@ -20,6 +23,9 @@ import {HomeComponent} from './home/home.component';
     CreateComponent,
     EditComponent,
     HomeComponent,
+    DanhSachComponent,
+    ChinhSuaComponent,
+
   ],
   imports: [
     BrowserModule,

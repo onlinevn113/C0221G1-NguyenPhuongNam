@@ -1,171 +1,34 @@
+<a href="/customer">back to list</a>
+<form action="" [formGroup]="createForm" (ngSubmit)="create()">
+  name: <input type="text" formControlName="name">
+  <div *ngFor="let m of msg.name">
+    <small *ngIf="getValidateCreate('name',m)">{{m.msg}}</small>
+  </div>
 
+  <br>
+  birthday: <input type="date" formControlName="birthday"><br>
+  gender: <select formControlName="gender">
+  <option value="0">Female</option>
+  <option value="1">Male</option>
+</select> <br>
+  email: <input type="email" formControlName="email">
+  <div *ngFor="let m of msg.email">
+    <small *ngIf="getValidateCreate('email',m)">{{m.msg}}</small>
+  </div>
+  <br>
+  dateTime: <input type="datetime-local" formControlName="localDateTime">
+  <br>
+  stringDateTime: <input type="datetime-local" formControlName="stringDateTime">
+  <br>
+  timee: <input type="time" formControlName="timee">
+  <br>
 
-
-<!--<form action="" [formGroup]="createForm" (ngSubmit)="create()">-->
-<!--  name: <input type="text" formControlName="name">-->
-<!--  <div *ngFor="let m of msg.name">-->
-<!--    <small *ngIf="getValidateCreate('name',m)">{{m.msg}}</small>-->
-<!--  </div>-->
-
-<!--  <br>-->
-<!--  birthday: <input type="date" formControlName="birthday"><br>-->
-<!--  gender:-->
-<!--  <select formControlName="gender">-->
-<!--    <option value="" disabled>Please select</option>-->
-<!--    <option value="0">Female</option>-->
-<!--    <option value="1">Male</option>-->
-<!--  </select>-->
-<!--  <div *ngFor="let m of msg.gender">-->
-<!--    <small *ngIf="getValidateCreate('gender',m)">{{m.msg}}</small>-->
-<!--  </div>-->
-<!--  <br>-->
-<!--  email: <input type="text" formControlName="email">-->
-<!--  <div *ngFor="let m of msg.email">-->
-<!--    <small *ngIf="getValidateCreate('email',m)">{{m.msg}}</small>-->
-<!--  </div>-->
-<!--  <br>-->
-<!--  customerType:-->
-<!--  <select formControlName="customerType">-->
-<!--    <option value="" selected disabled>Please select</option>-->
-<!--    <option *ngFor="let ct of customerTypes" [ngValue]="ct">{{ct.name}}-->
-<!--    </option>-->
-<!--  </select>-->
-<!--  <div *ngFor="let m of msg.customerType">-->
-<!--    <small *ngIf="getValidateCreate('customerType',m)">{{m.msg}}</small>-->
-<!--  </div>-->
-<!--  <input type="submit" value="Create" [disabled]="!createForm.valid">-->
-<!--</form>-->
-
-
-<div class="container">
-  <form class="well form-horizontal" action="/customer/create" method="post">
-    <a href="/customer">
-      <button type="button" style="background: #0F574B" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left"></span> Back to list
-      </button>
-    </a>
-
-    <fieldset>
-      <!-- Form Name -->
-      <legend class="text-center">
-       <h2><b id="#blinking">Create Form</b></h2>
-      </legend>
-      <br>
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Customer Type</label>
-        <div class="col-md-4 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-            <select class="form-control selectpicker">
-              <option>option
-              </option>
-            </select>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4 control-label ">Code</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input placeholder="Code" class="form-control" type="text">
-          </div>
-
-
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-4 control-label ">Name</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input placeholder="Name" class="form-control" type="text">
-          </div>
-
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Birthday</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input placeholder="Birthday" class="form-control" type="date">
-          </div>
-
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Id Card</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input class="form-control" type="number">
-          </div>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Gender</label>
-        <div class="col-md-4 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
-            <select class="form-control selectpicker">
-              <option value="1">Male</option>
-              <option value="0">FeMale</option>
-            </select>
-          </div>
-
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Phone Number</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-            <input placeholder="(84)" class="form-control" type="number">
-          </div>
-
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">E-Mail</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input placeholder="E-Mail Address" class="form-control" type="email">
-          </div>
-
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <label class="col-md-4 control-label ">Address</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-            <input placeholder="Address" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button style="background: #0F574B" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-send"></span>Submit</button>
-    </fieldset>
-  </form>
-</div>
-
+  customerType:
+  <select formControlName="customerType">
+    <option *ngFor="let ct of customerTypes" [ngValue]="ct">{{ct.name}}</option>
+    <div *ngFor="let m of msg.customerType">
+      <small *ngIf="getValidateCreate('customerType',m)">{{m.msg}}</small>
+    </div>
+  </select>
+  <input type="submit" value="Create" [disabled]="!createForm.valid">
+</form>

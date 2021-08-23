@@ -7,4 +7,8 @@ export interface Customer {
   gender?: number;
   email?: string;
   customerType?: CustomerType;
+  localDateTime?: string;
+  stringDateTime?: string;
+  timee?: string;
 }
+

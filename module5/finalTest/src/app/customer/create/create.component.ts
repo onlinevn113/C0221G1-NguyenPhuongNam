@@ -19,7 +19,11 @@ export class CreateComponent implements OnInit {
     birthday: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    customerType: new FormControl('', Validators.required)
+    customerType: new FormControl('', Validators.required),
+    localDateTime: new FormControl(''),
+    dateTime: new FormControl(''),
+    stringDateTime: new FormControl(''),
+    timee: new FormControl('')
   });
   msg = {
     customerType: [
@@ -43,7 +47,7 @@ export class CreateComponent implements OnInit {
 
 
   constructor(private sv: CustomerService, private router: Router, private load: LoadCssService) {
-      load.loadCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+    load.loadCss('https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css', 'b34');
   }
 
   ngOnInit(): void {
@@ -52,15 +56,19 @@ export class CreateComponent implements OnInit {
 
   getAllCustomerType() {
     this.sv.getAllCustomerType().subscribe(ct => {
+      console.log(ct);
       this.customerTypes = ct;
     });
   }
 
   create() {
     this.customer = this.createForm.value;
+    console.log(this.customer);
     this.sv.save(this.customer).subscribe(() => {
       this.router.navigateByUrl('customer');
       alert('Create success');
+    }, error => {
+      alert('Error');
     });
   }
 

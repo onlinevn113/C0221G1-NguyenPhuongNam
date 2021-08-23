@@ -1,5 +1,5 @@
 {
-  "customerTypes": [
+  "customerType": [
     {
       "id": 1,
       "name": "Diamond"
@@ -21,18 +21,7 @@
       "name": "Member"
     }
   ],
-  "customers": [
-    {
-      "id": 21,
-      "customerType": {
-        "id": 3,
-        "name": "Gold"
-      },
-      "name": "bụng siêu bự",
-      "birthday": "1999-06-27",
-      "email": "aToan@gmail.com",
-      "gender": "1"
-    },
+  "customer": [
     {
       "id": 1,
       "customerType": {
@@ -54,6 +43,41 @@
         "name": "Gold"
       },
       "id": 22
+    }
+  ],
+  "benhNhans": [
+    {
+      "maBenAn": "BA-011",
+      "maBenhNhan": "BN-124",
+      "ten": "Nguyen Van B",
+      "ngayNhapVien": "2021-06-27",
+      "ngayRaVien": "2021-06-30",
+      "lyDo": "Ung thu",
+      "phuongPhap": "Mo",
+      "bacSi": "Nguyen Nam",
+      "id": 15
+    },
+    {
+      "maBenAn": "BA-011",
+      "maBenhNhan": "BN-124",
+      "ten": "Nguyen Van B",
+      "ngayNhapVien": "2021-06-27",
+      "ngayRaVien": "2021-06-30",
+      "lyDo": "Ung thu",
+      "phuongPhap": "Mo",
+      "bacSi": "Nguyen Nam",
+      "id": 20
+    },
+    {
+      "maBenAn": "BA-011",
+      "maBenhNhan": "BN-124",
+      "ten": "Nguyen Van B",
+      "ngayNhapVien": "2021-06-27",
+      "ngayRaVien": "2021-06-30",
+      "lyDo": "Ung thu",
+      "phuongPhap": "Mo",
+      "bacSi": "Nguyen Nam",
+      "id": 21
     }
   ]
 }

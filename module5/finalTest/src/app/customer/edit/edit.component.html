@@ -1,6 +1,6 @@
-<button (click)="changeFlag()">Confirm Edit</button>
+<a href="/customer">back to list</a>
 <form action="" [formGroup]="editForm" (ngSubmit)="edit()">
-  name: <input type="text" formControlName="name" [readOnly]="!flag">
+  name: <input type="text" formControlName="name">
   <div *ngFor="let m of msg.name">
     <small *ngIf="getValidateEdit('name',m)">{{m.msg}}</small>
   </div>

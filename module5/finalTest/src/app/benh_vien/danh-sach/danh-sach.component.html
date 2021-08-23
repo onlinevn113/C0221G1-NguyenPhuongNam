@@ -1,15 +1,70 @@
-<div class="container-fluid d-flex position-relative border-0 row" style="background: #0F574B">
+<div class="container-fluid d-flex position-relative border-0" style="background: #0F574B">
   <div class="col-3 " style="left: 25px">
     <a href="/" class="img-fluid"><img class=" img-fluid mx-5"
                                        src="https://www.sambacouture.com/wp-content/uploads/2017/12/Sambacouture-logo-icon.png"
                                        height="117" width="87"/></a>
   </div>
-  <div style="margin-top: 30px ">
-    <input type="text" style="height: 30px ;width: 600px; " id="searchName" placeholder="Search name">
-    <button  class="btn-light bi bi-search"></button>
-
+  <div class="d-flex" style=" width: 80px;height: 30px; margin-top: 30px">
+    <input type="text" placeholder="search by name">
+    <input type="text" placeholder="search by email">
+    <button type="submit" class="btn-light bi bi-search"></button>
   </div>
 </div>
+<!--<a href="/customer/create" class="btn-block bi bi-plus-circle text-dark font-weight-bold "-->
+<!--   style="padding-left: 118px;padding-top: 30px;text-decoration: none; width: 230px"> Add new-->
+<!--</a>-->
+<!--padding-left: 118px;padding-top: 30px;-->
+<button class="btn btn-outline-light text-dark font-weight-bold"
+        style="margin-left: 100px; margin-top: 10px"><span class="bi bi-plus-circle"></span> Thêm mới
+</button>
+<div class="container">
+  <table class="table mt-3">
+    <thead class="thead-light">
+    <tr style="font-size: 14px">
+      <th>STT</th>
+      <th>Mã Bệnh Án</th>
+      <th>Mã Bệnh Nhân</th>
+      <th>Tên Bệnh Nhân</th>
+      <th>Ngày Nhập Viện</th>
+      <th>Ngày Ra Viện</th>
+      <th>Lý Do</th>
+      <th>Phương Pháp</th>
+      <th>Bác Sĩ</th>
+      <th colspan="2">Tạc Vụ</th>
+
+      <!--      <th>-->
+      <!--        <b>-->
+      <!--          <a href="/customer/create" class="btn-block bi bi-plus-circle text-dark" style="margin-top: 30px ">-->
+      <!--          </a>-->
+      <!--        </b>-->
+      <!--      </th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of benhNhans| paginate:{itemsPerPage: 3, currentPage:page};index as i">
+      <td>{{i + page * 3 - 2}}</td>
+      <td>{{c.maBenAn}}</td>
+      <td>{{c.maBenhNhan}}</td>
+      <td>{{c.ten}}</td>
+      <td>{{c.ngayNhapVien| date:'dd/MM/yyyy'}}</td>
+      <td>{{c.ngayRaVien| date:'dd/MM/yyyy'}}</td>
+      <td>{{c.lyDo}}</td>
+      <td>{{c.phuongPhap}}</td>
+      <td>{{c.bacSi}}</td>
+      <td>
+        <button [routerLink]="['/benh-nhan/chinh-sua',c.id]" class="bi bi-pencil-square">
+
+        </button>
+      </td>
+      <td>
+        <button (click)="delete(c.id, c.maBenAn)" class="bi bi-trash"></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="page=$event" nextLabel="sau" previousLabel="trước"></pagination-controls>
+</div>
+<!--side-nav-->
 <div class="navigation " style="z-index: 5">
   <ul>
     <li class="list active">
@@ -24,7 +79,6 @@
     <li class="list active">
       <b></b>
       <b></b>
-
       <a href="">
         <span class="icon"><i class="bi bi-house-door"></i></span>
         <span class="title">Trang chu</span>
@@ -35,7 +89,7 @@
       <b></b>
       <a href="/benh-nhan">
         <span class="icon"><i class="bi bi-person"></i></span>
-        <span class="title">Benh Nhan</span>
+        <span class="title">Bệnh nhân</span>
       </a>
     </li>
     <li class="list">
@@ -57,17 +111,24 @@
 
   </ul>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
-
-<div class="container-fluid">
-  <img class="img-fluid" src="../../assets/furama-body.png" height="570" width="1338"/>
-  <img class="img-fluid" src="../../assets/furama-body2.png" height="486" width="1322"/>
-</div>
-
-
-<footer class="text-white" style="height: 5px">
-  <div class="container px-4 pb-3 text-center">
+<footer class="text-white">
+  <div class="px-4 pb-3 text-center">
     <section class="mb-3">
       <span style="color: rgba(0,0,0,0.48)">© For more information </span>
       <a target="_blank" class="m-1 rounded-circle"
@@ -94,3 +155,18 @@
     </a>
   </div>
 </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

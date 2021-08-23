@@ -1,0 +1,126 @@
+<div class="container">
+  <form class="well form-horizontal" [formGroup]="form" (ngSubmit)="edit()">
+    <button type="button" style="background: #0F574B" class="btn btn-success" (click)="out()"><span
+      class="glyphicon glyphicon-chevron-left"></span> Back to list
+    </button>
+
+    <fieldset>
+      <!-- Form Name -->
+      <legend class="text-center">
+        <h2><b id="#blinking">Chỉnh sửa bệnh án</b></h2>
+      </legend>
+      <br>
+
+
+      <div class="form-group">
+        <label class="col-md-4 control-label ">Mã bệnh án</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input readonly placeholder="maBenAn" formControlName="maBenAn" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label ">Mã bệnh nhân</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input readonly placeholder="maBenhNhan" formControlName="maBenhNhan" class="form-control" type="text">
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label ">Tên bệnh nhân</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input placeholder="Tên bệnh nhân" formControlName="ten" class="form-control" type="text">
+          </div>
+          <div class="text-danger" *ngFor="let valid of msg.ten">
+            <div *ngIf="getValidateEdit('ten', valid)">{{valid.msg}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label ">Ngày nhập viên</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input placeholder="Ngày nhập viên" formControlName="ngayNhapVien" class="form-control" type="date">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label ">Ngày ra viên</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input placeholder="Ngày ra viên" formControlName="ngayRaVien" class="form-control" type="date">
+          </div>
+          <div class="text-danger" *ngIf="form.controls.ngayRaVien.touched">
+            <div *ngIf="form.hasError('validDate')">
+              <small>Ngày xuất viện phải sau ngày nhập viện</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label ">Lý Do Nhập viện</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input placeholder="Lý Do Nhập viện" formControlName="lyDo" class="form-control" type="text">
+          </div>
+          <div class="text-danger" *ngFor="let valid of msg.lyDo">
+            <small *ngIf="getValidateEdit('lyDo', valid)">{{valid.msg}}</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label ">Phương pháp điều trị</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input placeholder="Phương pháp điều trị" formControlName="phuongPhap" class="form-control" type="text">
+          </div>
+          <div class="text-danger" *ngFor="let valid of msg.phuongPhap">
+            <small *ngIf="getValidateEdit('phuongPhap', valid)">{{valid.msg}}</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label ">Bác sĩ điều trị</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input placeholder="Bác sĩ điều trị" formControlName="bacSi" class="form-control" type="text">
+          </div>
+          <div class="text-danger" *ngFor="let valid of msg.bacSi">
+            <small *ngIf="getValidateEdit('bacSi', valid)">{{valid.msg}}</small>
+          </div>
+        </div>
+      </div>
+
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <button [disabled]="!form.valid" style="background: #0F574B" type="submit" class="btn btn-success"><span
+        class="glyphicon glyphicon-send"></span>Submit
+      </button>
+    </fieldset>
+  </form>
+</div>
+
